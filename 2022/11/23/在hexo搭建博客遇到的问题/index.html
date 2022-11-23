@@ -20,28 +20,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"fengyepiaosa.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="数据和特征决定了机器学习的上限，而模型和算法只是逼近这个上限而已">
+    <meta name="description" content="之前我用的主题感觉索然无味，于是我尝试换了一个主题，结果发现了新大陆！激动的话我就不在这里详细张开来讲了，我会放在另外一篇文章里，这里主要讲讲我在Hexo上搭建Next遇到的问题以及解决方法。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="特征工程">
-<meta property="og:url" content="https://fengyepiaosa.github.io/2022/11/23/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/index.html">
+<meta property="og:title" content="在hexo搭建博客遇到的问题">
+<meta property="og:url" content="https://fengyepiaosa.github.io/2022/11/23/%E5%9C%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="fengyepiaosa">
-<meta property="og:description" content="数据和特征决定了机器学习的上限，而模型和算法只是逼近这个上限而已">
+<meta property="og:description" content="之前我用的主题感觉索然无味，于是我尝试换了一个主题，结果发现了新大陆！激动的话我就不在这里详细张开来讲了，我会放在另外一篇文章里，这里主要讲讲我在Hexo上搭建Next遇到的问题以及解决方法。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-11-23T11:12:08.000Z">
-<meta property="article:modified_time" content="2022-11-23T13:28:11.927Z">
+<meta property="article:published_time" content="2022-11-23T12:39:35.000Z">
+<meta property="article:modified_time" content="2022-11-23T13:27:27.468Z">
 <meta property="article:author" content="wenfeng">
-<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="博客">
+<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="Next">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://fengyepiaosa.github.io/2022/11/23/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/">
+<link rel="canonical" href="https://fengyepiaosa.github.io/2022/11/23/%E5%9C%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://fengyepiaosa.github.io/2022/11/23/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/","path":"2022/11/23/特征工程/","title":"特征工程"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://fengyepiaosa.github.io/2022/11/23/%E5%9C%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/","path":"2022/11/23/在hexo搭建博客遇到的问题/","title":"在hexo搭建博客遇到的问题"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>特征工程 | fengyepiaosa</title>
+<title>在hexo搭建博客遇到的问题 | fengyepiaosa</title>
   
 
 
@@ -146,7 +148,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">特征工程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">2.</span> <span class="nav-text">1.特征工程一些注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E5%BD%93%E5%89%8D%E6%88%91%E5%AF%B9%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%E7%9A%84%E7%90%86%E8%A7%A3"><span class="nav-number">2.1.</span> <span class="nav-text">1.1 当前我对特征工程的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E6%9B%B4%E5%A5%BD%E7%9A%84%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E8%A1%A8%E8%BE%BE"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 更好的业务逻辑表达</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E6%8F%90%E5%8D%87%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%80%A7%E8%83%BD"><span class="nav-number">2.3.</span> <span class="nav-text">1.3 提升机器学习性能</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9"><span class="nav-number">3.</span> <span class="nav-text">2. 特征选择</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96"><span class="nav-number">4.</span> <span class="nav-text">3. 特征提取</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">4. 总结</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo%E6%90%AD%E5%BB%BA%E4%BA%86%E5%8D%9A%E5%AE%A2%E6%98%BE%E7%A4%BA%E4%B8%8D%E5%87%BACategories%E5%92%8CTags"><span class="nav-number">1.</span> <span class="nav-text">Hexo搭建了博客显示不出Categories和Tags</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%AD%E5%8F%96%E6%B6%88%E6%B3%A8%E9%87%8ACategories%E5%92%8CTags"><span class="nav-number">1.1.</span> <span class="nav-text">在主题配置文件中取消注释Categories和Tags</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E9%A1%B5%E9%9D%A2"><span class="nav-number">1.2.</span> <span class="nav-text">新建页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9index-md"><span class="nav-number">1.3.</span> <span class="nav-text">修改index.md</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hexo%E5%BB%BA%E7%AB%8B%E5%90%8C%E7%BA%A7categories"><span class="nav-number">2.</span> <span class="nav-text">hexo建立同级categories</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hexo%E4%B8%BB%E9%A1%B5%E4%B8%8D%E6%98%BE%E7%A4%BA%E5%85%A8%E6%96%87"><span class="nav-number">3.</span> <span class="nav-text">hexo主页不显示全文</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hexo%E9%85%8D%E7%BD%AENext%E6%95%99%E7%A8%8B%E9%93%BE%E6%8E%A5"><span class="nav-number">4.</span> <span class="nav-text">hexo配置Next教程链接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">5.</span> <span class="nav-text">hexo常用命令</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -232,7 +234,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://fengyepiaosa.github.io/2022/11/23/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/">
+    <link itemprop="mainEntityOfPage" href="https://fengyepiaosa.github.io/2022/11/23/%E5%9C%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/asuka.jpg">
@@ -245,12 +247,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="特征工程 | fengyepiaosa">
+      <meta itemprop="name" content="在hexo搭建博客遇到的问题 | fengyepiaosa">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          特征工程
+          在hexo搭建博客遇到的问题
         </h1>
 
         <div class="post-meta-container">
@@ -262,7 +264,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2022-11-23 19:12:08 / 修改时间：21:28:11" itemprop="dateCreated datePublished" datetime="2022-11-23T19:12:08+08:00">2022-11-23</time>
+      <time title="创建时间：2022-11-23 20:39:35 / 修改时间：21:27:27" itemprop="dateCreated datePublished" datetime="2022-11-23T20:39:35+08:00">2022-11-23</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -270,7 +272,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Mathine-Learning/" itemprop="url" rel="index"><span itemprop="name">Mathine Learning</span></a>
+          <a href="/categories/blog/" itemprop="url" rel="index"><span itemprop="name">blog</span></a>
         </span>
     </span>
 
@@ -284,40 +286,38 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>数据和特征决定了机器学习的上限，而模型和算法只是逼近这个上限而已</p>
+        <p>之前我用的主题感觉索然无味，于是我尝试换了一个主题，结果发现了新大陆！激动的话我就不在这里详细张开来讲了，我会放在另外一篇文章里，这里主要讲讲我在Hexo上搭建Next遇到的问题以及解决方法。</p>
 <span id="more"></span>
 
-<h1 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a>特征工程</h1><p><a target="_blank" rel="noopener" href="https://easyai.tech/ai-definition/feature-engineering/">特征工程</a>是机器学习工作流程中重要的组成部分，它将原始数据「翻译」成模型可理解的形式。</p>
-<p>美国计算机科学家 Peter Norvig 说过两句经典名言</p>
-<ol>
-<li>基于大量数据的简单模型优于基于少量数据的复杂模型</li>
-<li>更多的数据优于聪明的算法，而好的数据优于多的数据</li>
-</ol>
-<p>足以可见数据量和特征工程的重要性，不过数据量已经给定了，我们能做的只有特征工程。如何基于原来的数据发挥出更大的数据价值就是特征工程要做的事情。</p>
-<p><em>在16年的一项调查中发现，<a target="_blank" rel="noopener" href="https://whatsthebigdata.com/2016/05/01/data-scientists-spend-most-of-their-time-cleaning-data/">数据科学家</a>的工作中，有80%的时间都在获取、清洗和组织数据。构造机器学习流水线的时间不到20%…</em></p>
-<h1 id="1-特征工程一些注意事项"><a href="#1-特征工程一些注意事项" class="headerlink" title="1.特征工程一些注意事项"></a>1.特征工程一些注意事项</h1><p>e.g. 人类是需要吃加工过的食物才行，这样更安全也更美味。机器算法模型也是类似，原始数据不能直接喂给模型，也需要对数据进行清洗、组织、转换。最后才能得到模型可以消化的特征。这样你对特征工程在数据和模型之间扮演的角色已经十分了解了吧？</p>
-<h2 id="1-1-当前我对特征工程的理解"><a href="#1-1-当前我对特征工程的理解" class="headerlink" title="1.1 当前我对特征工程的理解"></a>1.1 当前我对特征工程的理解</h2><p>当前我对特征工程的理解仅仅停留在特征提取和特征选择，这样是待会会提到的内容。首先要知道，这两种方法都是降维的方法。特征选择后的字段是原数据字段的子集，也就是说删减了一些冗杂的对模型训练没有用的字段。特征提取理解成原来特征的映射，e.g.三个字段合并在一起表现的会比三个字段独立更好一些–&gt;<a target="_blank" rel="noopener" href="https://blog.csdn.net/Neil_Pan/article/details/51940849">特征选择和特征提取区别</a></p>
-<p>如果想要看看，特征工程具体是包括哪些具体步骤的，还可以参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/tiange_xiao/article/details/79723177#:~:text=%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%20%E6%98%AF%E4%BD%BF%E7%94%A8%E4%B8%93%E4%B8%9A%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86%E5%92%8C%E6%8A%80%E5%B7%A7%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%EF%BC%8C%E4%BD%BF%E5%BE%97%20%E7%89%B9%E5%BE%81%20%E8%83%BD%E5%9C%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E4%B8%8A%E5%8F%91%E6%8C%A5%E6%9B%B4%E5%A5%BD%E7%9A%84%E4%BD%9C%E7%94%A8%E7%9A%84%E8%BF%87%E7%A8%8B%E3%80%82%20%E8%BF%87%E7%A8%8B%20%E5%8C%85%E5%90%AB%20%E4%BA%86%20%E7%89%B9%E5%BE%81,%E7%89%B9%E5%BE%81%20%E6%9E%84%E5%BB%BA%E3%80%81%20%E7%89%B9%E5%BE%81%20%E9%80%89%E6%8B%A9%E7%AD%89%E6%A8%A1%E5%9D%97%E3%80%82%20%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%20%E7%9A%84%E7%9B%AE%E7%9A%84%E6%98%AF%E7%AD%9B%E9%80%89%E5%87%BA%E6%9B%B4%E5%A5%BD%E7%9A%84%20%E7%89%B9%E5%BE%81%20%EF%BC%8C%E8%8E%B7%E5%8F%96%E6%9B%B4%E5%A5%BD%E7%9A%84%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E3%80%82">这里</a></p>
-<h2 id="1-2-更好的业务逻辑表达"><a href="#1-2-更好的业务逻辑表达" class="headerlink" title="1.2 更好的业务逻辑表达"></a>1.2 更好的业务逻辑表达</h2><p>将特征工程理解成是业务逻辑的一种数学表达。说是说业务逻辑表达，其实实质上就是指为了解决机器学习中特定的问题。因为原始数据有很多种转换为特征的方式，我们需要选择那些能够「更好的表示业务逻辑」，从而更好的解决问题，而不是那些更简单的方法。</p>
-<h2 id="1-3-提升机器学习性能"><a href="#1-3-提升机器学习性能" class="headerlink" title="1.3 提升机器学习性能"></a>1.3 提升机器学习性能</h2><p>性能意味着更短时间和更低成本，哪怕相同的模型，也会因为特征工程的不同而性能不同。所以我们需要选择那些可以发挥更好性能的特征工程</p>
-<h1 id="2-特征选择"><a href="#2-特征选择" class="headerlink" title="2. 特征选择"></a>2. 特征选择</h1><p>特征选择是特征工程里的一个重要问题，其目标是寻找最优特征子集。特征选择能剔除不相关(irrelevant)或冗余(redundant)的特征，从而达到减少特征个数，提高模型精确度，减少运行时间的目的。另一方面，<strong>选取出真正相关的特征简化模型</strong>，协助理解数据产生的过程。并且常能听到“数据和特征决定了机器学习的上限，而模型和算法只是逼近这个上限而已”，由此可见其重要性。但是它几乎很少出现于机器学习书本里面的某一章。然而在机器学习方面的成功很大程度上在于如果使用特征工程。</p>
-<p>之所以要考虑特征选择，是因为机器学习经常面临过拟合的问题。 过拟合的表现是模型参数太贴合训练集数据，模型在训练集上效果很好而在测试集上表现不好。简言之模型的泛化能力差。过拟合的原因是模型对于训练集数据来说太复杂，要解决过拟合问题，一般考虑如下方法：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/74198735#:~:text=%E4%B9%8B%E6%89%80%E4%BB%A5%E8%A6%81%E8%80%83%E8%99%91%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9%EF%BC%8C%E6%98%AF%E5%9B%A0%E4%B8%BA%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BB%8F%E5%B8%B8%E9%9D%A2%E4%B8%B4%E8%BF%87%E6%8B%9F%E5%90%88%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82%20%E8%BF%87%E6%8B%9F%E5%90%88,%E7%9A%84%E8%A1%A8%E7%8E%B0%E6%98%AF%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%20%E5%A4%AA%E8%B4%B4%E5%90%88%E8%AE%AD%E7%BB%83%E9%9B%86%E6%95%B0%E6%8D%AE%20%EF%BC%8C%E6%A8%A1%E5%9E%8B%E5%9C%A8%E8%AE%AD%E7%BB%83%E9%9B%86%E4%B8%8A%E6%95%88%E6%9E%9C%E5%BE%88%E5%A5%BD%E8%80%8C%E5%9C%A8%E6%B5%8B%E8%AF%95%E9%9B%86%E4%B8%8A%E8%A1%A8%E7%8E%B0%E4%B8%8D%E5%A5%BD%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%9C%A8%E9%AB%98%E6%96%B9%E5%B7%AE%E3%80%82">参考</a></p>
-<ol>
-<li>收集更多数据</li>
-<li>通过正则化引入对复杂度的惩罚</li>
-<li>选择更少参数的简单模型</li>
-<li>对数据降维（降维有两种方式：特征选择和特征抽取）</li>
-</ol>
-<p>其中第1条一般是很难做到的，一般主要采用第2和第4点</p>
-<h1 id="3-特征提取"><a href="#3-特征提取" class="headerlink" title="3. 特征提取"></a>3. 特征提取</h1><p>像上面所说，将特征提取理解成原来特征的映射，只是一种不同于特征选择的选取字段的方式罢了。</p>
-<h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h1><ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/hren_ron/article/details/80914491">了解生成特征子集的搜索方式</a></li>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/74198735#:~:text=%E4%B9%8B%E6%89%80%E4%BB%A5%E8%A6%81%E8%80%83%E8%99%91%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9%EF%BC%8C%E6%98%AF%E5%9B%A0%E4%B8%BA%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BB%8F%E5%B8%B8%E9%9D%A2%E4%B8%B4%E8%BF%87%E6%8B%9F%E5%90%88%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82%20%E8%BF%87%E6%8B%9F%E5%90%88,%E7%9A%84%E8%A1%A8%E7%8E%B0%E6%98%AF%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%20%E5%A4%AA%E8%B4%B4%E5%90%88%E8%AE%AD%E7%BB%83%E9%9B%86%E6%95%B0%E6%8D%AE%20%EF%BC%8C%E6%A8%A1%E5%9E%8B%E5%9C%A8%E8%AE%AD%E7%BB%83%E9%9B%86%E4%B8%8A%E6%95%88%E6%9E%9C%E5%BE%88%E5%A5%BD%E8%80%8C%E5%9C%A8%E6%B5%8B%E8%AF%95%E9%9B%86%E4%B8%8A%E8%A1%A8%E7%8E%B0%E4%B8%8D%E5%A5%BD%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%9C%A8%E9%AB%98%E6%96%B9%E5%B7%AE%E3%80%82">详细地介绍了特征选择的方法</a></li>
-<li><a target="_blank" rel="noopener" href="https://asialee.blog.csdn.net/article/details/84863410?spm=1001.2101.3001.6650.3&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-3-84863410-blog-79723177.pc_relevant_multi_platform_whitelistv3&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-3-84863410-blog-79723177.pc_relevant_multi_platform_whitelistv3&utm_relevant_index=6">机器学习特征工程的具体步骤</a></li>
-<li><a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectKBest.html">sklearn.select_feature.SelectKBest官方文档</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ai-ldj/p/14269023.html">SelectKBest博客园</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/moonoon1/article/details/120074949">SelectKBest-CSDN</a></li>
+<h1 id="Hexo搭建了博客显示不出Categories和Tags"><a href="#Hexo搭建了博客显示不出Categories和Tags" class="headerlink" title="Hexo搭建了博客显示不出Categories和Tags"></a>Hexo搭建了博客显示不出Categories和Tags</h1><h2 id="在主题配置文件中取消注释Categories和Tags"><a href="#在主题配置文件中取消注释Categories和Tags" class="headerlink" title="在主题配置文件中取消注释Categories和Tags"></a>在主题配置文件中取消注释Categories和Tags</h2><p>博客文件中一共有两类配置文件，一类是Hexo的配置文件、另一类是主题配置文件。首先要做的事是将主题配置文件打开，找到Menu Settings并且把Categories和Tags取消注释。</p>
+<h2 id="新建页面"><a href="#新建页面" class="headerlink" title="新建页面"></a>新建页面</h2><p>在你的source文件夹中新建文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo new page categories</span><br><span class="line">hexo new page tags</span><br><span class="line">hexo new page about</span><br><span class="line">hexo new page schedule</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改index-md"><a href="#修改index-md" class="headerlink" title="修改index.md"></a>修改index.md</h2><p>上面除了categories和tags我还写入了关于和日程表页面，只要你有需求就可以在主题配置文件中将他们打开。它们的处理方式都是类似的，所以我将它们放在一起讨论。</p>
+<p>打开source文件夹下的index.md文件后，开头只有title和data，我们要做就是在后面加上一句<code>type: categories</code>，其它也是同理。注意冒号后面有空格。</p>
+<p>之前有人说用<code>layout: categories</code>的方式也可以，我尝试了一下，发现已经失效了。原因可能是因为当前的hexo已经不支持layout这种格式了。</p>
+<h1 id="hexo建立同级categories"><a href="#hexo建立同级categories" class="headerlink" title="hexo建立同级categories"></a>hexo建立同级categories</h1><p>之前我对categories还没有分级和同级的概念，直到我对一篇文章想要运用多个categories的时候才初现端倪。网上的人都说hexo已经不支持同级分类了（但是我确实实现同级分类了）</p>
+<p>如果我们在outline如何命名：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">categories: </span><br><span class="line">- ML</span><br><span class="line">- Homework</span><br></pre></td></tr></table></figure>
+
+<p>或者说是这样</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">categories: [ML, Homework]</span><br></pre></td></tr></table></figure>
+
+<p>上面两种方法效果一样，Homework都是ML下的子类，你要是有<code>categories: [Homework]</code>这个目录，你会发现它们并不是相同的！因为一个是Homework一个是ML下的Homework。</p>
+<p>要是真想ML和Homework有同样的级别，可以尝试一下以下方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">categories:</span><br><span class="line">- [ML]</span><br><span class="line">- [Homework]</span><br></pre></td></tr></table></figure>
+
+<h1 id="hexo主页不显示全文"><a href="#hexo主页不显示全文" class="headerlink" title="hexo主页不显示全文"></a>hexo主页不显示全文</h1><p>在outline下面，你需要加入一段简介，作为这篇文章的介绍，随后再加入<code>&lt;!-- more --&gt;</code>，那么下面的内容便可以被隐藏。若是不加简介的话，<code>&lt;!-- more --&gt;</code>隐藏下面的功能便会失效。</p>
+<h1 id="hexo配置Next教程链接"><a href="#hexo配置Next教程链接" class="headerlink" title="hexo配置Next教程链接"></a>hexo配置Next教程链接</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/351031589">知乎详细配置</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/nightmare_dimple/article/details/86661502?spm=1001.2101.3001.6650.2&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-2-86661502-blog-100138838.pc_relevant_3mothn_strategy_and_data_recovery&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-2-86661502-blog-100138838.pc_relevant_3mothn_strategy_and_data_recovery&utm_relevant_index=3">CSDN-主题优化1</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/as480133937/article/details/100138838">CSDN-主题优化2-more extended functions!</a></li>
+<li><a target="_blank" rel="noopener" href="http://home.ustc.edu.cn/~liujunyan/blog/hexo-next-theme-config/#hexo-%E9%85%8D%E7%BD%AE">Next页面配置</a></li>
+<li><a target="_blank" rel="noopener" href="http://theme-next.iissnan.com/getting-started.html">Next官方文档</a></li>
 </ul>
+<h1 id="hexo常用命令"><a href="#hexo常用命令" class="headerlink" title="hexo常用命令"></a>hexo常用命令</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">hexo n &quot;name&quot;       # 新建文章</span><br><span class="line">hexo new page &quot;name&quot;  # 新建页面</span><br><span class="line">hexo g                # 生成页面</span><br><span class="line">hexo d                # 部署</span><br><span class="line">hexo g -d             # 生成页面并部署</span><br><span class="line">hexo s                # 本地预览</span><br><span class="line">hexo clean            # 清除缓存和已生成的静态文件</span><br><span class="line">hexo help             # 帮助</span><br></pre></td></tr></table></figure>
+
+<p>但是我通常都是使用<code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code>,因为其他的很少用到！</p>
 
     </div>
 
@@ -366,20 +366,22 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># 机器学习</a>
+              <a href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag"># 博客</a>
+              <a href="/tags/hexo/" rel="tag"># hexo</a>
+              <a href="/tags/Next/" rel="tag"># Next</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/11/23/%E7%BB%B4%E5%BA%A6%E7%81%BE%E9%9A%BE/" rel="prev" title="维度灾难">
-                  <i class="fa fa-chevron-left"></i> 维度灾难
+                <a href="/2022/11/23/L1%E5%92%8CL2%E6%AD%A3%E5%88%99%E5%8C%96/" rel="prev" title="L1和L2正则化">
+                  <i class="fa fa-chevron-left"></i> L1和L2正则化
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/11/23/%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81/" rel="next" title="交叉验证">
-                  交叉验证 <i class="fa fa-chevron-right"></i>
+                <a href="/2022/11/23/hexo%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" rel="next" title="在hexo搭建博客遇到的问题">
+                  在hexo搭建博客遇到的问题 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
