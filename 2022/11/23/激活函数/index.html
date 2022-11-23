@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/Blue.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_small.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"fengyepiaosa.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="学习一下机器学习中常见的激活函数，大部分只是了解即可，不必深究">
+<meta property="og:type" content="article">
+<meta property="og:title" content="激活函数">
+<meta property="og:url" content="https://fengyepiaosa.github.io/2022/11/23/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:site_name" content="fengyepiaosa">
+<meta property="og:description" content="学习一下机器学习中常见的激活函数，大部分只是了解即可，不必深究">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ask.qcloudimg.com/http-save/8352478/mn5asmil0s.png?imageView2/2/w/1620">
+<meta property="og:image" content="https://ask.qcloudimg.com/http-save/8352478/nhi9swy8ln.png?imageView2/2/w/1620">
+<meta property="og:image" content="https://ask.qcloudimg.com/http-save/8352478/gm9p8du88z.png?imageView2/2/w/1620">
+<meta property="og:image" content="https://ask.qcloudimg.com/http-save/8352478/ck888so4in.png?imageView2/2/w/1620">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1252882/201807/1252882-20180707095338849-1750990328.png">
+<meta property="og:image" content="https://ask.qcloudimg.com/http-save/8352478/zdls8bt48h.png?imageView2/2/w/1620">
+<meta property="article:published_time" content="2022-11-23T09:38:55.000Z">
+<meta property="article:modified_time" content="2022-11-23T09:41:03.116Z">
+<meta property="article:author" content="wenfeng">
+<meta property="article:tag" content="machine learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ask.qcloudimg.com/http-save/8352478/mn5asmil0s.png?imageView2/2/w/1620">
+
+
+<link rel="canonical" href="https://fengyepiaosa.github.io/2022/11/23/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://fengyepiaosa.github.io/2022/11/23/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/","path":"2022/11/23/激活函数/","title":"激活函数"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>激活函数 | fengyepiaosa</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+  
+
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">fengyepiaosa</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录生活！</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">常用的激活函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A6%96%E5%85%88%E8%A6%81%E7%9F%A5%E9%81%93%E4%BB%80%E4%B9%88%E6%98%AF%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">首先要知道什么是激活函数？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-sigmoid%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.</span> <span class="nav-text">1. sigmoid激活函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E5%9C%A8%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E9%80%82%E5%90%88%E4%BD%BF%E7%94%A8-Sigmoid-%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E5%91%A2%EF%BC%9F"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.1 在什么情况下适合使用 Sigmoid 激活函数呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-Sigmoid-%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E6%9C%89%E5%93%AA%E4%BA%9B%E7%BC%BA%E7%82%B9%EF%BC%9F"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2 Sigmoid 激活函数有哪些缺点？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-TanHyperbolic%EF%BC%88tanh%EF%BC%89%E5%8F%8C%E6%9B%B2%E6%AD%A3%E5%88%87%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.</span> <span class="nav-text">2. TanHyperbolic（tanh）双曲正切激活函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-softmax%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="nav-number">1.4.</span> <span class="nav-text">3. softmax激活函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-0-Softmax%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E7%9A%84%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="nav-number">1.4.1.</span> <span class="nav-text">3.0 Softmax激活函数的特点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-sigmoid%E4%B8%8Esoftmax%E6%AF%94%E8%BE%83-%E2%80%93-gt-sigmoid"><span class="nav-number">1.4.2.</span> <span class="nav-text">3.1 sigmoid与softmax比较 –&gt; sigmoid</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-sigmoid%E4%B8%8Esoftmax%E6%AF%94%E8%BE%83-%E2%80%93-gt-softmax"><span class="nav-number">1.4.3.</span> <span class="nav-text">3.2 sigmoid与softmax比较 –&gt; softmax</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-ReLU-%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="nav-number">1.5.</span> <span class="nav-text">4. ReLU 激活函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Sigmoid-%EF%BC%8Ctanh%E4%B8%8EReLU-%E6%AF%94%E8%BE%83"><span class="nav-number">1.5.1.</span> <span class="nav-text">Sigmoid ，tanh与ReLU 比较</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%82%B9"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">缺点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-softplus%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="nav-number">1.6.</span> <span class="nav-text">5. softplus激活函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Leaky-ReLU%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="nav-number">1.7.</span> <span class="nav-text">6. Leaky ReLU激活函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E7%82%B9-1"><span class="nav-number">1.7.1.</span> <span class="nav-text">优点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E5%85%B6%E4%BB%96%E5%B8%B8%E8%A7%81%E7%9A%84%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="nav-number">1.8.</span> <span class="nav-text">7. 其他常见的激活函数</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="wenfeng"
+      src="/uploads/asuka.jpg">
+  <p class="site-author-name" itemprop="name">wenfeng</p>
+  <div class="site-description" itemprop="description">欢迎来到wenfeng的博客！</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/fengyepiaosa" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;fengyepiaosa" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://plus.google.com/fengyepiaosa" title="Google → https:&#x2F;&#x2F;plus.google.com&#x2F;fengyepiaosa" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>Google</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://mobile.twitter.com/Kiddwenfeng" title="Twitter → https:&#x2F;&#x2F;mobile.twitter.com&#x2F;Kiddwenfeng" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/profile.php?id=100086193167274" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;profile.php?id&#x3D;100086193167274" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/channel/UCYtkEykUyHVBzpy4CgU1Zuw" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;channel&#x2F;UCYtkEykUyHVBzpy4CgU1Zuw" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/fengyepiaosa/" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;fengyepiaosa&#x2F;" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fengyepiaosa.github.io/2022/11/23/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/asuka.jpg">
+      <meta itemprop="name" content="wenfeng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fengyepiaosa">
+      <meta itemprop="description" content="欢迎来到wenfeng的博客！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="激活函数 | fengyepiaosa">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          激活函数
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-11-23 17:38:55 / 修改时间：17:41:03" itemprop="dateCreated datePublished" datetime="2022-11-23T17:38:55+08:00">2022-11-23</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>学习一下机器学习中常见的激活函数，大部分只是了解即可，不必深究</p>
+<span id="more"></span>
+
+<h1 id="常用的激活函数"><a href="#常用的激活函数" class="headerlink" title="常用的激活函数"></a>常用的激活函数</h1><h2 id="首先要知道什么是激活函数？"><a href="#首先要知道什么是激活函数？" class="headerlink" title="首先要知道什么是激活函数？"></a>首先要知道什么是激活函数？</h2><p>激活函数就是在神经网络的神经元上运行的函数，负责将神经元的输入映射到输出端。它类似于人类大脑中基于神经元的模型，激活函数最终决定了要发射给下一个神经元的内容。</p>
+<p>它的可视化过程如图所示：</p>
+<p><img src="https://ask.qcloudimg.com/http-save/8352478/mn5asmil0s.png?imageView2/2/w/1620" alt="激活函数工作过程"></p>
+<p>如果不用激励函数，每一层输出都是上层输入的线性函数，无论神经网络有多少层，输出都是输入的线性组合。神经网络中使用激活函数来加入非线性因素，提高模型的表达能力。</p>
+<h2 id="1-sigmoid激活函数"><a href="#1-sigmoid激活函数" class="headerlink" title="1. sigmoid激活函数"></a>1. sigmoid激活函数</h2><p><img src="https://ask.qcloudimg.com/http-save/8352478/nhi9swy8ln.png?imageView2/2/w/1620" alt="sigmoid函数"></p>
+<p>Sigmoid 函数的图像看起来像一个 S 形曲线。它的表达式如下：</p>
+<p>f(z) &#x3D; \frac{1}{1+e^{-z} } </p>
+<p>Sigmoid函数是传统神经网络中最常用的激活函数，一度被视为神经网络的核心所在。 </p>
+<p>从数学上来看，Sigmoid函数对中央区的信号增益较大，对两侧区的信号增益小，在信号的特征空间映射上，有很好的效果。从神经科学上来看，中央区酷似神经元的兴奋态，两侧区酷似神经元的抑制态，因而在神经网络学习方面，可以将重点特征推向中央区，将非重点特征推向两侧区。</p>
+<h3 id="1-1-在什么情况下适合使用-Sigmoid-激活函数呢？"><a href="#1-1-在什么情况下适合使用-Sigmoid-激活函数呢？" class="headerlink" title="1.1 在什么情况下适合使用 Sigmoid 激活函数呢？"></a>1.1 在什么情况下适合使用 Sigmoid 激活函数呢？</h3><ul>
+<li>Sigmoid 函数的输出范围是 0 到 1。由于输出值限定在 0 到 1，因此它对每个神经元的输出进行了归一化；</li>
+<li>用于将预测概率作为输出的模型。由于概率的取值范围是 0 到 1，因此 Sigmoid 函数非常合适；</li>
+<li>梯度平滑，避免「跳跃」的输出值；</li>
+<li>函数是可微的。这意味着可以找到任意两个点的 sigmoid 曲线的斜率；</li>
+<li>明确的预测，即非常接近 1 或 0。</li>
+<li></li>
+</ul>
+<h3 id="1-2-Sigmoid-激活函数有哪些缺点？"><a href="#1-2-Sigmoid-激活函数有哪些缺点？" class="headerlink" title="1.2 Sigmoid 激活函数有哪些缺点？"></a>1.2 Sigmoid 激活函数有哪些缺点？</h3><ul>
+<li>倾向于梯度消失；</li>
+<li>函数输出不是以 0 为中心的，这会降低权重更新的效率；</li>
+<li>Sigmoid 函数执行指数运算，计算机运行得较慢。</li>
+</ul>
+<p>现在基本上已经用不上sigmoid函数了。</p>
+<h2 id="2-TanHyperbolic（tanh）双曲正切激活函数"><a href="#2-TanHyperbolic（tanh）双曲正切激活函数" class="headerlink" title="2. TanHyperbolic（tanh）双曲正切激活函数"></a>2. TanHyperbolic（tanh）双曲正切激活函数</h2><p><img src="https://ask.qcloudimg.com/http-save/8352478/gm9p8du88z.png?imageView2/2/w/1620" alt="tanh函数"></p>
+<p>tanh 激活函数的图像也是 S 形，表达式如下：</p>
+<p>f(z) &#x3D; tanh(z) &#x3D;  \frac{e^{z} - e^{-z}  }{e^{z} + e^{-z} }  &#x3D; \frac{2}{1 + e^{-2z} }-1 </p>
+<p>tanh 是双曲正切函数。tanh 函数和 sigmoid 函数的曲线相似。但是它比 sigmoid 函数更有一些优势。</p>
+<ul>
+<li><p>sigmoid函数和tanh函数都存在一个问题：当神经网络的层数增多的时候，由于在进行反向传播的时候，链式求导，多项相乘，函数进入饱和区（导数接近于零的地方）就会逐层传递，这种现象被称为梯度消失。</p>
+</li>
+<li><p>首先要明确的一点是，当输入较大或较小时，输出几乎是平滑的并且梯度较小，这不利于权重更新。tanh 整个函数以 0 为中心，比 sigmoid 函数更好。在实际操作的时候，tanh 函数延迟了饱和期，在特征相差比较明显的时候效果会更好，并且在循环过程中也能够不断地扩大特征的效果。</p>
+</li>
+<li><p>在一般的二元分类问题中，tanh 函数用于隐藏层，而 sigmoid 函数用于输出层，但这并不是固定的，需要根据特定问题进行调整。</p>
+</li>
+</ul>
+<h2 id="3-softmax激活函数"><a href="#3-softmax激活函数" class="headerlink" title="3. softmax激活函数"></a>3. softmax激活函数</h2><p>公式表达为：</p>
+<p>f(z) &#x3D; \frac{e^{Z_j} }{\sum_{k}^{}e^{Z_k} } </p>
+<p>Sigmoid函数如果用来分类的话，只能进行二分类，而这里的softmax函数可以看做是Sigmoid函数的一般化，可以进行多分类。</p>
+<h3 id="3-0-Softmax激活函数的特点："><a href="#3-0-Softmax激活函数的特点：" class="headerlink" title="3.0 Softmax激活函数的特点："></a>3.0 Softmax激活函数的特点：</h3><ul>
+<li>在零点不可微。</li>
+<li>负输入的梯度为零，这意味着对于该区域的激活，权重不会在反向传播期间更新，因此会产生永不激活的死亡神经元。</li>
+</ul>
+<h3 id="3-1-sigmoid与softmax比较-–-gt-sigmoid"><a href="#3-1-sigmoid与softmax比较-–-gt-sigmoid" class="headerlink" title="3.1 sigmoid与softmax比较 –&gt; sigmoid"></a>3.1 sigmoid与softmax比较 –&gt; sigmoid</h3><p>二分类和多分类其实没有多少区别。用的公式仍然是y &#x3D; wx + b。 但有一个非常大的区别是他们用的激活函数是不同的。 逻辑回归用的是sigmoid，这个激活函数的除了给函数增加非线性之外还会把最后的预测值转换成在[0,1]中的数据值。也就是预测值是0&lt;y&lt;1。 我们可以把最后的这个预测值当做是一个预测为正例的概率。在进行模型应用的时候我们会设置一个阈值，当预测值大于这个阈值的时候，我们判定为正例子，反之我们判断为负例。这样我们可以很好的进行二分类问题。 </p>
+<h3 id="3-2-sigmoid与softmax比较-–-gt-softmax"><a href="#3-2-sigmoid与softmax比较-–-gt-softmax" class="headerlink" title="3.2 sigmoid与softmax比较 –&gt; softmax"></a>3.2 sigmoid与softmax比较 –&gt; softmax</h3><p>Softmax函数是用于多类分类问题的激活函数，在多类分类问题中，超过两个类标签则需要类成员关系。对于长度为K的任意实向量，Softmax函数可以将其压缩为长度为K，值在[0,1]范围内，并且向量中元素的总和为1的实向量。</p>
+<blockquote>
+<p>Softmax函数与正常的max函数不同：max函数仅输出最大值，但Softmax函数确保较小的值具有较小的概率，不会直接丢弃。我们可以认为它是arg max函数的概率版本或“soft”版本。Softmax函数的分母结合了原始输出值的所有因子，这意味着Softmax函数获得的各种概率彼此相关。</p>
+</blockquote>
+<blockquote>
+<p>利用 softmax 可以用于多分类问题，而用多个logistic回归通过叠加也同样可以实现多分类的效果，但是 softmax回归进行的多分类，类与类之间是互斥的，即一个输入只能被归为一类。多个logistic回归进行多分类，输出的类别并不是互斥的，即”苹果”这个词语既属于”水果”类也属于”3C”类别。</p>
+</blockquote>
+<h2 id="4-ReLU-激活函数"><a href="#4-ReLU-激活函数" class="headerlink" title="4. ReLU 激活函数"></a>4. ReLU 激活函数</h2><p><img src="https://ask.qcloudimg.com/http-save/8352478/ck888so4in.png?imageView2/2/w/1620" alt="ReLu激活函数"></p>
+<p>ReLu函数的全称为Rectified Linear Units–&gt;修正线性单元,表达式为</p>
+<p>f(z) &#x3D; max(0,z)</p>
+<h3 id="Sigmoid-，tanh与ReLU-比较"><a href="#Sigmoid-，tanh与ReLU-比较" class="headerlink" title="Sigmoid ，tanh与ReLU 比较"></a>Sigmoid ，tanh与ReLU 比较</h3><p>sigmoid，tanh 会出现梯度消失问题，ReLU 的导数就不存在这样的问题。</p>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
+<li>从计算的角度上，Sigmoid和Tanh激活函数均需要计算指数，复杂度高，而ReLU只需要一个阈值即可得到激活值。</li>
+<li>ReLU的非饱和性有效地解决梯度消失的问题，提供相对宽的激活边界。</li>
+<li>ReLU的单侧抑制，提供了网络的稀疏表达能力</li>
+</ul>
+<p><strong>稀疏表示（Sparse Representations）的定义：用较少的基本信号的线性组合来表达大部分或者全部的原始信号。</strong></p>
+<p><em>具体稀疏性的体现是：Relu会使一部分神经元的输出为0，这样就造成了网络的稀疏性，并且减少了参数的相互依存关系，缓解了过拟合问题的发生。</em><strong>只能说有利有弊了…</strong></p>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul>
+<li>Dead ReLU 问题。当输入为负时，ReLU 完全失效，在正向传播过程中，这不是问题。但是在反向传播过程中，如果输入负数，则梯度将完全为零，即在训练过程中会导致神经元死亡。sigmoid 函数和 tanh 函数也具有相同的问题。</li>
+<li>我们发现 ReLU 函数的输出为 0 或正数，这意味着 ReLU 函数不是以 0 为中心的函数。</li>
+</ul>
+<p><strong>神经元死亡会导致该神经元在之后不被任何数据激活，即流经该神经元的梯度永远为0，不对任何数据产生响应。在实际训练中，如果学习率设置较大，会导致一定比例的神经元不可逆死亡，进而参数梯度无法更新，整个训练过程失败。</strong></p>
+<h2 id="5-softplus激活函数"><a href="#5-softplus激活函数" class="headerlink" title="5. softplus激活函数"></a>5. softplus激活函数</h2><p>公式表达式为：</p>
+<p>softplus(z)&#x3D;log(1+e^z)</p>
+<p>softplus函数与ReLU函数接近,但比较平滑, 同ReLU一样是单边抑制,有宽广的接受域(0,+inf), 但是由于指数运算,对数运算计算量大的原因,而不太被人使用。</p>
+<p><img src="https://images2018.cnblogs.com/blog/1252882/201807/1252882-20180707095338849-1750990328.png" alt="softplus激活函数"></p>
+<p>可以看到，softplus可以看作是ReLu的平滑。根据神经科学家的相关研究，softplus和ReLu与脑神经元激活频率函数有神似的地方。也就是说，在生物层面上，相比于早期的激活函数，softplus和ReLu更加接近脑神经元的激活模型。其中，<strong>RELU函数的引入给神经网络增加了生物学特性，可以称为灵魂激活函数。</strong></p>
+<p>softplus的导数就是sigmoid函数，还是很巧合的。还有一点就是，据说softplus的出现要比ReLu要早，也就是说softplus可以看成是ReLu的鼻祖？</p>
+<h2 id="6-Leaky-ReLU激活函数"><a href="#6-Leaky-ReLU激活函数" class="headerlink" title="6. Leaky ReLU激活函数"></a>6. Leaky ReLU激活函数</h2><p>它是一种专门设计用于解决 Dead ReLU 问题的激活函数：</p>
+<p><img src="https://ask.qcloudimg.com/http-save/8352478/zdls8bt48h.png?imageView2/2/w/1620" alt="Leaky ReLu"></p>
+<p>当 x &lt; 0的时候， f(x) &#x3D; \alpha x,其中\alpha 非常小，这样可以避免在x &lt; 0的时候，不能够学习的情况。</p>
+<p>f(x) &#x3D; max(\alpha x,x)</p>
+<blockquote>
+<p>将\alpha 作为可学习的参数，称为Parametric Rectifier(PReLU)</p>
+<p>当\alpha 从高斯分布中随机产生时称为Random Rectifier（RReLU）</p>
+<p>当固定为\alpha &#x3D; 0.01时,称为Leaky ReLU</p>
+</blockquote>
+<h3 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>不会过拟合(saturate)</li>
+<li>计算简单有效</li>
+<li>比sigmoid&#x2F;tanh收敛快</li>
+</ul>
+<h2 id="7-其他常见的激活函数"><a href="#7-其他常见的激活函数" class="headerlink" title="7. 其他常见的激活函数"></a>7. 其他常见的激活函数</h2><p>其他常见的激活函数还有</p>
+<ul>
+<li>Noisy ReLU</li>
+<li>指数线性单元ELU(exponential linear unit)</li>
+<li>SELU</li>
+<li>GELU</li>
+<li>Swish</li>
+<li>…</li>
+</ul>
+<p>还有挺多的激活函数没有列举，但是我目前常见的就只有以上列举的几种，剩下的激活函数等到到时候用到的时候再来补充就好了！</p>
+<p><em>参考的网站：</em></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/makefile/p/activation-function.html">https://www.cnblogs.com/makefile/p/activation-function.html</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/nxf-rabbit75/p/9276412.html">https://www.cnblogs.com/nxf-rabbit75/p/9276412.html</a><br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1800954">https://cloud.tencent.com/developer/article/1800954</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/hy592070616/article/details/120618490">https://blog.csdn.net/hy592070616/article/details/120618490</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42057852/article/details/84644348?spm=1001.2101.3001.6650.11&amp;utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-11-84644348-blog-120618490.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-11-84644348-blog-120618490.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=15">https://blog.csdn.net/weixin_42057852/article/details/84644348?spm=1001.2101.3001.6650.11&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-11-84644348-blog-120618490.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-11-84644348-blog-120618490.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=15</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/pinard/p/6437495.html">https://www.cnblogs.com/pinard/p/6437495.html</a></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://mobile.twitter.com/Kiddwenfeng">
+          <span class="icon">
+            <i class="fab fa-twitter"></i>
+          </span>
+
+          <span class="label">Twitter</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://github.com/fengyepiaosa">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+
+          <span class="label">GitHub</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://www.instagram.com/fengyepiaosa/">
+          <span class="icon">
+            <i class="far fa-instagram"></i>
+          </span>
+
+          <span class="label">Instagram</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/11/23/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B9%8B%E6%89%87%E5%BD%A2%E4%B8%8E%E7%9F%A9%E5%BD%A2%E5%9B%BE%E5%83%8F%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2/" rel="prev" title="图像处理之扇形与矩形图像之间的相互转换">
+                  <i class="fa fa-chevron-left"></i> 图像处理之扇形与矩形图像之间的相互转换
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wenfeng</span>
+</div>
+
+<!--
+隐藏网页底部 powered By Hexo / 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+-->
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
