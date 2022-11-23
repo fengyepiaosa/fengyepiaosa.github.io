@@ -2737,7 +2737,7 @@ mark.search-keyword {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #748bd6;
+  background: #d9269f;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);

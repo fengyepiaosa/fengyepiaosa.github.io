@@ -1,22 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>github文件夹有白色箭头并且不能打开的解决办法</title>
-    <url>/2022/11/20/github%E6%96%87%E4%BB%B6%E5%A4%B9%E6%9C%89%E7%99%BD%E8%89%B2%E7%AE%AD%E5%A4%B4%E5%B9%B6%E4%B8%94%E4%B8%8D%E8%83%BD%E6%89%93%E5%BC%80%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
-    <content><![CDATA[<p>Github文件夹有白色箭头并且不能打开?可能是因为你提交的Git文件中有叫做.git的文件！</p>
-<span id="more"></span>
-
-<h1 id="1-问题描述"><a href="#1-问题描述" class="headerlink" title="1.问题描述"></a>1.问题描述</h1><p>前几天在Git上向GitHub提交了自己的文件，但是在GitHub却无法打开文件夹，并且文件夹上面还多了一个白色的箭头？本着求知的精神，我上百度上找了找，发现是因为我提交的这个文件本身就已经是Git仓库了，而子文件里面还藏着Git仓库，也就是说子文件里还有.git隐藏文件。因为层层的嵌套关系，导致GitHub对文件的识别发生了错误。</p>
-<h1 id="2-解决方案"><a href="#2-解决方案" class="headerlink" title="2.解决方案"></a>2.解决方案</h1><p>把子文件的.git文件夹删掉就好了</p>
-<ol>
-<li>执行<code>git rm --cached [文件夹名]</code></li>
-<li>执行<code>git add [文件夹名]</code></li>
-<li>执行<code>git commit -m &quot;git folder report an error!&quot;</code></li>
-<li>执行<code>git push origin [branch_name] </code></li>
-</ol>
-]]></content>
-  </entry>
-  <entry>
     <title>Jupyter Notebook</title>
     <url>/2022/11/23/Jupyter-Notebook/</url>
     <content><![CDATA[<p>Jupyter Notebook的常见操作-需要熟记！</p>
@@ -60,6 +44,93 @@
 ]]></content>
       <categories>
         <category>notebook operation</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>github文件夹有白色箭头并且不能打开的解决办法</title>
+    <url>/2022/11/20/github%E6%96%87%E4%BB%B6%E5%A4%B9%E6%9C%89%E7%99%BD%E8%89%B2%E7%AE%AD%E5%A4%B4%E5%B9%B6%E4%B8%94%E4%B8%8D%E8%83%BD%E6%89%93%E5%BC%80%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
+    <content><![CDATA[<p>Github文件夹有白色箭头并且不能打开?可能是因为你提交的Git文件中有叫做.git的文件！</p>
+<span id="more"></span>
+
+<h1 id="1-问题描述"><a href="#1-问题描述" class="headerlink" title="1.问题描述"></a>1.问题描述</h1><p>前几天在Git上向GitHub提交了自己的文件，但是在GitHub却无法打开文件夹，并且文件夹上面还多了一个白色的箭头？本着求知的精神，我上百度上找了找，发现是因为我提交的这个文件本身就已经是Git仓库了，而子文件里面还藏着Git仓库，也就是说子文件里还有.git隐藏文件。因为层层的嵌套关系，导致GitHub对文件的识别发生了错误。</p>
+<h1 id="2-解决方案"><a href="#2-解决方案" class="headerlink" title="2.解决方案"></a>2.解决方案</h1><p>把子文件的.git文件夹删掉就好了</p>
+<ol>
+<li>执行<code>git rm --cached [文件夹名]</code></li>
+<li>执行<code>git add [文件夹名]</code></li>
+<li>执行<code>git commit -m &quot;git folder report an error!&quot;</code></li>
+<li>执行<code>git push origin [branch_name] </code></li>
+</ol>
+]]></content>
+      <categories>
+        <category>git operation</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>工具操作</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/11/20/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+      <categories>
+        <category>blog            //文章分类</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>交叉验证</title>
+    <url>/2022/11/23/%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81/</url>
+    <content><![CDATA[<p>这里介绍一下K-Fold交叉验证，这是防止过拟合的一种方法…</p>
+<span id="more"></span>
+
+<h1 id="K-Fold-交叉验证-Cross-Validation-的理解与应用"><a href="#K-Fold-交叉验证-Cross-Validation-的理解与应用" class="headerlink" title="K-Fold 交叉验证 (Cross-Validation)的理解与应用"></a>K-Fold 交叉验证 (Cross-Validation)的理解与应用</h1><h1 id="1-简单介绍一下验证集"><a href="#1-简单介绍一下验证集" class="headerlink" title="1.简单介绍一下验证集"></a>1.简单介绍一下验证集</h1><p>在机器学习建模过程中，通行的做法通常是将数据分为训练集和测试集。测试集是与训练独立的数据，完全不参与训练，用于最终模型的评估。在训练过程中，经常会出现过拟合的问题，就是模型可以很好的匹配训练数据，却不能很好在预测训练集外的数据。如果此时就使用测试数据来调整模型参数，就相当于在训练时已知部分测试数据的信息，会影响最终评估结果的准确性。通常的做法是在训练数据再中分出一部分做为验证(Validation)数据，用来评估模型的训练效果。<em>验证集的好处在于，可以对训练的模型进行评估，并且更换超参数后继续训练评估…</em></p>
+<h1 id="2-通过验证集理解K-Fold-交叉验证"><a href="#2-通过验证集理解K-Fold-交叉验证" class="headerlink" title="2.通过验证集理解K-Fold 交叉验证"></a>2.通过验证集理解K-Fold 交叉验证</h1><p>验证数据取自训练数据，但不参与训练，这样可以相对客观的评估模型对于训练集之外数据的匹配程度。模型在验证数据中的评估常用的是交叉验证，又称循环验证。它将原始数据分成K组(K-Fold)，将每个子集数据分别做一次验证集，其余的K-1组子集数据作为训练集，这样会得到K个模型。</p>
+<p>这K个模型分别在验证集中评估结果，最后的误差MSE(Mean Squared Error)加权平均就得到交叉验证误差。交叉验证有效利用了有限的数据，并且评估结果能够尽可能接近模型在测试集上的表现，可以做为模型优化的指标使用。</p>
+<h1 id="3-简单介绍一下常用的回归评价指标MSE、RMSE、MAE、R-Squared"><a href="#3-简单介绍一下常用的回归评价指标MSE、RMSE、MAE、R-Squared" class="headerlink" title="3.简单介绍一下常用的回归评价指标MSE、RMSE、MAE、R-Squared"></a>3.简单介绍一下常用的回归评价指标MSE、RMSE、MAE、R-Squared</h1><p>如果说分类问题的评价指标是<strong>准确率</strong>，那么回归算法的评价指标就是<em>MSE，RMSE，MAE、R-Squared</em>。在进行机器学习实验二的K-fold的时候，遇到了评价指标MSE，在好奇心的驱使下，我尝试研究这<a href="https://www.jianshu.com/p/9ee85fdad150">四个评价指标…</a></p>
+<h2 id="3-1-均方误差-MSE"><a href="#3-1-均方误差-MSE" class="headerlink" title="3.1 均方误差-MSE"></a>3.1 均方误差-MSE</h2><p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula1.png%22" alt="MSE"></p>
+<p>MSE （Mean Squared Error）叫做均方误差。这里的y帽指的是预测值。这个公式长得有点像是线性回归模型的损失函数。</p>
+<h2 id="3-2-均方根误差-RMSE"><a href="#3-2-均方根误差-RMSE" class="headerlink" title="3.2 均方根误差-RMSE"></a>3.2 均方根误差-RMSE</h2><p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula2.png%22" alt="RMSE"></p>
+<p>RMSE（Root Mean Squard Error）均方根误差。这就是给MSE开一个根号，目的是更好的描述数据。因为开一个根号，RMSE在单位上就应该与所研究的数据的单位差不多了。</p>
+<h2 id="3-3-平均绝对误差-MAE"><a href="#3-3-平均绝对误差-MAE" class="headerlink" title="3.3 平均绝对误差-MAE"></a>3.3 平均绝对误差-MAE</h2><p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula3.png%22" alt="MAE"></p>
+<p>MAE(平均绝对误差)，这个看起来与上面的没有差别。<strong>有均方根的地方好像就会有绝对值？？？</strong></p>
+<h2 id="3-4-R方-R-Squared"><a href="#3-4-R方-R-Squared" class="headerlink" title="3.4 R方-R Squared"></a>3.4 R方-R Squared</h2><p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula4.png%22" alt="R Squared"></p>
+<p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula5.png%22" alt="R Squared"></p>
+<p>分类算法的衡量标准是正确率，它的范围是从零到一，很直观，并且在不同模型上也是一样的，看正确率就完事了。所以回归模型上有没有这种衡量的标准呢？答案是有的，它就是R Aquared也就是<strong>R方</strong>。至于式子的意思，应该也是很好理解的，但是<a href="https://www.jianshu.com/p/9ee85fdad150">参考博主</a>写得有点不明不白，暂且就不深究了吧？总的来说，就是描述我们训练出来的模型的所有误差与当y帽等于y平均值时的误差之间的偏离程度。当R方结果为1时，表示我们的模型完全正确，这个时候分式项为0。</p>
+<p>上面的公式可以化简成如下，此时分式分子就变成了均方误差MSE，分母变成了方差var（标准差是std）</p>
+<p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula6.png%22" alt="R Squared"></p>
+<h1 id="4-K-Fold用来干啥？"><a href="#4-K-Fold用来干啥？" class="headerlink" title="4.K-Fold用来干啥？"></a>4.K-Fold用来干啥？</h1><h2 id="有些博主认为K折交叉验证用来进行模型调优，方便找到使得模型泛化性能最优的超参数？我认为，模型调优实在算不上，应该算是用来模型选择的吧？用来评价模型的泛化能力，从而在多个模型中进行选择。"><a href="#有些博主认为K折交叉验证用来进行模型调优，方便找到使得模型泛化性能最优的超参数？我认为，模型调优实在算不上，应该算是用来模型选择的吧？用来评价模型的泛化能力，从而在多个模型中进行选择。" class="headerlink" title="有些博主认为K折交叉验证用来进行模型调优，方便找到使得模型泛化性能最优的超参数？我认为，模型调优实在算不上，应该算是用来模型选择的吧？用来评价模型的泛化能力，从而在多个模型中进行选择。"></a><a href="https://blog.csdn.net/xiaohutong1991/article/details/107924703">有些博主</a>认为K折交叉验证用来进行模型调优，方便找到使得模型泛化性能最优的超参数？我认为，模型调优实在算不上，应该算是用来模型选择的吧？用来评价模型的泛化能力，从而在多个模型中进行选择。</h2><pre><code>sklearn.model_selection.KFold(n_splits=3, shuffle=False, random_state=None)
+</code></pre>
+<p>根据代码对K-Fold的参数进行剖析：</p>
+<blockquote>
+<p>n_splits：将数据集划分n_splits个互斥子集，每次用其中一个子集当作验证集，剩下的n_splits-1个作为训练集，进行n_splits次训练和测试，得到n_splits个结果。表示划分几等份</p>
+<p>shuffle：在每次划分时，是否进行洗牌</p>
+<p>若为Falses时，其效果等同于random_state等于整数，每次划分的结果相同</p>
+<p>若为True时，每次划分的结果都不一样，表示经过洗牌，随机取样的</p>
+<p>random_state：随机种子数，如果设置了具体数值比如42（随便一个具体数值），那么每次运行结果都是一样的，不会随机产生结果，即每次运行结果都可以复现</p>
+</blockquote>
+<h1 id="5-K-Fold什么时候用呢？"><a href="#5-K-Fold什么时候用呢？" class="headerlink" title="5.K-Fold什么时候用呢？"></a>5.K-Fold什么时候用呢？</h1><p>问起什么时候才需要用到交叉验证，当然是数据不是很充足的时候才用交叉验证啦！凭借经验，一般数据样本量小于一万条的时候，我们就会采用交叉验证的方法来训练优化选择模型。如果样本量是大于一万条的话，那么我们就是用最常规的方法，也就是将数据集分成三份分别是训练集、验证集和测试集。直接用验证集来评估模型预测的好坏和选择模型及其对应的参数。把最终得到的模型再用于测试集，最终决定使用哪个模型以及对应参数。毕竟你数据量真有这么大，你还要将你的训练成本扩大K倍，权衡利弊使用K-Fold是不明智之选。<em>选择的k值常常是小于等于10的。</em></p>
+<p><a href="https://zhuanlan.zhihu.com/p/32627500">知乎用户-鱼遇雨欲语与余</a>根据切分方式的不同，将交叉验证分成了下面三种：</p>
+<h2 id="5-1-简单交叉验证"><a href="#5-1-简单交叉验证" class="headerlink" title="5.1 简单交叉验证"></a>5.1 简单交叉验证</h2><p>所谓简单，是相对其他交叉验证而言的。我们先是随机地将样本数据分成两部分，比如说我分了百分之六十的训练集，百分之四十的测试集。训练集训练模型，测试集验证模型以及参数。接着我们将样本打乱，然后重新选择训练集和测试集，继续训练数据和验证模型。最后一步就是选择损失函数评估最优的模型和参数了。<em>在我看来，简单是真的简单，为了评估最优的模型和参数，不惜连测试集都用了…</em></p>
+<h2 id="5-2-S折交叉验证"><a href="#5-2-S折交叉验证" class="headerlink" title="5.2 S折交叉验证"></a>5.2 S折交叉验证</h2><p>这是经常会用到的一种验证方法。和第一种方法不同，S折交叉验证先将数据集Dataset随机划分成S个大小相同的互斥子集，每次选择S-1份作为训练集，剩下的1份用来做测试集。当这一轮完成后，重新随机选择  份来训练数据。若干轮（小于  ）之后，选择损失函数评估最优的模型和参数。<em>需要注意的是，交叉验证法评估结果的稳定性和保真性在很大程度上取决于S的取值。那纳闷了，选择哪个S是最好的呢？我认为不论选择哪个S值，应该对最后的模型和参数选择不产生太大的影响吧？</em></p>
+<h2 id="5-3-留一交叉验证-Leave-one-out-Cross-Validation"><a href="#5-3-留一交叉验证-Leave-one-out-Cross-Validation" class="headerlink" title="5.3 留一交叉验证 Leave-one-out Cross Validation"></a>5.3 留一交叉验证 Leave-one-out Cross Validation</h2><p>这是一种特别抠门的方法，每一次只用一个样本来预测模型的好坏，也就是说每一次只有一个测试集。这种方法被视为S折交叉验证的特例，只在样本量非常少的情况下才使用。还有一种更抠门的方法是<a href="https://zhuanlan.zhihu.com/p/32412775">自助法</a>…</p>
+]]></content>
+      <categories>
+        <category>Mathine Learning</category>
       </categories>
   </entry>
   <entry>
@@ -116,29 +187,6 @@
 ]]></content>
       <categories>
         <category>Mathine Learning</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/11/20/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-      <categories>
-        <category>blog            //文章分类</category>
       </categories>
   </entry>
   <entry>
@@ -208,63 +256,6 @@ im.save(output)
 ]]></content>
       <categories>
         <category>Homework</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>数学建模大赛</title>
-    <url>/2022/11/23/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E5%A4%A7%E8%B5%9B/</url>
-    <content><![CDATA[<p>直到今天为止，数模比赛已经结束咯！任务完成，参赛题目也提交了，结果如何就看人品了🤗</p>
-<span id="more"></span>
-
-<h1 id="1-数模比赛"><a href="#1-数模比赛" class="headerlink" title="1.数模比赛"></a>1.数模比赛</h1><p>直到今天为止，数模比赛已经结束咯！任务完成，参赛题目也提交了，结果如何就看人品了🤗<br>这是是第一次使用Markdown写短文，虽然说Markdown很容易上手，但是一些细节上的东西总是无法反应过来😵😵😵</p>
-<blockquote>
-<p>下面是我学习Markdown的一些经历，希望在写作的时候对你有些帮助！😉</p>
-<p>点击跳转Markdown  –&gt;目前这项功能还在开发中，ちょっと待っね！</p>
-</blockquote>
-<h1 id="2-比赛前"><a href="#2-比赛前" class="headerlink" title="2.比赛前"></a>2.比赛前</h1><h2 id="2-1第一次校赛"><a href="#2-1第一次校赛" class="headerlink" title="2.1第一次校赛"></a>2.1第一次校赛</h2><p>虽然说今年四月份就开始准备数模比赛了，到今天有五个多月的时间，但是我们队真正学习的时间却不多，至少对我来说。可能我真正静下心来学习数模知识的时间还不足两个星期吧！😅</p>
-<p>刚开始我的工作是负责建模的工作，在队长的敦促下，买了份价值一百五的学习视频及教程。我对于视频学习并没有多大的想法，我还是更喜欢看书学。这就是为什么iPad里的电子书都发霉发臭了，都不曾被我看过的原因吧？再一点，比起付费的资料，我更喜欢白嫖（虽然这并不好），因为在我认为在网上寻找资料是一件很享受的事情，おかしいでしょ？</p>
-<p>一个队伍的核心成员应该是建模手，作为整支队伍的leader，我带领着队伍齐头并进，最后连校三等都没有…</p>
-<p>😀😀😀但是这也是在意料之内的，因为没有什么知识储备，脑子里当时就只有层次分析法这几个简单的模型，再加上论文的阅读次数都不足双位数，能获奖就有鬼！而且为期三天的数模，我们整整搞了十天才提交上去，虽然但是有多少水分谁不不揭穿了啊！</p>
-<h2 id="2-2暑假"><a href="#2-2暑假" class="headerlink" title="2.2暑假"></a>2.2暑假</h2><p>搞完校赛，处理完期末考试，差不多就进入了暑假。由于和写作手的配合没有那么好，所以我们打算换一名成员。队长推荐了一名算法高手，很显然，我该换岗位了。</p>
-<p>在漫长的暑假，我只希望自己能够每天抽出时间读一篇，哪怕是一篇数模优秀文章也好！但是事与愿违，事…还是没做成。后面学校组织训练，我们参加并且完成了一篇19年的C题。嗯，很显然我们又是十天左右才完成。当时就想着，这么搞肯定得玩完。于是思前想后，打算用LaTeX替换现在的WPS，说不定写作工具变了，我们的工作就更有效率了呢？😲</p>
-<p>好主意！下一次训练连半成品都没有交上去…</p>
-<p>当时学习LaTeX花了不到半天时间，便清楚它的工作流程，于是迫不及待的去找了一些有数模LaTeX的tex文件。看到了一个钟意的，便敲定了，也就是现在我使用的这也数模模板。</p>
-<p>由于我没有将模板与正文分离，所以我两次写论文的时候，都是夹着别人的论文一起写的，这次数模也不例外…</p>
-<blockquote>
-<p>我将LaTeX文件放到了这里，模板和正文自己分离。懒😪😪😪</p>
-<p>这项工作也还在完善中，请稍后！</p>
-</blockquote>
-<p>然后就开学咯🎉</p>
-<h2 id="2-3开学到比赛前这段时间"><a href="#2-3开学到比赛前这段时间" class="headerlink" title="2.3开学到比赛前这段时间"></a>2.3开学到比赛前这段时间</h2><p>很显然，我什么都没有干。</p>
-<h1 id="3-比赛"><a href="#3-比赛" class="headerlink" title="3.比赛"></a>3.比赛</h1><p>据说参加国赛需要校赛经历，我们已经算是合格的国赛选手了吧？我们比赛的时间是9月15号（周四）晚上六点钟到9月18号（周日）晚上十点钟之前。又多了四个小时时间，Lucky！希望能够用这多出来的四个小时改变点什么…</p>
-<h2 id="3-1周四晚上"><a href="#3-1周四晚上" class="headerlink" title="3.1周四晚上"></a>3.1周四晚上</h2><p>出赛题的时候我们在饭堂，不是因为我们不准备坐着等题，而是我忘记打包进实验室了。当天晚上我们商量好，要确定选题，不要犹豫。今年的A题对于我们来说，简直是魔鬼程度的。两三页篇幅的说明，让我们望而祛步🙄。如果硬啃的话，肯定可以理解它想要表达什么，但是求解确实一大难事。后面看别人大佬绞尽脑汁的想，才发现这个决定无疑对我们来说是十分正确的。</p>
-<p>选题按理来说应该要由建模手和编程手决定，因为他们更清楚问题的复杂性。他们现在卡在了B题和C题之前，队长更想选C题，但是算法糕手希望能够挑战一下。他内心看起来很动摇，因为他看不出解题思路。其实我和新队员也是第一次见面，之前都是在WeChat上聊天。谢天谢地，我们俩很快就磨合了，变得更多少年的好友一般畅所欲言？！</p>
-<p>我在几何方面很敏感，但是对数学公式很感冒。当时想过选数学专业，但是哪有人只学几何不用数学公式啊？恰好B题就是与几何有关的，我用高中的知识看出了第一小问的求解思路，然后我就坚持选B题。最后没有依我，选择了C题。我当时虽然很不爽，但是我确实只想得出第一问，对于全局来说，我还是服气的。虽然题目更简单了，但是意味着更多人选。只有语文建模基础足够深厚，才有机会获得一个最小的省三。<strong>最后统计有三百八十多人选择了C题，这个人数差不多就是去年我们学校的参赛人数…</strong></p>
-<h2 id="3-2周五"><a href="#3-2周五" class="headerlink" title="3.2周五"></a>3.2周五</h2><p>周五我们搜寻资料，解决了第一小问，然后卡在了第二小问的预测上，想了差不多一天的时间都没有想出来。确实浪费了很多时间，也做了很多无用功。第一小问的论文我很快就与论文交接了，但是剩余的时间与其是在划水，倒不如说是在无用功。C题与化学有关，于是我想着会用到化学方程式，去找了很多。但是最后发现要么就是用不上，要么就是没时间用。</p>
-<h2 id="3-3周六"><a href="#3-3周六" class="headerlink" title="3.3周六"></a>3.3周六</h2><p>C题有大概六七个小问，想要查看原题的话点击这里。</p>
-<p>我们一天时间才解决了第一小问，如果再这么下去，论文很有可能写不完。虽然我们也很努力，我也是第一次尝试了这种朝八晚十二的作息规律。嗯？怎么和我平时的作息有点像？关键是放弃了宝贵的午休时间。没有午休我的精神状态就会下降，特别是写论文的时候，无法理解模型的概念与问题的解决思路，又没有文思泉涌，将会导致写出来的论文质量差。一天除了睡觉的时间都呆在实验室，看起来很努力，在我看来是在做无用功（包括我）。队长和建模手对于模型的选择有一定的困难，导致了问题的拖延。明白了这一点，今天开始我尝试着来安排工作。</p>
-<p>对于模型，需要用指标来衡量。我肯定表现好的模型，否定表现差的模型。这种斩钉截铁的工作模式很快让我和各位都进入了流水线上，开始各司其职。当然，前提是做出了跳过第二小问的决定。</p>
-<p>直到晚上，第二问第一小问、第三问和第四问的问题都得到了解决。但是跟他们一起讨论，导致我到目前为止并没有进行论文撰写，也就是说只完成了论文进度还是停留在周五。</p>
-<h2 id="3-4周日"><a href="#3-4周日" class="headerlink" title="3.4周日"></a>3.4周日</h2><p>即便如此，我早上还是睡到了差不多九点，因为我认为工作效率才是最重要的，假努力欺骗的是自己还有身边的人。但时间真的很赶！早上我留在宿舍通过大屏操作LaTeX很快就完成了第二问的论文撰写，并且我交代队友明天早上完成第三问的论文撰写以及求解出第二小问的预测结果。队友很给力，差不多两点我去实验室的时候他们已经完成了这两个任务。但我看完论文结构后猛地一惊，发现摘要和问题分析没有写！包括第四问在内，还有一些零零星星的结果没有贴到论文中，六个小时能够完成吗？真是一项挑战啊！我不禁擦了擦额头上的假汗😰😰😰</p>
-<p>我安排他们完成了问题二和问题三的问题分析，因为他们求解的他们来写这种解题思路的话简直如鱼得水。而第四问的方法是我想出来的，所以我先完成第四问先。但是做了一半，发现SPSSPro上的热力图根本无法反映出我想要的结果。于是在三点钟的时候我临时改用了其它方法，用画图代替了建立模型的繁琐。</p>
-<p>大概五点钟我们就完成了基本上的任务，但是对于XeLatex编译出来的文件，还是有很多bug。并且每一个bug都是包含致命错误的，一旦出现即无缘获奖（<em>虽然说这次的也不知道能不能够获奖😵‍💫</em>）其中解决的很多问题都是以前遇到过但是解决不出的🤔</p>
-<ul>
-<li>从使用之初一直困扰我的表格边框以及复杂表格的LaTeX代码</li>
-<li>LaTeX含特殊字符的那段文字会超出编译生成的PDF之外</li>
-<li>LaTeX中图片并列</li>
-<li>LaTeX正文会被图片和表格夹断，阅读出现障碍</li>
-<li>LaTeX模板上页眉的内容不知道在哪个文件清空</li>
-<li>LaTeX附录粘贴代码有点麻烦</li>
-</ul>
-<p><code>解决方案放到了LaTeX篇，如果有需要请点击此处跳转...</code></p>
-<p>多亏LaTeX有在源代码和PDF相互跳转到指定位置的功能，不然真的用不下去了😭😭😭</p>
-<p>我们一起改论文，改到了7点57还有很多问题，但是8点钟之前可以提交多次PDF论文和RAR压缩包，也就是说MD5码在8点钟之前是允许反复更改的。但是在8点到10点之内，就只能提交一次文件和生成指定不可变的MD5码。并且MD5码在8点后生成的，就不允许更改文件了，一旦你更改文件，或许只是打开一下PDF都有可能让MD5码发生改变，机器会判定在10点钟之后正式提交参赛作品的时候你的文件发生了改动，这个时候它是不承认你的MD5码，也就是说你无法参赛了。这是一个很严重的问题，自己辛辛苦苦做了这么久，结果却交不上去，心态多少有点崩溃。所以我们为了保险起见，先在8点钟之前提交一次。</p>
-<p>然后我们预测在9点钟之前正式将作品做最后一次的提交（10点钟之前的提交可以认为只是参赛资格的获取），但是发现bug根本改不过来。三个人忙得团团转，当时想着9点半之前提交就好了，网络不会这么拥挤的。但是忙到了9点半，bug依然有，而且严重程度会让论文直接降档。没办法，抱着试一逝的心态，我们改bug改到了9点45。虽然说还有不少bug，但都是不痛不痒的，对阅读论文没有什么大影响的小问题了。</p>
-<p>我编译出最新的PDF，通过WeChat准备发给队长时，由于轻薄本已经承担了太多软件，并且三四天都没有合过眼了。LaTeX直接卡退，屏幕被黑块笼罩着，就像我们此刻的心情一样。大概到9点50的时候，电脑缓过来了，我赶紧将PDF发给队长。压缩完我的LaTeX代码文件后突然发现我电脑里的压缩软件是360压缩，只能生成zip类型的压缩包。而我之前一直想着队长有WinRAR就够了，反正是他通过客户端提交的。下载WinRAR显然不切实际，由于多天的劳累，我们的CPU已经转不过来了。我赶紧将文件压缩成zip格式，然后发给建模手，因为此时队长在忙活着PDF名称的修改。但未承想建模手把我的文件解压放进总附件文件中，压缩后找不到找不到压缩包，遂叫我来操作。我看到他的安装路径，狂点桌面，然后点击确定。终于，我们的压缩包出现在了桌面。但他的桌面都是蓝蓝的doc和绿绿xls，一时间竟无法找出压缩包！此时时间已经来到了9点55分。一顿丝滑的操作后视野来到了队长这边，只见他颤颤巍巍地移动着鼠标，指尖高频触动着鼠标左键，但就是无法达到那最后的终点！“好了吗？”“好！冲！”伴随着呐喊声，我们点击了提交。幸运的是，软件并没有卡顿，显得如此顺理成章，此时时间是9点57分。一切都结束后，没有欢呼、没有喝彩，只留下一片鸦雀无声。紧绷着的心情还没有完全放松下来，眼前还停留着黑白的文字与代码，一切都还显得这么历历在目！</p>
-<h1 id="4-Final"><a href="#4-Final" class="headerlink" title="4.Final"></a>4.Final</h1><p>虽然过程很苦很累，甚至对一百蚊有点舍不得。但就最后两个小时的感受而言，让我觉得这钱交的值了！自打上大学以来，还是第一次切实地体会到了团队合作的重要性。以前一直都是单打独斗，现在发现自己并不是万能的，队友就是用来弥补自己的缺点的。虽然说有百分之五十的概率获奖，但是无论结果如何我都能平淡接受，因为这场比赛我已经获得了自己想要的东西！<em>（其实心里还是想着希望得个省三就好了，因为有一千块钱回血…）</em>🐤🐤🐤</p>
-]]></content>
-      <categories>
-        <category>Mathine Learning</category>
       </categories>
   </entry>
   <entry>
@@ -443,149 +434,70 @@ print_result(lgb_r2_score, lgb_rmse, &#39;Lightgbm&#39;)
 ]]></content>
       <categories>
         <category>Mathine Learning</category>
+        <category>Homework</category>
       </categories>
   </entry>
   <entry>
-    <title>交叉验证</title>
-    <url>/2022/11/23/%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81/</url>
-    <content><![CDATA[<p>这里介绍一下K-Fold交叉验证，这是防止过拟合的一种方法…</p>
+    <title>数学建模大赛</title>
+    <url>/2022/11/23/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E5%A4%A7%E8%B5%9B/</url>
+    <content><![CDATA[<p>直到今天为止，数模比赛已经结束咯！任务完成，参赛题目也提交了，结果如何就看人品了🤗</p>
 <span id="more"></span>
 
-<h1 id="K-Fold-交叉验证-Cross-Validation-的理解与应用"><a href="#K-Fold-交叉验证-Cross-Validation-的理解与应用" class="headerlink" title="K-Fold 交叉验证 (Cross-Validation)的理解与应用"></a>K-Fold 交叉验证 (Cross-Validation)的理解与应用</h1><h1 id="1-简单介绍一下验证集"><a href="#1-简单介绍一下验证集" class="headerlink" title="1.简单介绍一下验证集"></a>1.简单介绍一下验证集</h1><p>在机器学习建模过程中，通行的做法通常是将数据分为训练集和测试集。测试集是与训练独立的数据，完全不参与训练，用于最终模型的评估。在训练过程中，经常会出现过拟合的问题，就是模型可以很好的匹配训练数据，却不能很好在预测训练集外的数据。如果此时就使用测试数据来调整模型参数，就相当于在训练时已知部分测试数据的信息，会影响最终评估结果的准确性。通常的做法是在训练数据再中分出一部分做为验证(Validation)数据，用来评估模型的训练效果。<em>验证集的好处在于，可以对训练的模型进行评估，并且更换超参数后继续训练评估…</em></p>
-<h1 id="2-通过验证集理解K-Fold-交叉验证"><a href="#2-通过验证集理解K-Fold-交叉验证" class="headerlink" title="2.通过验证集理解K-Fold 交叉验证"></a>2.通过验证集理解K-Fold 交叉验证</h1><p>验证数据取自训练数据，但不参与训练，这样可以相对客观的评估模型对于训练集之外数据的匹配程度。模型在验证数据中的评估常用的是交叉验证，又称循环验证。它将原始数据分成K组(K-Fold)，将每个子集数据分别做一次验证集，其余的K-1组子集数据作为训练集，这样会得到K个模型。</p>
-<p>这K个模型分别在验证集中评估结果，最后的误差MSE(Mean Squared Error)加权平均就得到交叉验证误差。交叉验证有效利用了有限的数据，并且评估结果能够尽可能接近模型在测试集上的表现，可以做为模型优化的指标使用。</p>
-<h1 id="3-简单介绍一下常用的回归评价指标MSE、RMSE、MAE、R-Squared"><a href="#3-简单介绍一下常用的回归评价指标MSE、RMSE、MAE、R-Squared" class="headerlink" title="3.简单介绍一下常用的回归评价指标MSE、RMSE、MAE、R-Squared"></a>3.简单介绍一下常用的回归评价指标MSE、RMSE、MAE、R-Squared</h1><p>如果说分类问题的评价指标是<strong>准确率</strong>，那么回归算法的评价指标就是<em>MSE，RMSE，MAE、R-Squared</em>。在进行机器学习实验二的K-fold的时候，遇到了评价指标MSE，在好奇心的驱使下，我尝试研究这<a href="https://www.jianshu.com/p/9ee85fdad150">四个评价指标…</a></p>
-<h2 id="3-1-均方误差-MSE"><a href="#3-1-均方误差-MSE" class="headerlink" title="3.1 均方误差-MSE"></a>3.1 均方误差-MSE</h2><p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula1.png%22" alt="MSE"></p>
-<p>MSE （Mean Squared Error）叫做均方误差。这里的y帽指的是预测值。这个公式长得有点像是线性回归模型的损失函数。</p>
-<h2 id="3-2-均方根误差-RMSE"><a href="#3-2-均方根误差-RMSE" class="headerlink" title="3.2 均方根误差-RMSE"></a>3.2 均方根误差-RMSE</h2><p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula2.png%22" alt="RMSE"></p>
-<p>RMSE（Root Mean Squard Error）均方根误差。这就是给MSE开一个根号，目的是更好的描述数据。因为开一个根号，RMSE在单位上就应该与所研究的数据的单位差不多了。</p>
-<h2 id="3-3-平均绝对误差-MAE"><a href="#3-3-平均绝对误差-MAE" class="headerlink" title="3.3 平均绝对误差-MAE"></a>3.3 平均绝对误差-MAE</h2><p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula3.png%22" alt="MAE"></p>
-<p>MAE(平均绝对误差)，这个看起来与上面的没有差别。<strong>有均方根的地方好像就会有绝对值？？？</strong></p>
-<h2 id="3-4-R方-R-Squared"><a href="#3-4-R方-R-Squared" class="headerlink" title="3.4 R方-R Squared"></a>3.4 R方-R Squared</h2><p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula4.png%22" alt="R Squared"></p>
-<p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula5.png%22" alt="R Squared"></p>
-<p>分类算法的衡量标准是正确率，它的范围是从零到一，很直观，并且在不同模型上也是一样的，看正确率就完事了。所以回归模型上有没有这种衡量的标准呢？答案是有的，它就是R Aquared也就是<strong>R方</strong>。至于式子的意思，应该也是很好理解的，但是<a href="https://www.jianshu.com/p/9ee85fdad150">参考博主</a>写得有点不明不白，暂且就不深究了吧？总的来说，就是描述我们训练出来的模型的所有误差与当y帽等于y平均值时的误差之间的偏离程度。当R方结果为1时，表示我们的模型完全正确，这个时候分式项为0。</p>
-<p>上面的公式可以化简成如下，此时分式分子就变成了均方误差MSE，分母变成了方差var（标准差是std）</p>
-<p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula6.png%22" alt="R Squared"></p>
-<h1 id="4-K-Fold用来干啥？"><a href="#4-K-Fold用来干啥？" class="headerlink" title="4.K-Fold用来干啥？"></a>4.K-Fold用来干啥？</h1><h2 id="有些博主认为K折交叉验证用来进行模型调优，方便找到使得模型泛化性能最优的超参数？我认为，模型调优实在算不上，应该算是用来模型选择的吧？用来评价模型的泛化能力，从而在多个模型中进行选择。"><a href="#有些博主认为K折交叉验证用来进行模型调优，方便找到使得模型泛化性能最优的超参数？我认为，模型调优实在算不上，应该算是用来模型选择的吧？用来评价模型的泛化能力，从而在多个模型中进行选择。" class="headerlink" title="有些博主认为K折交叉验证用来进行模型调优，方便找到使得模型泛化性能最优的超参数？我认为，模型调优实在算不上，应该算是用来模型选择的吧？用来评价模型的泛化能力，从而在多个模型中进行选择。"></a><a href="https://blog.csdn.net/xiaohutong1991/article/details/107924703">有些博主</a>认为K折交叉验证用来进行模型调优，方便找到使得模型泛化性能最优的超参数？我认为，模型调优实在算不上，应该算是用来模型选择的吧？用来评价模型的泛化能力，从而在多个模型中进行选择。</h2><pre><code>sklearn.model_selection.KFold(n_splits=3, shuffle=False, random_state=None)
-</code></pre>
-<p>根据代码对K-Fold的参数进行剖析：</p>
+<h1 id="1-数模比赛"><a href="#1-数模比赛" class="headerlink" title="1.数模比赛"></a>1.数模比赛</h1><p>直到今天为止，数模比赛已经结束咯！任务完成，参赛题目也提交了，结果如何就看人品了🤗<br>这是是第一次使用Markdown写短文，虽然说Markdown很容易上手，但是一些细节上的东西总是无法反应过来😵😵😵</p>
 <blockquote>
-<p>n_splits：将数据集划分n_splits个互斥子集，每次用其中一个子集当作验证集，剩下的n_splits-1个作为训练集，进行n_splits次训练和测试，得到n_splits个结果。表示划分几等份</p>
-<p>shuffle：在每次划分时，是否进行洗牌</p>
-<p>若为Falses时，其效果等同于random_state等于整数，每次划分的结果相同</p>
-<p>若为True时，每次划分的结果都不一样，表示经过洗牌，随机取样的</p>
-<p>random_state：随机种子数，如果设置了具体数值比如42（随便一个具体数值），那么每次运行结果都是一样的，不会随机产生结果，即每次运行结果都可以复现</p>
+<p>下面是我学习Markdown的一些经历，希望在写作的时候对你有些帮助！😉</p>
+<p>点击跳转Markdown  –&gt;目前这项功能还在开发中，ちょっと待っね！</p>
 </blockquote>
-<h1 id="5-K-Fold什么时候用呢？"><a href="#5-K-Fold什么时候用呢？" class="headerlink" title="5.K-Fold什么时候用呢？"></a>5.K-Fold什么时候用呢？</h1><p>问起什么时候才需要用到交叉验证，当然是数据不是很充足的时候才用交叉验证啦！凭借经验，一般数据样本量小于一万条的时候，我们就会采用交叉验证的方法来训练优化选择模型。如果样本量是大于一万条的话，那么我们就是用最常规的方法，也就是将数据集分成三份分别是训练集、验证集和测试集。直接用验证集来评估模型预测的好坏和选择模型及其对应的参数。把最终得到的模型再用于测试集，最终决定使用哪个模型以及对应参数。毕竟你数据量真有这么大，你还要将你的训练成本扩大K倍，权衡利弊使用K-Fold是不明智之选。<em>选择的k值常常是小于等于10的。</em></p>
-<p><a href="https://zhuanlan.zhihu.com/p/32627500">知乎用户-鱼遇雨欲语与余</a>根据切分方式的不同，将交叉验证分成了下面三种：</p>
-<h2 id="5-1-简单交叉验证"><a href="#5-1-简单交叉验证" class="headerlink" title="5.1 简单交叉验证"></a>5.1 简单交叉验证</h2><p>所谓简单，是相对其他交叉验证而言的。我们先是随机地将样本数据分成两部分，比如说我分了百分之六十的训练集，百分之四十的测试集。训练集训练模型，测试集验证模型以及参数。接着我们将样本打乱，然后重新选择训练集和测试集，继续训练数据和验证模型。最后一步就是选择损失函数评估最优的模型和参数了。<em>在我看来，简单是真的简单，为了评估最优的模型和参数，不惜连测试集都用了…</em></p>
-<h2 id="5-2-S折交叉验证"><a href="#5-2-S折交叉验证" class="headerlink" title="5.2 S折交叉验证"></a>5.2 S折交叉验证</h2><p>这是经常会用到的一种验证方法。和第一种方法不同，S折交叉验证先将数据集Dataset随机划分成S个大小相同的互斥子集，每次选择S-1份作为训练集，剩下的1份用来做测试集。当这一轮完成后，重新随机选择  份来训练数据。若干轮（小于  ）之后，选择损失函数评估最优的模型和参数。<em>需要注意的是，交叉验证法评估结果的稳定性和保真性在很大程度上取决于S的取值。那纳闷了，选择哪个S是最好的呢？我认为不论选择哪个S值，应该对最后的模型和参数选择不产生太大的影响吧？</em></p>
-<h2 id="5-3-留一交叉验证-Leave-one-out-Cross-Validation"><a href="#5-3-留一交叉验证-Leave-one-out-Cross-Validation" class="headerlink" title="5.3 留一交叉验证 Leave-one-out Cross Validation"></a>5.3 留一交叉验证 Leave-one-out Cross Validation</h2><p>这是一种特别抠门的方法，每一次只用一个样本来预测模型的好坏，也就是说每一次只有一个测试集。这种方法被视为S折交叉验证的特例，只在样本量非常少的情况下才使用。还有一种更抠门的方法是<a href="https://zhuanlan.zhihu.com/p/32412775">自助法</a>…</p>
-]]></content>
-      <categories>
-        <category>Mathine Learning</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>特征工程</title>
-    <url>/2022/11/23/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h1 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a>特征工程</h1><p><a href="https://easyai.tech/ai-definition/feature-engineering/">特征工程</a>是机器学习工作流程中重要的组成部分，它将原始数据「翻译」成模型可理解的形式。</p>
-<p>美国计算机科学家 Peter Norvig 说过两句经典名言</p>
-<ol>
-<li>基于大量数据的简单模型优于基于少量数据的复杂模型</li>
-<li>更多的数据优于聪明的算法，而好的数据优于多的数据</li>
-</ol>
-<p>足以可见数据量和特征工程的重要性，不过数据量已经给定了，我们能做的只有特征工程。如何基于原来的数据发挥出更大的数据价值就是特征工程要做的事情。</p>
-<p><em>在16年的一项调查中发现，<a href="https://whatsthebigdata.com/2016/05/01/data-scientists-spend-most-of-their-time-cleaning-data/">数据科学家</a>的工作中，有80%的时间都在获取、清洗和组织数据。构造机器学习流水线的时间不到20%…</em></p>
-<h1 id="1-特征工程一些注意事项"><a href="#1-特征工程一些注意事项" class="headerlink" title="1.特征工程一些注意事项"></a>1.特征工程一些注意事项</h1><p>e.g. 人类是需要吃加工过的食物才行，这样更安全也更美味。机器算法模型也是类似，原始数据不能直接喂给模型，也需要对数据进行清洗、组织、转换。最后才能得到模型可以消化的特征。这样你对特征工程在数据和模型之间扮演的角色已经十分了解了吧？</p>
-<h2 id="1-1-当前我对特征工程的理解"><a href="#1-1-当前我对特征工程的理解" class="headerlink" title="1.1 当前我对特征工程的理解"></a>1.1 当前我对特征工程的理解</h2><p>当前我对特征工程的理解仅仅停留在特征提取和特征选择，这样是待会会提到的内容。首先要知道，这两种方法都是降维的方法。特征选择后的字段是原数据字段的子集，也就是说删减了一些冗杂的对模型训练没有用的字段。特征提取理解成原来特征的映射，e.g.三个字段合并在一起表现的会比三个字段独立更好一些–&gt;<a href="https://blog.csdn.net/Neil_Pan/article/details/51940849">特征选择和特征提取区别</a></p>
-<p>如果想要看看，特征工程具体是包括哪些具体步骤的，还可以参考<a href="https://blog.csdn.net/tiange_xiao/article/details/79723177#:~:text=%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%20%E6%98%AF%E4%BD%BF%E7%94%A8%E4%B8%93%E4%B8%9A%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86%E5%92%8C%E6%8A%80%E5%B7%A7%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%EF%BC%8C%E4%BD%BF%E5%BE%97%20%E7%89%B9%E5%BE%81%20%E8%83%BD%E5%9C%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E4%B8%8A%E5%8F%91%E6%8C%A5%E6%9B%B4%E5%A5%BD%E7%9A%84%E4%BD%9C%E7%94%A8%E7%9A%84%E8%BF%87%E7%A8%8B%E3%80%82%20%E8%BF%87%E7%A8%8B%20%E5%8C%85%E5%90%AB%20%E4%BA%86%20%E7%89%B9%E5%BE%81,%E7%89%B9%E5%BE%81%20%E6%9E%84%E5%BB%BA%E3%80%81%20%E7%89%B9%E5%BE%81%20%E9%80%89%E6%8B%A9%E7%AD%89%E6%A8%A1%E5%9D%97%E3%80%82%20%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%20%E7%9A%84%E7%9B%AE%E7%9A%84%E6%98%AF%E7%AD%9B%E9%80%89%E5%87%BA%E6%9B%B4%E5%A5%BD%E7%9A%84%20%E7%89%B9%E5%BE%81%20%EF%BC%8C%E8%8E%B7%E5%8F%96%E6%9B%B4%E5%A5%BD%E7%9A%84%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E3%80%82">这里</a></p>
-<h2 id="1-2-更好的业务逻辑表达"><a href="#1-2-更好的业务逻辑表达" class="headerlink" title="1.2 更好的业务逻辑表达"></a>1.2 更好的业务逻辑表达</h2><p>将特征工程理解成是业务逻辑的一种数学表达。说是说业务逻辑表达，其实实质上就是指为了解决机器学习中特定的问题。因为原始数据有很多种转换为特征的方式，我们需要选择那些能够「更好的表示业务逻辑」，从而更好的解决问题，而不是那些更简单的方法。</p>
-<h2 id="1-3-提升机器学习性能"><a href="#1-3-提升机器学习性能" class="headerlink" title="1.3 提升机器学习性能"></a>1.3 提升机器学习性能</h2><p>性能意味着更短时间和更低成本，哪怕相同的模型，也会因为特征工程的不同而性能不同。所以我们需要选择那些可以发挥更好性能的特征工程</p>
-<h1 id="2-特征选择"><a href="#2-特征选择" class="headerlink" title="2. 特征选择"></a>2. 特征选择</h1><p>特征选择是特征工程里的一个重要问题，其目标是寻找最优特征子集。特征选择能剔除不相关(irrelevant)或冗余(redundant)的特征，从而达到减少特征个数，提高模型精确度，减少运行时间的目的。另一方面，<strong>选取出真正相关的特征简化模型</strong>，协助理解数据产生的过程。并且常能听到“数据和特征决定了机器学习的上限，而模型和算法只是逼近这个上限而已”，由此可见其重要性。但是它几乎很少出现于机器学习书本里面的某一章。然而在机器学习方面的成功很大程度上在于如果使用特征工程。</p>
-<p>之所以要考虑特征选择，是因为机器学习经常面临过拟合的问题。 过拟合的表现是模型参数太贴合训练集数据，模型在训练集上效果很好而在测试集上表现不好。简言之模型的泛化能力差。过拟合的原因是模型对于训练集数据来说太复杂，要解决过拟合问题，一般考虑如下方法：<a href="https://zhuanlan.zhihu.com/p/74198735#:~:text=%E4%B9%8B%E6%89%80%E4%BB%A5%E8%A6%81%E8%80%83%E8%99%91%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9%EF%BC%8C%E6%98%AF%E5%9B%A0%E4%B8%BA%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BB%8F%E5%B8%B8%E9%9D%A2%E4%B8%B4%E8%BF%87%E6%8B%9F%E5%90%88%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82%20%E8%BF%87%E6%8B%9F%E5%90%88,%E7%9A%84%E8%A1%A8%E7%8E%B0%E6%98%AF%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%20%E5%A4%AA%E8%B4%B4%E5%90%88%E8%AE%AD%E7%BB%83%E9%9B%86%E6%95%B0%E6%8D%AE%20%EF%BC%8C%E6%A8%A1%E5%9E%8B%E5%9C%A8%E8%AE%AD%E7%BB%83%E9%9B%86%E4%B8%8A%E6%95%88%E6%9E%9C%E5%BE%88%E5%A5%BD%E8%80%8C%E5%9C%A8%E6%B5%8B%E8%AF%95%E9%9B%86%E4%B8%8A%E8%A1%A8%E7%8E%B0%E4%B8%8D%E5%A5%BD%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%9C%A8%E9%AB%98%E6%96%B9%E5%B7%AE%E3%80%82">参考</a></p>
-<ol>
-<li>收集更多数据</li>
-<li>通过正则化引入对复杂度的惩罚</li>
-<li>选择更少参数的简单模型</li>
-<li>对数据降维（降维有两种方式：特征选择和特征抽取）</li>
-</ol>
-<p>其中第1条一般是很难做到的，一般主要采用第2和第4点</p>
-<h1 id="3-特征提取"><a href="#3-特征提取" class="headerlink" title="3. 特征提取"></a>3. 特征提取</h1><p>像上面所说，将特征提取理解成原来特征的映射，只是一种不同于特征选择的选取字段的方式罢了。</p>
-<h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h1><ul>
-<li><a href="https://blog.csdn.net/hren_ron/article/details/80914491">了解生成特征子集的搜索方式</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/74198735#:~:text=%E4%B9%8B%E6%89%80%E4%BB%A5%E8%A6%81%E8%80%83%E8%99%91%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9%EF%BC%8C%E6%98%AF%E5%9B%A0%E4%B8%BA%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BB%8F%E5%B8%B8%E9%9D%A2%E4%B8%B4%E8%BF%87%E6%8B%9F%E5%90%88%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82%20%E8%BF%87%E6%8B%9F%E5%90%88,%E7%9A%84%E8%A1%A8%E7%8E%B0%E6%98%AF%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%20%E5%A4%AA%E8%B4%B4%E5%90%88%E8%AE%AD%E7%BB%83%E9%9B%86%E6%95%B0%E6%8D%AE%20%EF%BC%8C%E6%A8%A1%E5%9E%8B%E5%9C%A8%E8%AE%AD%E7%BB%83%E9%9B%86%E4%B8%8A%E6%95%88%E6%9E%9C%E5%BE%88%E5%A5%BD%E8%80%8C%E5%9C%A8%E6%B5%8B%E8%AF%95%E9%9B%86%E4%B8%8A%E8%A1%A8%E7%8E%B0%E4%B8%8D%E5%A5%BD%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%9C%A8%E9%AB%98%E6%96%B9%E5%B7%AE%E3%80%82">详细地介绍了特征选择的方法</a></li>
-<li><a href="https://asialee.blog.csdn.net/article/details/84863410?spm=1001.2101.3001.6650.3&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-3-84863410-blog-79723177.pc_relevant_multi_platform_whitelistv3&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-3-84863410-blog-79723177.pc_relevant_multi_platform_whitelistv3&utm_relevant_index=6">机器学习特征工程的具体步骤</a></li>
-<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectKBest.html">sklearn.select_feature.SelectKBest官方文档</a></li>
-<li><a href="https://www.cnblogs.com/ai-ldj/p/14269023.html">SelectKBest博客园</a></li>
-<li><a href="https://blog.csdn.net/moonoon1/article/details/120074949">SelectKBest-CSDN</a></li>
+<h1 id="2-比赛前"><a href="#2-比赛前" class="headerlink" title="2.比赛前"></a>2.比赛前</h1><h2 id="2-1第一次校赛"><a href="#2-1第一次校赛" class="headerlink" title="2.1第一次校赛"></a>2.1第一次校赛</h2><p>虽然说今年四月份就开始准备数模比赛了，到今天有五个多月的时间，但是我们队真正学习的时间却不多，至少对我来说。可能我真正静下心来学习数模知识的时间还不足两个星期吧！😅</p>
+<p>刚开始我的工作是负责建模的工作，在队长的敦促下，买了份价值一百五的学习视频及教程。我对于视频学习并没有多大的想法，我还是更喜欢看书学。这就是为什么iPad里的电子书都发霉发臭了，都不曾被我看过的原因吧？再一点，比起付费的资料，我更喜欢白嫖（虽然这并不好），因为在我认为在网上寻找资料是一件很享受的事情，おかしいでしょ？</p>
+<p>一个队伍的核心成员应该是建模手，作为整支队伍的leader，我带领着队伍齐头并进，最后连校三等都没有…</p>
+<p>😀😀😀但是这也是在意料之内的，因为没有什么知识储备，脑子里当时就只有层次分析法这几个简单的模型，再加上论文的阅读次数都不足双位数，能获奖就有鬼！而且为期三天的数模，我们整整搞了十天才提交上去，虽然但是有多少水分谁不不揭穿了啊！</p>
+<h2 id="2-2暑假"><a href="#2-2暑假" class="headerlink" title="2.2暑假"></a>2.2暑假</h2><p>搞完校赛，处理完期末考试，差不多就进入了暑假。由于和写作手的配合没有那么好，所以我们打算换一名成员。队长推荐了一名算法高手，很显然，我该换岗位了。</p>
+<p>在漫长的暑假，我只希望自己能够每天抽出时间读一篇，哪怕是一篇数模优秀文章也好！但是事与愿违，事…还是没做成。后面学校组织训练，我们参加并且完成了一篇19年的C题。嗯，很显然我们又是十天左右才完成。当时就想着，这么搞肯定得玩完。于是思前想后，打算用LaTeX替换现在的WPS，说不定写作工具变了，我们的工作就更有效率了呢？😲</p>
+<p>好主意！下一次训练连半成品都没有交上去…</p>
+<p>当时学习LaTeX花了不到半天时间，便清楚它的工作流程，于是迫不及待的去找了一些有数模LaTeX的tex文件。看到了一个钟意的，便敲定了，也就是现在我使用的这也数模模板。</p>
+<p>由于我没有将模板与正文分离，所以我两次写论文的时候，都是夹着别人的论文一起写的，这次数模也不例外…</p>
+<blockquote>
+<p>我将LaTeX文件放到了这里，模板和正文自己分离。懒😪😪😪</p>
+<p>这项工作也还在完善中，请稍后！</p>
+</blockquote>
+<p>然后就开学咯🎉</p>
+<h2 id="2-3开学到比赛前这段时间"><a href="#2-3开学到比赛前这段时间" class="headerlink" title="2.3开学到比赛前这段时间"></a>2.3开学到比赛前这段时间</h2><p>很显然，我什么都没有干。</p>
+<h1 id="3-比赛"><a href="#3-比赛" class="headerlink" title="3.比赛"></a>3.比赛</h1><p>据说参加国赛需要校赛经历，我们已经算是合格的国赛选手了吧？我们比赛的时间是9月15号（周四）晚上六点钟到9月18号（周日）晚上十点钟之前。又多了四个小时时间，Lucky！希望能够用这多出来的四个小时改变点什么…</p>
+<h2 id="3-1周四晚上"><a href="#3-1周四晚上" class="headerlink" title="3.1周四晚上"></a>3.1周四晚上</h2><p>出赛题的时候我们在饭堂，不是因为我们不准备坐着等题，而是我忘记打包进实验室了。当天晚上我们商量好，要确定选题，不要犹豫。今年的A题对于我们来说，简直是魔鬼程度的。两三页篇幅的说明，让我们望而祛步🙄。如果硬啃的话，肯定可以理解它想要表达什么，但是求解确实一大难事。后面看别人大佬绞尽脑汁的想，才发现这个决定无疑对我们来说是十分正确的。</p>
+<p>选题按理来说应该要由建模手和编程手决定，因为他们更清楚问题的复杂性。他们现在卡在了B题和C题之前，队长更想选C题，但是算法糕手希望能够挑战一下。他内心看起来很动摇，因为他看不出解题思路。其实我和新队员也是第一次见面，之前都是在WeChat上聊天。谢天谢地，我们俩很快就磨合了，变得更多少年的好友一般畅所欲言？！</p>
+<p>我在几何方面很敏感，但是对数学公式很感冒。当时想过选数学专业，但是哪有人只学几何不用数学公式啊？恰好B题就是与几何有关的，我用高中的知识看出了第一小问的求解思路，然后我就坚持选B题。最后没有依我，选择了C题。我当时虽然很不爽，但是我确实只想得出第一问，对于全局来说，我还是服气的。虽然题目更简单了，但是意味着更多人选。只有语文建模基础足够深厚，才有机会获得一个最小的省三。<strong>最后统计有三百八十多人选择了C题，这个人数差不多就是去年我们学校的参赛人数…</strong></p>
+<h2 id="3-2周五"><a href="#3-2周五" class="headerlink" title="3.2周五"></a>3.2周五</h2><p>周五我们搜寻资料，解决了第一小问，然后卡在了第二小问的预测上，想了差不多一天的时间都没有想出来。确实浪费了很多时间，也做了很多无用功。第一小问的论文我很快就与论文交接了，但是剩余的时间与其是在划水，倒不如说是在无用功。C题与化学有关，于是我想着会用到化学方程式，去找了很多。但是最后发现要么就是用不上，要么就是没时间用。</p>
+<h2 id="3-3周六"><a href="#3-3周六" class="headerlink" title="3.3周六"></a>3.3周六</h2><p>C题有大概六七个小问，想要查看原题的话点击这里。</p>
+<p>我们一天时间才解决了第一小问，如果再这么下去，论文很有可能写不完。虽然我们也很努力，我也是第一次尝试了这种朝八晚十二的作息规律。嗯？怎么和我平时的作息有点像？关键是放弃了宝贵的午休时间。没有午休我的精神状态就会下降，特别是写论文的时候，无法理解模型的概念与问题的解决思路，又没有文思泉涌，将会导致写出来的论文质量差。一天除了睡觉的时间都呆在实验室，看起来很努力，在我看来是在做无用功（包括我）。队长和建模手对于模型的选择有一定的困难，导致了问题的拖延。明白了这一点，今天开始我尝试着来安排工作。</p>
+<p>对于模型，需要用指标来衡量。我肯定表现好的模型，否定表现差的模型。这种斩钉截铁的工作模式很快让我和各位都进入了流水线上，开始各司其职。当然，前提是做出了跳过第二小问的决定。</p>
+<p>直到晚上，第二问第一小问、第三问和第四问的问题都得到了解决。但是跟他们一起讨论，导致我到目前为止并没有进行论文撰写，也就是说只完成了论文进度还是停留在周五。</p>
+<h2 id="3-4周日"><a href="#3-4周日" class="headerlink" title="3.4周日"></a>3.4周日</h2><p>即便如此，我早上还是睡到了差不多九点，因为我认为工作效率才是最重要的，假努力欺骗的是自己还有身边的人。但时间真的很赶！早上我留在宿舍通过大屏操作LaTeX很快就完成了第二问的论文撰写，并且我交代队友明天早上完成第三问的论文撰写以及求解出第二小问的预测结果。队友很给力，差不多两点我去实验室的时候他们已经完成了这两个任务。但我看完论文结构后猛地一惊，发现摘要和问题分析没有写！包括第四问在内，还有一些零零星星的结果没有贴到论文中，六个小时能够完成吗？真是一项挑战啊！我不禁擦了擦额头上的假汗😰😰😰</p>
+<p>我安排他们完成了问题二和问题三的问题分析，因为他们求解的他们来写这种解题思路的话简直如鱼得水。而第四问的方法是我想出来的，所以我先完成第四问先。但是做了一半，发现SPSSPro上的热力图根本无法反映出我想要的结果。于是在三点钟的时候我临时改用了其它方法，用画图代替了建立模型的繁琐。</p>
+<p>大概五点钟我们就完成了基本上的任务，但是对于XeLatex编译出来的文件，还是有很多bug。并且每一个bug都是包含致命错误的，一旦出现即无缘获奖（<em>虽然说这次的也不知道能不能够获奖😵‍💫</em>）其中解决的很多问题都是以前遇到过但是解决不出的🤔</p>
+<ul>
+<li>从使用之初一直困扰我的表格边框以及复杂表格的LaTeX代码</li>
+<li>LaTeX含特殊字符的那段文字会超出编译生成的PDF之外</li>
+<li>LaTeX中图片并列</li>
+<li>LaTeX正文会被图片和表格夹断，阅读出现障碍</li>
+<li>LaTeX模板上页眉的内容不知道在哪个文件清空</li>
+<li>LaTeX附录粘贴代码有点麻烦</li>
 </ul>
+<p><code>解决方案放到了LaTeX篇，如果有需要请点击此处跳转...</code></p>
+<p>多亏LaTeX有在源代码和PDF相互跳转到指定位置的功能，不然真的用不下去了😭😭😭</p>
+<p>我们一起改论文，改到了7点57还有很多问题，但是8点钟之前可以提交多次PDF论文和RAR压缩包，也就是说MD5码在8点钟之前是允许反复更改的。但是在8点到10点之内，就只能提交一次文件和生成指定不可变的MD5码。并且MD5码在8点后生成的，就不允许更改文件了，一旦你更改文件，或许只是打开一下PDF都有可能让MD5码发生改变，机器会判定在10点钟之后正式提交参赛作品的时候你的文件发生了改动，这个时候它是不承认你的MD5码，也就是说你无法参赛了。这是一个很严重的问题，自己辛辛苦苦做了这么久，结果却交不上去，心态多少有点崩溃。所以我们为了保险起见，先在8点钟之前提交一次。</p>
+<p>然后我们预测在9点钟之前正式将作品做最后一次的提交（10点钟之前的提交可以认为只是参赛资格的获取），但是发现bug根本改不过来。三个人忙得团团转，当时想着9点半之前提交就好了，网络不会这么拥挤的。但是忙到了9点半，bug依然有，而且严重程度会让论文直接降档。没办法，抱着试一逝的心态，我们改bug改到了9点45。虽然说还有不少bug，但都是不痛不痒的，对阅读论文没有什么大影响的小问题了。</p>
+<p>我编译出最新的PDF，通过WeChat准备发给队长时，由于轻薄本已经承担了太多软件，并且三四天都没有合过眼了。LaTeX直接卡退，屏幕被黑块笼罩着，就像我们此刻的心情一样。大概到9点50的时候，电脑缓过来了，我赶紧将PDF发给队长。压缩完我的LaTeX代码文件后突然发现我电脑里的压缩软件是360压缩，只能生成zip类型的压缩包。而我之前一直想着队长有WinRAR就够了，反正是他通过客户端提交的。下载WinRAR显然不切实际，由于多天的劳累，我们的CPU已经转不过来了。我赶紧将文件压缩成zip格式，然后发给建模手，因为此时队长在忙活着PDF名称的修改。但未承想建模手把我的文件解压放进总附件文件中，压缩后找不到找不到压缩包，遂叫我来操作。我看到他的安装路径，狂点桌面，然后点击确定。终于，我们的压缩包出现在了桌面。但他的桌面都是蓝蓝的doc和绿绿xls，一时间竟无法找出压缩包！此时时间已经来到了9点55分。一顿丝滑的操作后视野来到了队长这边，只见他颤颤巍巍地移动着鼠标，指尖高频触动着鼠标左键，但就是无法达到那最后的终点！“好了吗？”“好！冲！”伴随着呐喊声，我们点击了提交。幸运的是，软件并没有卡顿，显得如此顺理成章，此时时间是9点57分。一切都结束后，没有欢呼、没有喝彩，只留下一片鸦雀无声。紧绷着的心情还没有完全放松下来，眼前还停留着黑白的文字与代码，一切都还显得这么历历在目！</p>
+<h1 id="4-Final"><a href="#4-Final" class="headerlink" title="4.Final"></a>4.Final</h1><p>虽然过程很苦很累，甚至对一百蚊有点舍不得。但就最后两个小时的感受而言，让我觉得这钱交的值了！自打上大学以来，还是第一次切实地体会到了团队合作的重要性。以前一直都是单打独斗，现在发现自己并不是万能的，队友就是用来弥补自己的缺点的。虽然说有百分之五十的概率获奖，但是无论结果如何我都能平淡接受，因为这场比赛我已经获得了自己想要的东西！<em>（其实心里还是想着希望得个省三就好了，因为有一千块钱回血…）</em>🐤🐤🐤</p>
 ]]></content>
       <categories>
-        <category>Mathine Learning</category>
+        <category>School Life</category>
       </categories>
-  </entry>
-  <entry>
-    <title>特征缩放</title>
-    <url>/2022/11/23/%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE/</url>
-    <content><![CDATA[<p>将数据进行归一化和标准化可以使不同维度的特征放在一起进行比较，可以大大提高模型的准确性。</p>
-<span id="more"></span>
-
-<h1 id="特征缩放"><a href="#特征缩放" class="headerlink" title="特征缩放"></a>特征缩放</h1><h2 id="1-为什么要进行特征缩放"><a href="#1-为什么要进行特征缩放" class="headerlink" title="1. 为什么要进行特征缩放"></a>1. 为什么要进行特征缩放</h2><h3 id="1-1-统一特征的权重和提升模型准确性"><a href="#1-1-统一特征的权重和提升模型准确性" class="headerlink" title="1.1 统一特征的权重和提升模型准确性"></a>1.1 统一特征的权重和提升模型准确性</h3><p>如果某个特征的取值范围比其他特征大很多，那么数值计算（比如说计算欧式距离）就受该特征的主要影响。但实际上并不一定是这个特征最重要，通常需要把每个特征看成同等重要。归一化和标准化数据可以使不同维度的特征放在一起进行比较，可以大大提高模型的准确性。</p>
-<h3 id="1-2-提升梯度下降法的收敛速度"><a href="#1-2-提升梯度下降法的收敛速度" class="headerlink" title="1.2 提升梯度下降法的收敛速度"></a>1.2 提升梯度下降法的收敛速度</h3><p><img src="https://img-blog.csdnimg.cn/20191113192133110.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzAwODgwNA==,size_16,color_FFFFFF,t_70" alt="左边是未归一化数据的梯度下降过程"></p>
-<h2 id="2-特征缩放的方法有哪些？"><a href="#2-特征缩放的方法有哪些？" class="headerlink" title="2. 特征缩放的方法有哪些？"></a>2. 特征缩放的方法有哪些？</h2><h3 id="2-1-最大最小值归一化（min-max-normalization）：将数值范围缩放到-0-1-区间里"><a href="#2-1-最大最小值归一化（min-max-normalization）：将数值范围缩放到-0-1-区间里" class="headerlink" title="2.1 最大最小值归一化（min-max normalization）：将数值范围缩放到 [0, 1] 区间里"></a>2.1 最大最小值归一化（min-max normalization）：将数值范围缩放到 [0, 1] 区间里</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190103162752557-711062993.png"></p>
-<h3 id="2-2-均值归一化（mean-normalization）：将数值范围缩放到-1-1-区间里，且数据的均值变为0"><a href="#2-2-均值归一化（mean-normalization）：将数值范围缩放到-1-1-区间里，且数据的均值变为0" class="headerlink" title="2.2 均值归一化（mean normalization）：将数值范围缩放到 [-1, 1] 区间里，且数据的均值变为0"></a>2.2 均值归一化（mean normalization）：将数值范围缩放到 [-1, 1] 区间里，且数据的均值变为0</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190103162807303-1305019357.png"></p>
-<h3 id="2-3-标准化-Z-值归一化（standardization-x2F-z-score-normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行-中心化-mean-centering-处理，再除以标准差进行缩放）"><a href="#2-3-标准化-Z-值归一化（standardization-x2F-z-score-normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行-中心化-mean-centering-处理，再除以标准差进行缩放）" class="headerlink" title="2.3 标准化 ,Z 值归一化（standardization &#x2F; z-score normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行 中心化 mean centering 处理，再除以标准差进行缩放）"></a>2.3 标准化 ,Z 值归一化（standardization &#x2F; z-score normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行 中心化 mean centering 处理，再除以标准差进行缩放）</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190103162903434-1406801774.png"></p>
-<h3 id="2-4-最大绝对值归一化（max-abs-normalization-）：也就是将数值变为单位长度（scaling-to-unit-length），将数值范围缩放到-1-1-区间里"><a href="#2-4-最大绝对值归一化（max-abs-normalization-）：也就是将数值变为单位长度（scaling-to-unit-length），将数值范围缩放到-1-1-区间里" class="headerlink" title="2.4 最大绝对值归一化（max abs normalization ）：也就是将数值变为单位长度（scaling to unit length），将数值范围缩放到 [-1, 1] 区间里"></a>2.4 最大绝对值归一化（max abs normalization ）：也就是将数值变为单位长度（scaling to unit length），将数值范围缩放到 [-1, 1] 区间里</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190112114759202-190163995.png"> </p>
-<h3 id="2-5-稳键标准化（robust-standardization）：先减去中位数，再除以四分位间距（interquartile-range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健"><a href="#2-5-稳键标准化（robust-standardization）：先减去中位数，再除以四分位间距（interquartile-range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健" class="headerlink" title="2.5 稳键标准化（robust standardization）：先减去中位数，再除以四分位间距（interquartile range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健"></a>2.5 稳键标准化（robust standardization）：先减去中位数，再除以四分位间距（interquartile range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201908/1247570-20190811172514046-446486849.png"></p>
-<blockquote>
-<p><em>有一些时候，只对数据进行中心化和缩放是不够的，还需对数据进行白化（whitening）处理来消除特征间的线性相关性</em></p>
-</blockquote>
-<h2 id="3-标准化和归一化的区别是什么？"><a href="#3-标准化和归一化的区别是什么？" class="headerlink" title="3. 标准化和归一化的区别是什么？"></a>3. 标准化和归一化的区别是什么？</h2><h3 id="3-1-归一化-NormalizationNormalization-：将一列数据变化到某个固定区间-范围-中，通常，这个区间是-0-1-，广义的讲，可以是各种区间，比如映射到-0，1-一样可以继续映射到其他范围，图像中可能会映射到-0-255-，其他情况可能映射到-1-1"><a href="#3-1-归一化-NormalizationNormalization-：将一列数据变化到某个固定区间-范围-中，通常，这个区间是-0-1-，广义的讲，可以是各种区间，比如映射到-0，1-一样可以继续映射到其他范围，图像中可能会映射到-0-255-，其他情况可能映射到-1-1" class="headerlink" title="3.1 归一化(NormalizationNormalization)：将一列数据变化到某个固定区间(范围)中，通常，这个区间是[0, 1]，广义的讲，可以是各种区间，比如映射到[0，1]一样可以继续映射到其他范围，图像中可能会映射到[0,255]，其他情况可能映射到[-1,1]"></a>3.1 归一化(NormalizationNormalization)：将一列数据变化到某个固定区间(范围)中，通常，这个区间是[0, 1]，广义的讲，可以是各种区间，比如映射到[0，1]一样可以继续映射到其他范围，图像中可能会映射到[0,255]，其他情况可能映射到[-1,1]</h3><h3 id="3-2-标准化-StandardizationStandardization-：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的"><a href="#3-2-标准化-StandardizationStandardization-：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的" class="headerlink" title="3.2 标准化(StandardizationStandardization)：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的"></a>3.2 标准化(StandardizationStandardization)：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的</h3><p><img src="https://img-blog.csdnimg.cn/20191021220509274.png#pic_center"></p>
-<h3 id="3-3-中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值"><a href="#3-3-中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值" class="headerlink" title="3.3 中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值"></a>3.3 中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值</h3><p><img src="https://img-blog.csdnimg.cn/20191021220535129.png#pic_center"></p>
-<h2 id="4-什么时候用标准化，什么时候用归一化？"><a href="#4-什么时候用标准化，什么时候用归一化？" class="headerlink" title="4. 什么时候用标准化，什么时候用归一化？"></a>4. 什么时候用标准化，什么时候用归一化？</h2><p>某博主理解：如果你对处理后的数据范围有严格要求，那肯定是归一化，个人经验，标准化是机器学习中更通用的手段，如果你无从下手，可以直接使用标准化。如果数据不为稳定，存在极端的最大最小值，不要用归一化。</p>
-<p>在分类、聚类算法中，需要使用距离来度量相似性的时候、或者使用PCA技术进行降维的时候，标准化表现更好；在不涉及距离度量、协方差计算的时候，可以使用归一化方法。</p>
-<p><strong>在需要使用距离来度量相似性的算法中，或者使用PCA技术进行降维的时候，通常使用标准化（standardization）或均值归一化（mean normalization）比较好，但如果数据分布不是正态分布或者标准差非常小，以及需要把数据固定在 [0, 1] 范围内，那么使用最大最小值归一化（min-max normalization）比较好（min-max 常用于归一化图像的灰度值）。但是min-max比较容易受异常值的影响，如果数据集包含较多的异常值，可以考虑使用稳键归一化（robust normalization）。对于已经中心化的数据或稀疏数据的缩放，比较推荐使用最大绝对值归一化（max abs normalization ），因为它会保住数据中的０元素，不会破坏数据的稀疏性（sparsity）。</strong></p>
-<h2 id="5-什么机器学习模型需要用到特征缩放？"><a href="#5-什么机器学习模型需要用到特征缩放？" class="headerlink" title="5. 什么机器学习模型需要用到特征缩放？"></a>5. 什么机器学习模型需要用到特征缩放？</h2><h3 id="5-1-通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear-Regression）、逻辑回归（Logistic-Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural-Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。"><a href="#5-1-通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear-Regression）、逻辑回归（Logistic-Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural-Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。" class="headerlink" title="5.1 通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear Regression）、逻辑回归（Logistic Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。"></a>5.1 通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear Regression）、逻辑回归（Logistic Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。</h3><h3 id="5-2-决策树（Decision-Tree），随机森林（Random-Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。"><a href="#5-2-决策树（Decision-Tree），随机森林（Random-Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。" class="headerlink" title="5.2 决策树（Decision Tree），随机森林（Random Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。"></a>5.2 决策树（Decision Tree），随机森林（Random Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。</h3><h2 id="6-在进行特征缩放的时候需要注意的地方？"><a href="#6-在进行特征缩放的时候需要注意的地方？" class="headerlink" title="6. 在进行特征缩放的时候需要注意的地方？"></a>6. 在进行特征缩放的时候需要注意的地方？</h2><p><em>需要先把数据先拆分成训练集与验证集，在训练集上计算出需要的数值（如均值和标准值），对训练集数据做标准化&#x2F;归一化处理，然后再用之前计算出的数据（如均值和标准值）对验证集数据做相同的标准化&#x2F;归一化处理。不要在整个数据集上直接做标准化&#x2F;归一化处理，因为这样会将验证集的信息带入到训练集中，这是一个非常容易犯的错误</em></p>
-<h2 id="7-参考链接"><a href="#7-参考链接" class="headerlink" title="7. 参考链接"></a>7. 参考链接</h2><p><a href="https://www.cnblogs.com/HuZihu/p/9761161.html">https://www.cnblogs.com/HuZihu/p/9761161.html</a></p>
-<p><a href="https://blog.csdn.net/weixin_43008804/article/details/103087447">https://blog.csdn.net/weixin_43008804/article/details/103087447</a></p>
-<p><a href="https://blog.csdn.net/weixin_36604953/article/details/102652160">https://blog.csdn.net/weixin_36604953/article/details/102652160</a></p>
-]]></content>
-      <categories>
-        <category>Mathine Learning</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>维度灾难</title>
-    <url>/2022/11/23/%E7%BB%B4%E5%BA%A6%E7%81%BE%E9%9A%BE/</url>
-    <content><![CDATA[<p>今天學習機器學習的時候，發現有<em>維度災難</em>這個東西。挺感興趣的，於是一探究竟！</p>
-<span id="more"></span>
-
-<h1 id="机器学习中的维度灾难"><a href="#机器学习中的维度灾难" class="headerlink" title="机器学习中的维度灾难"></a>机器学习中的维度灾难</h1><p>在介绍机器学习的维度灾难之前，我推荐给大家一个网站，名字虽然说是<a href="https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">计算机视觉的傻瓜书</a>，但是有关机器学习的答疑部分它做得还是蛮好的。除此之外还有<a href="https://www.kdnuggets.com/news/index.html">KDnuggest</a>，也是有关机器学习的论坛。</p>
-<p>本文是参考<a href="https://www.jianshu.com/p/867193608bbd">简书-红色石头Will</a>所得到的观点，虽然他是翻译<a href="https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">计算机视觉的傻瓜书</a>的，但是对于我理解维度灾难起着指导方向的作用。</p>
-<h2 id="1-介绍维度灾难"><a href="#1-介绍维度灾难" class="headerlink" title="1.介绍维度灾难"></a>1.介绍维度灾难</h2><p>维度灾难是在设计一个分类器的时候需要注意的问题。为了得到更好的分类效果，我们可以无限的增加特征。但是事实上，特征数量超过一定值的时候，分类器的效果反而会下降。这种由于特征数量太多导致的分类效果下降的情况，就被称作是<strong>维度灾难</strong>。</p>
-<h2 id="2-维度灾难与过拟合"><a href="#2-维度灾难与过拟合" class="headerlink" title="2.维度灾难与过拟合"></a>2.维度灾难与过拟合</h2><p>貌似特征越多，越有可能实现正确分类，但是情况并非如此。一个直观的情况时，随着特征维度的增加，训练样本在特征空间中的密度是呈指数下降的。</p>
-<blockquote>
-<p>样本数不变，但是特征空间不断地增加，那训练样本在特征空间中的密度岂不是就是呈指数下降的？</p>
-</blockquote>
-<p>如果我们继续增加特征，整个特征空间维度增加，并变得越来越稀疏。由于稀疏性，我们更加容易找到一个超平面来实现分类。这是因为随着特征数量变得无限大，训练样本在最佳超平面的错误侧的可能性将会变得无限小。然而，如果我们将高维的分类结果投影到低维空间中，将会出现一个严重的问题。</p>
-<p>比如说样本数据在3D是线性可分的，但是在2D却并非如此。事实上，增加第三个维度来获得最佳的线性分类效果，等同于在低维特征空间中使用非线性分类器。其结果是，分类器学习了训练数据的噪声和异常，而对样本外的数据拟合效果并不理想，甚至很差。这个概念称为过拟合，是维度灾难的一个直接后果。</p>
-<p><em>换句话讲，如果增加特征维度，为了覆盖同样的特征值范围，防止过拟合，需要用到的样本数就会呈指数型增长！</em></p>
-<h2 id="3-维度灾难与数据稀疏程度分布不均"><a href="#3-维度灾难与数据稀疏程度分布不均" class="headerlink" title="3.维度灾难与数据稀疏程度分布不均"></a>3.维度灾难与数据稀疏程度分布不均</h2><p>我们展示了维度灾难会引起训练数据的稀疏化。使用的特征越多，数据就会变得越稀疏，从而导致分类器的分类效果就会越差。维度灾难还会造成<strong>搜索空间的数据稀疏程度</strong>分布不均。事实上，围绕原点的数据（在超立方体的中心）比在搜索空间的角落处的数据要稀疏得多。</p>
-<p>举例2D，如果大部分的样本都落在了单位内接圆里的话，会更容易分类。但是在高维的空间中，大部分的训练数据都是分布在定义为特征空间的超立方体的角落处，导致难以分类。、</p>
-<p>对于8维的超球体，大约98%的数据集中在它256个角落处。其结果是，当特征空间的维度变得无限大时，从样本点到质心的最大、最小欧氏距离的差值与其最小欧式距离的比值趋于零。因此，距离测量在高维空间中逐渐变得无效。因为分类器是基于这些距离测量的（例如Euclidean距离、Mahalanobis距离、Manhattan距离），所以低维空间特征更少，分类更加容易。同样地，在高维空间的高斯分布会变平坦且尾巴更长。</p>
-<h2 id="4-如何避免维度灾难"><a href="#4-如何避免维度灾难" class="headerlink" title="4.如何避免维度灾难"></a>4.如何避免维度灾难</h2><p>很遗憾，在分类问题中，没有固定的规则来指定该使用多少特征。事实上，用多少特征量取决于你训练样本的数量、决策边界的复杂性和使用的是啥分类器。</p>
-<p>比如说一些非线性决策边界的分类器（e.g. 神经网络、KNN分类器、决策树等），它们的分类效果虽然好，但是泛化能力差容易发生过拟合，这个时候就需要降低点维度。如果使用泛化能力稍微好点的（e.g. 贝叶斯分类器、线性分类器），那么就可以使用稍微多一点的特征。</p>
-<h2 id="5-参考链接"><a href="#5-参考链接" class="headerlink" title="5.参考链接"></a>5.参考链接</h2><blockquote>
-<p><a href="https://www.jianshu.com/p/867193608bbd">简书</a></p>
-<p><a href="https://cloud.tencent.com/developer/article/1143269">手工特征选取降维</a><br><a href="https://www.kdnuggets.com/2015/03/deep-learning-curse-dimensionality-autoencoders.html">原文</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Mathine Learning</category>
-      </categories>
+      <tags>
+        <tag>学校</tag>
+        <tag>比赛</tag>
+        <tag>生活</tag>
+      </tags>
   </entry>
   <entry>
     <title>激活函数</title>
@@ -693,6 +605,112 @@ print_result(lgb_r2_score, lgb_rmse, &#39;Lightgbm&#39;)
 <blockquote>
 <p><a href="https://www.cnblogs.com/makefile/p/activation-function.html">https://www.cnblogs.com/makefile/p/activation-function.html</a><br><a href="https://www.cnblogs.com/nxf-rabbit75/p/9276412.html">https://www.cnblogs.com/nxf-rabbit75/p/9276412.html</a><br><a href="https://cloud.tencent.com/developer/article/1800954">https://cloud.tencent.com/developer/article/1800954</a><br><a href="https://blog.csdn.net/hy592070616/article/details/120618490">https://blog.csdn.net/hy592070616/article/details/120618490</a><br><a href="https://blog.csdn.net/weixin_42057852/article/details/84644348?spm=1001.2101.3001.6650.11&amp;utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-11-84644348-blog-120618490.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-11-84644348-blog-120618490.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=15">https://blog.csdn.net/weixin_42057852/article/details/84644348?spm=1001.2101.3001.6650.11&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-11-84644348-blog-120618490.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-11-84644348-blog-120618490.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=15</a></p>
 <p><a href="https://www.cnblogs.com/pinard/p/6437495.html">https://www.cnblogs.com/pinard/p/6437495.html</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Mathine Learning</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>特征工程</title>
+    <url>/2022/11/23/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/</url>
+    <content><![CDATA[<p>数据和特征决定了机器学习的上限，而模型和算法只是逼近这个上限而已</p>
+<span id="more"></span>
+
+<h1 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a>特征工程</h1><p><a href="https://easyai.tech/ai-definition/feature-engineering/">特征工程</a>是机器学习工作流程中重要的组成部分，它将原始数据「翻译」成模型可理解的形式。</p>
+<p>美国计算机科学家 Peter Norvig 说过两句经典名言</p>
+<ol>
+<li>基于大量数据的简单模型优于基于少量数据的复杂模型</li>
+<li>更多的数据优于聪明的算法，而好的数据优于多的数据</li>
+</ol>
+<p>足以可见数据量和特征工程的重要性，不过数据量已经给定了，我们能做的只有特征工程。如何基于原来的数据发挥出更大的数据价值就是特征工程要做的事情。</p>
+<p><em>在16年的一项调查中发现，<a href="https://whatsthebigdata.com/2016/05/01/data-scientists-spend-most-of-their-time-cleaning-data/">数据科学家</a>的工作中，有80%的时间都在获取、清洗和组织数据。构造机器学习流水线的时间不到20%…</em></p>
+<h1 id="1-特征工程一些注意事项"><a href="#1-特征工程一些注意事项" class="headerlink" title="1.特征工程一些注意事项"></a>1.特征工程一些注意事项</h1><p>e.g. 人类是需要吃加工过的食物才行，这样更安全也更美味。机器算法模型也是类似，原始数据不能直接喂给模型，也需要对数据进行清洗、组织、转换。最后才能得到模型可以消化的特征。这样你对特征工程在数据和模型之间扮演的角色已经十分了解了吧？</p>
+<h2 id="1-1-当前我对特征工程的理解"><a href="#1-1-当前我对特征工程的理解" class="headerlink" title="1.1 当前我对特征工程的理解"></a>1.1 当前我对特征工程的理解</h2><p>当前我对特征工程的理解仅仅停留在特征提取和特征选择，这样是待会会提到的内容。首先要知道，这两种方法都是降维的方法。特征选择后的字段是原数据字段的子集，也就是说删减了一些冗杂的对模型训练没有用的字段。特征提取理解成原来特征的映射，e.g.三个字段合并在一起表现的会比三个字段独立更好一些–&gt;<a href="https://blog.csdn.net/Neil_Pan/article/details/51940849">特征选择和特征提取区别</a></p>
+<p>如果想要看看，特征工程具体是包括哪些具体步骤的，还可以参考<a href="https://blog.csdn.net/tiange_xiao/article/details/79723177#:~:text=%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%20%E6%98%AF%E4%BD%BF%E7%94%A8%E4%B8%93%E4%B8%9A%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86%E5%92%8C%E6%8A%80%E5%B7%A7%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%EF%BC%8C%E4%BD%BF%E5%BE%97%20%E7%89%B9%E5%BE%81%20%E8%83%BD%E5%9C%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E4%B8%8A%E5%8F%91%E6%8C%A5%E6%9B%B4%E5%A5%BD%E7%9A%84%E4%BD%9C%E7%94%A8%E7%9A%84%E8%BF%87%E7%A8%8B%E3%80%82%20%E8%BF%87%E7%A8%8B%20%E5%8C%85%E5%90%AB%20%E4%BA%86%20%E7%89%B9%E5%BE%81,%E7%89%B9%E5%BE%81%20%E6%9E%84%E5%BB%BA%E3%80%81%20%E7%89%B9%E5%BE%81%20%E9%80%89%E6%8B%A9%E7%AD%89%E6%A8%A1%E5%9D%97%E3%80%82%20%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%20%E7%9A%84%E7%9B%AE%E7%9A%84%E6%98%AF%E7%AD%9B%E9%80%89%E5%87%BA%E6%9B%B4%E5%A5%BD%E7%9A%84%20%E7%89%B9%E5%BE%81%20%EF%BC%8C%E8%8E%B7%E5%8F%96%E6%9B%B4%E5%A5%BD%E7%9A%84%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E3%80%82">这里</a></p>
+<h2 id="1-2-更好的业务逻辑表达"><a href="#1-2-更好的业务逻辑表达" class="headerlink" title="1.2 更好的业务逻辑表达"></a>1.2 更好的业务逻辑表达</h2><p>将特征工程理解成是业务逻辑的一种数学表达。说是说业务逻辑表达，其实实质上就是指为了解决机器学习中特定的问题。因为原始数据有很多种转换为特征的方式，我们需要选择那些能够「更好的表示业务逻辑」，从而更好的解决问题，而不是那些更简单的方法。</p>
+<h2 id="1-3-提升机器学习性能"><a href="#1-3-提升机器学习性能" class="headerlink" title="1.3 提升机器学习性能"></a>1.3 提升机器学习性能</h2><p>性能意味着更短时间和更低成本，哪怕相同的模型，也会因为特征工程的不同而性能不同。所以我们需要选择那些可以发挥更好性能的特征工程</p>
+<h1 id="2-特征选择"><a href="#2-特征选择" class="headerlink" title="2. 特征选择"></a>2. 特征选择</h1><p>特征选择是特征工程里的一个重要问题，其目标是寻找最优特征子集。特征选择能剔除不相关(irrelevant)或冗余(redundant)的特征，从而达到减少特征个数，提高模型精确度，减少运行时间的目的。另一方面，<strong>选取出真正相关的特征简化模型</strong>，协助理解数据产生的过程。并且常能听到“数据和特征决定了机器学习的上限，而模型和算法只是逼近这个上限而已”，由此可见其重要性。但是它几乎很少出现于机器学习书本里面的某一章。然而在机器学习方面的成功很大程度上在于如果使用特征工程。</p>
+<p>之所以要考虑特征选择，是因为机器学习经常面临过拟合的问题。 过拟合的表现是模型参数太贴合训练集数据，模型在训练集上效果很好而在测试集上表现不好。简言之模型的泛化能力差。过拟合的原因是模型对于训练集数据来说太复杂，要解决过拟合问题，一般考虑如下方法：<a href="https://zhuanlan.zhihu.com/p/74198735#:~:text=%E4%B9%8B%E6%89%80%E4%BB%A5%E8%A6%81%E8%80%83%E8%99%91%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9%EF%BC%8C%E6%98%AF%E5%9B%A0%E4%B8%BA%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BB%8F%E5%B8%B8%E9%9D%A2%E4%B8%B4%E8%BF%87%E6%8B%9F%E5%90%88%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82%20%E8%BF%87%E6%8B%9F%E5%90%88,%E7%9A%84%E8%A1%A8%E7%8E%B0%E6%98%AF%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%20%E5%A4%AA%E8%B4%B4%E5%90%88%E8%AE%AD%E7%BB%83%E9%9B%86%E6%95%B0%E6%8D%AE%20%EF%BC%8C%E6%A8%A1%E5%9E%8B%E5%9C%A8%E8%AE%AD%E7%BB%83%E9%9B%86%E4%B8%8A%E6%95%88%E6%9E%9C%E5%BE%88%E5%A5%BD%E8%80%8C%E5%9C%A8%E6%B5%8B%E8%AF%95%E9%9B%86%E4%B8%8A%E8%A1%A8%E7%8E%B0%E4%B8%8D%E5%A5%BD%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%9C%A8%E9%AB%98%E6%96%B9%E5%B7%AE%E3%80%82">参考</a></p>
+<ol>
+<li>收集更多数据</li>
+<li>通过正则化引入对复杂度的惩罚</li>
+<li>选择更少参数的简单模型</li>
+<li>对数据降维（降维有两种方式：特征选择和特征抽取）</li>
+</ol>
+<p>其中第1条一般是很难做到的，一般主要采用第2和第4点</p>
+<h1 id="3-特征提取"><a href="#3-特征提取" class="headerlink" title="3. 特征提取"></a>3. 特征提取</h1><p>像上面所说，将特征提取理解成原来特征的映射，只是一种不同于特征选择的选取字段的方式罢了。</p>
+<h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h1><ul>
+<li><a href="https://blog.csdn.net/hren_ron/article/details/80914491">了解生成特征子集的搜索方式</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/74198735#:~:text=%E4%B9%8B%E6%89%80%E4%BB%A5%E8%A6%81%E8%80%83%E8%99%91%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9%EF%BC%8C%E6%98%AF%E5%9B%A0%E4%B8%BA%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BB%8F%E5%B8%B8%E9%9D%A2%E4%B8%B4%E8%BF%87%E6%8B%9F%E5%90%88%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82%20%E8%BF%87%E6%8B%9F%E5%90%88,%E7%9A%84%E8%A1%A8%E7%8E%B0%E6%98%AF%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%20%E5%A4%AA%E8%B4%B4%E5%90%88%E8%AE%AD%E7%BB%83%E9%9B%86%E6%95%B0%E6%8D%AE%20%EF%BC%8C%E6%A8%A1%E5%9E%8B%E5%9C%A8%E8%AE%AD%E7%BB%83%E9%9B%86%E4%B8%8A%E6%95%88%E6%9E%9C%E5%BE%88%E5%A5%BD%E8%80%8C%E5%9C%A8%E6%B5%8B%E8%AF%95%E9%9B%86%E4%B8%8A%E8%A1%A8%E7%8E%B0%E4%B8%8D%E5%A5%BD%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%9C%A8%E9%AB%98%E6%96%B9%E5%B7%AE%E3%80%82">详细地介绍了特征选择的方法</a></li>
+<li><a href="https://asialee.blog.csdn.net/article/details/84863410?spm=1001.2101.3001.6650.3&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-3-84863410-blog-79723177.pc_relevant_multi_platform_whitelistv3&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-3-84863410-blog-79723177.pc_relevant_multi_platform_whitelistv3&utm_relevant_index=6">机器学习特征工程的具体步骤</a></li>
+<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectKBest.html">sklearn.select_feature.SelectKBest官方文档</a></li>
+<li><a href="https://www.cnblogs.com/ai-ldj/p/14269023.html">SelectKBest博客园</a></li>
+<li><a href="https://blog.csdn.net/moonoon1/article/details/120074949">SelectKBest-CSDN</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Mathine Learning</category>
+      </categories>
+      <tags>
+        <tag>特征</tag>
+        <tag>数据</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>特征缩放</title>
+    <url>/2022/11/23/%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE/</url>
+    <content><![CDATA[<p>将数据进行归一化和标准化可以使不同维度的特征放在一起进行比较，可以大大提高模型的准确性。</p>
+<span id="more"></span>
+
+<h1 id="特征缩放"><a href="#特征缩放" class="headerlink" title="特征缩放"></a>特征缩放</h1><h2 id="1-为什么要进行特征缩放"><a href="#1-为什么要进行特征缩放" class="headerlink" title="1. 为什么要进行特征缩放"></a>1. 为什么要进行特征缩放</h2><h3 id="1-1-统一特征的权重和提升模型准确性"><a href="#1-1-统一特征的权重和提升模型准确性" class="headerlink" title="1.1 统一特征的权重和提升模型准确性"></a>1.1 统一特征的权重和提升模型准确性</h3><p>如果某个特征的取值范围比其他特征大很多，那么数值计算（比如说计算欧式距离）就受该特征的主要影响。但实际上并不一定是这个特征最重要，通常需要把每个特征看成同等重要。归一化和标准化数据可以使不同维度的特征放在一起进行比较，可以大大提高模型的准确性。</p>
+<h3 id="1-2-提升梯度下降法的收敛速度"><a href="#1-2-提升梯度下降法的收敛速度" class="headerlink" title="1.2 提升梯度下降法的收敛速度"></a>1.2 提升梯度下降法的收敛速度</h3><p><img src="https://img-blog.csdnimg.cn/20191113192133110.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzAwODgwNA==,size_16,color_FFFFFF,t_70" alt="左边是未归一化数据的梯度下降过程"></p>
+<h2 id="2-特征缩放的方法有哪些？"><a href="#2-特征缩放的方法有哪些？" class="headerlink" title="2. 特征缩放的方法有哪些？"></a>2. 特征缩放的方法有哪些？</h2><h3 id="2-1-最大最小值归一化（min-max-normalization）：将数值范围缩放到-0-1-区间里"><a href="#2-1-最大最小值归一化（min-max-normalization）：将数值范围缩放到-0-1-区间里" class="headerlink" title="2.1 最大最小值归一化（min-max normalization）：将数值范围缩放到 [0, 1] 区间里"></a>2.1 最大最小值归一化（min-max normalization）：将数值范围缩放到 [0, 1] 区间里</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190103162752557-711062993.png"></p>
+<h3 id="2-2-均值归一化（mean-normalization）：将数值范围缩放到-1-1-区间里，且数据的均值变为0"><a href="#2-2-均值归一化（mean-normalization）：将数值范围缩放到-1-1-区间里，且数据的均值变为0" class="headerlink" title="2.2 均值归一化（mean normalization）：将数值范围缩放到 [-1, 1] 区间里，且数据的均值变为0"></a>2.2 均值归一化（mean normalization）：将数值范围缩放到 [-1, 1] 区间里，且数据的均值变为0</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190103162807303-1305019357.png"></p>
+<h3 id="2-3-标准化-Z-值归一化（standardization-x2F-z-score-normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行-中心化-mean-centering-处理，再除以标准差进行缩放）"><a href="#2-3-标准化-Z-值归一化（standardization-x2F-z-score-normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行-中心化-mean-centering-处理，再除以标准差进行缩放）" class="headerlink" title="2.3 标准化 ,Z 值归一化（standardization &#x2F; z-score normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行 中心化 mean centering 处理，再除以标准差进行缩放）"></a>2.3 标准化 ,Z 值归一化（standardization &#x2F; z-score normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行 中心化 mean centering 处理，再除以标准差进行缩放）</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190103162903434-1406801774.png"></p>
+<h3 id="2-4-最大绝对值归一化（max-abs-normalization-）：也就是将数值变为单位长度（scaling-to-unit-length），将数值范围缩放到-1-1-区间里"><a href="#2-4-最大绝对值归一化（max-abs-normalization-）：也就是将数值变为单位长度（scaling-to-unit-length），将数值范围缩放到-1-1-区间里" class="headerlink" title="2.4 最大绝对值归一化（max abs normalization ）：也就是将数值变为单位长度（scaling to unit length），将数值范围缩放到 [-1, 1] 区间里"></a>2.4 最大绝对值归一化（max abs normalization ）：也就是将数值变为单位长度（scaling to unit length），将数值范围缩放到 [-1, 1] 区间里</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190112114759202-190163995.png"> </p>
+<h3 id="2-5-稳键标准化（robust-standardization）：先减去中位数，再除以四分位间距（interquartile-range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健"><a href="#2-5-稳键标准化（robust-standardization）：先减去中位数，再除以四分位间距（interquartile-range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健" class="headerlink" title="2.5 稳键标准化（robust standardization）：先减去中位数，再除以四分位间距（interquartile range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健"></a>2.5 稳键标准化（robust standardization）：先减去中位数，再除以四分位间距（interquartile range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201908/1247570-20190811172514046-446486849.png"></p>
+<blockquote>
+<p><em>有一些时候，只对数据进行中心化和缩放是不够的，还需对数据进行白化（whitening）处理来消除特征间的线性相关性</em></p>
+</blockquote>
+<h2 id="3-标准化和归一化的区别是什么？"><a href="#3-标准化和归一化的区别是什么？" class="headerlink" title="3. 标准化和归一化的区别是什么？"></a>3. 标准化和归一化的区别是什么？</h2><h3 id="3-1-归一化-NormalizationNormalization-：将一列数据变化到某个固定区间-范围-中，通常，这个区间是-0-1-，广义的讲，可以是各种区间，比如映射到-0，1-一样可以继续映射到其他范围，图像中可能会映射到-0-255-，其他情况可能映射到-1-1"><a href="#3-1-归一化-NormalizationNormalization-：将一列数据变化到某个固定区间-范围-中，通常，这个区间是-0-1-，广义的讲，可以是各种区间，比如映射到-0，1-一样可以继续映射到其他范围，图像中可能会映射到-0-255-，其他情况可能映射到-1-1" class="headerlink" title="3.1 归一化(NormalizationNormalization)：将一列数据变化到某个固定区间(范围)中，通常，这个区间是[0, 1]，广义的讲，可以是各种区间，比如映射到[0，1]一样可以继续映射到其他范围，图像中可能会映射到[0,255]，其他情况可能映射到[-1,1]"></a>3.1 归一化(NormalizationNormalization)：将一列数据变化到某个固定区间(范围)中，通常，这个区间是[0, 1]，广义的讲，可以是各种区间，比如映射到[0，1]一样可以继续映射到其他范围，图像中可能会映射到[0,255]，其他情况可能映射到[-1,1]</h3><h3 id="3-2-标准化-StandardizationStandardization-：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的"><a href="#3-2-标准化-StandardizationStandardization-：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的" class="headerlink" title="3.2 标准化(StandardizationStandardization)：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的"></a>3.2 标准化(StandardizationStandardization)：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的</h3><p><img src="https://img-blog.csdnimg.cn/20191021220509274.png#pic_center"></p>
+<h3 id="3-3-中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值"><a href="#3-3-中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值" class="headerlink" title="3.3 中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值"></a>3.3 中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值</h3><p><img src="https://img-blog.csdnimg.cn/20191021220535129.png#pic_center"></p>
+<h2 id="4-什么时候用标准化，什么时候用归一化？"><a href="#4-什么时候用标准化，什么时候用归一化？" class="headerlink" title="4. 什么时候用标准化，什么时候用归一化？"></a>4. 什么时候用标准化，什么时候用归一化？</h2><p>某博主理解：如果你对处理后的数据范围有严格要求，那肯定是归一化，个人经验，标准化是机器学习中更通用的手段，如果你无从下手，可以直接使用标准化。如果数据不为稳定，存在极端的最大最小值，不要用归一化。</p>
+<p>在分类、聚类算法中，需要使用距离来度量相似性的时候、或者使用PCA技术进行降维的时候，标准化表现更好；在不涉及距离度量、协方差计算的时候，可以使用归一化方法。</p>
+<p><strong>在需要使用距离来度量相似性的算法中，或者使用PCA技术进行降维的时候，通常使用标准化（standardization）或均值归一化（mean normalization）比较好，但如果数据分布不是正态分布或者标准差非常小，以及需要把数据固定在 [0, 1] 范围内，那么使用最大最小值归一化（min-max normalization）比较好（min-max 常用于归一化图像的灰度值）。但是min-max比较容易受异常值的影响，如果数据集包含较多的异常值，可以考虑使用稳键归一化（robust normalization）。对于已经中心化的数据或稀疏数据的缩放，比较推荐使用最大绝对值归一化（max abs normalization ），因为它会保住数据中的０元素，不会破坏数据的稀疏性（sparsity）。</strong></p>
+<h2 id="5-什么机器学习模型需要用到特征缩放？"><a href="#5-什么机器学习模型需要用到特征缩放？" class="headerlink" title="5. 什么机器学习模型需要用到特征缩放？"></a>5. 什么机器学习模型需要用到特征缩放？</h2><h3 id="5-1-通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear-Regression）、逻辑回归（Logistic-Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural-Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。"><a href="#5-1-通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear-Regression）、逻辑回归（Logistic-Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural-Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。" class="headerlink" title="5.1 通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear Regression）、逻辑回归（Logistic Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。"></a>5.1 通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear Regression）、逻辑回归（Logistic Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。</h3><h3 id="5-2-决策树（Decision-Tree），随机森林（Random-Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。"><a href="#5-2-决策树（Decision-Tree），随机森林（Random-Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。" class="headerlink" title="5.2 决策树（Decision Tree），随机森林（Random Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。"></a>5.2 决策树（Decision Tree），随机森林（Random Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。</h3><h2 id="6-在进行特征缩放的时候需要注意的地方？"><a href="#6-在进行特征缩放的时候需要注意的地方？" class="headerlink" title="6. 在进行特征缩放的时候需要注意的地方？"></a>6. 在进行特征缩放的时候需要注意的地方？</h2><p><em>需要先把数据先拆分成训练集与验证集，在训练集上计算出需要的数值（如均值和标准值），对训练集数据做标准化&#x2F;归一化处理，然后再用之前计算出的数据（如均值和标准值）对验证集数据做相同的标准化&#x2F;归一化处理。不要在整个数据集上直接做标准化&#x2F;归一化处理，因为这样会将验证集的信息带入到训练集中，这是一个非常容易犯的错误</em></p>
+<h2 id="7-参考链接"><a href="#7-参考链接" class="headerlink" title="7. 参考链接"></a>7. 参考链接</h2><p><a href="https://www.cnblogs.com/HuZihu/p/9761161.html">https://www.cnblogs.com/HuZihu/p/9761161.html</a></p>
+<p><a href="https://blog.csdn.net/weixin_43008804/article/details/103087447">https://blog.csdn.net/weixin_43008804/article/details/103087447</a></p>
+<p><a href="https://blog.csdn.net/weixin_36604953/article/details/102652160">https://blog.csdn.net/weixin_36604953/article/details/102652160</a></p>
+]]></content>
+      <categories>
+        <category>Mathine Learning</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>维度灾难</title>
+    <url>/2022/11/23/%E7%BB%B4%E5%BA%A6%E7%81%BE%E9%9A%BE/</url>
+    <content><![CDATA[<p>今天學習機器學習的時候，發現有<em>維度災難</em>這個東西。挺感興趣的，於是一探究竟！</p>
+<span id="more"></span>
+
+<h1 id="机器学习中的维度灾难"><a href="#机器学习中的维度灾难" class="headerlink" title="机器学习中的维度灾难"></a>机器学习中的维度灾难</h1><p>在介绍机器学习的维度灾难之前，我推荐给大家一个网站，名字虽然说是<a href="https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">计算机视觉的傻瓜书</a>，但是有关机器学习的答疑部分它做得还是蛮好的。除此之外还有<a href="https://www.kdnuggets.com/news/index.html">KDnuggest</a>，也是有关机器学习的论坛。</p>
+<p>本文是参考<a href="https://www.jianshu.com/p/867193608bbd">简书-红色石头Will</a>所得到的观点，虽然他是翻译<a href="https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">计算机视觉的傻瓜书</a>的，但是对于我理解维度灾难起着指导方向的作用。</p>
+<h2 id="1-介绍维度灾难"><a href="#1-介绍维度灾难" class="headerlink" title="1.介绍维度灾难"></a>1.介绍维度灾难</h2><p>维度灾难是在设计一个分类器的时候需要注意的问题。为了得到更好的分类效果，我们可以无限的增加特征。但是事实上，特征数量超过一定值的时候，分类器的效果反而会下降。这种由于特征数量太多导致的分类效果下降的情况，就被称作是<strong>维度灾难</strong>。</p>
+<h2 id="2-维度灾难与过拟合"><a href="#2-维度灾难与过拟合" class="headerlink" title="2.维度灾难与过拟合"></a>2.维度灾难与过拟合</h2><p>貌似特征越多，越有可能实现正确分类，但是情况并非如此。一个直观的情况时，随着特征维度的增加，训练样本在特征空间中的密度是呈指数下降的。</p>
+<blockquote>
+<p>样本数不变，但是特征空间不断地增加，那训练样本在特征空间中的密度岂不是就是呈指数下降的？</p>
+</blockquote>
+<p>如果我们继续增加特征，整个特征空间维度增加，并变得越来越稀疏。由于稀疏性，我们更加容易找到一个超平面来实现分类。这是因为随着特征数量变得无限大，训练样本在最佳超平面的错误侧的可能性将会变得无限小。然而，如果我们将高维的分类结果投影到低维空间中，将会出现一个严重的问题。</p>
+<p>比如说样本数据在3D是线性可分的，但是在2D却并非如此。事实上，增加第三个维度来获得最佳的线性分类效果，等同于在低维特征空间中使用非线性分类器。其结果是，分类器学习了训练数据的噪声和异常，而对样本外的数据拟合效果并不理想，甚至很差。这个概念称为过拟合，是维度灾难的一个直接后果。</p>
+<p><em>换句话讲，如果增加特征维度，为了覆盖同样的特征值范围，防止过拟合，需要用到的样本数就会呈指数型增长！</em></p>
+<h2 id="3-维度灾难与数据稀疏程度分布不均"><a href="#3-维度灾难与数据稀疏程度分布不均" class="headerlink" title="3.维度灾难与数据稀疏程度分布不均"></a>3.维度灾难与数据稀疏程度分布不均</h2><p>我们展示了维度灾难会引起训练数据的稀疏化。使用的特征越多，数据就会变得越稀疏，从而导致分类器的分类效果就会越差。维度灾难还会造成<strong>搜索空间的数据稀疏程度</strong>分布不均。事实上，围绕原点的数据（在超立方体的中心）比在搜索空间的角落处的数据要稀疏得多。</p>
+<p>举例2D，如果大部分的样本都落在了单位内接圆里的话，会更容易分类。但是在高维的空间中，大部分的训练数据都是分布在定义为特征空间的超立方体的角落处，导致难以分类。、</p>
+<p>对于8维的超球体，大约98%的数据集中在它256个角落处。其结果是，当特征空间的维度变得无限大时，从样本点到质心的最大、最小欧氏距离的差值与其最小欧式距离的比值趋于零。因此，距离测量在高维空间中逐渐变得无效。因为分类器是基于这些距离测量的（例如Euclidean距离、Mahalanobis距离、Manhattan距离），所以低维空间特征更少，分类更加容易。同样地，在高维空间的高斯分布会变平坦且尾巴更长。</p>
+<h2 id="4-如何避免维度灾难"><a href="#4-如何避免维度灾难" class="headerlink" title="4.如何避免维度灾难"></a>4.如何避免维度灾难</h2><p>很遗憾，在分类问题中，没有固定的规则来指定该使用多少特征。事实上，用多少特征量取决于你训练样本的数量、决策边界的复杂性和使用的是啥分类器。</p>
+<p>比如说一些非线性决策边界的分类器（e.g. 神经网络、KNN分类器、决策树等），它们的分类效果虽然好，但是泛化能力差容易发生过拟合，这个时候就需要降低点维度。如果使用泛化能力稍微好点的（e.g. 贝叶斯分类器、线性分类器），那么就可以使用稍微多一点的特征。</p>
+<h2 id="5-参考链接"><a href="#5-参考链接" class="headerlink" title="5.参考链接"></a>5.参考链接</h2><blockquote>
+<p><a href="https://www.jianshu.com/p/867193608bbd">简书</a></p>
+<p><a href="https://cloud.tencent.com/developer/article/1143269">手工特征选取降维</a><br><a href="https://www.kdnuggets.com/2015/03/deep-learning-curse-dimensionality-autoencoders.html">原文</a></p>
 </blockquote>
 ]]></content>
       <categories>
