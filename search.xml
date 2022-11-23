@@ -1,6 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>图像处理之扇形与矩形图像之间的相互转换</title>
+    <url>/2022/11/23/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B9%8B%E6%89%87%E5%BD%A2%E4%B8%8E%E7%9F%A9%E5%BD%A2%E5%9B%BE%E5%83%8F%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2/</url>
+    <content><![CDATA[<p>数字图像处理作业–将图像进行扇形和矩形之间的变换！</p>
+<span id="more"></span>
+
+<h1 id="图像处理之扇形与矩形图像之间的相互转换（Python）"><a href="#图像处理之扇形与矩形图像之间的相互转换（Python）" class="headerlink" title="图像处理之扇形与矩形图像之间的相互转换（Python）"></a>图像处理之扇形与矩形图像之间的相互转换（Python）</h1><h1 id="1-应用"><a href="#1-应用" class="headerlink" title="1.应用"></a>1.应用</h1><p>在分析扇形与矩形图像之间相互处理的程序之前，需要大概了解一下它们存在的意义是什么？</p>
+<p>那当然字如其名，将扇形转化为矩形，将矩形转化为扇形啦！🤪🤪🤪</p>
+<p>原理当然是这样，但是用处还是很多的！就比如说你上课的时候坐在角落，老师讲到重要内容的时候需要拍照记录。可是你拍出来的效果却是斜的，虽然勉强看的懂，但是看的不舒服。文档校正应运而生。当然，你斜着扫二维码的时候也是同种原理。即使你没有意识到，但是它却实实在在存在。该映射学术名称叫做中心投影变换 &amp;nbsp;  –&gt; &amp;nbsp;  <em><strong>Perspective Mapping</strong></em></p>
+<p>我们的扇形与矩形之间的变换也有很多应用，只是我暂时没有想到。</p>
+<h1 id="2-引用"><a href="#2-引用" class="headerlink" title="2.引用"></a>2.引用</h1><p>刚拿到课程题目的时候我不是很懂，于是上百度搜寻相关的资料。本着研究中心投影变换的初衷，但是却没想到找到了相关的代码，真是意外的收获。CSDN大佬<strong>天元浪子</strong>在这篇博文中是研究从矩形到扇形的变换，而我是相反的。代码我copy到了文末，用于与原来的代码作比较，下面是原文链接。</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/xufive/article/details/104675998">https://blog.csdn.net/xufive/article/details/104675998</a></p>
+</blockquote>
+<p>如果需要用的是MATLAB，那么可以参考以下两个链接。</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/u014495306/article/details/74079963">https://blog.csdn.net/u014495306/article/details/74079963</a></p>
+<p><a href="https://blog.csdn.net/weixin_34068198/article/details/94256613">https://blog.csdn.net/weixin_34068198/article/details/94256613</a></p>
+</blockquote>
+<h1 id="3-使用"><a href="#3-使用" class="headerlink" title="3.使用"></a>3.使用</h1><p>代码我就不打算分析了，看注释很快就可以理解。</p>
+<p>&#96;&#96;# -<em>- coding:utf-8 -</em>-</p>
+<p>import numpy as np</p>
+<p>from PIL import Image</p>
+<p>import matplotlib.pyplot as plt</p>
+<p>def square2fan(input, output, angle&#x3D;45):</p>
+<h1 id="将扇形图像转化为矩阵图像"><a href="#将扇形图像转化为矩阵图像" class="headerlink" title="将扇形图像转化为矩阵图像"></a>将扇形图像转化为矩阵图像</h1><pre><code>input      - 输入文件名
+output      - 输出文件名
+angle       - 扇形夹角度数
+angle在这个例子中是45度，如果改大的话将会缩小输出图片的宽度cols
+
+im = Image.open(input)  # 打开输入图像为PIL对象 
+mode = im.mode  # 输入图像模式\
+w, h = im.size  # 输入图像分辨率(宽在前，高在后)
+rows, cols = int(np.ceil(h)), int(np.ceil(w))  # 输出图像高度和宽度
+in_interval = np.array(im)  # 输入图像转为numpy数组
+# 生成输出图像的numpy数组（全透明）
+out_interval = np.zeros((rows, cols, in_interval.shape[2]), dtype=np.uint8)
+
+alpha = np.radians(np.linspace(-angle, angle, w))  # 生成扇形角度序列，长度与输入图像宽度一致
+for i in range(w):  # 遍历输入图像的每一列
+    # 当前列各像素在输出图像上的行号
+
+    # d = np.cos(alpha[i])*h 和 d = np.cos(alpha[i])*rows效果等同，方便后边的切片
+    d = np.cos(alpha[i])*h
+    lats = np.int_(np.linspace(0, d, h)).astype(np.int)
+    # 当前列各像素在输出图像上的列号
+    d = np.sin(alpha[i])*h
+    lons = np.int_(np.linspace(cols/2,
+                   cols/2+d, h)).astype(np.int)
+    # 将算出来的扇形的斜列的值，放进空矩阵中
+    out_interval[:, i] = in_interval[(lats, lons)]
+# 保存为文件
+im = Image.fromarray(out_interval, mode=im.mode)
+im.save(output)
+</code></pre>
+<p>if <strong>name</strong> &#x3D;&#x3D; ‘<strong>main</strong>‘:<br>    square2fan(‘out.png’, ‘rectangle.png’, angle&#x3D;45)</p>
+<p>&#96;&#96;</p>
+<h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h1><p>题目不难，但是花了我挺多时间，也暴露出了我一些问题…😅😅😅</p>
+<blockquote>
+<p>对Python的库不是很熟悉（其实不经常用，记不得我觉得也很正常）</p>
+<p>嗯？让我想想我到底还有啥问题先？</p>
+<p>……</p>
+<p>好像并没有什么问题?😦</p>
+</blockquote>
+]]></content>
+  </entry>
+  <entry>
     <title>github文件夹有白色箭头并且不能打开的解决办法</title>
     <url>/2022/11/20/github%E6%96%87%E4%BB%B6%E5%A4%B9%E6%9C%89%E7%99%BD%E8%89%B2%E7%AE%AD%E5%A4%B4%E5%B9%B6%E4%B8%94%E4%B8%8D%E8%83%BD%E6%89%93%E5%BC%80%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
     <content><![CDATA[<p>Github文件夹有白色箭头并且不能打开?可能是因为你提交的Git文件中有叫做.git的文件！</p>
@@ -91,72 +157,6 @@
 <p>然后我们预测在9点钟之前正式将作品做最后一次的提交（10点钟之前的提交可以认为只是参赛资格的获取），但是发现bug根本改不过来。三个人忙得团团转，当时想着9点半之前提交就好了，网络不会这么拥挤的。但是忙到了9点半，bug依然有，而且严重程度会让论文直接降档。没办法，抱着试一逝的心态，我们改bug改到了9点45。虽然说还有不少bug，但都是不痛不痒的，对阅读论文没有什么大影响的小问题了。</p>
 <p>我编译出最新的PDF，通过WeChat准备发给队长时，由于轻薄本已经承担了太多软件，并且三四天都没有合过眼了。LaTeX直接卡退，屏幕被黑块笼罩着，就像我们此刻的心情一样。大概到9点50的时候，电脑缓过来了，我赶紧将PDF发给队长。压缩完我的LaTeX代码文件后突然发现我电脑里的压缩软件是360压缩，只能生成zip类型的压缩包。而我之前一直想着队长有WinRAR就够了，反正是他通过客户端提交的。下载WinRAR显然不切实际，由于多天的劳累，我们的CPU已经转不过来了。我赶紧将文件压缩成zip格式，然后发给建模手，因为此时队长在忙活着PDF名称的修改。但未承想建模手把我的文件解压放进总附件文件中，压缩后找不到找不到压缩包，遂叫我来操作。我看到他的安装路径，狂点桌面，然后点击确定。终于，我们的压缩包出现在了桌面。但他的桌面都是蓝蓝的doc和绿绿xls，一时间竟无法找出压缩包！此时时间已经来到了9点55分。一顿丝滑的操作后视野来到了队长这边，只见他颤颤巍巍地移动着鼠标，指尖高频触动着鼠标左键，但就是无法达到那最后的终点！“好了吗？”“好！冲！”伴随着呐喊声，我们点击了提交。幸运的是，软件并没有卡顿，显得如此顺理成章，此时时间是9点57分。一切都结束后，没有欢呼、没有喝彩，只留下一片鸦雀无声。紧绷着的心情还没有完全放松下来，眼前还停留着黑白的文字与代码，一切都还显得这么历历在目！</p>
 <h1 id="4-Final"><a href="#4-Final" class="headerlink" title="4.Final"></a>4.Final</h1><p>虽然过程很苦很累，甚至对一百蚊有点舍不得。但就最后两个小时的感受而言，让我觉得这钱交的值了！自打上大学以来，还是第一次切实地体会到了团队合作的重要性。以前一直都是单打独斗，现在发现自己并不是万能的，队友就是用来弥补自己的缺点的。虽然说有百分之五十的概率获奖，但是无论结果如何我都能平淡接受，因为这场比赛我已经获得了自己想要的东西！<em>（其实心里还是想着希望得个省三就好了，因为有一千块钱回血…）</em>🐤🐤🐤</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>图像处理之扇形与矩形图像之间的相互转换</title>
-    <url>/2022/11/23/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B9%8B%E6%89%87%E5%BD%A2%E4%B8%8E%E7%9F%A9%E5%BD%A2%E5%9B%BE%E5%83%8F%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2/</url>
-    <content><![CDATA[<p>数字图像处理作业–将图像进行扇形和矩形之间的变换！</p>
-<span id="more"></span>
-
-<h1 id="图像处理之扇形与矩形图像之间的相互转换（Python）"><a href="#图像处理之扇形与矩形图像之间的相互转换（Python）" class="headerlink" title="图像处理之扇形与矩形图像之间的相互转换（Python）"></a>图像处理之扇形与矩形图像之间的相互转换（Python）</h1><h1 id="1-应用"><a href="#1-应用" class="headerlink" title="1.应用"></a>1.应用</h1><p>在分析扇形与矩形图像之间相互处理的程序之前，需要大概了解一下它们存在的意义是什么？</p>
-<p>那当然字如其名，将扇形转化为矩形，将矩形转化为扇形啦！🤪🤪🤪</p>
-<p>原理当然是这样，但是用处还是很多的！就比如说你上课的时候坐在角落，老师讲到重要内容的时候需要拍照记录。可是你拍出来的效果却是斜的，虽然勉强看的懂，但是看的不舒服。文档校正应运而生。当然，你斜着扫二维码的时候也是同种原理。即使你没有意识到，但是它却实实在在存在。该映射学术名称叫做中心投影变换 &amp;nbsp;  –&gt; &amp;nbsp;  <em><strong>Perspective Mapping</strong></em></p>
-<p>我们的扇形与矩形之间的变换也有很多应用，只是我暂时没有想到。</p>
-<h1 id="2-引用"><a href="#2-引用" class="headerlink" title="2.引用"></a>2.引用</h1><p>刚拿到课程题目的时候我不是很懂，于是上百度搜寻相关的资料。本着研究中心投影变换的初衷，但是却没想到找到了相关的代码，真是意外的收获。CSDN大佬<strong>天元浪子</strong>在这篇博文中是研究从矩形到扇形的变换，而我是相反的。代码我copy到了文末，用于与原来的代码作比较，下面是原文链接。</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/xufive/article/details/104675998">https://blog.csdn.net/xufive/article/details/104675998</a></p>
-</blockquote>
-<p>如果需要用的是MATLAB，那么可以参考以下两个链接。</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/u014495306/article/details/74079963">https://blog.csdn.net/u014495306/article/details/74079963</a></p>
-<p><a href="https://blog.csdn.net/weixin_34068198/article/details/94256613">https://blog.csdn.net/weixin_34068198/article/details/94256613</a></p>
-</blockquote>
-<h1 id="3-使用"><a href="#3-使用" class="headerlink" title="3.使用"></a>3.使用</h1><p>代码我就不打算分析了，看注释很快就可以理解。</p>
-<p>&#96;&#96;# -<em>- coding:utf-8 -</em>-</p>
-<p>import numpy as np</p>
-<p>from PIL import Image</p>
-<p>import matplotlib.pyplot as plt</p>
-<p>def square2fan(input, output, angle&#x3D;45):</p>
-<h1 id="将扇形图像转化为矩阵图像"><a href="#将扇形图像转化为矩阵图像" class="headerlink" title="将扇形图像转化为矩阵图像"></a>将扇形图像转化为矩阵图像</h1><pre><code>input      - 输入文件名
-output      - 输出文件名
-angle       - 扇形夹角度数
-angle在这个例子中是45度，如果改大的话将会缩小输出图片的宽度cols
-
-im = Image.open(input)  # 打开输入图像为PIL对象 
-mode = im.mode  # 输入图像模式\
-w, h = im.size  # 输入图像分辨率(宽在前，高在后)
-rows, cols = int(np.ceil(h)), int(np.ceil(w))  # 输出图像高度和宽度
-in_interval = np.array(im)  # 输入图像转为numpy数组
-# 生成输出图像的numpy数组（全透明）
-out_interval = np.zeros((rows, cols, in_interval.shape[2]), dtype=np.uint8)
-
-alpha = np.radians(np.linspace(-angle, angle, w))  # 生成扇形角度序列，长度与输入图像宽度一致
-for i in range(w):  # 遍历输入图像的每一列
-    # 当前列各像素在输出图像上的行号
-
-    # d = np.cos(alpha[i])*h 和 d = np.cos(alpha[i])*rows效果等同，方便后边的切片
-    d = np.cos(alpha[i])*h
-    lats = np.int_(np.linspace(0, d, h)).astype(np.int)
-    # 当前列各像素在输出图像上的列号
-    d = np.sin(alpha[i])*h
-    lons = np.int_(np.linspace(cols/2,
-                   cols/2+d, h)).astype(np.int)
-    # 将算出来的扇形的斜列的值，放进空矩阵中
-    out_interval[:, i] = in_interval[(lats, lons)]
-# 保存为文件
-im = Image.fromarray(out_interval, mode=im.mode)
-im.save(output)
-</code></pre>
-<p>if <strong>name</strong> &#x3D;&#x3D; ‘<strong>main</strong>‘:<br>    square2fan(‘out.png’, ‘rectangle.png’, angle&#x3D;45)</p>
-<p>&#96;&#96;</p>
-<h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h1><p>题目不难，但是花了我挺多时间，也暴露出了我一些问题…😅😅😅</p>
-<blockquote>
-<p>对Python的库不是很熟悉（其实不经常用，记不得我觉得也很正常）</p>
-<p>嗯？让我想想我到底还有啥问题先？</p>
-<p>……</p>
-<p>好像并没有什么问题?😦</p>
-</blockquote>
 ]]></content>
   </entry>
   <entry>
