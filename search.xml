@@ -1,6 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>github文件夹有白色箭头并且不能打开的解决办法</title>
+    <url>/2022/11/20/github%E6%96%87%E4%BB%B6%E5%A4%B9%E6%9C%89%E7%99%BD%E8%89%B2%E7%AE%AD%E5%A4%B4%E5%B9%B6%E4%B8%94%E4%B8%8D%E8%83%BD%E6%89%93%E5%BC%80%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
+    <content><![CDATA[<p>Github文件夹有白色箭头并且不能打开?可能是因为你提交的Git文件中有叫做.git的文件！</p>
+<span id="more"></span>
+
+<h1 id="1-问题描述"><a href="#1-问题描述" class="headerlink" title="1.问题描述"></a>1.问题描述</h1><p>前几天在Git上向GitHub提交了自己的文件，但是在GitHub却无法打开文件夹，并且文件夹上面还多了一个白色的箭头？本着求知的精神，我上百度上找了找，发现是因为我提交的这个文件本身就已经是Git仓库了，而子文件里面还藏着Git仓库，也就是说子文件里还有.git隐藏文件。因为层层的嵌套关系，导致GitHub对文件的识别发生了错误。</p>
+<h1 id="2-解决方案"><a href="#2-解决方案" class="headerlink" title="2.解决方案"></a>2.解决方案</h1><p>把子文件的.git文件夹删掉就好了</p>
+<ol>
+<li>执行<code>git rm --cached [文件夹名]</code></li>
+<li>执行<code>git add [文件夹名]</code></li>
+<li>执行<code>git commit -m &quot;git folder report an error!&quot;</code></li>
+<li>执行<code>git push origin [branch_name] </code></li>
+</ol>
+]]></content>
+  </entry>
+  <entry>
+    <title>Jupyter Notebook</title>
+    <url>/2022/11/23/Jupyter-Notebook/</url>
+    <content><![CDATA[<p>Jupyter Notebook的常见操作-需要熟记！</p>
+<span id="more"></span>
+
+<h1 id="Jupyter-Notebook常见快捷键操作"><a href="#Jupyter-Notebook常见快捷键操作" class="headerlink" title="Jupyter Notebook常见快捷键操作"></a>Jupyter Notebook常见快捷键操作</h1><blockquote>
+<p>首先要知道Jupyter有三种cell类型</p>
+</blockquote>
+<ol>
+<li><strong>Code</strong></li>
+<li><strong>Markdown</strong></li>
+<li><strong>Raw NBConvert</strong>（普通文本，运行不会输出结果）</li>
+</ol>
+<blockquote>
+<p>两种模式</p>
+</blockquote>
+<ol>
+<li><strong>编辑模式（Enter）</strong></li>
+<li><strong>命令模式（Esc）</strong></li>
+</ol>
+<h2 id="1-两种模式都可以使用的快捷键"><a href="#1-两种模式都可以使用的快捷键" class="headerlink" title="1.两种模式都可以使用的快捷键"></a>1.两种模式都可以使用的快捷键</h2><ul>
+<li><strong>Shift+Enter</strong>执行本单元代码，并且跳转到下一单元</li>
+<li><strong>Ctrl+Enter</strong>执行本单元代码，留在本单元</li>
+</ul>
+<h2 id="2-命令模式"><a href="#2-命令模式" class="headerlink" title="2.命令模式"></a>2.命令模式</h2><ul>
+<li><strong>Y</strong>：cell切换到Code模式</li>
+<li><strong>M</strong>：cell切换到Markdown模式</li>
+<li><strong>A</strong>：在当前cell的上面添加cell</li>
+<li><strong>B</strong>：在当前cell的下面添加cell</li>
+<li><strong>双击D</strong>：删除当前cell</li>
+<li><strong>Z</strong>：回退</li>
+<li><strong>Ctrl+Shift+减号</strong>：分隔cell，在光标处</li>
+<li><strong>L</strong>：为当前cell加上行号</li>
+</ul>
+<h2 id="3-编辑模式：按Enter或鼠标单击代码块内部进入"><a href="#3-编辑模式：按Enter或鼠标单击代码块内部进入" class="headerlink" title="3.编辑模式：按Enter或鼠标单击代码块内部进入"></a>3.编辑模式：按Enter或鼠标单击代码块内部进入</h2><ul>
+<li>**Ctrl+鼠标单击(Mac:CMD+鼠标单击)**：多光标操作</li>
+<li>**Ctrl+Z(Mac:CMD+Z)**：回退</li>
+<li><strong>Tab键</strong>：代码补全</li>
+<li>**Ctrl(Mac:CMD+&#x2F;)**：注释多行代码</li>
+</ul>
+]]></content>
+      <categories>
+        <category>notebook operation</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>L1和L2正则化</title>
+    <url>/2022/11/23/L1%E5%92%8CL2%E6%AD%A3%E5%88%99%E5%8C%96/</url>
+    <content><![CDATA[<p>了解什么是L1正则化和L2正则化，以及什么是正则化？</p>
+<span id="more"></span>
+
+<h1 id="L1正则化和L2正则化"><a href="#L1正则化和L2正则化" class="headerlink" title="L1正则化和L2正则化"></a>L1正则化和L2正则化</h1><h2 id="1-正则化"><a href="#1-正则化" class="headerlink" title="1. 正则化"></a>1. 正则化</h2><h3 id="1-1-什么是正则化？"><a href="#1-1-什么是正则化？" class="headerlink" title="1.1 什么是正则化？"></a>1.1 什么是正则化？</h3><p>Regularization，中文翻译过来可以称为正则化，或者叫做规范化。什么是规则？闭卷考试中不能查书，这就是规则，一个限制。同理，在这里，规则化（正则化）就是说给损失函数加上一些限制，通过这种规则去规范他们再接下来的循环迭代中，不要自我膨胀。</p>
+<h3 id="1-2-正则化有什么用？"><a href="#1-2-正则化有什么用？" class="headerlink" title="1.2 正则化有什么用？"></a>1.2 正则化有什么用？</h3><p><img src="https://img-blog.csdnimg.cn/2020031610373195.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTk2MDg5MA==,size_16,color_FFFFFF,t_70" alt="回归模型的拟合程度"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200316112556508.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTk2MDg5MA==,size_16,color_FFFFFF,t_70" alt="分类模型的拟合程度"></p>
+<p>可以看出，两张图的最后一个模型，都存在着过拟合的现象。</p>
+<blockquote>
+<p>解决过拟合的方案有：<br>清洗数据<br>减少模型参数，降低模型复杂度<br>增加惩罚因子（正则化），保留所有的特征，但是减少参数的大小（magnitude）</p>
+</blockquote>
+<p>可见，正则化就是解决模型过拟合的其中一个方法。</p>
+<h3 id="1-3-正则化怎么用？"><a href="#1-3-正则化怎么用？" class="headerlink" title="1.3 正则化怎么用？"></a>1.3 正则化怎么用？</h3><p>机器学习中几乎都可以看到损失函数后面会添加一个额外项，常用的额外项一般有两种，一般英文称作 ℓ1 \ell_1ℓ 1-norm 和 ℓ2 \ell_2ℓ2​-norm，中文称作 L1正则化 和 L2正则化，或者 L1范数 和 L2范数。</p>
+<p>L1正则化和L2正则化可以看做是损失函数的惩罚项。所谓『惩罚』是指对损失函数中的某些参数做一些限制。<strong>对于线性回归模型，使用L1正则化的模型建叫做Lasso回归，使用L2正则化的模型叫做Ridge回归（岭回归）</strong>。下图是Python中Lasso回归的损失函数，式中加号后面一项α ∣ ∣ w ∣ ∣ 1 \alpha||w||_1α∣∣w∣∣ 1即为L1正则化项。</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTYwOTA0MTg0MjI4MTU4?x-oss-process=image/format,png#pic_center" alt="Lasso回归损失函数"></p>
+<p>下图是Python中Ridge回归的损失函数，式中加号后面一项α ∣ ∣ w ∣ ∣ 2 2 \alpha||w||_2^2α∣∣w∣∣22即为L2正则化项。</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTYwOTA0MTg0MzE0MzMz?x-oss-process=image/format,png#pic_center" alt="岭回归损失函数"></p>
+<p>一般回归分析中w表示特征的系数，从上式可以看到正则化项是对系数做了处理（限制）。L1正则化和L2正则化的说明如下：</p>
+<ul>
+<li>L1正则化是指权值向量w中各个元素的绝对值之和，通常表示为∣ ∣ w ∣ ∣ 1 ||w||_1∣∣w∣∣ 1<br>​- L2正则化是指权值向量w中各个元素的平方和然后再求平方根（可以看到Ridge回归的L2正则化项有平方符号），通常表示为∣ ∣ w ∣ ∣ 2 ||w||_2∣∣w∣∣ 2​</li>
+</ul>
+<p>一般都会在正则化项之前添加一个系数，Python的机器学习包sklearn中用α表示，一些文章也用λ表示。这个系数需要用户指定。</p>
+<ul>
+<li>L1正则化可以产生稀疏权值矩阵，即产生一个稀疏模型，可以用于特征选择</li>
+<li>L2正则化可以防止模型过拟合（overfitting）；一定程度上，L1也可以防止过拟合</li>
+</ul>
+<h2 id="2-稀疏模型与特征选择的关系"><a href="#2-稀疏模型与特征选择的关系" class="headerlink" title="2. 稀疏模型与特征选择的关系"></a>2. 稀疏模型与特征选择的关系</h2><blockquote>
+<p>上面提到L1正则化有助于生成一个稀疏权值矩阵，进而可以用于特征选择。为什么要生成一个稀疏矩阵？</p>
+</blockquote>
+<p>稀疏矩阵指的是很多元素为0，只有少数元素是非零值的矩阵，即得到的线性回归模型的大部分系数都是0. 通常机器学习中特征数量很多，例如文本处理时，如果将一个词组（term）作为一个特征，那么特征数量会达到上万个（bigram）。在预测或分类时，那么多特征显然难以选择，但是如果代入这些特征得到的模型是一个稀疏模型，表示只有少数特征对这个模型有贡献，绝大部分特征是没有贡献的，或者贡献微小（因为它们前面的系数是0或者是很小的值，即使去掉对模型也没有什么影响），此时我们就可以只关注系数是非零值的特征。这就是稀疏模型与特征选择的关系。</p>
+<h2 id="3-L1正则化"><a href="#3-L1正则化" class="headerlink" title="3. L1正则化"></a>3. L1正则化</h2><p>为什么L1正则化可以产生稀疏模型（L1是怎么让系数等于零的）？</p>
+<h3 id="正则化和特征选择的关系"><a href="#正则化和特征选择的关系" class="headerlink" title="正则化和特征选择的关系"></a>正则化和特征选择的关系</h3><p>假设有如下带L1正则化的损失函数：<br>J &#x3D; J 0 + α ∑ w ∣ w ∣ (1) J &#x3D; J_0 + \alpha \sum_w{|w|} \tag{1}J&#x3D;J0​+α w∑∣w∣(1)</p>
+<p>其中J 0 J_0J 0是原始的损失函数，加号后面的一项是L1正则化项，α \alphaα是正则化系数。注意到L1正则化是权值的绝对值之和，J JJ是带有绝对值符号的函数，因此J JJ是不完全可微的。机器学习的任务就是要通过一些方法（比如梯度下降）求出损失函数的最小值。当我们在原始损失函数J 0 J_0J 0​<br> 后添加L1正则化项时，相当于对J 0 J_0J<br>0​<br> 做了一个约束。令L &#x3D; α ∑ w ∣ w ∣ L &#x3D; \alpha \sum_w{|w|}L&#x3D;α∑<br>w​<br> ∣w∣，则J &#x3D; J 0 + L J &#x3D; J_0 + LJ&#x3D;J<br>0​<br> +L，此时我们的任务变成在L LL约束下求出J 0 J_0J<br>0​<br> 取最小值的解。考虑二维的情况，即只有两个权值w 1 w^1w<br>1<br> 和w 2 w^2w<br>2<br> ，此时L &#x3D; ∣ w 1 ∣ + ∣ w 2 ∣ L &#x3D; |w^1|+|w^2|L&#x3D;∣w<br>1<br> ∣+∣w<br>2<br> ∣。对于梯度下降法，求解J 0 J_0J<br>0​<br> 的过程可以画出等值线，同时L1正则化的函数L LL也可以在w 1 w 2 w^1w^2w<br>1<br> w<br>2的二维平面上画出来。如下图：</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTYwOTA0MTg0NDI4NDU5?x-oss-process=image/format,png#pic_center" alt="L1正则化"></p>
+<p>图中等值线是J 0 J_0J 0​<br> 的等值线，黑色方形是L LL函数的图形。L &#x3D; ∣ w 1 ∣ + ∣ w 2 ∣ L &#x3D; |w^1|+|w^2|L&#x3D;∣w<br>1<br> ∣+∣w<br>2<br> ∣，这个函数画出来就是一个方框（可以自己动手画一下）。<br>在图中，当J 0 J_0J<br>0​<br> 等值线与L LL图形首次相交的地方就是最优解。上图中J 0 J_0J<br>0​<br> 与L LL在L LL的一个顶点处相交，这个顶点就是最优解。注意到这个顶点的值是( w 1 , w 2 ) &#x3D; ( 0 , w ) (w^1, w^2) &#x3D; (0, w)(w<br>1<br> ,w<br>2<br> )&#x3D;(0,w)。可以直观想象，因为L LL函数有很多『突出的角』（二维情况下四个，多维情况下更多），J 0 J_0J<br>0​<br> 与这些角接触的机率会远大于与L LL其它部位接触的机率（这是很直觉的想象，突出的角比直线的边离等值线更近写），而在这些角上，会有很多权值等于0（因为角就在坐标轴上），这就是为什么L1正则化可以产生稀疏模型，进而可以用于特征选择。</p>
+<p>而正则化前面的系数α \alphaα，可以控制L LL图形的大小。α \alphaα越小，L LL的图形越大（上图中的黑色方框）；α \alphaα越大，L LL的图形就越小，可以小到黑色方框只超出原点范围一点点，这是最优点的值( w 1 , w 2 ) &#x3D; ( 0 , w ) (w1,w2)&#x3D;(0,w)(w1,w2)&#x3D;(0,w)中的w ww可以取到很小的值。</p>
+<p>我觉得下面的博主讲的挺易懂的：<br><a href="https://blog.csdn.net/u011426016/article/details/119836598">https://blog.csdn.net/u011426016/article/details/119836598</a></p>
+<h2 id="4-L2正则化"><a href="#4-L2正则化" class="headerlink" title="4. L2正则化"></a>4. L2正则化</h2><p>假设有如下带L2正则化的损失函数：</p>
+<p>J &#x3D; J 0 + α ∑ w w 2 (2) J &#x3D; J_0 + \alpha \sum_w{w^2} \tag{2}<br>J&#x3D;J<br>0​<br> +α<br>w<br>∑​<br> w<br>2<br> (2)</p>
+<p>同样可以画出他们在二维平面上的图形，如下：</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTYwOTA0MTg0NjQ2OTYz?x-oss-process=image/format,png#pic_center" alt="L2正则化"></p>
+<p>二维平面下L2正则化的函数图形是个圆（绝对值的平方和，是个圆），与方形相比，被磨去了棱角。因此J 0 J_0J<br>0​<br> 与L LL相交时使得w 1 w^1w<br>1<br> 或w 2 w^2w<br>2<br> 等于零的机率小了许多（这个也是一个很直观的想象），这就是为什么L2正则化不具有稀疏性的原因，因为不太可能出现多数w ww都为0的情况。</p>
+<h3 id="为什么梯度下降的等值线与正则化函数第一次交点是最优解？"><a href="#为什么梯度下降的等值线与正则化函数第一次交点是最优解？" class="headerlink" title="为什么梯度下降的等值线与正则化函数第一次交点是最优解？"></a>为什么梯度下降的等值线与正则化函数第一次交点是最优解？</h3><p>评论中有人问到过这个问题，这是带约束的最优化问题。这应该是在大一的高等数学就学到知识点，因为这里要用到拉格朗日乘子。如果有这样的问题，就需要复习一下高等数学了。这里有一个比较详细的数学讲解，可以参考：带约束的最优化问题。</p>
+<p>如果还不清楚的话，可以参考博客：<br><a href="https://blog.csdn.net/jinping_shi/article/details/52433975">https://blog.csdn.net/jinping_shi/article/details/52433975</a></p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://www.cnblogs.com/zingp/p/10375691.html">https://www.cnblogs.com/zingp/p/10375691.html</a></p>
+<p><a href="https://www.cnblogs.com/skyfsm/p/8456968.html">https://www.cnblogs.com/skyfsm/p/8456968.html</a></p>
+<p><a href="https://blog.csdn.net/u012162613/article/details/44261657?spm=1001.2101.3001.6650.3&amp;utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-3-44261657-blog-104891561.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-3-44261657-blog-104891561.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=6">https://blog.csdn.net/u012162613/article/details/44261657?spm=1001.2101.3001.6650.3&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-3-44261657-blog-104891561.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-3-44261657-blog-104891561.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=6</a></p>
+<p><a href="https://songjian.blog.csdn.net/article/details/104891561?spm=1001.2101.3001.6650.1&amp;utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-1-104891561-blog-79425831.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-1-104891561-blog-79425831.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=2">https://songjian.blog.csdn.net/article/details/104891561?spm=1001.2101.3001.6650.1&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-104891561-blog-79425831.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-104891561-blog-79425831.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=2</a></p>
+<p><a href="https://blog.csdn.net/haima1998/article/details/79425831">https://blog.csdn.net/haima1998/article/details/79425831</a></p>
+]]></content>
+      <categories>
+        <category>Mathine Learning</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2022/11/20/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -22,22 +140,6 @@
       <categories>
         <category>blog            //文章分类</category>
       </categories>
-  </entry>
-  <entry>
-    <title>github文件夹有白色箭头并且不能打开的解决办法</title>
-    <url>/2022/11/20/github%E6%96%87%E4%BB%B6%E5%A4%B9%E6%9C%89%E7%99%BD%E8%89%B2%E7%AE%AD%E5%A4%B4%E5%B9%B6%E4%B8%94%E4%B8%8D%E8%83%BD%E6%89%93%E5%BC%80%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
-    <content><![CDATA[<p>Github文件夹有白色箭头并且不能打开?可能是因为你提交的Git文件中有叫做.git的文件！</p>
-<span id="more"></span>
-
-<h1 id="1-问题描述"><a href="#1-问题描述" class="headerlink" title="1.问题描述"></a>1.问题描述</h1><p>前几天在Git上向GitHub提交了自己的文件，但是在GitHub却无法打开文件夹，并且文件夹上面还多了一个白色的箭头？本着求知的精神，我上百度上找了找，发现是因为我提交的这个文件本身就已经是Git仓库了，而子文件里面还藏着Git仓库，也就是说子文件里还有.git隐藏文件。因为层层的嵌套关系，导致GitHub对文件的识别发生了错误。</p>
-<h1 id="2-解决方案"><a href="#2-解决方案" class="headerlink" title="2.解决方案"></a>2.解决方案</h1><p>把子文件的.git文件夹删掉就好了</p>
-<ol>
-<li>执行<code>git rm --cached [文件夹名]</code></li>
-<li>执行<code>git add [文件夹名]</code></li>
-<li>执行<code>git commit -m &quot;git folder report an error!&quot;</code></li>
-<li>执行<code>git push origin [branch_name] </code></li>
-</ol>
-]]></content>
   </entry>
   <entry>
     <title>图像处理之扇形与矩形图像之间的相互转换</title>
@@ -161,6 +263,329 @@ im.save(output)
 <p>我编译出最新的PDF，通过WeChat准备发给队长时，由于轻薄本已经承担了太多软件，并且三四天都没有合过眼了。LaTeX直接卡退，屏幕被黑块笼罩着，就像我们此刻的心情一样。大概到9点50的时候，电脑缓过来了，我赶紧将PDF发给队长。压缩完我的LaTeX代码文件后突然发现我电脑里的压缩软件是360压缩，只能生成zip类型的压缩包。而我之前一直想着队长有WinRAR就够了，反正是他通过客户端提交的。下载WinRAR显然不切实际，由于多天的劳累，我们的CPU已经转不过来了。我赶紧将文件压缩成zip格式，然后发给建模手，因为此时队长在忙活着PDF名称的修改。但未承想建模手把我的文件解压放进总附件文件中，压缩后找不到找不到压缩包，遂叫我来操作。我看到他的安装路径，狂点桌面，然后点击确定。终于，我们的压缩包出现在了桌面。但他的桌面都是蓝蓝的doc和绿绿xls，一时间竟无法找出压缩包！此时时间已经来到了9点55分。一顿丝滑的操作后视野来到了队长这边，只见他颤颤巍巍地移动着鼠标，指尖高频触动着鼠标左键，但就是无法达到那最后的终点！“好了吗？”“好！冲！”伴随着呐喊声，我们点击了提交。幸运的是，软件并没有卡顿，显得如此顺理成章，此时时间是9点57分。一切都结束后，没有欢呼、没有喝彩，只留下一片鸦雀无声。紧绷着的心情还没有完全放松下来，眼前还停留着黑白的文字与代码，一切都还显得这么历历在目！</p>
 <h1 id="4-Final"><a href="#4-Final" class="headerlink" title="4.Final"></a>4.Final</h1><p>虽然过程很苦很累，甚至对一百蚊有点舍不得。但就最后两个小时的感受而言，让我觉得这钱交的值了！自打上大学以来，还是第一次切实地体会到了团队合作的重要性。以前一直都是单打独斗，现在发现自己并不是万能的，队友就是用来弥补自己的缺点的。虽然说有百分之五十的概率获奖，但是无论结果如何我都能平淡接受，因为这场比赛我已经获得了自己想要的东西！<em>（其实心里还是想着希望得个省三就好了，因为有一千块钱回血…）</em>🐤🐤🐤</p>
 ]]></content>
+      <categories>
+        <category>Mathine Learning</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>交叉验证补充</title>
+    <url>/2022/11/23/%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81%E8%A1%A5%E5%85%85/</url>
+    <content><![CDATA[<p>前面我介绍了K折交叉验证该如何划分，还有具体的使用效果。但是对于K折交叉验证该什么时候用，怎么使用还没有讲的很清楚，这里我就再学习一遍加深记忆吧！</p>
+<span id="more"></span>
+
+<h1 id="交叉验证补充"><a href="#交叉验证补充" class="headerlink" title="交叉验证补充"></a>交叉验证补充</h1><p>事情的起因是我看到了下面一段代码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">from sklearn.model_selection import KFold, train_test_split</span><br></pre></td></tr></table></figure>
+
+<p>这个KFolder怎么和train_test_split都在一起？我查了一下，发现train_test_split就是我之前所鄙夷的简单交叉验证。没有验证集，都是总集合不断打乱然后划分训练集和测试集，利用测试集的表现性能（也就是损失函数）来评估最优的模型和参数。由于是随机的将原始数据分组，所以最后验证集分类准确率的高低与原始数据的分组有很大的关系，得到的结果并不具有说服性<a href="https://blog.csdn.net/u010986753/article/details/98069124">…</a></p>
+<h1 id="对K折交叉验证的再理解"><a href="#对K折交叉验证的再理解" class="headerlink" title="对K折交叉验证的再理解"></a>对K折交叉验证的再理解</h1><p>前面我介绍了K折交叉验证该如何划分，还有具体的使用效果。但是对于K折交叉验证该什么时候用，怎么使用还没有讲的很清楚，这里我就再学习一遍加深记忆吧！</p>
+<p>K折交叉只是一种划分数据集的策略。把它和传统划分数据集（train_test_split）的方式进行比较，它可以避免固定划分数据集的局限性、特殊性，这个优势在小规模数据集上更明显。不用K折交叉验证就不能进行模型评估和模型选择了吗？当然不是。只要有测试集，就能进行模型评估；只要有验证集，就能进行模型选择。所以N折交叉验证只是在做这两件事时的一种可选的优化手段。当数据集很小时，建议用交叉验证的方法来避免过拟合。</p>
+<p>引用<a href="https://zhuanlan.zhihu.com/p/113623623">王亮博主</a>的观点，K折交叉验证可以分成两个用途：</p>
+<ol>
+<li>模型选择</li>
+<li>模型评估</li>
+</ol>
+<h2 id="1-模型选择"><a href="#1-模型选择" class="headerlink" title="1.模型选择"></a>1.模型选择</h2><p>当对训练集和验证集采取Kfolder进行划分的时候，被称为是模型选择，也就是参数选择。验证集是在训练过程中用于检验模型的训练情况，从而确定合适的超参数。而测试集完全不参与训练的数据，仅仅用来观测测试效果、测试模型的泛化能力。</p>
+<p>具体的过程是，首先在训练集和验证集上对多种模型选择（超参数选择）进行验证，选出平均误差最小的模型（超参数）。选出合适的模型（超参数）后，可以把训练集和验证集合并起来，在上面重新把模型训练一遍，得到最终模型，然后再用测试集测试其泛化能力。	</p>
+<h2 id="2-模型选择"><a href="#2-模型选择" class="headerlink" title="2.模型选择"></a>2.模型选择</h2><p>交叉验证的另一个用途，就是模型是确定的，没有多个候选模型需要选，只是用交叉验证的方法来对模型的performance进行评估。这种情况下，数据集被划分成训练集、测试集两部分，训练集和测试集的划分采用N折交叉的方式。我的理解是，找出一种训练集与测试集的划分方法，让测试集的表现最好！这一点如果在数据量小的时候还好，K个组合中的分数差距可能会比较大。但如果数据量大起来了，相比这K组的测试集表现都差不多吧？这也说明了K折只适合用于小样本的数据集上…</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>当用交叉验证进行模型选择时，可以从多种模型中选择出泛化能力最好的（即最不容易发生过拟合）的模型。从这个角度上讲，交叉验证是避免发生过拟合的手段。同样是解决过拟合的方法，交叉验证与正则化不同：交叉验证通过寻找最佳模型的方式来解决过拟合；而正则化则是通过约束参数的范数来解决过拟合。</p>
+<p>当用交叉验证进行模型评估时，交叉验证不能解决过拟合问题，只能用来评估模型的performance。</p>
+<p>如果还不熟悉的话建议拿<a href="https://blog.csdn.net/weixin_43685844/article/details/88635492">练习1</a>和<a href="https://zhuanlan.zhihu.com/p/250253050">练习2</a>练练手</p>
+]]></content>
+      <categories>
+        <category>Mathine Learning</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>机器学习实验二</title>
+    <url>/2022/11/23/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9E%E9%AA%8C%E4%BA%8C/</url>
+    <content><![CDATA[<p>这是机器学习课程上的一个小项目作业，具体是通过多种回归模型预测房价…</p>
+<span id="more"></span>
+
+<h1 id="机器学习实验二，使用多种回归模型预测房价"><a href="#机器学习实验二，使用多种回归模型预测房价" class="headerlink" title="机器学习实验二，使用多种回归模型预测房价"></a>机器学习实验二，使用多种回归模型预测房价</h1><blockquote>
+<p>这次实验基于上一次对房价数据的预处理，使用多种回归模型对处理的数据进行预测任务。建立的回归模型主要有Lasso回归、弹性网络回归、岭回归、梯度加强回归、随机森林回归、XGBoost回归以及LightGBM回归七种模型。建立完回归模型完成任务，还需要对各个模型的性能进行评估与选择。并且考虑用网格搜索方法对表现最好的模型进行进一步的优化。</p>
+</blockquote>
+<h1 id="1-实验说明"><a href="#1-实验说明" class="headerlink" title="1.实验说明"></a>1.实验说明</h1><p>预测房价实验对1460条房价数据、80个房屋的属性进行分析，建立回归模型，然后预测1459条新房屋数据的价格。 </p>
+<p>本实验是预测房价实验的第二部分，使用上个实验处理好的数据建立机器学习模型，并且对模型性能进行评估。</p>
+<h1 id="2-实验准备"><a href="#2-实验准备" class="headerlink" title="2.实验准备"></a>2.实验准备</h1><h2 id="2-1-实验环境"><a href="#2-1-实验环境" class="headerlink" title="2.1 实验环境"></a>2.1 实验环境</h2><p><em>在桌面上新建一个目录，名字叫house_price。本实验中所有的数据集和代码都放在该目录下</em></p>
+<p><strong>Spyder</strong></p>
+<h2 id="2-2-准备数据集"><a href="#2-2-准备数据集" class="headerlink" title="2.2 准备数据集"></a>2.2 准备数据集</h2><p>本实验需要2个数据集，数据集的名字叫train.csv和test.csv，分别是房价的训练数据和测试数据。将train.csv和test.csv复制到刚刚创建的house_price目录下。</p>
+<h1 id="3-建立回归模型"><a href="#3-建立回归模型" class="headerlink" title="3.建立回归模型"></a>3.建立回归模型</h1><h2 id="3-1-Lasso回归"><a href="#3-1-Lasso回归" class="headerlink" title="3.1 Lasso回归"></a>3.1 Lasso回归</h2><pre><code>#Lasso Regression
+from sklearn.linear_model import Lasso
+lasso = Lasso(alpha = 0.0005, random_state = 1)
+</code></pre>
+<blockquote>
+<p>lasso [læˈsuː] (捕马、套牛等用的)套索; 用套索套捕(动物)</p>
+</blockquote>
+<h2 id="3-2-弹性网络回归"><a href="#3-2-弹性网络回归" class="headerlink" title="3.2 弹性网络回归"></a>3.2 弹性网络回归</h2><pre><code># Elastic Net Regerssion
+from sklearn.linear_model import ElasticNet
+enet = ElasticNet(alpla = 0.0005, l1_ratio = .9, random_state = 3)
+</code></pre>
+<blockquote>
+<p>elastic [ɪˈlæstɪk]  有弹力的灵活的,可改变的,可伸缩的; 橡皮圈</p>
+<p>ratio [ˈreɪʃiəʊ] 比率,比例</p>
+</blockquote>
+<h2 id="3-3-岭回归"><a href="#3-3-岭回归" class="headerlink" title="3.3 岭回归"></a>3.3 岭回归</h2><pre><code># Kernel Ridge Regression
+from sklearn.kernel_ridge import KernelRidger
+krr = KernelRidge(alpha = 0.6, kernel = &quot;polynomial&quot;, degree = 2, coef0 = 2.5)
+</code></pre>
+<blockquote>
+<p>ridge [rɪdʒ] 山脊; 使隆起,使形成脊状</p>
+<p>polynomial [ˌpɒli’nəʊmiəl] [ˌpɑli’noʊmiəl]  多项式的; 多项式</p>
+<p>elapsed [ɪˈlæpst] (时间)消逝, 流逝 <strong>-&gt;</strong> elapse的过去分词和过去式</p>
+</blockquote>
+<hr>
+<p>Lasso回归有时也叫做线性回归的L1正则化，和Ridge回归的主要区别就是在正则化项，Ridge回归用的是L2正则化，而Lasso回归用的是L1正则化。而弹性回归是岭回归和套索回归的混合技术，它同时使用 L2 和 L1 正则化。当有多个相关的特征时，弹性网络是有用的。套索回归很可能随机选择其中一个，而弹性回归很可能都会选择。<em>套索回归和核岭回归说到底就是在损失函数上加了两个不同的正则化项罢了，而弹性网络就是两个正则化项都加上去。但是引入核岭回归却不是直接从linear_model直接引入，而是单独出sklearn.kernel_ridge进行引入，真是奇怪？？？</em></p>
+<p>Lasso回归使得一些系数变小，甚至还是一些绝对值较小的系数直接变为0，因此特别适用于参数数目缩减与参数的选择，因而用来估计稀疏参数的线性模型。</p>
+<p>个人观点：但是Lasso回归有一个很大的问题，导致我们需要把它单独拎出来讲，就是它的损失函数不是连续可导的。由于L1范数用的是绝对值之和，导致损失函数有不可导的点。也就是说，我们的最小二乘法，梯度下降法，牛顿法与拟牛顿法对它统统失效了。🙄🙄🙄</p>
+<h2 id="3-4-梯度加强回归"><a href="#3-4-梯度加强回归" class="headerlink" title="3.4 梯度加强回归"></a>3.4 梯度加强回归</h2><pre><code># Gradient Boosting Regression
+from sklearn.ensemble import GradientBoostingRegressor
+gboost = GradientBoostingRegressor(n_estimators = 3000, learning_rate = 0.05, max_depth = 4,max_features = &quot;sqrt&quot;, min_samples_leaf = 15, min_samples_split = 10,loss=&quot;huber&quot;,random_state = 5)
+</code></pre>
+<blockquote>
+<p>ensemble [ɒnˈsɒmbl] n.乐团,全体,成套的东西; adv.一起</p>
+<p>sklearn.ensemble我理解成Gradient Boosting Regression用得比较广泛，导致它放在了sklearn的全体kit里面</p>
+</blockquote>
+<p>我尝试搜寻梯度加强回归，但是只能搜索到梯度提升回归树，看来它是一种树模型。<em>它是一种决策树的集成方法，通过合并多个决策树来构建一个更为强大的模型。</em>虽然他的名字中有回归两个字，但是这种模型既可以用在回归上，也可以用在分类上。</p>
+<p>与随机森林不同的是，梯度提升采用连续的方式构造树，每一棵树都试图纠正前一棵树的错误。默认情况下，梯度提升回归树中没有随机化，而是用到了强预剪枝。</p>
+<p>梯度提升决策树是监督学习中最强大也是最常用的模型之一，缺点是需要仔细调参，而且训练的时间要很长。和其他基于树的模型类似，这个算法不需要对数据进行缩放就可以表现的很好，并且它也适用于二元特征与连续特征同时存在的数据集。同样，它的不足之处与其它基于树的模型也类似，它不适合处理高维稀疏数据。</p>
+<blockquote>
+<p>所谓<a href="https://www.cnblogs.com/JetpropelledSnake/p/14438484.html">特征缩放</a>、<a href="https://blog.csdn.net/qq_51228515/article/details/122431951">数据缩放</a>包含了归一化和标准化等。特征缩放的原因是，为消除各评价指标间量纲和数量级的差异、保证结果的可靠性，就需要对各指标的原始数据进行特征缩放。</p>
+</blockquote>
+<blockquote>
+<p>个人观点：<em>对于稀疏数据，当前的研究方向是对稀疏数据进行聚类与降维。因为稀疏数据不同于一般数据，它的维度常常非常巨大，由于大量存在缺失值，导致数据信息极其不完整。常见的一些降维方法比如说主成分分析和因子分子方法都无法对稀疏数据进行应用</em></p>
+</blockquote>
+<h2 id="3-5-随机森林回归"><a href="#3-5-随机森林回归" class="headerlink" title="3.5 随机森林回归"></a>3.5 随机森林回归</h2><pre><code># random forest
+from sklearn.ensemble import RandomForestRegressor
+rf = RandomForestRegressor(n_estimators = 500, random_state = 0)
+</code></pre>
+<p>随机森林属于<a href="https://blog.csdn.net/siyuangulu/article/details/122508931?spm=1001.2101.3001.6650.8&utm_medium=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-8-122508931-blog-82016442.pc_relevant_recovery_v2&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-8-122508931-blog-82016442.pc_relevant_recovery_v2&utm_relevant_index=11">集成学习</a>中的Bagging算法，即引导聚合类算法，详情可以点击上面链接进行访问。🪐</p>
+<p>首先要明确的是，当前集成学习分成两大类，一类是Bagging装袋法，第二类是Boosting提升法。</p>
+<ul>
+<li>Bagging（装袋法）: 如随机森林，每一个模型相互独立，互相平行</li>
+<li>Boosting（提升法）: 模型循序渐进，依次增强，基评估器相互关联</li>
+</ul>
+<p>我们都知道随机森林就是通过集成学习的思想将多棵树集成的一种算法，它的基本单元是决策树。直观的说，每一棵决策树都是一个分类器（假设现在讨论的是分类问题），那么对于一个输入样本，N棵树有N个分类结果。而随机森林做的就是集成了所有的分类投票结果，将投票次数最多的类别指定为最终的输出，这就是一种最简单的Bagging思想。</p>
+<p>在该模型中，有三个重要的参数分别为: &amp;nbsp <a href="https://blog.csdn.net/weixin_43479947/article/details/126813033">参考</a></p>
+<ul>
+<li>n_estimators(子树数量)</li>
+<li>learning_rate(学习率)</li>
+<li>max_depth(最大深度)</li>
+</ul>
+<p>想要进一步了解随机森林，可以通过以下链接进行学习：</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/siyuangulu/article/details/122508931?spm=1001.2101.3001.6650.8&utm_medium=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-8-122508931-blog-82016442.pc_relevant_recovery_v2&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-8-122508931-blog-82016442.pc_relevant_recovery_v2&utm_relevant_index=11">CSDN</a></p>
+<p><a href="https://easyai.tech/ai-definition/random-forest/">EasyAi</a></p>
+<p><a href="https://www.cnblogs.com/maybe2030/p/4585705.html">博客园</a></p>
+<p><a href="https://www.cnblogs.com/fionacai/p/5894142.html">博客园</a></p>
+</blockquote>
+<h2 id="3-6-XGBoost回归"><a href="#3-6-XGBoost回归" class="headerlink" title="3.6 XGBoost回归"></a>3.6 XGBoost回归</h2><pre><code># XGBoost
+# if xgboost packet doesnt exist, please install with command:conda install py-xgboost
+import xgboost as xbg
+xgb = xgb.XGBRegressor(colsample_bytree = 0.4603, gamma = 0.0468,learning_rate = 0.05, max_depth = 3, min_child_weight = 1.7817, n_estimators = 2200, reg_alpha = 0.4640, reg_lambda = 0.8571,subsample = 0.5213, silent = 1, random_state = 7, nthread = -1)
+</code></pre>
+<p>首先要知道的是，XGBoost算法是梯度提升树GBDT的高效实现。这里所提到的GBDT可能和上面所提到的梯度提升回归树有着异曲同工之处。作为梯度提升回归树的高效实现，XGBoost是一个上限非常高的算法。在竞赛题中，不考虑深度学习，XGBoost算法算是比赛中最热门的算法，它将GBDT的优化走向了一个极致。但是它的训练耗时长，内存占用比较大。</p>
+<p>后续，微软推出了LightGBM，在内存占用和运行速度上做了不少的优化，但是<a href="https://www.cnblogs.com/pinard/p/10979808.html">刘建平pinard大哥</a>认为当前还是优先选择XGBoost，因为调优经验比较多一点，可以参考的资料也更多一些。如果使用XGBoost遇到的内存占用或者运行速度问题，这个时候再尝试LightGBM也不错。</p>
+<h2 id="3-7-LightGBM回归"><a href="#3-7-LightGBM回归" class="headerlink" title="3.7 LightGBM回归"></a>3.7 LightGBM回归</h2><pre><code># LightGBM
+import lightgbm as lgb
+lgb = lgb.LGBMRegressor(objective = &quot;regression&quot;, num_leaves = 5, learning_rate = 0.05, n_estimators = 720, max_bin = 55, bagging_fraction = 0.8, bagging_freq = 5, feature_fraction = 0.2319, feature_fraction_seed = 9, bagging_seed = 9, min_data_in_leaf = 6,min_sum_hessian_in_leaf = 11)
+</code></pre>
+<blockquote>
+<p>fraction [ˈfrækʃn] n.小部分,分数,小数</p>
+</blockquote>
+<p>LightGBM是快速的，分布式的，高性能的基于决策树算法的梯度提升框架。可以用于排序、分类、回归以及其他机器学习任务中。它是XGBoost的改进版，XGboost又是GBDT梯度提升回归树的高效实现，所以我理解成LightGBM与GBDT师出同门。</p>
+<p>2017年的时候微软在GitHub上开源了一个新的算法<strong>LightGBM</strong>，根据某CSDN机翻文章称，它能够在不降低准确率的前提下，能够提升十倍左右的速度，并且占用内存下降三倍左右。虽然它和XGboost都是基于决策树算法的，但是LightGBM采用的分裂叶子结点策略貌似与XGBoost算法不同，并且极大地优于XGBoost，导致它的速度非常之快…</p>
+<p><strong>到目前为止，七个回归模型的初始化都已经完成！</strong></p>
+<h2 id="4-模型性能评估与选择"><a href="#4-模型性能评估与选择" class="headerlink" title="4.模型性能评估与选择"></a>4.模型性能评估与选择</h2><p>业界一般使用k-fold 交叉验证（k-fold cross validation）的方法评估模型性能。在这里k&#x3D;10。评估指标有2个，一个是 r^2（ r squared）, 另一个是mse（mean squared error）。为了加快执行速度，n_jobs &#x3D; 2表示使用2个CPU（我的电脑是2核CPU）。训练数据集有1458条数据，272列，模型执行起来可能相对较慢，请耐心等待。verbose &#x3D; 1表示执行过程中不断打印出信息，以帮助判断执行了多少了。</p>
+<p><strong>提示</strong>：同学们可能疑惑为什么没有在验证集上检验模型性能，这可能会产生过拟合现象。k-fold 交叉验证的存在可以在不需要验证集的情况下，也能发现过拟合现象😅。</p>
+<pre><code># k-fold cross validation function
+from sklearn.model_selection import cross_val_score
+def evaluation_model(model):
+    rmse = np.sqrt(-cross_val_score(estimator = model, X = X_train, y = y_train, scoring = &#39;neg_mean_squared_error&#39;, cv = 10, n_jobs = 2, verbose = 1))
+    r2_score = cross_val_score(estimator = model, X = X_train, y = y_train, scoring = &#39;r2&#39;, cv = 10, n_jobs = 2, verbose = 1)
+    return (r2_score, rmse)
+# print result function
+def print_result(r2_score, rmse, model_name):
+    print(&#39;%s evaluation: r2=%.4f (std=%.4f), rmse=%.4f (std=%.4f)&#39; %(model_name, r2_score.mean(), r2_score.std(), 
+  rmse.mean(), rmse.std()))
+</code></pre>
+<p>定义好了函数，现在可以对每一模型执行。</p>
+<pre><code># model score and rmse
+lasso_r2_score, lasso_rmse = evaluation_model(lasso)
+enet_r2_score, enet_rmse = evaluation_model(enet)
+krr_r2_score, krr_rmse = evaluation_model(krr)
+gboost_r2_score, gboost_rmse = evaluation_model(gboost)
+rf_r2_score, rf_rmse = evaluation_model(rf)
+xgb_r2_score, xgb_rmse = evaluation_model(xgb)
+lgb_r2_score, lgb_rmse = evaluation_model(lgb)
+# print result
+print_result(lasso_r2_score, lasso_rmse, &#39;Lasso&#39;)
+print_result(enet_r2_score, enet_rmse, &#39;Elastic Net&#39;)
+print_result(krr_r2_score, krr_rmse, &#39;Kernel Ridge&#39;)
+print_result(gboost_r2_score, gboost_rmse, &#39;Gradient Boost&#39;)
+print_result(rf_r2_score, rf_rmse, &#39;Random Forest&#39;)
+print_result(xgb_r2_score, xgb_rmse, &#39;XG Boost&#39;)
+print_result(lgb_r2_score, lgb_rmse, &#39;Lightgbm&#39;)
+</code></pre>
+<p>模型性能的评估尤其是用sklearn进行模型评估貌似篇幅有点小长，我改天再写吧！现在可以看看别人对模型评估方法进行的一些<a href="https://www.cnblogs.com/jiaxin359/p/8627530.html">总结</a>，以及<a href="https://blog.csdn.net/weixin_35757704/article/details/118406255">运用</a>。</p>
+<h2 id="5-运行结果"><a href="#5-运行结果" class="headerlink" title="5.运行结果"></a>5.运行结果</h2><p>结果发现XGBoost的性能最好:r2&#x3D;0.9227 (std&#x3D;0.0149), rmse&#x3D;0.2734 (std&#x3D;0.0340)，因为RMSE平均数最小，方差最小，并且R2&gt;0.9，模型性能比较好。值得注意的是，如果你们选择的是模型默认的超参数，那么执行的结果和我的就不一样啦，因为不同的超参数决定了模型的准确率的不同。这里给出了一个通用的原则：</p>
+<blockquote>
+<p><strong>选择r2&gt;0.9，且mse和std最小的那个模型</strong></p>
+</blockquote>
+<h2 id="6-使用GridSearchCV方法对XGBoost模型进行优化"><a href="#6-使用GridSearchCV方法对XGBoost模型进行优化" class="headerlink" title="6.使用GridSearchCV方法对XGBoost模型进行优化"></a>6.使用GridSearchCV方法对XGBoost模型进行优化</h2><p>在机器学习模型中，需要人工选择的参数称为超参数。比如随机森林中决策树的个数，人工神经网络模型中隐藏层层数和每层的节点个数，正则项中常数大小等等，他们都需要事先指定。超参数选择不恰当，就会出现欠拟合或者过拟合的问题。而在选择超参数的时候，有两个途径，一个是凭经验微调，另一个就是选择不同大小的参数，带入模型中，挑选表现最好的参数。</p>
+<p>微调的一种方法是手工调制超参数，直到找到一个好的超参数组合，这么做的话会非常冗长，你也可能没有时间探索多种组合，所以可以使用Scikit-Learn的GridSearchCV来做这项搜索工作。</p>
+<p>这里可以将Grid Search暂时理解为是一种调参手段，并且是非常耗时的穷举搜索。<em>至于进一步深究，我们暂时放到下一步。因为今天的篇幅有点长，担心如果我再展开讲下去的话会增加各位读者包括我的阅读负担。所以我打算把网格搜索放到了下一篇（也可能是下下篇）</em>你可以先看看<a href="https://blog.csdn.net/guoyc439/article/details/123381908">这里</a>🍉🍉🍉</p>
+<h2 id="7-参考链接"><a href="#7-参考链接" class="headerlink" title="7.参考链接"></a>7.参考链接</h2><blockquote>
+<p><a href="https://blog.csdn.net/huacha__/article/details/81057150">https://blog.csdn.net/huacha__/article/details/81057150</a></p>
+<p><a href="https://blog.csdn.net/fenghuibian/article/details/91353348">https://blog.csdn.net/fenghuibian/article/details/91353348</a></p>
+<p><a href="https://www.jianshu.com/p/17368988d6d9">监督学习(八)——决策树集成：梯度提升回归树</a></p>
+<p><a href="https://blog.csdn.net/weixin_43479947/article/details/126813033">也是梯度提升回归树</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Mathine Learning</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>交叉验证</title>
+    <url>/2022/11/23/%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81/</url>
+    <content><![CDATA[<p>这里介绍一下K-Fold交叉验证，这是防止过拟合的一种方法…</p>
+<span id="more"></span>
+
+<h1 id="K-Fold-交叉验证-Cross-Validation-的理解与应用"><a href="#K-Fold-交叉验证-Cross-Validation-的理解与应用" class="headerlink" title="K-Fold 交叉验证 (Cross-Validation)的理解与应用"></a>K-Fold 交叉验证 (Cross-Validation)的理解与应用</h1><h1 id="1-简单介绍一下验证集"><a href="#1-简单介绍一下验证集" class="headerlink" title="1.简单介绍一下验证集"></a>1.简单介绍一下验证集</h1><p>在机器学习建模过程中，通行的做法通常是将数据分为训练集和测试集。测试集是与训练独立的数据，完全不参与训练，用于最终模型的评估。在训练过程中，经常会出现过拟合的问题，就是模型可以很好的匹配训练数据，却不能很好在预测训练集外的数据。如果此时就使用测试数据来调整模型参数，就相当于在训练时已知部分测试数据的信息，会影响最终评估结果的准确性。通常的做法是在训练数据再中分出一部分做为验证(Validation)数据，用来评估模型的训练效果。<em>验证集的好处在于，可以对训练的模型进行评估，并且更换超参数后继续训练评估…</em></p>
+<h1 id="2-通过验证集理解K-Fold-交叉验证"><a href="#2-通过验证集理解K-Fold-交叉验证" class="headerlink" title="2.通过验证集理解K-Fold 交叉验证"></a>2.通过验证集理解K-Fold 交叉验证</h1><p>验证数据取自训练数据，但不参与训练，这样可以相对客观的评估模型对于训练集之外数据的匹配程度。模型在验证数据中的评估常用的是交叉验证，又称循环验证。它将原始数据分成K组(K-Fold)，将每个子集数据分别做一次验证集，其余的K-1组子集数据作为训练集，这样会得到K个模型。</p>
+<p>这K个模型分别在验证集中评估结果，最后的误差MSE(Mean Squared Error)加权平均就得到交叉验证误差。交叉验证有效利用了有限的数据，并且评估结果能够尽可能接近模型在测试集上的表现，可以做为模型优化的指标使用。</p>
+<h1 id="3-简单介绍一下常用的回归评价指标MSE、RMSE、MAE、R-Squared"><a href="#3-简单介绍一下常用的回归评价指标MSE、RMSE、MAE、R-Squared" class="headerlink" title="3.简单介绍一下常用的回归评价指标MSE、RMSE、MAE、R-Squared"></a>3.简单介绍一下常用的回归评价指标MSE、RMSE、MAE、R-Squared</h1><p>如果说分类问题的评价指标是<strong>准确率</strong>，那么回归算法的评价指标就是<em>MSE，RMSE，MAE、R-Squared</em>。在进行机器学习实验二的K-fold的时候，遇到了评价指标MSE，在好奇心的驱使下，我尝试研究这<a href="https://www.jianshu.com/p/9ee85fdad150">四个评价指标…</a></p>
+<h2 id="3-1-均方误差-MSE"><a href="#3-1-均方误差-MSE" class="headerlink" title="3.1 均方误差-MSE"></a>3.1 均方误差-MSE</h2><p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula1.png%22" alt="MSE"></p>
+<p>MSE （Mean Squared Error）叫做均方误差。这里的y帽指的是预测值。这个公式长得有点像是线性回归模型的损失函数。</p>
+<h2 id="3-2-均方根误差-RMSE"><a href="#3-2-均方根误差-RMSE" class="headerlink" title="3.2 均方根误差-RMSE"></a>3.2 均方根误差-RMSE</h2><p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula2.png%22" alt="RMSE"></p>
+<p>RMSE（Root Mean Squard Error）均方根误差。这就是给MSE开一个根号，目的是更好的描述数据。因为开一个根号，RMSE在单位上就应该与所研究的数据的单位差不多了。</p>
+<h2 id="3-3-平均绝对误差-MAE"><a href="#3-3-平均绝对误差-MAE" class="headerlink" title="3.3 平均绝对误差-MAE"></a>3.3 平均绝对误差-MAE</h2><p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula3.png%22" alt="MAE"></p>
+<p>MAE(平均绝对误差)，这个看起来与上面的没有差别。<strong>有均方根的地方好像就会有绝对值？？？</strong></p>
+<h2 id="3-4-R方-R-Squared"><a href="#3-4-R方-R-Squared" class="headerlink" title="3.4 R方-R Squared"></a>3.4 R方-R Squared</h2><p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula4.png%22" alt="R Squared"></p>
+<p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula5.png%22" alt="R Squared"></p>
+<p>分类算法的衡量标准是正确率，它的范围是从零到一，很直观，并且在不同模型上也是一样的，看正确率就完事了。所以回归模型上有没有这种衡量的标准呢？答案是有的，它就是R Aquared也就是<strong>R方</strong>。至于式子的意思，应该也是很好理解的，但是<a href="https://www.jianshu.com/p/9ee85fdad150">参考博主</a>写得有点不明不白，暂且就不深究了吧？总的来说，就是描述我们训练出来的模型的所有误差与当y帽等于y平均值时的误差之间的偏离程度。当R方结果为1时，表示我们的模型完全正确，这个时候分式项为0。</p>
+<p>上面的公式可以化简成如下，此时分式分子就变成了均方误差MSE，分母变成了方差var（标准差是std）</p>
+<p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula6.png%22" alt="R Squared"></p>
+<h1 id="4-K-Fold用来干啥？"><a href="#4-K-Fold用来干啥？" class="headerlink" title="4.K-Fold用来干啥？"></a>4.K-Fold用来干啥？</h1><h2 id="有些博主认为K折交叉验证用来进行模型调优，方便找到使得模型泛化性能最优的超参数？我认为，模型调优实在算不上，应该算是用来模型选择的吧？用来评价模型的泛化能力，从而在多个模型中进行选择。"><a href="#有些博主认为K折交叉验证用来进行模型调优，方便找到使得模型泛化性能最优的超参数？我认为，模型调优实在算不上，应该算是用来模型选择的吧？用来评价模型的泛化能力，从而在多个模型中进行选择。" class="headerlink" title="有些博主认为K折交叉验证用来进行模型调优，方便找到使得模型泛化性能最优的超参数？我认为，模型调优实在算不上，应该算是用来模型选择的吧？用来评价模型的泛化能力，从而在多个模型中进行选择。"></a><a href="https://blog.csdn.net/xiaohutong1991/article/details/107924703">有些博主</a>认为K折交叉验证用来进行模型调优，方便找到使得模型泛化性能最优的超参数？我认为，模型调优实在算不上，应该算是用来模型选择的吧？用来评价模型的泛化能力，从而在多个模型中进行选择。</h2><pre><code>sklearn.model_selection.KFold(n_splits=3, shuffle=False, random_state=None)
+</code></pre>
+<p>根据代码对K-Fold的参数进行剖析：</p>
+<blockquote>
+<p>n_splits：将数据集划分n_splits个互斥子集，每次用其中一个子集当作验证集，剩下的n_splits-1个作为训练集，进行n_splits次训练和测试，得到n_splits个结果。表示划分几等份</p>
+<p>shuffle：在每次划分时，是否进行洗牌</p>
+<p>若为Falses时，其效果等同于random_state等于整数，每次划分的结果相同</p>
+<p>若为True时，每次划分的结果都不一样，表示经过洗牌，随机取样的</p>
+<p>random_state：随机种子数，如果设置了具体数值比如42（随便一个具体数值），那么每次运行结果都是一样的，不会随机产生结果，即每次运行结果都可以复现</p>
+</blockquote>
+<h1 id="5-K-Fold什么时候用呢？"><a href="#5-K-Fold什么时候用呢？" class="headerlink" title="5.K-Fold什么时候用呢？"></a>5.K-Fold什么时候用呢？</h1><p>问起什么时候才需要用到交叉验证，当然是数据不是很充足的时候才用交叉验证啦！凭借经验，一般数据样本量小于一万条的时候，我们就会采用交叉验证的方法来训练优化选择模型。如果样本量是大于一万条的话，那么我们就是用最常规的方法，也就是将数据集分成三份分别是训练集、验证集和测试集。直接用验证集来评估模型预测的好坏和选择模型及其对应的参数。把最终得到的模型再用于测试集，最终决定使用哪个模型以及对应参数。毕竟你数据量真有这么大，你还要将你的训练成本扩大K倍，权衡利弊使用K-Fold是不明智之选。<em>选择的k值常常是小于等于10的。</em></p>
+<p><a href="https://zhuanlan.zhihu.com/p/32627500">知乎用户-鱼遇雨欲语与余</a>根据切分方式的不同，将交叉验证分成了下面三种：</p>
+<h2 id="5-1-简单交叉验证"><a href="#5-1-简单交叉验证" class="headerlink" title="5.1 简单交叉验证"></a>5.1 简单交叉验证</h2><p>所谓简单，是相对其他交叉验证而言的。我们先是随机地将样本数据分成两部分，比如说我分了百分之六十的训练集，百分之四十的测试集。训练集训练模型，测试集验证模型以及参数。接着我们将样本打乱，然后重新选择训练集和测试集，继续训练数据和验证模型。最后一步就是选择损失函数评估最优的模型和参数了。<em>在我看来，简单是真的简单，为了评估最优的模型和参数，不惜连测试集都用了…</em></p>
+<h2 id="5-2-S折交叉验证"><a href="#5-2-S折交叉验证" class="headerlink" title="5.2 S折交叉验证"></a>5.2 S折交叉验证</h2><p>这是经常会用到的一种验证方法。和第一种方法不同，S折交叉验证先将数据集Dataset随机划分成S个大小相同的互斥子集，每次选择S-1份作为训练集，剩下的1份用来做测试集。当这一轮完成后，重新随机选择  份来训练数据。若干轮（小于  ）之后，选择损失函数评估最优的模型和参数。<em>需要注意的是，交叉验证法评估结果的稳定性和保真性在很大程度上取决于S的取值。那纳闷了，选择哪个S是最好的呢？我认为不论选择哪个S值，应该对最后的模型和参数选择不产生太大的影响吧？</em></p>
+<h2 id="5-3-留一交叉验证-Leave-one-out-Cross-Validation"><a href="#5-3-留一交叉验证-Leave-one-out-Cross-Validation" class="headerlink" title="5.3 留一交叉验证 Leave-one-out Cross Validation"></a>5.3 留一交叉验证 Leave-one-out Cross Validation</h2><p>这是一种特别抠门的方法，每一次只用一个样本来预测模型的好坏，也就是说每一次只有一个测试集。这种方法被视为S折交叉验证的特例，只在样本量非常少的情况下才使用。还有一种更抠门的方法是<a href="https://zhuanlan.zhihu.com/p/32412775">自助法</a>…</p>
+]]></content>
+      <categories>
+        <category>Mathine Learning</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>特征工程</title>
+    <url>/2022/11/23/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h1 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a>特征工程</h1><p><a href="https://easyai.tech/ai-definition/feature-engineering/">特征工程</a>是机器学习工作流程中重要的组成部分，它将原始数据「翻译」成模型可理解的形式。</p>
+<p>美国计算机科学家 Peter Norvig 说过两句经典名言</p>
+<ol>
+<li>基于大量数据的简单模型优于基于少量数据的复杂模型</li>
+<li>更多的数据优于聪明的算法，而好的数据优于多的数据</li>
+</ol>
+<p>足以可见数据量和特征工程的重要性，不过数据量已经给定了，我们能做的只有特征工程。如何基于原来的数据发挥出更大的数据价值就是特征工程要做的事情。</p>
+<p><em>在16年的一项调查中发现，<a href="https://whatsthebigdata.com/2016/05/01/data-scientists-spend-most-of-their-time-cleaning-data/">数据科学家</a>的工作中，有80%的时间都在获取、清洗和组织数据。构造机器学习流水线的时间不到20%…</em></p>
+<h1 id="1-特征工程一些注意事项"><a href="#1-特征工程一些注意事项" class="headerlink" title="1.特征工程一些注意事项"></a>1.特征工程一些注意事项</h1><p>e.g. 人类是需要吃加工过的食物才行，这样更安全也更美味。机器算法模型也是类似，原始数据不能直接喂给模型，也需要对数据进行清洗、组织、转换。最后才能得到模型可以消化的特征。这样你对特征工程在数据和模型之间扮演的角色已经十分了解了吧？</p>
+<h2 id="1-1-当前我对特征工程的理解"><a href="#1-1-当前我对特征工程的理解" class="headerlink" title="1.1 当前我对特征工程的理解"></a>1.1 当前我对特征工程的理解</h2><p>当前我对特征工程的理解仅仅停留在特征提取和特征选择，这样是待会会提到的内容。首先要知道，这两种方法都是降维的方法。特征选择后的字段是原数据字段的子集，也就是说删减了一些冗杂的对模型训练没有用的字段。特征提取理解成原来特征的映射，e.g.三个字段合并在一起表现的会比三个字段独立更好一些–&gt;<a href="https://blog.csdn.net/Neil_Pan/article/details/51940849">特征选择和特征提取区别</a></p>
+<p>如果想要看看，特征工程具体是包括哪些具体步骤的，还可以参考<a href="https://blog.csdn.net/tiange_xiao/article/details/79723177#:~:text=%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%20%E6%98%AF%E4%BD%BF%E7%94%A8%E4%B8%93%E4%B8%9A%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86%E5%92%8C%E6%8A%80%E5%B7%A7%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%EF%BC%8C%E4%BD%BF%E5%BE%97%20%E7%89%B9%E5%BE%81%20%E8%83%BD%E5%9C%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E4%B8%8A%E5%8F%91%E6%8C%A5%E6%9B%B4%E5%A5%BD%E7%9A%84%E4%BD%9C%E7%94%A8%E7%9A%84%E8%BF%87%E7%A8%8B%E3%80%82%20%E8%BF%87%E7%A8%8B%20%E5%8C%85%E5%90%AB%20%E4%BA%86%20%E7%89%B9%E5%BE%81,%E7%89%B9%E5%BE%81%20%E6%9E%84%E5%BB%BA%E3%80%81%20%E7%89%B9%E5%BE%81%20%E9%80%89%E6%8B%A9%E7%AD%89%E6%A8%A1%E5%9D%97%E3%80%82%20%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%20%E7%9A%84%E7%9B%AE%E7%9A%84%E6%98%AF%E7%AD%9B%E9%80%89%E5%87%BA%E6%9B%B4%E5%A5%BD%E7%9A%84%20%E7%89%B9%E5%BE%81%20%EF%BC%8C%E8%8E%B7%E5%8F%96%E6%9B%B4%E5%A5%BD%E7%9A%84%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E3%80%82">这里</a></p>
+<h2 id="1-2-更好的业务逻辑表达"><a href="#1-2-更好的业务逻辑表达" class="headerlink" title="1.2 更好的业务逻辑表达"></a>1.2 更好的业务逻辑表达</h2><p>将特征工程理解成是业务逻辑的一种数学表达。说是说业务逻辑表达，其实实质上就是指为了解决机器学习中特定的问题。因为原始数据有很多种转换为特征的方式，我们需要选择那些能够「更好的表示业务逻辑」，从而更好的解决问题，而不是那些更简单的方法。</p>
+<h2 id="1-3-提升机器学习性能"><a href="#1-3-提升机器学习性能" class="headerlink" title="1.3 提升机器学习性能"></a>1.3 提升机器学习性能</h2><p>性能意味着更短时间和更低成本，哪怕相同的模型，也会因为特征工程的不同而性能不同。所以我们需要选择那些可以发挥更好性能的特征工程</p>
+<h1 id="2-特征选择"><a href="#2-特征选择" class="headerlink" title="2. 特征选择"></a>2. 特征选择</h1><p>特征选择是特征工程里的一个重要问题，其目标是寻找最优特征子集。特征选择能剔除不相关(irrelevant)或冗余(redundant)的特征，从而达到减少特征个数，提高模型精确度，减少运行时间的目的。另一方面，<strong>选取出真正相关的特征简化模型</strong>，协助理解数据产生的过程。并且常能听到“数据和特征决定了机器学习的上限，而模型和算法只是逼近这个上限而已”，由此可见其重要性。但是它几乎很少出现于机器学习书本里面的某一章。然而在机器学习方面的成功很大程度上在于如果使用特征工程。</p>
+<p>之所以要考虑特征选择，是因为机器学习经常面临过拟合的问题。 过拟合的表现是模型参数太贴合训练集数据，模型在训练集上效果很好而在测试集上表现不好。简言之模型的泛化能力差。过拟合的原因是模型对于训练集数据来说太复杂，要解决过拟合问题，一般考虑如下方法：<a href="https://zhuanlan.zhihu.com/p/74198735#:~:text=%E4%B9%8B%E6%89%80%E4%BB%A5%E8%A6%81%E8%80%83%E8%99%91%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9%EF%BC%8C%E6%98%AF%E5%9B%A0%E4%B8%BA%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BB%8F%E5%B8%B8%E9%9D%A2%E4%B8%B4%E8%BF%87%E6%8B%9F%E5%90%88%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82%20%E8%BF%87%E6%8B%9F%E5%90%88,%E7%9A%84%E8%A1%A8%E7%8E%B0%E6%98%AF%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%20%E5%A4%AA%E8%B4%B4%E5%90%88%E8%AE%AD%E7%BB%83%E9%9B%86%E6%95%B0%E6%8D%AE%20%EF%BC%8C%E6%A8%A1%E5%9E%8B%E5%9C%A8%E8%AE%AD%E7%BB%83%E9%9B%86%E4%B8%8A%E6%95%88%E6%9E%9C%E5%BE%88%E5%A5%BD%E8%80%8C%E5%9C%A8%E6%B5%8B%E8%AF%95%E9%9B%86%E4%B8%8A%E8%A1%A8%E7%8E%B0%E4%B8%8D%E5%A5%BD%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%9C%A8%E9%AB%98%E6%96%B9%E5%B7%AE%E3%80%82">参考</a></p>
+<ol>
+<li>收集更多数据</li>
+<li>通过正则化引入对复杂度的惩罚</li>
+<li>选择更少参数的简单模型</li>
+<li>对数据降维（降维有两种方式：特征选择和特征抽取）</li>
+</ol>
+<p>其中第1条一般是很难做到的，一般主要采用第2和第4点</p>
+<h1 id="3-特征提取"><a href="#3-特征提取" class="headerlink" title="3. 特征提取"></a>3. 特征提取</h1><p>像上面所说，将特征提取理解成原来特征的映射，只是一种不同于特征选择的选取字段的方式罢了。</p>
+<h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h1><ul>
+<li><a href="https://blog.csdn.net/hren_ron/article/details/80914491">了解生成特征子集的搜索方式</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/74198735#:~:text=%E4%B9%8B%E6%89%80%E4%BB%A5%E8%A6%81%E8%80%83%E8%99%91%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9%EF%BC%8C%E6%98%AF%E5%9B%A0%E4%B8%BA%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BB%8F%E5%B8%B8%E9%9D%A2%E4%B8%B4%E8%BF%87%E6%8B%9F%E5%90%88%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82%20%E8%BF%87%E6%8B%9F%E5%90%88,%E7%9A%84%E8%A1%A8%E7%8E%B0%E6%98%AF%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%20%E5%A4%AA%E8%B4%B4%E5%90%88%E8%AE%AD%E7%BB%83%E9%9B%86%E6%95%B0%E6%8D%AE%20%EF%BC%8C%E6%A8%A1%E5%9E%8B%E5%9C%A8%E8%AE%AD%E7%BB%83%E9%9B%86%E4%B8%8A%E6%95%88%E6%9E%9C%E5%BE%88%E5%A5%BD%E8%80%8C%E5%9C%A8%E6%B5%8B%E8%AF%95%E9%9B%86%E4%B8%8A%E8%A1%A8%E7%8E%B0%E4%B8%8D%E5%A5%BD%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%9C%A8%E9%AB%98%E6%96%B9%E5%B7%AE%E3%80%82">详细地介绍了特征选择的方法</a></li>
+<li><a href="https://asialee.blog.csdn.net/article/details/84863410?spm=1001.2101.3001.6650.3&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-3-84863410-blog-79723177.pc_relevant_multi_platform_whitelistv3&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-3-84863410-blog-79723177.pc_relevant_multi_platform_whitelistv3&utm_relevant_index=6">机器学习特征工程的具体步骤</a></li>
+<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectKBest.html">sklearn.select_feature.SelectKBest官方文档</a></li>
+<li><a href="https://www.cnblogs.com/ai-ldj/p/14269023.html">SelectKBest博客园</a></li>
+<li><a href="https://blog.csdn.net/moonoon1/article/details/120074949">SelectKBest-CSDN</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Mathine Learning</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>特征缩放</title>
+    <url>/2022/11/23/%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE/</url>
+    <content><![CDATA[<p>将数据进行归一化和标准化可以使不同维度的特征放在一起进行比较，可以大大提高模型的准确性。</p>
+<span id="more"></span>
+
+<h1 id="特征缩放"><a href="#特征缩放" class="headerlink" title="特征缩放"></a>特征缩放</h1><h2 id="1-为什么要进行特征缩放"><a href="#1-为什么要进行特征缩放" class="headerlink" title="1. 为什么要进行特征缩放"></a>1. 为什么要进行特征缩放</h2><h3 id="1-1-统一特征的权重和提升模型准确性"><a href="#1-1-统一特征的权重和提升模型准确性" class="headerlink" title="1.1 统一特征的权重和提升模型准确性"></a>1.1 统一特征的权重和提升模型准确性</h3><p>如果某个特征的取值范围比其他特征大很多，那么数值计算（比如说计算欧式距离）就受该特征的主要影响。但实际上并不一定是这个特征最重要，通常需要把每个特征看成同等重要。归一化和标准化数据可以使不同维度的特征放在一起进行比较，可以大大提高模型的准确性。</p>
+<h3 id="1-2-提升梯度下降法的收敛速度"><a href="#1-2-提升梯度下降法的收敛速度" class="headerlink" title="1.2 提升梯度下降法的收敛速度"></a>1.2 提升梯度下降法的收敛速度</h3><p><img src="https://img-blog.csdnimg.cn/20191113192133110.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzAwODgwNA==,size_16,color_FFFFFF,t_70" alt="左边是未归一化数据的梯度下降过程"></p>
+<h2 id="2-特征缩放的方法有哪些？"><a href="#2-特征缩放的方法有哪些？" class="headerlink" title="2. 特征缩放的方法有哪些？"></a>2. 特征缩放的方法有哪些？</h2><h3 id="2-1-最大最小值归一化（min-max-normalization）：将数值范围缩放到-0-1-区间里"><a href="#2-1-最大最小值归一化（min-max-normalization）：将数值范围缩放到-0-1-区间里" class="headerlink" title="2.1 最大最小值归一化（min-max normalization）：将数值范围缩放到 [0, 1] 区间里"></a>2.1 最大最小值归一化（min-max normalization）：将数值范围缩放到 [0, 1] 区间里</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190103162752557-711062993.png"></p>
+<h3 id="2-2-均值归一化（mean-normalization）：将数值范围缩放到-1-1-区间里，且数据的均值变为0"><a href="#2-2-均值归一化（mean-normalization）：将数值范围缩放到-1-1-区间里，且数据的均值变为0" class="headerlink" title="2.2 均值归一化（mean normalization）：将数值范围缩放到 [-1, 1] 区间里，且数据的均值变为0"></a>2.2 均值归一化（mean normalization）：将数值范围缩放到 [-1, 1] 区间里，且数据的均值变为0</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190103162807303-1305019357.png"></p>
+<h3 id="2-3-标准化-Z-值归一化（standardization-x2F-z-score-normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行-中心化-mean-centering-处理，再除以标准差进行缩放）"><a href="#2-3-标准化-Z-值归一化（standardization-x2F-z-score-normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行-中心化-mean-centering-处理，再除以标准差进行缩放）" class="headerlink" title="2.3 标准化 ,Z 值归一化（standardization &#x2F; z-score normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行 中心化 mean centering 处理，再除以标准差进行缩放）"></a>2.3 标准化 ,Z 值归一化（standardization &#x2F; z-score normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行 中心化 mean centering 处理，再除以标准差进行缩放）</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190103162903434-1406801774.png"></p>
+<h3 id="2-4-最大绝对值归一化（max-abs-normalization-）：也就是将数值变为单位长度（scaling-to-unit-length），将数值范围缩放到-1-1-区间里"><a href="#2-4-最大绝对值归一化（max-abs-normalization-）：也就是将数值变为单位长度（scaling-to-unit-length），将数值范围缩放到-1-1-区间里" class="headerlink" title="2.4 最大绝对值归一化（max abs normalization ）：也就是将数值变为单位长度（scaling to unit length），将数值范围缩放到 [-1, 1] 区间里"></a>2.4 最大绝对值归一化（max abs normalization ）：也就是将数值变为单位长度（scaling to unit length），将数值范围缩放到 [-1, 1] 区间里</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190112114759202-190163995.png"> </p>
+<h3 id="2-5-稳键标准化（robust-standardization）：先减去中位数，再除以四分位间距（interquartile-range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健"><a href="#2-5-稳键标准化（robust-standardization）：先减去中位数，再除以四分位间距（interquartile-range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健" class="headerlink" title="2.5 稳键标准化（robust standardization）：先减去中位数，再除以四分位间距（interquartile range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健"></a>2.5 稳键标准化（robust standardization）：先减去中位数，再除以四分位间距（interquartile range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201908/1247570-20190811172514046-446486849.png"></p>
+<blockquote>
+<p><em>有一些时候，只对数据进行中心化和缩放是不够的，还需对数据进行白化（whitening）处理来消除特征间的线性相关性</em></p>
+</blockquote>
+<h2 id="3-标准化和归一化的区别是什么？"><a href="#3-标准化和归一化的区别是什么？" class="headerlink" title="3. 标准化和归一化的区别是什么？"></a>3. 标准化和归一化的区别是什么？</h2><h3 id="3-1-归一化-NormalizationNormalization-：将一列数据变化到某个固定区间-范围-中，通常，这个区间是-0-1-，广义的讲，可以是各种区间，比如映射到-0，1-一样可以继续映射到其他范围，图像中可能会映射到-0-255-，其他情况可能映射到-1-1"><a href="#3-1-归一化-NormalizationNormalization-：将一列数据变化到某个固定区间-范围-中，通常，这个区间是-0-1-，广义的讲，可以是各种区间，比如映射到-0，1-一样可以继续映射到其他范围，图像中可能会映射到-0-255-，其他情况可能映射到-1-1" class="headerlink" title="3.1 归一化(NormalizationNormalization)：将一列数据变化到某个固定区间(范围)中，通常，这个区间是[0, 1]，广义的讲，可以是各种区间，比如映射到[0，1]一样可以继续映射到其他范围，图像中可能会映射到[0,255]，其他情况可能映射到[-1,1]"></a>3.1 归一化(NormalizationNormalization)：将一列数据变化到某个固定区间(范围)中，通常，这个区间是[0, 1]，广义的讲，可以是各种区间，比如映射到[0，1]一样可以继续映射到其他范围，图像中可能会映射到[0,255]，其他情况可能映射到[-1,1]</h3><h3 id="3-2-标准化-StandardizationStandardization-：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的"><a href="#3-2-标准化-StandardizationStandardization-：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的" class="headerlink" title="3.2 标准化(StandardizationStandardization)：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的"></a>3.2 标准化(StandardizationStandardization)：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的</h3><p><img src="https://img-blog.csdnimg.cn/20191021220509274.png#pic_center"></p>
+<h3 id="3-3-中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值"><a href="#3-3-中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值" class="headerlink" title="3.3 中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值"></a>3.3 中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值</h3><p><img src="https://img-blog.csdnimg.cn/20191021220535129.png#pic_center"></p>
+<h2 id="4-什么时候用标准化，什么时候用归一化？"><a href="#4-什么时候用标准化，什么时候用归一化？" class="headerlink" title="4. 什么时候用标准化，什么时候用归一化？"></a>4. 什么时候用标准化，什么时候用归一化？</h2><p>某博主理解：如果你对处理后的数据范围有严格要求，那肯定是归一化，个人经验，标准化是机器学习中更通用的手段，如果你无从下手，可以直接使用标准化。如果数据不为稳定，存在极端的最大最小值，不要用归一化。</p>
+<p>在分类、聚类算法中，需要使用距离来度量相似性的时候、或者使用PCA技术进行降维的时候，标准化表现更好；在不涉及距离度量、协方差计算的时候，可以使用归一化方法。</p>
+<p><strong>在需要使用距离来度量相似性的算法中，或者使用PCA技术进行降维的时候，通常使用标准化（standardization）或均值归一化（mean normalization）比较好，但如果数据分布不是正态分布或者标准差非常小，以及需要把数据固定在 [0, 1] 范围内，那么使用最大最小值归一化（min-max normalization）比较好（min-max 常用于归一化图像的灰度值）。但是min-max比较容易受异常值的影响，如果数据集包含较多的异常值，可以考虑使用稳键归一化（robust normalization）。对于已经中心化的数据或稀疏数据的缩放，比较推荐使用最大绝对值归一化（max abs normalization ），因为它会保住数据中的０元素，不会破坏数据的稀疏性（sparsity）。</strong></p>
+<h2 id="5-什么机器学习模型需要用到特征缩放？"><a href="#5-什么机器学习模型需要用到特征缩放？" class="headerlink" title="5. 什么机器学习模型需要用到特征缩放？"></a>5. 什么机器学习模型需要用到特征缩放？</h2><h3 id="5-1-通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear-Regression）、逻辑回归（Logistic-Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural-Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。"><a href="#5-1-通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear-Regression）、逻辑回归（Logistic-Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural-Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。" class="headerlink" title="5.1 通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear Regression）、逻辑回归（Logistic Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。"></a>5.1 通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear Regression）、逻辑回归（Logistic Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。</h3><h3 id="5-2-决策树（Decision-Tree），随机森林（Random-Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。"><a href="#5-2-决策树（Decision-Tree），随机森林（Random-Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。" class="headerlink" title="5.2 决策树（Decision Tree），随机森林（Random Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。"></a>5.2 决策树（Decision Tree），随机森林（Random Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。</h3><h2 id="6-在进行特征缩放的时候需要注意的地方？"><a href="#6-在进行特征缩放的时候需要注意的地方？" class="headerlink" title="6. 在进行特征缩放的时候需要注意的地方？"></a>6. 在进行特征缩放的时候需要注意的地方？</h2><p><em>需要先把数据先拆分成训练集与验证集，在训练集上计算出需要的数值（如均值和标准值），对训练集数据做标准化&#x2F;归一化处理，然后再用之前计算出的数据（如均值和标准值）对验证集数据做相同的标准化&#x2F;归一化处理。不要在整个数据集上直接做标准化&#x2F;归一化处理，因为这样会将验证集的信息带入到训练集中，这是一个非常容易犯的错误</em></p>
+<h2 id="7-参考链接"><a href="#7-参考链接" class="headerlink" title="7. 参考链接"></a>7. 参考链接</h2><p><a href="https://www.cnblogs.com/HuZihu/p/9761161.html">https://www.cnblogs.com/HuZihu/p/9761161.html</a></p>
+<p><a href="https://blog.csdn.net/weixin_43008804/article/details/103087447">https://blog.csdn.net/weixin_43008804/article/details/103087447</a></p>
+<p><a href="https://blog.csdn.net/weixin_36604953/article/details/102652160">https://blog.csdn.net/weixin_36604953/article/details/102652160</a></p>
+]]></content>
+      <categories>
+        <category>Mathine Learning</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>维度灾难</title>
+    <url>/2022/11/23/%E7%BB%B4%E5%BA%A6%E7%81%BE%E9%9A%BE/</url>
+    <content><![CDATA[<p>今天學習機器學習的時候，發現有<em>維度災難</em>這個東西。挺感興趣的，於是一探究竟！</p>
+<span id="more"></span>
+
+<h1 id="机器学习中的维度灾难"><a href="#机器学习中的维度灾难" class="headerlink" title="机器学习中的维度灾难"></a>机器学习中的维度灾难</h1><p>在介绍机器学习的维度灾难之前，我推荐给大家一个网站，名字虽然说是<a href="https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">计算机视觉的傻瓜书</a>，但是有关机器学习的答疑部分它做得还是蛮好的。除此之外还有<a href="https://www.kdnuggets.com/news/index.html">KDnuggest</a>，也是有关机器学习的论坛。</p>
+<p>本文是参考<a href="https://www.jianshu.com/p/867193608bbd">简书-红色石头Will</a>所得到的观点，虽然他是翻译<a href="https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">计算机视觉的傻瓜书</a>的，但是对于我理解维度灾难起着指导方向的作用。</p>
+<h2 id="1-介绍维度灾难"><a href="#1-介绍维度灾难" class="headerlink" title="1.介绍维度灾难"></a>1.介绍维度灾难</h2><p>维度灾难是在设计一个分类器的时候需要注意的问题。为了得到更好的分类效果，我们可以无限的增加特征。但是事实上，特征数量超过一定值的时候，分类器的效果反而会下降。这种由于特征数量太多导致的分类效果下降的情况，就被称作是<strong>维度灾难</strong>。</p>
+<h2 id="2-维度灾难与过拟合"><a href="#2-维度灾难与过拟合" class="headerlink" title="2.维度灾难与过拟合"></a>2.维度灾难与过拟合</h2><p>貌似特征越多，越有可能实现正确分类，但是情况并非如此。一个直观的情况时，随着特征维度的增加，训练样本在特征空间中的密度是呈指数下降的。</p>
+<blockquote>
+<p>样本数不变，但是特征空间不断地增加，那训练样本在特征空间中的密度岂不是就是呈指数下降的？</p>
+</blockquote>
+<p>如果我们继续增加特征，整个特征空间维度增加，并变得越来越稀疏。由于稀疏性，我们更加容易找到一个超平面来实现分类。这是因为随着特征数量变得无限大，训练样本在最佳超平面的错误侧的可能性将会变得无限小。然而，如果我们将高维的分类结果投影到低维空间中，将会出现一个严重的问题。</p>
+<p>比如说样本数据在3D是线性可分的，但是在2D却并非如此。事实上，增加第三个维度来获得最佳的线性分类效果，等同于在低维特征空间中使用非线性分类器。其结果是，分类器学习了训练数据的噪声和异常，而对样本外的数据拟合效果并不理想，甚至很差。这个概念称为过拟合，是维度灾难的一个直接后果。</p>
+<p><em>换句话讲，如果增加特征维度，为了覆盖同样的特征值范围，防止过拟合，需要用到的样本数就会呈指数型增长！</em></p>
+<h2 id="3-维度灾难与数据稀疏程度分布不均"><a href="#3-维度灾难与数据稀疏程度分布不均" class="headerlink" title="3.维度灾难与数据稀疏程度分布不均"></a>3.维度灾难与数据稀疏程度分布不均</h2><p>我们展示了维度灾难会引起训练数据的稀疏化。使用的特征越多，数据就会变得越稀疏，从而导致分类器的分类效果就会越差。维度灾难还会造成<strong>搜索空间的数据稀疏程度</strong>分布不均。事实上，围绕原点的数据（在超立方体的中心）比在搜索空间的角落处的数据要稀疏得多。</p>
+<p>举例2D，如果大部分的样本都落在了单位内接圆里的话，会更容易分类。但是在高维的空间中，大部分的训练数据都是分布在定义为特征空间的超立方体的角落处，导致难以分类。、</p>
+<p>对于8维的超球体，大约98%的数据集中在它256个角落处。其结果是，当特征空间的维度变得无限大时，从样本点到质心的最大、最小欧氏距离的差值与其最小欧式距离的比值趋于零。因此，距离测量在高维空间中逐渐变得无效。因为分类器是基于这些距离测量的（例如Euclidean距离、Mahalanobis距离、Manhattan距离），所以低维空间特征更少，分类更加容易。同样地，在高维空间的高斯分布会变平坦且尾巴更长。</p>
+<h2 id="4-如何避免维度灾难"><a href="#4-如何避免维度灾难" class="headerlink" title="4.如何避免维度灾难"></a>4.如何避免维度灾难</h2><p>很遗憾，在分类问题中，没有固定的规则来指定该使用多少特征。事实上，用多少特征量取决于你训练样本的数量、决策边界的复杂性和使用的是啥分类器。</p>
+<p>比如说一些非线性决策边界的分类器（e.g. 神经网络、KNN分类器、决策树等），它们的分类效果虽然好，但是泛化能力差容易发生过拟合，这个时候就需要降低点维度。如果使用泛化能力稍微好点的（e.g. 贝叶斯分类器、线性分类器），那么就可以使用稍微多一点的特征。</p>
+<h2 id="5-参考链接"><a href="#5-参考链接" class="headerlink" title="5.参考链接"></a>5.参考链接</h2><blockquote>
+<p><a href="https://www.jianshu.com/p/867193608bbd">简书</a></p>
+<p><a href="https://cloud.tencent.com/developer/article/1143269">手工特征选取降维</a><br><a href="https://www.kdnuggets.com/2015/03/deep-learning-curse-dimensionality-autoencoders.html">原文</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Mathine Learning</category>
+      </categories>
   </entry>
   <entry>
     <title>激活函数</title>
@@ -270,8 +695,8 @@ im.save(output)
 <p><a href="https://www.cnblogs.com/pinard/p/6437495.html">https://www.cnblogs.com/pinard/p/6437495.html</a></p>
 </blockquote>
 ]]></content>
-      <tags>
-        <tag>machine learning</tag>
-      </tags>
+      <categories>
+        <category>Mathine Learning</category>
+      </categories>
   </entry>
 </search>

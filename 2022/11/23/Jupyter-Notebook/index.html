@@ -20,27 +20,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"fengyepiaosa.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Github文件夹有白色箭头并且不能打开?可能是因为你提交的Git文件中有叫做.git的文件！">
+    <meta name="description" content="Jupyter Notebook的常见操作-需要熟记！">
 <meta property="og:type" content="article">
-<meta property="og:title" content="github文件夹有白色箭头并且不能打开的解决办法">
-<meta property="og:url" content="https://fengyepiaosa.github.io/2022/11/20/github%E6%96%87%E4%BB%B6%E5%A4%B9%E6%9C%89%E7%99%BD%E8%89%B2%E7%AE%AD%E5%A4%B4%E5%B9%B6%E4%B8%94%E4%B8%8D%E8%83%BD%E6%89%93%E5%BC%80%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/index.html">
+<meta property="og:title" content="Jupyter Notebook">
+<meta property="og:url" content="https://fengyepiaosa.github.io/2022/11/23/Jupyter-Notebook/index.html">
 <meta property="og:site_name" content="fengyepiaosa">
-<meta property="og:description" content="Github文件夹有白色箭头并且不能打开?可能是因为你提交的Git文件中有叫做.git的文件！">
+<meta property="og:description" content="Jupyter Notebook的常见操作-需要熟记！">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-11-20T06:25:27.000Z">
-<meta property="article:modified_time" content="2022-11-23T09:24:34.816Z">
+<meta property="article:published_time" content="2022-11-23T11:18:14.000Z">
+<meta property="article:modified_time" content="2022-11-23T11:19:37.996Z">
 <meta property="article:author" content="wenfeng">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://fengyepiaosa.github.io/2022/11/20/github%E6%96%87%E4%BB%B6%E5%A4%B9%E6%9C%89%E7%99%BD%E8%89%B2%E7%AE%AD%E5%A4%B4%E5%B9%B6%E4%B8%94%E4%B8%8D%E8%83%BD%E6%89%93%E5%BC%80%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">
+<link rel="canonical" href="https://fengyepiaosa.github.io/2022/11/23/Jupyter-Notebook/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://fengyepiaosa.github.io/2022/11/20/github%E6%96%87%E4%BB%B6%E5%A4%B9%E6%9C%89%E7%99%BD%E8%89%B2%E7%AE%AD%E5%A4%B4%E5%B9%B6%E4%B8%94%E4%B8%8D%E8%83%BD%E6%89%93%E5%BC%80%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/","path":"2022/11/20/github文件夹有白色箭头并且不能打开的解决办法/","title":"github文件夹有白色箭头并且不能打开的解决办法"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://fengyepiaosa.github.io/2022/11/23/Jupyter-Notebook/","path":"2022/11/23/Jupyter-Notebook/","title":"Jupyter Notebook"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>github文件夹有白色箭头并且不能打开的解决办法 | fengyepiaosa</title>
+<title>Jupyter Notebook | fengyepiaosa</title>
   
 
 
@@ -145,7 +145,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">1.问题描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">2.</span> <span class="nav-text">2.解决方案</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Jupyter-Notebook%E5%B8%B8%E8%A7%81%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%93%8D%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">Jupyter Notebook常见快捷键操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%B8%A4%E7%A7%8D%E6%A8%A1%E5%BC%8F%E9%83%BD%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-number">1.1.</span> <span class="nav-text">1.两种模式都可以使用的快捷键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.2.</span> <span class="nav-text">2.命令模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E7%BC%96%E8%BE%91%E6%A8%A1%E5%BC%8F%EF%BC%9A%E6%8C%89Enter%E6%88%96%E9%BC%A0%E6%A0%87%E5%8D%95%E5%87%BB%E4%BB%A3%E7%A0%81%E5%9D%97%E5%86%85%E9%83%A8%E8%BF%9B%E5%85%A5"><span class="nav-number">1.3.</span> <span class="nav-text">3.编辑模式：按Enter或鼠标单击代码块内部进入</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -225,7 +225,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://fengyepiaosa.github.io/2022/11/20/github%E6%96%87%E4%BB%B6%E5%A4%B9%E6%9C%89%E7%99%BD%E8%89%B2%E7%AE%AD%E5%A4%B4%E5%B9%B6%E4%B8%94%E4%B8%8D%E8%83%BD%E6%89%93%E5%BC%80%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="https://fengyepiaosa.github.io/2022/11/23/Jupyter-Notebook/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/asuka.jpg">
@@ -238,12 +238,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="github文件夹有白色箭头并且不能打开的解决办法 | fengyepiaosa">
+      <meta itemprop="name" content="Jupyter Notebook | fengyepiaosa">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          github文件夹有白色箭头并且不能打开的解决办法
+          Jupyter Notebook
         </h1>
 
         <div class="post-meta-container">
@@ -253,15 +253,18 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2022-11-20 14:25:27" itemprop="dateCreated datePublished" datetime="2022-11-20T14:25:27+08:00">2022-11-20</time>
+      <time title="创建时间：2022-11-23 19:18:14 / 修改时间：19:19:37" itemprop="dateCreated datePublished" datetime="2022-11-23T19:18:14+08:00">2022-11-23</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
+        <i class="far fa-folder"></i>
       </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-11-23 17:24:34" itemprop="dateModified" datetime="2022-11-23T17:24:34+08:00">2022-11-23</time>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/notebook-operation/" itemprop="url" rel="index"><span itemprop="name">notebook operation</span></a>
+        </span>
     </span>
 
   
@@ -274,17 +277,44 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>Github文件夹有白色箭头并且不能打开?可能是因为你提交的Git文件中有叫做.git的文件！</p>
+        <p>Jupyter Notebook的常见操作-需要熟记！</p>
 <span id="more"></span>
 
-<h1 id="1-问题描述"><a href="#1-问题描述" class="headerlink" title="1.问题描述"></a>1.问题描述</h1><p>前几天在Git上向GitHub提交了自己的文件，但是在GitHub却无法打开文件夹，并且文件夹上面还多了一个白色的箭头？本着求知的精神，我上百度上找了找，发现是因为我提交的这个文件本身就已经是Git仓库了，而子文件里面还藏着Git仓库，也就是说子文件里还有.git隐藏文件。因为层层的嵌套关系，导致GitHub对文件的识别发生了错误。</p>
-<h1 id="2-解决方案"><a href="#2-解决方案" class="headerlink" title="2.解决方案"></a>2.解决方案</h1><p>把子文件的.git文件夹删掉就好了</p>
+<h1 id="Jupyter-Notebook常见快捷键操作"><a href="#Jupyter-Notebook常见快捷键操作" class="headerlink" title="Jupyter Notebook常见快捷键操作"></a>Jupyter Notebook常见快捷键操作</h1><blockquote>
+<p>首先要知道Jupyter有三种cell类型</p>
+</blockquote>
 <ol>
-<li>执行<code>git rm --cached [文件夹名]</code></li>
-<li>执行<code>git add [文件夹名]</code></li>
-<li>执行<code>git commit -m &quot;git folder report an error!&quot;</code></li>
-<li>执行<code>git push origin [branch_name] </code></li>
+<li><strong>Code</strong></li>
+<li><strong>Markdown</strong></li>
+<li><strong>Raw NBConvert</strong>（普通文本，运行不会输出结果）</li>
 </ol>
+<blockquote>
+<p>两种模式</p>
+</blockquote>
+<ol>
+<li><strong>编辑模式（Enter）</strong></li>
+<li><strong>命令模式（Esc）</strong></li>
+</ol>
+<h2 id="1-两种模式都可以使用的快捷键"><a href="#1-两种模式都可以使用的快捷键" class="headerlink" title="1.两种模式都可以使用的快捷键"></a>1.两种模式都可以使用的快捷键</h2><ul>
+<li><strong>Shift+Enter</strong>执行本单元代码，并且跳转到下一单元</li>
+<li><strong>Ctrl+Enter</strong>执行本单元代码，留在本单元</li>
+</ul>
+<h2 id="2-命令模式"><a href="#2-命令模式" class="headerlink" title="2.命令模式"></a>2.命令模式</h2><ul>
+<li><strong>Y</strong>：cell切换到Code模式</li>
+<li><strong>M</strong>：cell切换到Markdown模式</li>
+<li><strong>A</strong>：在当前cell的上面添加cell</li>
+<li><strong>B</strong>：在当前cell的下面添加cell</li>
+<li><strong>双击D</strong>：删除当前cell</li>
+<li><strong>Z</strong>：回退</li>
+<li><strong>Ctrl+Shift+减号</strong>：分隔cell，在光标处</li>
+<li><strong>L</strong>：为当前cell加上行号</li>
+</ul>
+<h2 id="3-编辑模式：按Enter或鼠标单击代码块内部进入"><a href="#3-编辑模式：按Enter或鼠标单击代码块内部进入" class="headerlink" title="3.编辑模式：按Enter或鼠标单击代码块内部进入"></a>3.编辑模式：按Enter或鼠标单击代码块内部进入</h2><ul>
+<li>**Ctrl+鼠标单击(Mac:CMD+鼠标单击)**：多光标操作</li>
+<li>**Ctrl+Z(Mac:CMD+Z)**：回退</li>
+<li><strong>Tab键</strong>：代码补全</li>
+<li>**Ctrl(Mac:CMD+&#x2F;)**：注释多行代码</li>
+</ul>
 
     </div>
 
@@ -337,13 +367,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/11/20/hello-world/" rel="prev" title="Hello World">
-                  <i class="fa fa-chevron-left"></i> Hello World
+                <a href="/2022/11/23/%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81%E8%A1%A5%E5%85%85/" rel="prev" title="交叉验证补充">
+                  <i class="fa fa-chevron-left"></i> 交叉验证补充
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/11/23/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E5%A4%A7%E8%B5%9B/" rel="next" title="数学建模大赛">
-                  数学建模大赛 <i class="fa fa-chevron-right"></i>
+                <a href="/2022/11/23/%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE/" rel="next" title="特征缩放">
+                  特征缩放 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>

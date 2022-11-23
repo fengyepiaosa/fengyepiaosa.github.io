@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/Blue.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_small.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"fengyepiaosa.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="了解什么是L1正则化和L2正则化，以及什么是正则化？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="L1和L2正则化">
+<meta property="og:url" content="https://fengyepiaosa.github.io/2022/11/23/L1%E5%92%8CL2%E6%AD%A3%E5%88%99%E5%8C%96/index.html">
+<meta property="og:site_name" content="fengyepiaosa">
+<meta property="og:description" content="了解什么是L1正则化和L2正则化，以及什么是正则化？">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020031610373195.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTk2MDg5MA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200316112556508.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTk2MDg5MA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTYwOTA0MTg0MjI4MTU4?x-oss-process=image/format,png#pic_center">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTYwOTA0MTg0MzE0MzMz?x-oss-process=image/format,png#pic_center">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTYwOTA0MTg0NDI4NDU5?x-oss-process=image/format,png#pic_center">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTYwOTA0MTg0NjQ2OTYz?x-oss-process=image/format,png#pic_center">
+<meta property="article:published_time" content="2022-11-23T11:21:44.000Z">
+<meta property="article:modified_time" content="2022-11-23T11:22:47.227Z">
+<meta property="article:author" content="wenfeng">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/2020031610373195.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTk2MDg5MA==,size_16,color_FFFFFF,t_70">
+
+
+<link rel="canonical" href="https://fengyepiaosa.github.io/2022/11/23/L1%E5%92%8CL2%E6%AD%A3%E5%88%99%E5%8C%96/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://fengyepiaosa.github.io/2022/11/23/L1%E5%92%8CL2%E6%AD%A3%E5%88%99%E5%8C%96/","path":"2022/11/23/L1和L2正则化/","title":"L1和L2正则化"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>L1和L2正则化 | fengyepiaosa</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+  
+
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">fengyepiaosa</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录生活！</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#L1%E6%AD%A3%E5%88%99%E5%8C%96%E5%92%8CL2%E6%AD%A3%E5%88%99%E5%8C%96"><span class="nav-number">1.</span> <span class="nav-text">L1正则化和L2正则化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%AD%A3%E5%88%99%E5%8C%96"><span class="nav-number">1.1.</span> <span class="nav-text">1. 正则化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E4%BB%80%E4%B9%88%E6%98%AF%E6%AD%A3%E5%88%99%E5%8C%96%EF%BC%9F"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 什么是正则化？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E6%AD%A3%E5%88%99%E5%8C%96%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8%EF%BC%9F"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 正则化有什么用？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E6%AD%A3%E5%88%99%E5%8C%96%E6%80%8E%E4%B9%88%E7%94%A8%EF%BC%9F"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 正则化怎么用？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%A8%80%E7%96%8F%E6%A8%A1%E5%9E%8B%E4%B8%8E%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.2.</span> <span class="nav-text">2. 稀疏模型与特征选择的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-L1%E6%AD%A3%E5%88%99%E5%8C%96"><span class="nav-number">1.3.</span> <span class="nav-text">3. L1正则化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E5%8C%96%E5%92%8C%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.3.1.</span> <span class="nav-text">正则化和特征选择的关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-L2%E6%AD%A3%E5%88%99%E5%8C%96"><span class="nav-number">1.4.</span> <span class="nav-text">4. L2正则化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%9A%84%E7%AD%89%E5%80%BC%E7%BA%BF%E4%B8%8E%E6%AD%A3%E5%88%99%E5%8C%96%E5%87%BD%E6%95%B0%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BA%A4%E7%82%B9%E6%98%AF%E6%9C%80%E4%BC%98%E8%A7%A3%EF%BC%9F"><span class="nav-number">1.4.1.</span> <span class="nav-text">为什么梯度下降的等值线与正则化函数第一次交点是最优解？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">1.5.</span> <span class="nav-text">参考链接</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="wenfeng"
+      src="/uploads/asuka.jpg">
+  <p class="site-author-name" itemprop="name">wenfeng</p>
+  <div class="site-description" itemprop="description">欢迎来到wenfeng的博客！</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/fengyepiaosa" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;fengyepiaosa" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://plus.google.com/fengyepiaosa" title="Google → https:&#x2F;&#x2F;plus.google.com&#x2F;fengyepiaosa" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>Google</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://mobile.twitter.com/Kiddwenfeng" title="Twitter → https:&#x2F;&#x2F;mobile.twitter.com&#x2F;Kiddwenfeng" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/profile.php?id=100086193167274" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;profile.php?id&#x3D;100086193167274" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/channel/UCYtkEykUyHVBzpy4CgU1Zuw" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;channel&#x2F;UCYtkEykUyHVBzpy4CgU1Zuw" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/fengyepiaosa/" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;fengyepiaosa&#x2F;" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fengyepiaosa.github.io/2022/11/23/L1%E5%92%8CL2%E6%AD%A3%E5%88%99%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/asuka.jpg">
+      <meta itemprop="name" content="wenfeng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fengyepiaosa">
+      <meta itemprop="description" content="欢迎来到wenfeng的博客！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="L1和L2正则化 | fengyepiaosa">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          L1和L2正则化
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-11-23 19:21:44 / 修改时间：19:22:47" itemprop="dateCreated datePublished" datetime="2022-11-23T19:21:44+08:00">2022-11-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Mathine-Learning/" itemprop="url" rel="index"><span itemprop="name">Mathine Learning</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>了解什么是L1正则化和L2正则化，以及什么是正则化？</p>
+<span id="more"></span>
+
+<h1 id="L1正则化和L2正则化"><a href="#L1正则化和L2正则化" class="headerlink" title="L1正则化和L2正则化"></a>L1正则化和L2正则化</h1><h2 id="1-正则化"><a href="#1-正则化" class="headerlink" title="1. 正则化"></a>1. 正则化</h2><h3 id="1-1-什么是正则化？"><a href="#1-1-什么是正则化？" class="headerlink" title="1.1 什么是正则化？"></a>1.1 什么是正则化？</h3><p>Regularization，中文翻译过来可以称为正则化，或者叫做规范化。什么是规则？闭卷考试中不能查书，这就是规则，一个限制。同理，在这里，规则化（正则化）就是说给损失函数加上一些限制，通过这种规则去规范他们再接下来的循环迭代中，不要自我膨胀。</p>
+<h3 id="1-2-正则化有什么用？"><a href="#1-2-正则化有什么用？" class="headerlink" title="1.2 正则化有什么用？"></a>1.2 正则化有什么用？</h3><p><img src="https://img-blog.csdnimg.cn/2020031610373195.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTk2MDg5MA==,size_16,color_FFFFFF,t_70" alt="回归模型的拟合程度"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200316112556508.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTk2MDg5MA==,size_16,color_FFFFFF,t_70" alt="分类模型的拟合程度"></p>
+<p>可以看出，两张图的最后一个模型，都存在着过拟合的现象。</p>
+<blockquote>
+<p>解决过拟合的方案有：<br>清洗数据<br>减少模型参数，降低模型复杂度<br>增加惩罚因子（正则化），保留所有的特征，但是减少参数的大小（magnitude）</p>
+</blockquote>
+<p>可见，正则化就是解决模型过拟合的其中一个方法。</p>
+<h3 id="1-3-正则化怎么用？"><a href="#1-3-正则化怎么用？" class="headerlink" title="1.3 正则化怎么用？"></a>1.3 正则化怎么用？</h3><p>机器学习中几乎都可以看到损失函数后面会添加一个额外项，常用的额外项一般有两种，一般英文称作 ℓ1 \ell_1ℓ 1-norm 和 ℓ2 \ell_2ℓ2​-norm，中文称作 L1正则化 和 L2正则化，或者 L1范数 和 L2范数。</p>
+<p>L1正则化和L2正则化可以看做是损失函数的惩罚项。所谓『惩罚』是指对损失函数中的某些参数做一些限制。<strong>对于线性回归模型，使用L1正则化的模型建叫做Lasso回归，使用L2正则化的模型叫做Ridge回归（岭回归）</strong>。下图是Python中Lasso回归的损失函数，式中加号后面一项α ∣ ∣ w ∣ ∣ 1 \alpha||w||_1α∣∣w∣∣ 1即为L1正则化项。</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTYwOTA0MTg0MjI4MTU4?x-oss-process=image/format,png#pic_center" alt="Lasso回归损失函数"></p>
+<p>下图是Python中Ridge回归的损失函数，式中加号后面一项α ∣ ∣ w ∣ ∣ 2 2 \alpha||w||_2^2α∣∣w∣∣22即为L2正则化项。</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTYwOTA0MTg0MzE0MzMz?x-oss-process=image/format,png#pic_center" alt="岭回归损失函数"></p>
+<p>一般回归分析中w表示特征的系数，从上式可以看到正则化项是对系数做了处理（限制）。L1正则化和L2正则化的说明如下：</p>
+<ul>
+<li>L1正则化是指权值向量w中各个元素的绝对值之和，通常表示为∣ ∣ w ∣ ∣ 1 ||w||_1∣∣w∣∣ 1<br>​- L2正则化是指权值向量w中各个元素的平方和然后再求平方根（可以看到Ridge回归的L2正则化项有平方符号），通常表示为∣ ∣ w ∣ ∣ 2 ||w||_2∣∣w∣∣ 2​</li>
+</ul>
+<p>一般都会在正则化项之前添加一个系数，Python的机器学习包sklearn中用α表示，一些文章也用λ表示。这个系数需要用户指定。</p>
+<ul>
+<li>L1正则化可以产生稀疏权值矩阵，即产生一个稀疏模型，可以用于特征选择</li>
+<li>L2正则化可以防止模型过拟合（overfitting）；一定程度上，L1也可以防止过拟合</li>
+</ul>
+<h2 id="2-稀疏模型与特征选择的关系"><a href="#2-稀疏模型与特征选择的关系" class="headerlink" title="2. 稀疏模型与特征选择的关系"></a>2. 稀疏模型与特征选择的关系</h2><blockquote>
+<p>上面提到L1正则化有助于生成一个稀疏权值矩阵，进而可以用于特征选择。为什么要生成一个稀疏矩阵？</p>
+</blockquote>
+<p>稀疏矩阵指的是很多元素为0，只有少数元素是非零值的矩阵，即得到的线性回归模型的大部分系数都是0. 通常机器学习中特征数量很多，例如文本处理时，如果将一个词组（term）作为一个特征，那么特征数量会达到上万个（bigram）。在预测或分类时，那么多特征显然难以选择，但是如果代入这些特征得到的模型是一个稀疏模型，表示只有少数特征对这个模型有贡献，绝大部分特征是没有贡献的，或者贡献微小（因为它们前面的系数是0或者是很小的值，即使去掉对模型也没有什么影响），此时我们就可以只关注系数是非零值的特征。这就是稀疏模型与特征选择的关系。</p>
+<h2 id="3-L1正则化"><a href="#3-L1正则化" class="headerlink" title="3. L1正则化"></a>3. L1正则化</h2><p>为什么L1正则化可以产生稀疏模型（L1是怎么让系数等于零的）？</p>
+<h3 id="正则化和特征选择的关系"><a href="#正则化和特征选择的关系" class="headerlink" title="正则化和特征选择的关系"></a>正则化和特征选择的关系</h3><p>假设有如下带L1正则化的损失函数：<br>J &#x3D; J 0 + α ∑ w ∣ w ∣ (1) J &#x3D; J_0 + \alpha \sum_w{|w|} \tag{1}J&#x3D;J0​+α w∑∣w∣(1)</p>
+<p>其中J 0 J_0J 0是原始的损失函数，加号后面的一项是L1正则化项，α \alphaα是正则化系数。注意到L1正则化是权值的绝对值之和，J JJ是带有绝对值符号的函数，因此J JJ是不完全可微的。机器学习的任务就是要通过一些方法（比如梯度下降）求出损失函数的最小值。当我们在原始损失函数J 0 J_0J 0​<br> 后添加L1正则化项时，相当于对J 0 J_0J<br>0​<br> 做了一个约束。令L &#x3D; α ∑ w ∣ w ∣ L &#x3D; \alpha \sum_w{|w|}L&#x3D;α∑<br>w​<br> ∣w∣，则J &#x3D; J 0 + L J &#x3D; J_0 + LJ&#x3D;J<br>0​<br> +L，此时我们的任务变成在L LL约束下求出J 0 J_0J<br>0​<br> 取最小值的解。考虑二维的情况，即只有两个权值w 1 w^1w<br>1<br> 和w 2 w^2w<br>2<br> ，此时L &#x3D; ∣ w 1 ∣ + ∣ w 2 ∣ L &#x3D; |w^1|+|w^2|L&#x3D;∣w<br>1<br> ∣+∣w<br>2<br> ∣。对于梯度下降法，求解J 0 J_0J<br>0​<br> 的过程可以画出等值线，同时L1正则化的函数L LL也可以在w 1 w 2 w^1w^2w<br>1<br> w<br>2的二维平面上画出来。如下图：</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTYwOTA0MTg0NDI4NDU5?x-oss-process=image/format,png#pic_center" alt="L1正则化"></p>
+<p>图中等值线是J 0 J_0J 0​<br> 的等值线，黑色方形是L LL函数的图形。L &#x3D; ∣ w 1 ∣ + ∣ w 2 ∣ L &#x3D; |w^1|+|w^2|L&#x3D;∣w<br>1<br> ∣+∣w<br>2<br> ∣，这个函数画出来就是一个方框（可以自己动手画一下）。<br>在图中，当J 0 J_0J<br>0​<br> 等值线与L LL图形首次相交的地方就是最优解。上图中J 0 J_0J<br>0​<br> 与L LL在L LL的一个顶点处相交，这个顶点就是最优解。注意到这个顶点的值是( w 1 , w 2 ) &#x3D; ( 0 , w ) (w^1, w^2) &#x3D; (0, w)(w<br>1<br> ,w<br>2<br> )&#x3D;(0,w)。可以直观想象，因为L LL函数有很多『突出的角』（二维情况下四个，多维情况下更多），J 0 J_0J<br>0​<br> 与这些角接触的机率会远大于与L LL其它部位接触的机率（这是很直觉的想象，突出的角比直线的边离等值线更近写），而在这些角上，会有很多权值等于0（因为角就在坐标轴上），这就是为什么L1正则化可以产生稀疏模型，进而可以用于特征选择。</p>
+<p>而正则化前面的系数α \alphaα，可以控制L LL图形的大小。α \alphaα越小，L LL的图形越大（上图中的黑色方框）；α \alphaα越大，L LL的图形就越小，可以小到黑色方框只超出原点范围一点点，这是最优点的值( w 1 , w 2 ) &#x3D; ( 0 , w ) (w1,w2)&#x3D;(0,w)(w1,w2)&#x3D;(0,w)中的w ww可以取到很小的值。</p>
+<p>我觉得下面的博主讲的挺易懂的：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/u011426016/article/details/119836598">https://blog.csdn.net/u011426016/article/details/119836598</a></p>
+<h2 id="4-L2正则化"><a href="#4-L2正则化" class="headerlink" title="4. L2正则化"></a>4. L2正则化</h2><p>假设有如下带L2正则化的损失函数：</p>
+<p>J &#x3D; J 0 + α ∑ w w 2 (2) J &#x3D; J_0 + \alpha \sum_w{w^2} \tag{2}<br>J&#x3D;J<br>0​<br> +α<br>w<br>∑​<br> w<br>2<br> (2)</p>
+<p>同样可以画出他们在二维平面上的图形，如下：</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTYwOTA0MTg0NjQ2OTYz?x-oss-process=image/format,png#pic_center" alt="L2正则化"></p>
+<p>二维平面下L2正则化的函数图形是个圆（绝对值的平方和，是个圆），与方形相比，被磨去了棱角。因此J 0 J_0J<br>0​<br> 与L LL相交时使得w 1 w^1w<br>1<br> 或w 2 w^2w<br>2<br> 等于零的机率小了许多（这个也是一个很直观的想象），这就是为什么L2正则化不具有稀疏性的原因，因为不太可能出现多数w ww都为0的情况。</p>
+<h3 id="为什么梯度下降的等值线与正则化函数第一次交点是最优解？"><a href="#为什么梯度下降的等值线与正则化函数第一次交点是最优解？" class="headerlink" title="为什么梯度下降的等值线与正则化函数第一次交点是最优解？"></a>为什么梯度下降的等值线与正则化函数第一次交点是最优解？</h3><p>评论中有人问到过这个问题，这是带约束的最优化问题。这应该是在大一的高等数学就学到知识点，因为这里要用到拉格朗日乘子。如果有这样的问题，就需要复习一下高等数学了。这里有一个比较详细的数学讲解，可以参考：带约束的最优化问题。</p>
+<p>如果还不清楚的话，可以参考博客：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/jinping_shi/article/details/52433975">https://blog.csdn.net/jinping_shi/article/details/52433975</a></p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zingp/p/10375691.html">https://www.cnblogs.com/zingp/p/10375691.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/skyfsm/p/8456968.html">https://www.cnblogs.com/skyfsm/p/8456968.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u012162613/article/details/44261657?spm=1001.2101.3001.6650.3&amp;utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-3-44261657-blog-104891561.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-3-44261657-blog-104891561.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=6">https://blog.csdn.net/u012162613/article/details/44261657?spm=1001.2101.3001.6650.3&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-3-44261657-blog-104891561.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-3-44261657-blog-104891561.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=6</a></p>
+<p><a target="_blank" rel="noopener" href="https://songjian.blog.csdn.net/article/details/104891561?spm=1001.2101.3001.6650.1&amp;utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-1-104891561-blog-79425831.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-1-104891561-blog-79425831.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=2">https://songjian.blog.csdn.net/article/details/104891561?spm=1001.2101.3001.6650.1&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-104891561-blog-79425831.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-104891561-blog-79425831.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=2</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/haima1998/article/details/79425831">https://blog.csdn.net/haima1998/article/details/79425831</a></p>
+
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://mobile.twitter.com/Kiddwenfeng">
+          <span class="icon">
+            <i class="fab fa-twitter"></i>
+          </span>
+
+          <span class="label">Twitter</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://github.com/fengyepiaosa">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+
+          <span class="label">GitHub</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://www.instagram.com/fengyepiaosa/">
+          <span class="icon">
+            <i class="far fa-instagram"></i>
+          </span>
+
+          <span class="label">Instagram</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/11/23/%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE/" rel="prev" title="特征缩放">
+                  <i class="fa fa-chevron-left"></i> 特征缩放
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wenfeng</span>
+</div>
+
+<!--
+隐藏网页底部 powered By Hexo / 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+-->
+
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

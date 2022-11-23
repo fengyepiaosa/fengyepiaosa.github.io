@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/Blue.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_small.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"fengyepiaosa.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="将数据进行归一化和标准化可以使不同维度的特征放在一起进行比较，可以大大提高模型的准确性。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="特征缩放">
+<meta property="og:url" content="https://fengyepiaosa.github.io/2022/11/23/%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE/index.html">
+<meta property="og:site_name" content="fengyepiaosa">
+<meta property="og:description" content="将数据进行归一化和标准化可以使不同维度的特征放在一起进行比较，可以大大提高模型的准确性。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191113192133110.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzAwODgwNA==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190103162752557-711062993.png">
+<meta property="og:image" content="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190103162807303-1305019357.png">
+<meta property="og:image" content="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190103162903434-1406801774.png">
+<meta property="og:image" content="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190112114759202-190163995.png">
+<meta property="og:image" content="https://img2018.cnblogs.com/blog/1247570/201908/1247570-20190811172514046-446486849.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191021220509274.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191021220535129.png#pic_center">
+<meta property="article:published_time" content="2022-11-23T11:19:59.000Z">
+<meta property="article:modified_time" content="2022-11-23T11:21:12.786Z">
+<meta property="article:author" content="wenfeng">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20191113192133110.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzAwODgwNA==,size_16,color_FFFFFF,t_70">
+
+
+<link rel="canonical" href="https://fengyepiaosa.github.io/2022/11/23/%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://fengyepiaosa.github.io/2022/11/23/%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE/","path":"2022/11/23/特征缩放/","title":"特征缩放"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>特征缩放 | fengyepiaosa</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+  
+
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">fengyepiaosa</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录生活！</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE"><span class="nav-number">1.</span> <span class="nav-text">特征缩放</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%BF%9B%E8%A1%8C%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE"><span class="nav-number">1.1.</span> <span class="nav-text">1. 为什么要进行特征缩放</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E7%BB%9F%E4%B8%80%E7%89%B9%E5%BE%81%E7%9A%84%E6%9D%83%E9%87%8D%E5%92%8C%E6%8F%90%E5%8D%87%E6%A8%A1%E5%9E%8B%E5%87%86%E7%A1%AE%E6%80%A7"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 统一特征的权重和提升模型准确性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E6%8F%90%E5%8D%87%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95%E7%9A%84%E6%94%B6%E6%95%9B%E9%80%9F%E5%BA%A6"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 提升梯度下降法的收敛速度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE%E7%9A%84%E6%96%B9%E6%B3%95%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="nav-number">1.2.</span> <span class="nav-text">2. 特征缩放的方法有哪些？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E6%9C%80%E5%A4%A7%E6%9C%80%E5%B0%8F%E5%80%BC%E5%BD%92%E4%B8%80%E5%8C%96%EF%BC%88min-max-normalization%EF%BC%89%EF%BC%9A%E5%B0%86%E6%95%B0%E5%80%BC%E8%8C%83%E5%9B%B4%E7%BC%A9%E6%94%BE%E5%88%B0-0-1-%E5%8C%BA%E9%97%B4%E9%87%8C"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 最大最小值归一化（min-max normalization）：将数值范围缩放到 [0, 1] 区间里</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E5%9D%87%E5%80%BC%E5%BD%92%E4%B8%80%E5%8C%96%EF%BC%88mean-normalization%EF%BC%89%EF%BC%9A%E5%B0%86%E6%95%B0%E5%80%BC%E8%8C%83%E5%9B%B4%E7%BC%A9%E6%94%BE%E5%88%B0-1-1-%E5%8C%BA%E9%97%B4%E9%87%8C%EF%BC%8C%E4%B8%94%E6%95%B0%E6%8D%AE%E7%9A%84%E5%9D%87%E5%80%BC%E5%8F%98%E4%B8%BA0"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 均值归一化（mean normalization）：将数值范围缩放到 [-1, 1] 区间里，且数据的均值变为0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E6%A0%87%E5%87%86%E5%8C%96-Z-%E5%80%BC%E5%BD%92%E4%B8%80%E5%8C%96%EF%BC%88standardization-x2F-z-score-normalization%EF%BC%89%EF%BC%9A%E5%B0%86%E6%95%B0%E5%80%BC%E7%BC%A9%E6%94%BE%E5%88%B00%E9%99%84%E8%BF%91%EF%BC%8C%E4%B8%94%E6%95%B0%E6%8D%AE%E7%9A%84%E5%88%86%E5%B8%83%E5%8F%98%E4%B8%BA%E5%9D%87%E5%80%BC%E4%B8%BA0%EF%BC%8C%E6%A0%87%E5%87%86%E5%B7%AE%E4%B8%BA1%E7%9A%84%E6%A0%87%E5%87%86%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%EF%BC%88%E5%85%88%E5%87%8F%E5%8E%BB%E5%9D%87%E5%80%BC%E6%9D%A5%E5%AF%B9%E7%89%B9%E5%BE%81%E8%BF%9B%E8%A1%8C-%E4%B8%AD%E5%BF%83%E5%8C%96-mean-centering-%E5%A4%84%E7%90%86%EF%BC%8C%E5%86%8D%E9%99%A4%E4%BB%A5%E6%A0%87%E5%87%86%E5%B7%AE%E8%BF%9B%E8%A1%8C%E7%BC%A9%E6%94%BE%EF%BC%89"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 标准化 ,Z 值归一化（standardization &#x2F; z-score normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行 中心化 mean centering 处理，再除以标准差进行缩放）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-%E6%9C%80%E5%A4%A7%E7%BB%9D%E5%AF%B9%E5%80%BC%E5%BD%92%E4%B8%80%E5%8C%96%EF%BC%88max-abs-normalization-%EF%BC%89%EF%BC%9A%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%B0%86%E6%95%B0%E5%80%BC%E5%8F%98%E4%B8%BA%E5%8D%95%E4%BD%8D%E9%95%BF%E5%BA%A6%EF%BC%88scaling-to-unit-length%EF%BC%89%EF%BC%8C%E5%B0%86%E6%95%B0%E5%80%BC%E8%8C%83%E5%9B%B4%E7%BC%A9%E6%94%BE%E5%88%B0-1-1-%E5%8C%BA%E9%97%B4%E9%87%8C"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.4 最大绝对值归一化（max abs normalization ）：也就是将数值变为单位长度（scaling to unit length），将数值范围缩放到 [-1, 1] 区间里</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-%E7%A8%B3%E9%94%AE%E6%A0%87%E5%87%86%E5%8C%96%EF%BC%88robust-standardization%EF%BC%89%EF%BC%9A%E5%85%88%E5%87%8F%E5%8E%BB%E4%B8%AD%E4%BD%8D%E6%95%B0%EF%BC%8C%E5%86%8D%E9%99%A4%E4%BB%A5%E5%9B%9B%E5%88%86%E4%BD%8D%E9%97%B4%E8%B7%9D%EF%BC%88interquartile-range%EF%BC%89%EF%BC%8C%E5%9B%A0%E4%B8%BA%E4%B8%8D%E6%B6%89%E5%8F%8A%E6%9E%81%E5%80%BC%EF%BC%8C%E5%9B%A0%E6%AD%A4%E5%9C%A8%E6%95%B0%E6%8D%AE%E9%87%8C%E6%9C%89%E5%BC%82%E5%B8%B8%E5%80%BC%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%E8%A1%A8%E7%8E%B0%E6%AF%94%E8%BE%83%E7%A8%B3%E5%81%A5"><span class="nav-number">1.2.5.</span> <span class="nav-text">2.5 稳键标准化（robust standardization）：先减去中位数，再除以四分位间距（interquartile range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%A0%87%E5%87%86%E5%8C%96%E5%92%8C%E5%BD%92%E4%B8%80%E5%8C%96%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.3.</span> <span class="nav-text">3. 标准化和归一化的区别是什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E5%BD%92%E4%B8%80%E5%8C%96-NormalizationNormalization-%EF%BC%9A%E5%B0%86%E4%B8%80%E5%88%97%E6%95%B0%E6%8D%AE%E5%8F%98%E5%8C%96%E5%88%B0%E6%9F%90%E4%B8%AA%E5%9B%BA%E5%AE%9A%E5%8C%BA%E9%97%B4-%E8%8C%83%E5%9B%B4-%E4%B8%AD%EF%BC%8C%E9%80%9A%E5%B8%B8%EF%BC%8C%E8%BF%99%E4%B8%AA%E5%8C%BA%E9%97%B4%E6%98%AF-0-1-%EF%BC%8C%E5%B9%BF%E4%B9%89%E7%9A%84%E8%AE%B2%EF%BC%8C%E5%8F%AF%E4%BB%A5%E6%98%AF%E5%90%84%E7%A7%8D%E5%8C%BA%E9%97%B4%EF%BC%8C%E6%AF%94%E5%A6%82%E6%98%A0%E5%B0%84%E5%88%B0-0%EF%BC%8C1-%E4%B8%80%E6%A0%B7%E5%8F%AF%E4%BB%A5%E7%BB%A7%E7%BB%AD%E6%98%A0%E5%B0%84%E5%88%B0%E5%85%B6%E4%BB%96%E8%8C%83%E5%9B%B4%EF%BC%8C%E5%9B%BE%E5%83%8F%E4%B8%AD%E5%8F%AF%E8%83%BD%E4%BC%9A%E6%98%A0%E5%B0%84%E5%88%B0-0-255-%EF%BC%8C%E5%85%B6%E4%BB%96%E6%83%85%E5%86%B5%E5%8F%AF%E8%83%BD%E6%98%A0%E5%B0%84%E5%88%B0-1-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 归一化(NormalizationNormalization)：将一列数据变化到某个固定区间(范围)中，通常，这个区间是[0, 1]，广义的讲，可以是各种区间，比如映射到[0，1]一样可以继续映射到其他范围，图像中可能会映射到[0,255]，其他情况可能映射到[-1,1]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E6%A0%87%E5%87%86%E5%8C%96-StandardizationStandardization-%EF%BC%9A%E5%B0%86%E6%95%B0%E6%8D%AE%E5%8F%98%E6%8D%A2%E4%B8%BA%E5%9D%87%E5%80%BC%E4%B8%BA0%EF%BC%8C%E6%A0%87%E5%87%86%E5%B7%AE%E4%B8%BA1%E7%9A%84%E5%88%86%E5%B8%83%E5%88%87%E8%AE%B0%EF%BC%8C%E5%B9%B6%E9%9D%9E%E4%B8%80%E5%AE%9A%E6%98%AF%E6%AD%A3%E6%80%81%E7%9A%84"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 标准化(StandardizationStandardization)：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E4%B8%AD%E5%BF%83%E5%8C%96%EF%BC%9A%E5%8F%A6%E5%A4%96%EF%BC%8C%E8%BF%98%E6%9C%89%E4%B8%80%E7%A7%8D%E5%A4%84%E7%90%86%E5%8F%AB%E5%81%9A%E4%B8%AD%E5%BF%83%E5%8C%96%EF%BC%8C%E4%B9%9F%E5%8F%AB%E9%9B%B6%E5%9D%87%E5%80%BC%E5%A4%84%E7%90%86%EF%BC%8C%E5%B0%B1%E6%98%AF%E5%B0%86%E6%AF%8F%E4%B8%AA%E5%8E%9F%E5%A7%8B%E6%95%B0%E6%8D%AE%E5%87%8F%E5%8E%BB%E8%BF%99%E4%BA%9B%E6%95%B0%E6%8D%AE%E7%9A%84%E5%9D%87%E5%80%BC"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.3 中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8%E6%A0%87%E5%87%86%E5%8C%96%EF%BC%8C%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8%E5%BD%92%E4%B8%80%E5%8C%96%EF%BC%9F"><span class="nav-number">1.4.</span> <span class="nav-text">4. 什么时候用标准化，什么时候用归一化？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E4%BB%80%E4%B9%88%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B%E9%9C%80%E8%A6%81%E7%94%A8%E5%88%B0%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE%EF%BC%9F"><span class="nav-number">1.5.</span> <span class="nav-text">5. 什么机器学习模型需要用到特征缩放？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-%E9%80%9A%E8%BF%87%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E6%B3%95%E6%B1%82%E8%A7%A3%E7%9A%84%E6%A8%A1%E5%9E%8B%E9%9C%80%E8%A6%81%E8%BF%9B%E8%A1%8C%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE%EF%BC%8C%E8%BF%99%E5%8C%85%E6%8B%AC%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%EF%BC%88Linear-Regression%EF%BC%89%E3%80%81%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%EF%BC%88Logistic-Regression%EF%BC%89%E3%80%81%E6%84%9F%E7%9F%A5%E6%9C%BA%EF%BC%88Perceptron%EF%BC%89%E3%80%81%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA%EF%BC%88SVM%EF%BC%89%E3%80%81%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%88Neural-Network%EF%BC%89%E7%AD%89%E6%A8%A1%E5%9E%8B%E3%80%82%E6%AD%A4%E5%A4%96%EF%BC%8C%E8%BF%91%E9%82%BB%E6%B3%95%EF%BC%88KNN%EF%BC%89%EF%BC%8CK%E5%9D%87%E5%80%BC%E8%81%9A%E7%B1%BB%EF%BC%88K-Means%EF%BC%89%E7%AD%89%E9%9C%80%E8%A6%81%E6%A0%B9%E6%8D%AE%E6%95%B0%E6%8D%AE%E9%97%B4%E7%9A%84%E8%B7%9D%E7%A6%BB%E6%9D%A5%E5%88%92%E5%88%86%E6%95%B0%E6%8D%AE%E7%9A%84%E7%AE%97%E6%B3%95%E4%B9%9F%E9%9C%80%E8%A6%81%E8%BF%9B%E8%A1%8C%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE%E3%80%82%E4%B8%BB%E6%88%90%E5%88%86%E5%88%86%E6%9E%90%EF%BC%88PCA%EF%BC%89%EF%BC%8C%E7%BA%BF%E6%80%A7%E5%88%A4%E5%88%AB%E5%88%86%E6%9E%90%EF%BC%88LDA%EF%BC%89%E7%AD%89%E9%9C%80%E8%A6%81%E8%AE%A1%E7%AE%97%E7%89%B9%E5%BE%81%E7%9A%84%E6%96%B9%E5%B7%AE%E7%9A%84%E7%AE%97%E6%B3%95%E4%B9%9F%E4%BC%9A%E5%8F%97%E5%88%B0%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE%E7%9A%84%E5%BD%B1%E5%93%8D%E3%80%82"><span class="nav-number">1.5.1.</span> <span class="nav-text">5.1 通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear Regression）、逻辑回归（Logistic Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E5%86%B3%E7%AD%96%E6%A0%91%EF%BC%88Decision-Tree%EF%BC%89%EF%BC%8C%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%EF%BC%88Random-Forest%EF%BC%89%E7%AD%89%E5%9F%BA%E4%BA%8E%E6%A0%91%E7%9A%84%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B%E4%B8%8D%E9%9C%80%E8%A6%81%E8%BF%9B%E8%A1%8C%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE%EF%BC%8C%E5%9B%A0%E4%B8%BA%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE%E4%B8%8D%E4%BC%9A%E6%94%B9%E5%8F%98%E6%A0%B7%E6%9C%AC%E5%9C%A8%E7%89%B9%E5%BE%81%E4%B8%8A%E7%9A%84%E4%BF%A1%E6%81%AF%E5%A2%9E%E7%9B%8A%E3%80%82"><span class="nav-number">1.5.2.</span> <span class="nav-text">5.2 决策树（Decision Tree），随机森林（Random Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%9C%A8%E8%BF%9B%E8%A1%8C%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE%E7%9A%84%E6%97%B6%E5%80%99%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E5%9C%B0%E6%96%B9%EF%BC%9F"><span class="nav-number">1.6.</span> <span class="nav-text">6. 在进行特征缩放的时候需要注意的地方？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">1.7.</span> <span class="nav-text">7. 参考链接</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="wenfeng"
+      src="/uploads/asuka.jpg">
+  <p class="site-author-name" itemprop="name">wenfeng</p>
+  <div class="site-description" itemprop="description">欢迎来到wenfeng的博客！</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/fengyepiaosa" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;fengyepiaosa" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://plus.google.com/fengyepiaosa" title="Google → https:&#x2F;&#x2F;plus.google.com&#x2F;fengyepiaosa" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>Google</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://mobile.twitter.com/Kiddwenfeng" title="Twitter → https:&#x2F;&#x2F;mobile.twitter.com&#x2F;Kiddwenfeng" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/profile.php?id=100086193167274" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;profile.php?id&#x3D;100086193167274" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/channel/UCYtkEykUyHVBzpy4CgU1Zuw" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;channel&#x2F;UCYtkEykUyHVBzpy4CgU1Zuw" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/fengyepiaosa/" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;fengyepiaosa&#x2F;" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fengyepiaosa.github.io/2022/11/23/%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/asuka.jpg">
+      <meta itemprop="name" content="wenfeng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fengyepiaosa">
+      <meta itemprop="description" content="欢迎来到wenfeng的博客！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="特征缩放 | fengyepiaosa">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          特征缩放
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-11-23 19:19:59 / 修改时间：19:21:12" itemprop="dateCreated datePublished" datetime="2022-11-23T19:19:59+08:00">2022-11-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Mathine-Learning/" itemprop="url" rel="index"><span itemprop="name">Mathine Learning</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>将数据进行归一化和标准化可以使不同维度的特征放在一起进行比较，可以大大提高模型的准确性。</p>
+<span id="more"></span>
+
+<h1 id="特征缩放"><a href="#特征缩放" class="headerlink" title="特征缩放"></a>特征缩放</h1><h2 id="1-为什么要进行特征缩放"><a href="#1-为什么要进行特征缩放" class="headerlink" title="1. 为什么要进行特征缩放"></a>1. 为什么要进行特征缩放</h2><h3 id="1-1-统一特征的权重和提升模型准确性"><a href="#1-1-统一特征的权重和提升模型准确性" class="headerlink" title="1.1 统一特征的权重和提升模型准确性"></a>1.1 统一特征的权重和提升模型准确性</h3><p>如果某个特征的取值范围比其他特征大很多，那么数值计算（比如说计算欧式距离）就受该特征的主要影响。但实际上并不一定是这个特征最重要，通常需要把每个特征看成同等重要。归一化和标准化数据可以使不同维度的特征放在一起进行比较，可以大大提高模型的准确性。</p>
+<h3 id="1-2-提升梯度下降法的收敛速度"><a href="#1-2-提升梯度下降法的收敛速度" class="headerlink" title="1.2 提升梯度下降法的收敛速度"></a>1.2 提升梯度下降法的收敛速度</h3><p><img src="https://img-blog.csdnimg.cn/20191113192133110.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzAwODgwNA==,size_16,color_FFFFFF,t_70" alt="左边是未归一化数据的梯度下降过程"></p>
+<h2 id="2-特征缩放的方法有哪些？"><a href="#2-特征缩放的方法有哪些？" class="headerlink" title="2. 特征缩放的方法有哪些？"></a>2. 特征缩放的方法有哪些？</h2><h3 id="2-1-最大最小值归一化（min-max-normalization）：将数值范围缩放到-0-1-区间里"><a href="#2-1-最大最小值归一化（min-max-normalization）：将数值范围缩放到-0-1-区间里" class="headerlink" title="2.1 最大最小值归一化（min-max normalization）：将数值范围缩放到 [0, 1] 区间里"></a>2.1 最大最小值归一化（min-max normalization）：将数值范围缩放到 [0, 1] 区间里</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190103162752557-711062993.png"></p>
+<h3 id="2-2-均值归一化（mean-normalization）：将数值范围缩放到-1-1-区间里，且数据的均值变为0"><a href="#2-2-均值归一化（mean-normalization）：将数值范围缩放到-1-1-区间里，且数据的均值变为0" class="headerlink" title="2.2 均值归一化（mean normalization）：将数值范围缩放到 [-1, 1] 区间里，且数据的均值变为0"></a>2.2 均值归一化（mean normalization）：将数值范围缩放到 [-1, 1] 区间里，且数据的均值变为0</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190103162807303-1305019357.png"></p>
+<h3 id="2-3-标准化-Z-值归一化（standardization-x2F-z-score-normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行-中心化-mean-centering-处理，再除以标准差进行缩放）"><a href="#2-3-标准化-Z-值归一化（standardization-x2F-z-score-normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行-中心化-mean-centering-处理，再除以标准差进行缩放）" class="headerlink" title="2.3 标准化 ,Z 值归一化（standardization &#x2F; z-score normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行 中心化 mean centering 处理，再除以标准差进行缩放）"></a>2.3 标准化 ,Z 值归一化（standardization &#x2F; z-score normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行 中心化 mean centering 处理，再除以标准差进行缩放）</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190103162903434-1406801774.png"></p>
+<h3 id="2-4-最大绝对值归一化（max-abs-normalization-）：也就是将数值变为单位长度（scaling-to-unit-length），将数值范围缩放到-1-1-区间里"><a href="#2-4-最大绝对值归一化（max-abs-normalization-）：也就是将数值变为单位长度（scaling-to-unit-length），将数值范围缩放到-1-1-区间里" class="headerlink" title="2.4 最大绝对值归一化（max abs normalization ）：也就是将数值变为单位长度（scaling to unit length），将数值范围缩放到 [-1, 1] 区间里"></a>2.4 最大绝对值归一化（max abs normalization ）：也就是将数值变为单位长度（scaling to unit length），将数值范围缩放到 [-1, 1] 区间里</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190112114759202-190163995.png"> </p>
+<h3 id="2-5-稳键标准化（robust-standardization）：先减去中位数，再除以四分位间距（interquartile-range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健"><a href="#2-5-稳键标准化（robust-standardization）：先减去中位数，再除以四分位间距（interquartile-range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健" class="headerlink" title="2.5 稳键标准化（robust standardization）：先减去中位数，再除以四分位间距（interquartile range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健"></a>2.5 稳键标准化（robust standardization）：先减去中位数，再除以四分位间距（interquartile range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201908/1247570-20190811172514046-446486849.png"></p>
+<blockquote>
+<p><em>有一些时候，只对数据进行中心化和缩放是不够的，还需对数据进行白化（whitening）处理来消除特征间的线性相关性</em></p>
+</blockquote>
+<h2 id="3-标准化和归一化的区别是什么？"><a href="#3-标准化和归一化的区别是什么？" class="headerlink" title="3. 标准化和归一化的区别是什么？"></a>3. 标准化和归一化的区别是什么？</h2><h3 id="3-1-归一化-NormalizationNormalization-：将一列数据变化到某个固定区间-范围-中，通常，这个区间是-0-1-，广义的讲，可以是各种区间，比如映射到-0，1-一样可以继续映射到其他范围，图像中可能会映射到-0-255-，其他情况可能映射到-1-1"><a href="#3-1-归一化-NormalizationNormalization-：将一列数据变化到某个固定区间-范围-中，通常，这个区间是-0-1-，广义的讲，可以是各种区间，比如映射到-0，1-一样可以继续映射到其他范围，图像中可能会映射到-0-255-，其他情况可能映射到-1-1" class="headerlink" title="3.1 归一化(NormalizationNormalization)：将一列数据变化到某个固定区间(范围)中，通常，这个区间是[0, 1]，广义的讲，可以是各种区间，比如映射到[0，1]一样可以继续映射到其他范围，图像中可能会映射到[0,255]，其他情况可能映射到[-1,1]"></a>3.1 归一化(NormalizationNormalization)：将一列数据变化到某个固定区间(范围)中，通常，这个区间是[0, 1]，广义的讲，可以是各种区间，比如映射到[0，1]一样可以继续映射到其他范围，图像中可能会映射到[0,255]，其他情况可能映射到[-1,1]</h3><h3 id="3-2-标准化-StandardizationStandardization-：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的"><a href="#3-2-标准化-StandardizationStandardization-：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的" class="headerlink" title="3.2 标准化(StandardizationStandardization)：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的"></a>3.2 标准化(StandardizationStandardization)：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的</h3><p><img src="https://img-blog.csdnimg.cn/20191021220509274.png#pic_center"></p>
+<h3 id="3-3-中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值"><a href="#3-3-中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值" class="headerlink" title="3.3 中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值"></a>3.3 中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值</h3><p><img src="https://img-blog.csdnimg.cn/20191021220535129.png#pic_center"></p>
+<h2 id="4-什么时候用标准化，什么时候用归一化？"><a href="#4-什么时候用标准化，什么时候用归一化？" class="headerlink" title="4. 什么时候用标准化，什么时候用归一化？"></a>4. 什么时候用标准化，什么时候用归一化？</h2><p>某博主理解：如果你对处理后的数据范围有严格要求，那肯定是归一化，个人经验，标准化是机器学习中更通用的手段，如果你无从下手，可以直接使用标准化。如果数据不为稳定，存在极端的最大最小值，不要用归一化。</p>
+<p>在分类、聚类算法中，需要使用距离来度量相似性的时候、或者使用PCA技术进行降维的时候，标准化表现更好；在不涉及距离度量、协方差计算的时候，可以使用归一化方法。</p>
+<p><strong>在需要使用距离来度量相似性的算法中，或者使用PCA技术进行降维的时候，通常使用标准化（standardization）或均值归一化（mean normalization）比较好，但如果数据分布不是正态分布或者标准差非常小，以及需要把数据固定在 [0, 1] 范围内，那么使用最大最小值归一化（min-max normalization）比较好（min-max 常用于归一化图像的灰度值）。但是min-max比较容易受异常值的影响，如果数据集包含较多的异常值，可以考虑使用稳键归一化（robust normalization）。对于已经中心化的数据或稀疏数据的缩放，比较推荐使用最大绝对值归一化（max abs normalization ），因为它会保住数据中的０元素，不会破坏数据的稀疏性（sparsity）。</strong></p>
+<h2 id="5-什么机器学习模型需要用到特征缩放？"><a href="#5-什么机器学习模型需要用到特征缩放？" class="headerlink" title="5. 什么机器学习模型需要用到特征缩放？"></a>5. 什么机器学习模型需要用到特征缩放？</h2><h3 id="5-1-通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear-Regression）、逻辑回归（Logistic-Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural-Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。"><a href="#5-1-通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear-Regression）、逻辑回归（Logistic-Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural-Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。" class="headerlink" title="5.1 通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear Regression）、逻辑回归（Logistic Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。"></a>5.1 通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear Regression）、逻辑回归（Logistic Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。</h3><h3 id="5-2-决策树（Decision-Tree），随机森林（Random-Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。"><a href="#5-2-决策树（Decision-Tree），随机森林（Random-Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。" class="headerlink" title="5.2 决策树（Decision Tree），随机森林（Random Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。"></a>5.2 决策树（Decision Tree），随机森林（Random Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。</h3><h2 id="6-在进行特征缩放的时候需要注意的地方？"><a href="#6-在进行特征缩放的时候需要注意的地方？" class="headerlink" title="6. 在进行特征缩放的时候需要注意的地方？"></a>6. 在进行特征缩放的时候需要注意的地方？</h2><p><em>需要先把数据先拆分成训练集与验证集，在训练集上计算出需要的数值（如均值和标准值），对训练集数据做标准化&#x2F;归一化处理，然后再用之前计算出的数据（如均值和标准值）对验证集数据做相同的标准化&#x2F;归一化处理。不要在整个数据集上直接做标准化&#x2F;归一化处理，因为这样会将验证集的信息带入到训练集中，这是一个非常容易犯的错误</em></p>
+<h2 id="7-参考链接"><a href="#7-参考链接" class="headerlink" title="7. 参考链接"></a>7. 参考链接</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/HuZihu/p/9761161.html">https://www.cnblogs.com/HuZihu/p/9761161.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43008804/article/details/103087447">https://blog.csdn.net/weixin_43008804/article/details/103087447</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_36604953/article/details/102652160">https://blog.csdn.net/weixin_36604953/article/details/102652160</a></p>
+
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://mobile.twitter.com/Kiddwenfeng">
+          <span class="icon">
+            <i class="fab fa-twitter"></i>
+          </span>
+
+          <span class="label">Twitter</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://github.com/fengyepiaosa">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+
+          <span class="label">GitHub</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://www.instagram.com/fengyepiaosa/">
+          <span class="icon">
+            <i class="far fa-instagram"></i>
+          </span>
+
+          <span class="label">Instagram</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/11/23/Jupyter-Notebook/" rel="prev" title="Jupyter Notebook">
+                  <i class="fa fa-chevron-left"></i> Jupyter Notebook
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/11/23/L1%E5%92%8CL2%E6%AD%A3%E5%88%99%E5%8C%96/" rel="next" title="L1和L2正则化">
+                  L1和L2正则化 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wenfeng</span>
+</div>
+
+<!--
+隐藏网页底部 powered By Hexo / 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+-->
+
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

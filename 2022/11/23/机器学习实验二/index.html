@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/Blue.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_small.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"fengyepiaosa.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="这是机器学习课程上的一个小项目作业，具体是通过多种回归模型预测房价…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习实验二">
+<meta property="og:url" content="https://fengyepiaosa.github.io/2022/11/23/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9E%E9%AA%8C%E4%BA%8C/index.html">
+<meta property="og:site_name" content="fengyepiaosa">
+<meta property="og:description" content="这是机器学习课程上的一个小项目作业，具体是通过多种回归模型预测房价…">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-23T11:07:05.000Z">
+<meta property="article:modified_time" content="2022-11-23T11:08:41.918Z">
+<meta property="article:author" content="wenfeng">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://fengyepiaosa.github.io/2022/11/23/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9E%E9%AA%8C%E4%BA%8C/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://fengyepiaosa.github.io/2022/11/23/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9E%E9%AA%8C%E4%BA%8C/","path":"2022/11/23/机器学习实验二/","title":"机器学习实验二"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>机器学习实验二 | fengyepiaosa</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+  
+
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">fengyepiaosa</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录生活！</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9E%E9%AA%8C%E4%BA%8C%EF%BC%8C%E4%BD%BF%E7%94%A8%E5%A4%9A%E7%A7%8D%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B%E9%A2%84%E6%B5%8B%E6%88%BF%E4%BB%B7"><span class="nav-number">1.</span> <span class="nav-text">机器学习实验二，使用多种回归模型预测房价</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E5%AE%9E%E9%AA%8C%E8%AF%B4%E6%98%8E"><span class="nav-number">2.</span> <span class="nav-text">1.实验说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E5%AE%9E%E9%AA%8C%E5%87%86%E5%A4%87"><span class="nav-number">3.</span> <span class="nav-text">2.实验准备</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 实验环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E5%87%86%E5%A4%87%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 准备数据集</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E5%BB%BA%E7%AB%8B%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B"><span class="nav-number">4.</span> <span class="nav-text">3.建立回归模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-Lasso%E5%9B%9E%E5%BD%92"><span class="nav-number">4.1.</span> <span class="nav-text">3.1 Lasso回归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E5%BC%B9%E6%80%A7%E7%BD%91%E7%BB%9C%E5%9B%9E%E5%BD%92"><span class="nav-number">4.2.</span> <span class="nav-text">3.2 弹性网络回归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E5%B2%AD%E5%9B%9E%E5%BD%92"><span class="nav-number">4.3.</span> <span class="nav-text">3.3 岭回归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-%E6%A2%AF%E5%BA%A6%E5%8A%A0%E5%BC%BA%E5%9B%9E%E5%BD%92"><span class="nav-number">4.4.</span> <span class="nav-text">3.4 梯度加强回归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97%E5%9B%9E%E5%BD%92"><span class="nav-number">4.5.</span> <span class="nav-text">3.5 随机森林回归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-XGBoost%E5%9B%9E%E5%BD%92"><span class="nav-number">4.6.</span> <span class="nav-text">3.6 XGBoost回归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-7-LightGBM%E5%9B%9E%E5%BD%92"><span class="nav-number">4.7.</span> <span class="nav-text">3.7 LightGBM回归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E8%AF%84%E4%BC%B0%E4%B8%8E%E9%80%89%E6%8B%A9"><span class="nav-number">4.8.</span> <span class="nav-text">4.模型性能评估与选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E8%BF%90%E8%A1%8C%E7%BB%93%E6%9E%9C"><span class="nav-number">4.9.</span> <span class="nav-text">5.运行结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E4%BD%BF%E7%94%A8GridSearchCV%E6%96%B9%E6%B3%95%E5%AF%B9XGBoost%E6%A8%A1%E5%9E%8B%E8%BF%9B%E8%A1%8C%E4%BC%98%E5%8C%96"><span class="nav-number">4.10.</span> <span class="nav-text">6.使用GridSearchCV方法对XGBoost模型进行优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">4.11.</span> <span class="nav-text">7.参考链接</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="wenfeng"
+      src="/uploads/asuka.jpg">
+  <p class="site-author-name" itemprop="name">wenfeng</p>
+  <div class="site-description" itemprop="description">欢迎来到wenfeng的博客！</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/fengyepiaosa" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;fengyepiaosa" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://plus.google.com/fengyepiaosa" title="Google → https:&#x2F;&#x2F;plus.google.com&#x2F;fengyepiaosa" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>Google</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://mobile.twitter.com/Kiddwenfeng" title="Twitter → https:&#x2F;&#x2F;mobile.twitter.com&#x2F;Kiddwenfeng" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/profile.php?id=100086193167274" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;profile.php?id&#x3D;100086193167274" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/channel/UCYtkEykUyHVBzpy4CgU1Zuw" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;channel&#x2F;UCYtkEykUyHVBzpy4CgU1Zuw" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/fengyepiaosa/" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;fengyepiaosa&#x2F;" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fengyepiaosa.github.io/2022/11/23/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9E%E9%AA%8C%E4%BA%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/asuka.jpg">
+      <meta itemprop="name" content="wenfeng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fengyepiaosa">
+      <meta itemprop="description" content="欢迎来到wenfeng的博客！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="机器学习实验二 | fengyepiaosa">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          机器学习实验二
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-11-23 19:07:05 / 修改时间：19:08:41" itemprop="dateCreated datePublished" datetime="2022-11-23T19:07:05+08:00">2022-11-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Mathine-Learning/" itemprop="url" rel="index"><span itemprop="name">Mathine Learning</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>这是机器学习课程上的一个小项目作业，具体是通过多种回归模型预测房价…</p>
+<span id="more"></span>
+
+<h1 id="机器学习实验二，使用多种回归模型预测房价"><a href="#机器学习实验二，使用多种回归模型预测房价" class="headerlink" title="机器学习实验二，使用多种回归模型预测房价"></a>机器学习实验二，使用多种回归模型预测房价</h1><blockquote>
+<p>这次实验基于上一次对房价数据的预处理，使用多种回归模型对处理的数据进行预测任务。建立的回归模型主要有Lasso回归、弹性网络回归、岭回归、梯度加强回归、随机森林回归、XGBoost回归以及LightGBM回归七种模型。建立完回归模型完成任务，还需要对各个模型的性能进行评估与选择。并且考虑用网格搜索方法对表现最好的模型进行进一步的优化。</p>
+</blockquote>
+<h1 id="1-实验说明"><a href="#1-实验说明" class="headerlink" title="1.实验说明"></a>1.实验说明</h1><p>预测房价实验对1460条房价数据、80个房屋的属性进行分析，建立回归模型，然后预测1459条新房屋数据的价格。 </p>
+<p>本实验是预测房价实验的第二部分，使用上个实验处理好的数据建立机器学习模型，并且对模型性能进行评估。</p>
+<h1 id="2-实验准备"><a href="#2-实验准备" class="headerlink" title="2.实验准备"></a>2.实验准备</h1><h2 id="2-1-实验环境"><a href="#2-1-实验环境" class="headerlink" title="2.1 实验环境"></a>2.1 实验环境</h2><p><em>在桌面上新建一个目录，名字叫house_price。本实验中所有的数据集和代码都放在该目录下</em></p>
+<p><strong>Spyder</strong></p>
+<h2 id="2-2-准备数据集"><a href="#2-2-准备数据集" class="headerlink" title="2.2 准备数据集"></a>2.2 准备数据集</h2><p>本实验需要2个数据集，数据集的名字叫train.csv和test.csv，分别是房价的训练数据和测试数据。将train.csv和test.csv复制到刚刚创建的house_price目录下。</p>
+<h1 id="3-建立回归模型"><a href="#3-建立回归模型" class="headerlink" title="3.建立回归模型"></a>3.建立回归模型</h1><h2 id="3-1-Lasso回归"><a href="#3-1-Lasso回归" class="headerlink" title="3.1 Lasso回归"></a>3.1 Lasso回归</h2><pre><code>#Lasso Regression
+from sklearn.linear_model import Lasso
+lasso = Lasso(alpha = 0.0005, random_state = 1)
+</code></pre>
+<blockquote>
+<p>lasso [læˈsuː] (捕马、套牛等用的)套索; 用套索套捕(动物)</p>
+</blockquote>
+<h2 id="3-2-弹性网络回归"><a href="#3-2-弹性网络回归" class="headerlink" title="3.2 弹性网络回归"></a>3.2 弹性网络回归</h2><pre><code># Elastic Net Regerssion
+from sklearn.linear_model import ElasticNet
+enet = ElasticNet(alpla = 0.0005, l1_ratio = .9, random_state = 3)
+</code></pre>
+<blockquote>
+<p>elastic [ɪˈlæstɪk]  有弹力的灵活的,可改变的,可伸缩的; 橡皮圈</p>
+<p>ratio [ˈreɪʃiəʊ] 比率,比例</p>
+</blockquote>
+<h2 id="3-3-岭回归"><a href="#3-3-岭回归" class="headerlink" title="3.3 岭回归"></a>3.3 岭回归</h2><pre><code># Kernel Ridge Regression
+from sklearn.kernel_ridge import KernelRidger
+krr = KernelRidge(alpha = 0.6, kernel = &quot;polynomial&quot;, degree = 2, coef0 = 2.5)
+</code></pre>
+<blockquote>
+<p>ridge [rɪdʒ] 山脊; 使隆起,使形成脊状</p>
+<p>polynomial [ˌpɒli’nəʊmiəl] [ˌpɑli’noʊmiəl]  多项式的; 多项式</p>
+<p>elapsed [ɪˈlæpst] (时间)消逝, 流逝 <strong>-&gt;</strong> elapse的过去分词和过去式</p>
+</blockquote>
+<hr>
+<p>Lasso回归有时也叫做线性回归的L1正则化，和Ridge回归的主要区别就是在正则化项，Ridge回归用的是L2正则化，而Lasso回归用的是L1正则化。而弹性回归是岭回归和套索回归的混合技术，它同时使用 L2 和 L1 正则化。当有多个相关的特征时，弹性网络是有用的。套索回归很可能随机选择其中一个，而弹性回归很可能都会选择。<em>套索回归和核岭回归说到底就是在损失函数上加了两个不同的正则化项罢了，而弹性网络就是两个正则化项都加上去。但是引入核岭回归却不是直接从linear_model直接引入，而是单独出sklearn.kernel_ridge进行引入，真是奇怪？？？</em></p>
+<p>Lasso回归使得一些系数变小，甚至还是一些绝对值较小的系数直接变为0，因此特别适用于参数数目缩减与参数的选择，因而用来估计稀疏参数的线性模型。</p>
+<p>个人观点：但是Lasso回归有一个很大的问题，导致我们需要把它单独拎出来讲，就是它的损失函数不是连续可导的。由于L1范数用的是绝对值之和，导致损失函数有不可导的点。也就是说，我们的最小二乘法，梯度下降法，牛顿法与拟牛顿法对它统统失效了。🙄🙄🙄</p>
+<h2 id="3-4-梯度加强回归"><a href="#3-4-梯度加强回归" class="headerlink" title="3.4 梯度加强回归"></a>3.4 梯度加强回归</h2><pre><code># Gradient Boosting Regression
+from sklearn.ensemble import GradientBoostingRegressor
+gboost = GradientBoostingRegressor(n_estimators = 3000, learning_rate = 0.05, max_depth = 4,max_features = &quot;sqrt&quot;, min_samples_leaf = 15, min_samples_split = 10,loss=&quot;huber&quot;,random_state = 5)
+</code></pre>
+<blockquote>
+<p>ensemble [ɒnˈsɒmbl] n.乐团,全体,成套的东西; adv.一起</p>
+<p>sklearn.ensemble我理解成Gradient Boosting Regression用得比较广泛，导致它放在了sklearn的全体kit里面</p>
+</blockquote>
+<p>我尝试搜寻梯度加强回归，但是只能搜索到梯度提升回归树，看来它是一种树模型。<em>它是一种决策树的集成方法，通过合并多个决策树来构建一个更为强大的模型。</em>虽然他的名字中有回归两个字，但是这种模型既可以用在回归上，也可以用在分类上。</p>
+<p>与随机森林不同的是，梯度提升采用连续的方式构造树，每一棵树都试图纠正前一棵树的错误。默认情况下，梯度提升回归树中没有随机化，而是用到了强预剪枝。</p>
+<p>梯度提升决策树是监督学习中最强大也是最常用的模型之一，缺点是需要仔细调参，而且训练的时间要很长。和其他基于树的模型类似，这个算法不需要对数据进行缩放就可以表现的很好，并且它也适用于二元特征与连续特征同时存在的数据集。同样，它的不足之处与其它基于树的模型也类似，它不适合处理高维稀疏数据。</p>
+<blockquote>
+<p>所谓<a target="_blank" rel="noopener" href="https://www.cnblogs.com/JetpropelledSnake/p/14438484.html">特征缩放</a>、<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_51228515/article/details/122431951">数据缩放</a>包含了归一化和标准化等。特征缩放的原因是，为消除各评价指标间量纲和数量级的差异、保证结果的可靠性，就需要对各指标的原始数据进行特征缩放。</p>
+</blockquote>
+<blockquote>
+<p>个人观点：<em>对于稀疏数据，当前的研究方向是对稀疏数据进行聚类与降维。因为稀疏数据不同于一般数据，它的维度常常非常巨大，由于大量存在缺失值，导致数据信息极其不完整。常见的一些降维方法比如说主成分分析和因子分子方法都无法对稀疏数据进行应用</em></p>
+</blockquote>
+<h2 id="3-5-随机森林回归"><a href="#3-5-随机森林回归" class="headerlink" title="3.5 随机森林回归"></a>3.5 随机森林回归</h2><pre><code># random forest
+from sklearn.ensemble import RandomForestRegressor
+rf = RandomForestRegressor(n_estimators = 500, random_state = 0)
+</code></pre>
+<p>随机森林属于<a target="_blank" rel="noopener" href="https://blog.csdn.net/siyuangulu/article/details/122508931?spm=1001.2101.3001.6650.8&utm_medium=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-8-122508931-blog-82016442.pc_relevant_recovery_v2&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-8-122508931-blog-82016442.pc_relevant_recovery_v2&utm_relevant_index=11">集成学习</a>中的Bagging算法，即引导聚合类算法，详情可以点击上面链接进行访问。🪐</p>
+<p>首先要明确的是，当前集成学习分成两大类，一类是Bagging装袋法，第二类是Boosting提升法。</p>
+<ul>
+<li>Bagging（装袋法）: 如随机森林，每一个模型相互独立，互相平行</li>
+<li>Boosting（提升法）: 模型循序渐进，依次增强，基评估器相互关联</li>
+</ul>
+<p>我们都知道随机森林就是通过集成学习的思想将多棵树集成的一种算法，它的基本单元是决策树。直观的说，每一棵决策树都是一个分类器（假设现在讨论的是分类问题），那么对于一个输入样本，N棵树有N个分类结果。而随机森林做的就是集成了所有的分类投票结果，将投票次数最多的类别指定为最终的输出，这就是一种最简单的Bagging思想。</p>
+<p>在该模型中，有三个重要的参数分别为: &amp;nbsp <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43479947/article/details/126813033">参考</a></p>
+<ul>
+<li>n_estimators(子树数量)</li>
+<li>learning_rate(学习率)</li>
+<li>max_depth(最大深度)</li>
+</ul>
+<p>想要进一步了解随机森林，可以通过以下链接进行学习：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/siyuangulu/article/details/122508931?spm=1001.2101.3001.6650.8&utm_medium=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-8-122508931-blog-82016442.pc_relevant_recovery_v2&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-8-122508931-blog-82016442.pc_relevant_recovery_v2&utm_relevant_index=11">CSDN</a></p>
+<p><a target="_blank" rel="noopener" href="https://easyai.tech/ai-definition/random-forest/">EasyAi</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/maybe2030/p/4585705.html">博客园</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/fionacai/p/5894142.html">博客园</a></p>
+</blockquote>
+<h2 id="3-6-XGBoost回归"><a href="#3-6-XGBoost回归" class="headerlink" title="3.6 XGBoost回归"></a>3.6 XGBoost回归</h2><pre><code># XGBoost
+# if xgboost packet doesnt exist, please install with command:conda install py-xgboost
+import xgboost as xbg
+xgb = xgb.XGBRegressor(colsample_bytree = 0.4603, gamma = 0.0468,learning_rate = 0.05, max_depth = 3, min_child_weight = 1.7817, n_estimators = 2200, reg_alpha = 0.4640, reg_lambda = 0.8571,subsample = 0.5213, silent = 1, random_state = 7, nthread = -1)
+</code></pre>
+<p>首先要知道的是，XGBoost算法是梯度提升树GBDT的高效实现。这里所提到的GBDT可能和上面所提到的梯度提升回归树有着异曲同工之处。作为梯度提升回归树的高效实现，XGBoost是一个上限非常高的算法。在竞赛题中，不考虑深度学习，XGBoost算法算是比赛中最热门的算法，它将GBDT的优化走向了一个极致。但是它的训练耗时长，内存占用比较大。</p>
+<p>后续，微软推出了LightGBM，在内存占用和运行速度上做了不少的优化，但是<a target="_blank" rel="noopener" href="https://www.cnblogs.com/pinard/p/10979808.html">刘建平pinard大哥</a>认为当前还是优先选择XGBoost，因为调优经验比较多一点，可以参考的资料也更多一些。如果使用XGBoost遇到的内存占用或者运行速度问题，这个时候再尝试LightGBM也不错。</p>
+<h2 id="3-7-LightGBM回归"><a href="#3-7-LightGBM回归" class="headerlink" title="3.7 LightGBM回归"></a>3.7 LightGBM回归</h2><pre><code># LightGBM
+import lightgbm as lgb
+lgb = lgb.LGBMRegressor(objective = &quot;regression&quot;, num_leaves = 5, learning_rate = 0.05, n_estimators = 720, max_bin = 55, bagging_fraction = 0.8, bagging_freq = 5, feature_fraction = 0.2319, feature_fraction_seed = 9, bagging_seed = 9, min_data_in_leaf = 6,min_sum_hessian_in_leaf = 11)
+</code></pre>
+<blockquote>
+<p>fraction [ˈfrækʃn] n.小部分,分数,小数</p>
+</blockquote>
+<p>LightGBM是快速的，分布式的，高性能的基于决策树算法的梯度提升框架。可以用于排序、分类、回归以及其他机器学习任务中。它是XGBoost的改进版，XGboost又是GBDT梯度提升回归树的高效实现，所以我理解成LightGBM与GBDT师出同门。</p>
+<p>2017年的时候微软在GitHub上开源了一个新的算法<strong>LightGBM</strong>，根据某CSDN机翻文章称，它能够在不降低准确率的前提下，能够提升十倍左右的速度，并且占用内存下降三倍左右。虽然它和XGboost都是基于决策树算法的，但是LightGBM采用的分裂叶子结点策略貌似与XGBoost算法不同，并且极大地优于XGBoost，导致它的速度非常之快…</p>
+<p><strong>到目前为止，七个回归模型的初始化都已经完成！</strong></p>
+<h2 id="4-模型性能评估与选择"><a href="#4-模型性能评估与选择" class="headerlink" title="4.模型性能评估与选择"></a>4.模型性能评估与选择</h2><p>业界一般使用k-fold 交叉验证（k-fold cross validation）的方法评估模型性能。在这里k&#x3D;10。评估指标有2个，一个是 r^2（ r squared）, 另一个是mse（mean squared error）。为了加快执行速度，n_jobs &#x3D; 2表示使用2个CPU（我的电脑是2核CPU）。训练数据集有1458条数据，272列，模型执行起来可能相对较慢，请耐心等待。verbose &#x3D; 1表示执行过程中不断打印出信息，以帮助判断执行了多少了。</p>
+<p><strong>提示</strong>：同学们可能疑惑为什么没有在验证集上检验模型性能，这可能会产生过拟合现象。k-fold 交叉验证的存在可以在不需要验证集的情况下，也能发现过拟合现象😅。</p>
+<pre><code># k-fold cross validation function
+from sklearn.model_selection import cross_val_score
+def evaluation_model(model):
+    rmse = np.sqrt(-cross_val_score(estimator = model, X = X_train, y = y_train, scoring = &#39;neg_mean_squared_error&#39;, cv = 10, n_jobs = 2, verbose = 1))
+    r2_score = cross_val_score(estimator = model, X = X_train, y = y_train, scoring = &#39;r2&#39;, cv = 10, n_jobs = 2, verbose = 1)
+    return (r2_score, rmse)
+# print result function
+def print_result(r2_score, rmse, model_name):
+    print(&#39;%s evaluation: r2=%.4f (std=%.4f), rmse=%.4f (std=%.4f)&#39; %(model_name, r2_score.mean(), r2_score.std(), 
+  rmse.mean(), rmse.std()))
+</code></pre>
+<p>定义好了函数，现在可以对每一模型执行。</p>
+<pre><code># model score and rmse
+lasso_r2_score, lasso_rmse = evaluation_model(lasso)
+enet_r2_score, enet_rmse = evaluation_model(enet)
+krr_r2_score, krr_rmse = evaluation_model(krr)
+gboost_r2_score, gboost_rmse = evaluation_model(gboost)
+rf_r2_score, rf_rmse = evaluation_model(rf)
+xgb_r2_score, xgb_rmse = evaluation_model(xgb)
+lgb_r2_score, lgb_rmse = evaluation_model(lgb)
+# print result
+print_result(lasso_r2_score, lasso_rmse, &#39;Lasso&#39;)
+print_result(enet_r2_score, enet_rmse, &#39;Elastic Net&#39;)
+print_result(krr_r2_score, krr_rmse, &#39;Kernel Ridge&#39;)
+print_result(gboost_r2_score, gboost_rmse, &#39;Gradient Boost&#39;)
+print_result(rf_r2_score, rf_rmse, &#39;Random Forest&#39;)
+print_result(xgb_r2_score, xgb_rmse, &#39;XG Boost&#39;)
+print_result(lgb_r2_score, lgb_rmse, &#39;Lightgbm&#39;)
+</code></pre>
+<p>模型性能的评估尤其是用sklearn进行模型评估貌似篇幅有点小长，我改天再写吧！现在可以看看别人对模型评估方法进行的一些<a target="_blank" rel="noopener" href="https://www.cnblogs.com/jiaxin359/p/8627530.html">总结</a>，以及<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_35757704/article/details/118406255">运用</a>。</p>
+<h2 id="5-运行结果"><a href="#5-运行结果" class="headerlink" title="5.运行结果"></a>5.运行结果</h2><p>结果发现XGBoost的性能最好:r2&#x3D;0.9227 (std&#x3D;0.0149), rmse&#x3D;0.2734 (std&#x3D;0.0340)，因为RMSE平均数最小，方差最小，并且R2&gt;0.9，模型性能比较好。值得注意的是，如果你们选择的是模型默认的超参数，那么执行的结果和我的就不一样啦，因为不同的超参数决定了模型的准确率的不同。这里给出了一个通用的原则：</p>
+<blockquote>
+<p><strong>选择r2&gt;0.9，且mse和std最小的那个模型</strong></p>
+</blockquote>
+<h2 id="6-使用GridSearchCV方法对XGBoost模型进行优化"><a href="#6-使用GridSearchCV方法对XGBoost模型进行优化" class="headerlink" title="6.使用GridSearchCV方法对XGBoost模型进行优化"></a>6.使用GridSearchCV方法对XGBoost模型进行优化</h2><p>在机器学习模型中，需要人工选择的参数称为超参数。比如随机森林中决策树的个数，人工神经网络模型中隐藏层层数和每层的节点个数，正则项中常数大小等等，他们都需要事先指定。超参数选择不恰当，就会出现欠拟合或者过拟合的问题。而在选择超参数的时候，有两个途径，一个是凭经验微调，另一个就是选择不同大小的参数，带入模型中，挑选表现最好的参数。</p>
+<p>微调的一种方法是手工调制超参数，直到找到一个好的超参数组合，这么做的话会非常冗长，你也可能没有时间探索多种组合，所以可以使用Scikit-Learn的GridSearchCV来做这项搜索工作。</p>
+<p>这里可以将Grid Search暂时理解为是一种调参手段，并且是非常耗时的穷举搜索。<em>至于进一步深究，我们暂时放到下一步。因为今天的篇幅有点长，担心如果我再展开讲下去的话会增加各位读者包括我的阅读负担。所以我打算把网格搜索放到了下一篇（也可能是下下篇）</em>你可以先看看<a target="_blank" rel="noopener" href="https://blog.csdn.net/guoyc439/article/details/123381908">这里</a>🍉🍉🍉</p>
+<h2 id="7-参考链接"><a href="#7-参考链接" class="headerlink" title="7.参考链接"></a>7.参考链接</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/huacha__/article/details/81057150">https://blog.csdn.net/huacha__/article/details/81057150</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/fenghuibian/article/details/91353348">https://blog.csdn.net/fenghuibian/article/details/91353348</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/17368988d6d9">监督学习(八)——决策树集成：梯度提升回归树</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43479947/article/details/126813033">也是梯度提升回归树</a></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://mobile.twitter.com/Kiddwenfeng">
+          <span class="icon">
+            <i class="fab fa-twitter"></i>
+          </span>
+
+          <span class="label">Twitter</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://github.com/fengyepiaosa">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+
+          <span class="label">GitHub</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://www.instagram.com/fengyepiaosa/">
+          <span class="icon">
+            <i class="far fa-instagram"></i>
+          </span>
+
+          <span class="label">Instagram</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/11/23/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/" rel="prev" title="激活函数">
+                  <i class="fa fa-chevron-left"></i> 激活函数
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/11/23/%E7%BB%B4%E5%BA%A6%E7%81%BE%E9%9A%BE/" rel="next" title="维度灾难">
+                  维度灾难 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wenfeng</span>
+</div>
+
+<!--
+隐藏网页底部 powered By Hexo / 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+-->
+
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

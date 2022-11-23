@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/Blue.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_small.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"fengyepiaosa.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="这里介绍一下K-Fold交叉验证，这是防止过拟合的一种方法…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="交叉验证">
+<meta property="og:url" content="https://fengyepiaosa.github.io/2022/11/23/%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81/index.html">
+<meta property="og:site_name" content="fengyepiaosa">
+<meta property="og:description" content="这里介绍一下K-Fold交叉验证，这是防止过拟合的一种方法…">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://fengyepiaosa.github.io/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula1.png%22">
+<meta property="og:image" content="https://fengyepiaosa.github.io/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula2.png%22">
+<meta property="og:image" content="https://fengyepiaosa.github.io/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula3.png%22">
+<meta property="og:image" content="https://fengyepiaosa.github.io/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula4.png%22">
+<meta property="og:image" content="https://fengyepiaosa.github.io/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula5.png%22">
+<meta property="og:image" content="https://fengyepiaosa.github.io/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula6.png%22">
+<meta property="article:published_time" content="2022-11-23T11:13:34.000Z">
+<meta property="article:modified_time" content="2022-11-23T11:15:32.041Z">
+<meta property="article:author" content="wenfeng">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fengyepiaosa.github.io/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula1.png%22">
+
+
+<link rel="canonical" href="https://fengyepiaosa.github.io/2022/11/23/%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://fengyepiaosa.github.io/2022/11/23/%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81/","path":"2022/11/23/交叉验证/","title":"交叉验证"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>交叉验证 | fengyepiaosa</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+  
+
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">fengyepiaosa</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录生活！</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#K-Fold-%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81-Cross-Validation-%E7%9A%84%E7%90%86%E8%A7%A3%E4%B8%8E%E5%BA%94%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">K-Fold 交叉验证 (Cross-Validation)的理解与应用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B%E9%AA%8C%E8%AF%81%E9%9B%86"><span class="nav-number">2.</span> <span class="nav-text">1.简单介绍一下验证集</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E9%80%9A%E8%BF%87%E9%AA%8C%E8%AF%81%E9%9B%86%E7%90%86%E8%A7%A3K-Fold-%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81"><span class="nav-number">3.</span> <span class="nav-text">2.通过验证集理解K-Fold 交叉验证</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B%E5%B8%B8%E7%94%A8%E7%9A%84%E5%9B%9E%E5%BD%92%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87MSE%E3%80%81RMSE%E3%80%81MAE%E3%80%81R-Squared"><span class="nav-number">4.</span> <span class="nav-text">3.简单介绍一下常用的回归评价指标MSE、RMSE、MAE、R-Squared</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E5%9D%87%E6%96%B9%E8%AF%AF%E5%B7%AE-MSE"><span class="nav-number">4.1.</span> <span class="nav-text">3.1 均方误差-MSE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E5%9D%87%E6%96%B9%E6%A0%B9%E8%AF%AF%E5%B7%AE-RMSE"><span class="nav-number">4.2.</span> <span class="nav-text">3.2 均方根误差-RMSE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E5%B9%B3%E5%9D%87%E7%BB%9D%E5%AF%B9%E8%AF%AF%E5%B7%AE-MAE"><span class="nav-number">4.3.</span> <span class="nav-text">3.3 平均绝对误差-MAE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-R%E6%96%B9-R-Squared"><span class="nav-number">4.4.</span> <span class="nav-text">3.4 R方-R Squared</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-K-Fold%E7%94%A8%E6%9D%A5%E5%B9%B2%E5%95%A5%EF%BC%9F"><span class="nav-number">5.</span> <span class="nav-text">4.K-Fold用来干啥？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E4%BA%9B%E5%8D%9A%E4%B8%BB%E8%AE%A4%E4%B8%BAK%E6%8A%98%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81%E7%94%A8%E6%9D%A5%E8%BF%9B%E8%A1%8C%E6%A8%A1%E5%9E%8B%E8%B0%83%E4%BC%98%EF%BC%8C%E6%96%B9%E4%BE%BF%E6%89%BE%E5%88%B0%E4%BD%BF%E5%BE%97%E6%A8%A1%E5%9E%8B%E6%B3%9B%E5%8C%96%E6%80%A7%E8%83%BD%E6%9C%80%E4%BC%98%E7%9A%84%E8%B6%85%E5%8F%82%E6%95%B0%EF%BC%9F%E6%88%91%E8%AE%A4%E4%B8%BA%EF%BC%8C%E6%A8%A1%E5%9E%8B%E8%B0%83%E4%BC%98%E5%AE%9E%E5%9C%A8%E7%AE%97%E4%B8%8D%E4%B8%8A%EF%BC%8C%E5%BA%94%E8%AF%A5%E7%AE%97%E6%98%AF%E7%94%A8%E6%9D%A5%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9%E7%9A%84%E5%90%A7%EF%BC%9F%E7%94%A8%E6%9D%A5%E8%AF%84%E4%BB%B7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%B3%9B%E5%8C%96%E8%83%BD%E5%8A%9B%EF%BC%8C%E4%BB%8E%E8%80%8C%E5%9C%A8%E5%A4%9A%E4%B8%AA%E6%A8%A1%E5%9E%8B%E4%B8%AD%E8%BF%9B%E8%A1%8C%E9%80%89%E6%8B%A9%E3%80%82"><span class="nav-number">5.1.</span> <span class="nav-text">有些博主认为K折交叉验证用来进行模型调优，方便找到使得模型泛化性能最优的超参数？我认为，模型调优实在算不上，应该算是用来模型选择的吧？用来评价模型的泛化能力，从而在多个模型中进行选择。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-K-Fold%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8%E5%91%A2%EF%BC%9F"><span class="nav-number">6.</span> <span class="nav-text">5.K-Fold什么时候用呢？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-%E7%AE%80%E5%8D%95%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81"><span class="nav-number">6.1.</span> <span class="nav-text">5.1 简单交叉验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-S%E6%8A%98%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81"><span class="nav-number">6.2.</span> <span class="nav-text">5.2 S折交叉验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-%E7%95%99%E4%B8%80%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81-Leave-one-out-Cross-Validation"><span class="nav-number">6.3.</span> <span class="nav-text">5.3 留一交叉验证 Leave-one-out Cross Validation</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="wenfeng"
+      src="/uploads/asuka.jpg">
+  <p class="site-author-name" itemprop="name">wenfeng</p>
+  <div class="site-description" itemprop="description">欢迎来到wenfeng的博客！</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/fengyepiaosa" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;fengyepiaosa" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://plus.google.com/fengyepiaosa" title="Google → https:&#x2F;&#x2F;plus.google.com&#x2F;fengyepiaosa" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>Google</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://mobile.twitter.com/Kiddwenfeng" title="Twitter → https:&#x2F;&#x2F;mobile.twitter.com&#x2F;Kiddwenfeng" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/profile.php?id=100086193167274" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;profile.php?id&#x3D;100086193167274" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/channel/UCYtkEykUyHVBzpy4CgU1Zuw" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;channel&#x2F;UCYtkEykUyHVBzpy4CgU1Zuw" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/fengyepiaosa/" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;fengyepiaosa&#x2F;" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fengyepiaosa.github.io/2022/11/23/%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/asuka.jpg">
+      <meta itemprop="name" content="wenfeng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fengyepiaosa">
+      <meta itemprop="description" content="欢迎来到wenfeng的博客！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="交叉验证 | fengyepiaosa">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          交叉验证
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-11-23 19:13:34 / 修改时间：19:15:32" itemprop="dateCreated datePublished" datetime="2022-11-23T19:13:34+08:00">2022-11-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Mathine-Learning/" itemprop="url" rel="index"><span itemprop="name">Mathine Learning</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>这里介绍一下K-Fold交叉验证，这是防止过拟合的一种方法…</p>
+<span id="more"></span>
+
+<h1 id="K-Fold-交叉验证-Cross-Validation-的理解与应用"><a href="#K-Fold-交叉验证-Cross-Validation-的理解与应用" class="headerlink" title="K-Fold 交叉验证 (Cross-Validation)的理解与应用"></a>K-Fold 交叉验证 (Cross-Validation)的理解与应用</h1><h1 id="1-简单介绍一下验证集"><a href="#1-简单介绍一下验证集" class="headerlink" title="1.简单介绍一下验证集"></a>1.简单介绍一下验证集</h1><p>在机器学习建模过程中，通行的做法通常是将数据分为训练集和测试集。测试集是与训练独立的数据，完全不参与训练，用于最终模型的评估。在训练过程中，经常会出现过拟合的问题，就是模型可以很好的匹配训练数据，却不能很好在预测训练集外的数据。如果此时就使用测试数据来调整模型参数，就相当于在训练时已知部分测试数据的信息，会影响最终评估结果的准确性。通常的做法是在训练数据再中分出一部分做为验证(Validation)数据，用来评估模型的训练效果。<em>验证集的好处在于，可以对训练的模型进行评估，并且更换超参数后继续训练评估…</em></p>
+<h1 id="2-通过验证集理解K-Fold-交叉验证"><a href="#2-通过验证集理解K-Fold-交叉验证" class="headerlink" title="2.通过验证集理解K-Fold 交叉验证"></a>2.通过验证集理解K-Fold 交叉验证</h1><p>验证数据取自训练数据，但不参与训练，这样可以相对客观的评估模型对于训练集之外数据的匹配程度。模型在验证数据中的评估常用的是交叉验证，又称循环验证。它将原始数据分成K组(K-Fold)，将每个子集数据分别做一次验证集，其余的K-1组子集数据作为训练集，这样会得到K个模型。</p>
+<p>这K个模型分别在验证集中评估结果，最后的误差MSE(Mean Squared Error)加权平均就得到交叉验证误差。交叉验证有效利用了有限的数据，并且评估结果能够尽可能接近模型在测试集上的表现，可以做为模型优化的指标使用。</p>
+<h1 id="3-简单介绍一下常用的回归评价指标MSE、RMSE、MAE、R-Squared"><a href="#3-简单介绍一下常用的回归评价指标MSE、RMSE、MAE、R-Squared" class="headerlink" title="3.简单介绍一下常用的回归评价指标MSE、RMSE、MAE、R-Squared"></a>3.简单介绍一下常用的回归评价指标MSE、RMSE、MAE、R-Squared</h1><p>如果说分类问题的评价指标是<strong>准确率</strong>，那么回归算法的评价指标就是<em>MSE，RMSE，MAE、R-Squared</em>。在进行机器学习实验二的K-fold的时候，遇到了评价指标MSE，在好奇心的驱使下，我尝试研究这<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9ee85fdad150">四个评价指标…</a></p>
+<h2 id="3-1-均方误差-MSE"><a href="#3-1-均方误差-MSE" class="headerlink" title="3.1 均方误差-MSE"></a>3.1 均方误差-MSE</h2><p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula1.png%22" alt="MSE"></p>
+<p>MSE （Mean Squared Error）叫做均方误差。这里的y帽指的是预测值。这个公式长得有点像是线性回归模型的损失函数。</p>
+<h2 id="3-2-均方根误差-RMSE"><a href="#3-2-均方根误差-RMSE" class="headerlink" title="3.2 均方根误差-RMSE"></a>3.2 均方根误差-RMSE</h2><p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula2.png%22" alt="RMSE"></p>
+<p>RMSE（Root Mean Squard Error）均方根误差。这就是给MSE开一个根号，目的是更好的描述数据。因为开一个根号，RMSE在单位上就应该与所研究的数据的单位差不多了。</p>
+<h2 id="3-3-平均绝对误差-MAE"><a href="#3-3-平均绝对误差-MAE" class="headerlink" title="3.3 平均绝对误差-MAE"></a>3.3 平均绝对误差-MAE</h2><p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula3.png%22" alt="MAE"></p>
+<p>MAE(平均绝对误差)，这个看起来与上面的没有差别。<strong>有均方根的地方好像就会有绝对值？？？</strong></p>
+<h2 id="3-4-R方-R-Squared"><a href="#3-4-R方-R-Squared" class="headerlink" title="3.4 R方-R Squared"></a>3.4 R方-R Squared</h2><p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula4.png%22" alt="R Squared"></p>
+<p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula5.png%22" alt="R Squared"></p>
+<p>分类算法的衡量标准是正确率，它的范围是从零到一，很直观，并且在不同模型上也是一样的，看正确率就完事了。所以回归模型上有没有这种衡量的标准呢？答案是有的，它就是R Aquared也就是<strong>R方</strong>。至于式子的意思，应该也是很好理解的，但是<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9ee85fdad150">参考博主</a>写得有点不明不白，暂且就不深究了吧？总的来说，就是描述我们训练出来的模型的所有误差与当y帽等于y平均值时的误差之间的偏离程度。当R方结果为1时，表示我们的模型完全正确，这个时候分式项为0。</p>
+<p>上面的公式可以化简成如下，此时分式分子就变成了均方误差MSE，分母变成了方差var（标准差是std）</p>
+<p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula6.png%22" alt="R Squared"></p>
+<h1 id="4-K-Fold用来干啥？"><a href="#4-K-Fold用来干啥？" class="headerlink" title="4.K-Fold用来干啥？"></a>4.K-Fold用来干啥？</h1><h2 id="有些博主认为K折交叉验证用来进行模型调优，方便找到使得模型泛化性能最优的超参数？我认为，模型调优实在算不上，应该算是用来模型选择的吧？用来评价模型的泛化能力，从而在多个模型中进行选择。"><a href="#有些博主认为K折交叉验证用来进行模型调优，方便找到使得模型泛化性能最优的超参数？我认为，模型调优实在算不上，应该算是用来模型选择的吧？用来评价模型的泛化能力，从而在多个模型中进行选择。" class="headerlink" title="有些博主认为K折交叉验证用来进行模型调优，方便找到使得模型泛化性能最优的超参数？我认为，模型调优实在算不上，应该算是用来模型选择的吧？用来评价模型的泛化能力，从而在多个模型中进行选择。"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/xiaohutong1991/article/details/107924703">有些博主</a>认为K折交叉验证用来进行模型调优，方便找到使得模型泛化性能最优的超参数？我认为，模型调优实在算不上，应该算是用来模型选择的吧？用来评价模型的泛化能力，从而在多个模型中进行选择。</h2><pre><code>sklearn.model_selection.KFold(n_splits=3, shuffle=False, random_state=None)
+</code></pre>
+<p>根据代码对K-Fold的参数进行剖析：</p>
+<blockquote>
+<p>n_splits：将数据集划分n_splits个互斥子集，每次用其中一个子集当作验证集，剩下的n_splits-1个作为训练集，进行n_splits次训练和测试，得到n_splits个结果。表示划分几等份</p>
+<p>shuffle：在每次划分时，是否进行洗牌</p>
+<p>若为Falses时，其效果等同于random_state等于整数，每次划分的结果相同</p>
+<p>若为True时，每次划分的结果都不一样，表示经过洗牌，随机取样的</p>
+<p>random_state：随机种子数，如果设置了具体数值比如42（随便一个具体数值），那么每次运行结果都是一样的，不会随机产生结果，即每次运行结果都可以复现</p>
+</blockquote>
+<h1 id="5-K-Fold什么时候用呢？"><a href="#5-K-Fold什么时候用呢？" class="headerlink" title="5.K-Fold什么时候用呢？"></a>5.K-Fold什么时候用呢？</h1><p>问起什么时候才需要用到交叉验证，当然是数据不是很充足的时候才用交叉验证啦！凭借经验，一般数据样本量小于一万条的时候，我们就会采用交叉验证的方法来训练优化选择模型。如果样本量是大于一万条的话，那么我们就是用最常规的方法，也就是将数据集分成三份分别是训练集、验证集和测试集。直接用验证集来评估模型预测的好坏和选择模型及其对应的参数。把最终得到的模型再用于测试集，最终决定使用哪个模型以及对应参数。毕竟你数据量真有这么大，你还要将你的训练成本扩大K倍，权衡利弊使用K-Fold是不明智之选。<em>选择的k值常常是小于等于10的。</em></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/32627500">知乎用户-鱼遇雨欲语与余</a>根据切分方式的不同，将交叉验证分成了下面三种：</p>
+<h2 id="5-1-简单交叉验证"><a href="#5-1-简单交叉验证" class="headerlink" title="5.1 简单交叉验证"></a>5.1 简单交叉验证</h2><p>所谓简单，是相对其他交叉验证而言的。我们先是随机地将样本数据分成两部分，比如说我分了百分之六十的训练集，百分之四十的测试集。训练集训练模型，测试集验证模型以及参数。接着我们将样本打乱，然后重新选择训练集和测试集，继续训练数据和验证模型。最后一步就是选择损失函数评估最优的模型和参数了。<em>在我看来，简单是真的简单，为了评估最优的模型和参数，不惜连测试集都用了…</em></p>
+<h2 id="5-2-S折交叉验证"><a href="#5-2-S折交叉验证" class="headerlink" title="5.2 S折交叉验证"></a>5.2 S折交叉验证</h2><p>这是经常会用到的一种验证方法。和第一种方法不同，S折交叉验证先将数据集Dataset随机划分成S个大小相同的互斥子集，每次选择S-1份作为训练集，剩下的1份用来做测试集。当这一轮完成后，重新随机选择  份来训练数据。若干轮（小于  ）之后，选择损失函数评估最优的模型和参数。<em>需要注意的是，交叉验证法评估结果的稳定性和保真性在很大程度上取决于S的取值。那纳闷了，选择哪个S是最好的呢？我认为不论选择哪个S值，应该对最后的模型和参数选择不产生太大的影响吧？</em></p>
+<h2 id="5-3-留一交叉验证-Leave-one-out-Cross-Validation"><a href="#5-3-留一交叉验证-Leave-one-out-Cross-Validation" class="headerlink" title="5.3 留一交叉验证 Leave-one-out Cross Validation"></a>5.3 留一交叉验证 Leave-one-out Cross Validation</h2><p>这是一种特别抠门的方法，每一次只用一个样本来预测模型的好坏，也就是说每一次只有一个测试集。这种方法被视为S折交叉验证的特例，只在样本量非常少的情况下才使用。还有一种更抠门的方法是<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/32412775">自助法</a>…</p>
+
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://mobile.twitter.com/Kiddwenfeng">
+          <span class="icon">
+            <i class="fab fa-twitter"></i>
+          </span>
+
+          <span class="label">Twitter</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://github.com/fengyepiaosa">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+
+          <span class="label">GitHub</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://www.instagram.com/fengyepiaosa/">
+          <span class="icon">
+            <i class="far fa-instagram"></i>
+          </span>
+
+          <span class="label">Instagram</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/11/23/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/" rel="prev" title="特征工程">
+                  <i class="fa fa-chevron-left"></i> 特征工程
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/11/23/%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81%E8%A1%A5%E5%85%85/" rel="next" title="交叉验证补充">
+                  交叉验证补充 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wenfeng</span>
+</div>
+
+<!--
+隐藏网页底部 powered By Hexo / 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+-->
+
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
