@@ -20,28 +20,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"fengyepiaosa.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="欢迎来到wenfeng的博客！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="schedule">
-<meta property="og:url" content="https://fengyepiaosa.github.io/schedule/index.html">
+    <meta name="description" content="今天二十四号，学习卷积神经网络的第一天。虽然以前就对CNN有过了解，但是没有经过系统性的学习，对许多方面的知识点都是一知半解。在学习CNN之前，首先要明确的一点是：Deep Learning是全部深度学习算法的总称，而CNN是深度学习算法在图像处理领域的一个应用罢了…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="卷积神经网络CNN学习一">
+<meta property="og:url" content="https://fengyepiaosa.github.io/2022/11/24/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9CCNN%E5%AD%A6%E4%B9%A0%E4%B8%80/index.html">
 <meta property="og:site_name" content="fengyepiaosa">
-<meta property="og:description" content="欢迎来到wenfeng的博客！">
+<meta property="og:description" content="今天二十四号，学习卷积神经网络的第一天。虽然以前就对CNN有过了解，但是没有经过系统性的学习，对许多方面的知识点都是一知半解。在学习CNN之前，首先要明确的一点是：Deep Learning是全部深度学习算法的总称，而CNN是深度学习算法在图像处理领域的一个应用罢了…">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-11-23T12:33:47.000Z">
-<meta property="article:modified_time" content="2022-11-23T13:14:45.081Z">
+<meta property="article:published_time" content="2022-11-24T02:56:39.000Z">
+<meta property="article:modified_time" content="2022-11-24T03:19:35.390Z">
 <meta property="article:author" content="wenfeng">
+<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="CNN">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://fengyepiaosa.github.io/schedule/">
+<link rel="canonical" href="https://fengyepiaosa.github.io/2022/11/24/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9CCNN%E5%AD%A6%E4%B9%A0%E4%B8%80/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"https://fengyepiaosa.github.io/schedule/index.html","path":"schedule/index.html","title":"schedule"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://fengyepiaosa.github.io/2022/11/24/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9CCNN%E5%AD%A6%E4%B9%A0%E4%B8%80/","path":"2022/11/24/卷积神经网络CNN学习一/","title":"卷积神经网络CNN学习一"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>schedule | fengyepiaosa
-</title>
+<title>卷积神经网络CNN学习一 | fengyepiaosa</title>
   
 
 
@@ -133,7 +134,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -146,6 +147,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E4%BD%BF%E7%94%A8%E5%85%A8%E8%BF%9E%E6%8E%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%A4%84%E7%90%86%E5%91%A2%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">为什么不使用全连接神经网络处理呢？</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -220,34 +222,149 @@
 </noscript>
 
 
-    <div class="main-inner page posts-expand">
+    <div class="main-inner post posts-expand">
 
 
-    
-    
-    
-    <div class="post-block" lang="zh-CN"><header class="post-header">
+  
 
-<h1 class="post-title" itemprop="name headline">schedule
-</h1>
 
-<div class="post-meta-container">
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fengyepiaosa.github.io/2022/11/24/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9CCNN%E5%AD%A6%E4%B9%A0%E4%B8%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/asuka.jpg">
+      <meta itemprop="name" content="wenfeng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fengyepiaosa">
+      <meta itemprop="description" content="欢迎来到wenfeng的博客！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="卷积神经网络CNN学习一 | fengyepiaosa">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          卷积神经网络CNN学习一
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-11-24 10:56:39 / 修改时间：11:19:35" itemprop="dateCreated datePublished" datetime="2022-11-24T10:56:39+08:00">2022-11-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Deep-Learning/" itemprop="url" rel="index"><span itemprop="name">Deep Learning</span></a>
+        </span>
+    </span>
+
+  
 </div>
 
-</header>
+        </div>
+      </header>
 
-      
-      
-      <div class="post-body">
-          
-      </div>
-      
-      
-      
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>今天二十四号，学习卷积神经网络的第一天。虽然以前就对CNN有过了解，但是没有经过系统性的学习，对许多方面的知识点都是一知半解。在学习CNN之前，首先要明确的一点是：Deep Learning是全部深度学习算法的总称，而CNN是深度学习算法在图像处理领域的一个应用罢了…</p>
+<span id="more"></span>
+
+<h1 id="为什么不使用全连接神经网络处理呢？"><a href="#为什么不使用全连接神经网络处理呢？" class="headerlink" title="为什么不使用全连接神经网络处理呢？"></a>为什么不使用全连接神经网络处理呢？</h1><p>如果使用全连接神经网络处理大尺寸的图像时，会有三个明显的缺点：</p>
+<ol>
+<li>将图像展开为向量会丢失空间信息</li>
+<li>参数过多。效率低、训练难</li>
+<li>大量的参数很快导致网络过拟合</li>
+</ol>
+<p>而卷积神经网络可以很好的解决以上问题。</p>
+
     </div>
 
     
     
+    
+      
+
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://mobile.twitter.com/Kiddwenfeng">
+          <span class="icon">
+            <i class="fab fa-twitter"></i>
+          </span>
+
+          <span class="label">Twitter</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://github.com/fengyepiaosa">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+
+          <span class="label">GitHub</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://www.instagram.com/fengyepiaosa/">
+          <span class="icon">
+            <i class="fab fa-instagram"></i>
+          </span>
+
+          <span class="label">Instagram</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 深度学习</a>
+              <a href="/tags/CNN/" rel="tag"># CNN</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/11/24/pip%E5%AE%89%E8%A3%85%E6%96%B0%E5%BA%93/" rel="prev" title="pip安装新库">
+                  <i class="fa fa-chevron-left"></i> pip安装新库
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
 
 
 </div>
