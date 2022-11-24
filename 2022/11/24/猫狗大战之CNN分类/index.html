@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/Blue.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_small.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"fengyepiaosa.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="实践出真知！在kaggle上找的CNN经典案例练练手，猫狗大战属于图像分类问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="猫狗大战之CNN分类">
+<meta property="og:url" content="https://fengyepiaosa.github.io/2022/11/24/%E7%8C%AB%E7%8B%97%E5%A4%A7%E6%88%98%E4%B9%8BCNN%E5%88%86%E7%B1%BB/index.html">
+<meta property="og:site_name" content="fengyepiaosa">
+<meta property="og:description" content="实践出真知！在kaggle上找的CNN经典案例练练手，猫狗大战属于图像分类问题。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-24T11:24:47.000Z">
+<meta property="article:modified_time" content="2022-11-24T14:43:28.384Z">
+<meta property="article:author" content="wenfeng">
+<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="CNN">
+<meta property="article:tag" content="比赛">
+<meta property="article:tag" content="图像分类">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://fengyepiaosa.github.io/2022/11/24/%E7%8C%AB%E7%8B%97%E5%A4%A7%E6%88%98%E4%B9%8BCNN%E5%88%86%E7%B1%BB/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://fengyepiaosa.github.io/2022/11/24/%E7%8C%AB%E7%8B%97%E5%A4%A7%E6%88%98%E4%B9%8BCNN%E5%88%86%E7%B1%BB/","path":"2022/11/24/猫狗大战之CNN分类/","title":"猫狗大战之CNN分类"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>猫狗大战之CNN分类 | fengyepiaosa</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+  
+
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">fengyepiaosa</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录生活！</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Import-required-libraries-x2F-dependencies"><span class="nav-number">1.</span> <span class="nav-text">Import required libraries &#x2F; dependencies</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Generate-the-datasets-both-the-training-and-the-test-sets"><span class="nav-number">2.</span> <span class="nav-text">Generate the datasets, both the training and the test sets</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#define-the-paths-to-the-dataset"><span class="nav-number">2.1.</span> <span class="nav-text">define the paths to the dataset.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-dataset"><span class="nav-number">2.2.</span> <span class="nav-text">Create dataset</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Visualize-some-images-from-the-training-set"><span class="nav-number">3.</span> <span class="nav-text">Visualize some images from the training set</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#visualize-the-training-set"><span class="nav-number">3.1.</span> <span class="nav-text">visualize the training set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#visualize-the-test-set"><span class="nav-number">3.2.</span> <span class="nav-text">visualize the test set</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Data-Augmentation"><span class="nav-number">4.</span> <span class="nav-text">Data Augmentation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#define-some-layers-of-data-augmentation"><span class="nav-number">4.1.</span> <span class="nav-text">define some layers of data augmentation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#visualize-it"><span class="nav-number">4.2.</span> <span class="nav-text">visualize it</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Build-a-model"><span class="nav-number">5.</span> <span class="nav-text">Build a model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#build-the-model"><span class="nav-number">5.1.</span> <span class="nav-text">build the model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#model-summary"><span class="nav-number">5.2.</span> <span class="nav-text">model summary</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Train-the-model"><span class="nav-number">6.</span> <span class="nav-text">Train the model</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Visualize-the-predicted-images"><span class="nav-number">7.</span> <span class="nav-text">Visualize the predicted images</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="wenfeng"
+      src="/uploads/asuka.jpg">
+  <p class="site-author-name" itemprop="name">wenfeng</p>
+  <div class="site-description" itemprop="description">欢迎来到wenfeng的博客！</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/fengyepiaosa" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;fengyepiaosa" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://plus.google.com/fengyepiaosa" title="Google → https:&#x2F;&#x2F;plus.google.com&#x2F;fengyepiaosa" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>Google</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://mobile.twitter.com/Kiddwenfeng" title="Twitter → https:&#x2F;&#x2F;mobile.twitter.com&#x2F;Kiddwenfeng" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/profile.php?id=100086193167274" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;profile.php?id&#x3D;100086193167274" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/channel/UCYtkEykUyHVBzpy4CgU1Zuw" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;channel&#x2F;UCYtkEykUyHVBzpy4CgU1Zuw" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/fengyepiaosa/" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;fengyepiaosa&#x2F;" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fengyepiaosa.github.io/2022/11/24/%E7%8C%AB%E7%8B%97%E5%A4%A7%E6%88%98%E4%B9%8BCNN%E5%88%86%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/asuka.jpg">
+      <meta itemprop="name" content="wenfeng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fengyepiaosa">
+      <meta itemprop="description" content="欢迎来到wenfeng的博客！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="猫狗大战之CNN分类 | fengyepiaosa">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          猫狗大战之CNN分类
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-11-24 19:24:47 / 修改时间：22:43:28" itemprop="dateCreated datePublished" datetime="2022-11-24T19:24:47+08:00">2022-11-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Deep-Learning/" itemprop="url" rel="index"><span itemprop="name">Deep Learning</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>实践出真知！在kaggle上找的CNN经典案例练练手，猫狗大战属于图像分类问题。</p>
+<span id="more"></span>
+
+<h1 id="Import-required-libraries-x2F-dependencies"><a href="#Import-required-libraries-x2F-dependencies" class="headerlink" title="Import required libraries &#x2F; dependencies"></a>Import required libraries &#x2F; dependencies</h1><figure class="highlight plaintext"><figcaption><span>[导入库和依赖] [lang:python] [url] [link text] [additional options]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line">import numpy as np</span><br><span class="line">import seaborn as sns</span><br><span class="line">from matplotlib import pyplot as plt</span><br><span class="line"></span><br><span class="line">import keras</span><br><span class="line">import tensorflow as tf</span><br><span class="line">from keras.models import Sequential</span><br><span class="line">from keras import layers</span><br><span class="line">from tensorflow.keras.optimizers import Adam</span><br></pre></td></tr></table></figure>
+
+<p><strong>tf.keras</strong>是用于构建和训练深度学习模型的 TensorFlow 高阶 API。它和TensorFlow相比具有以下的优点：</p>
+<ol>
+<li>对错误实现精确反馈，方便用户使用</li>
+<li>将可配置的构造块组合在一起便能构建Keras模型，模块化</li>
+<li>得益于上一点，我们可以编写自定义构造块，表达新的研究创意，即易于拓展</li>
+</ol>
+<p>而对于<code>from keras.models import Sequential</code>，在Keras中有两种深度学习的模型，分别是序列模型（Sequential）和通用模型（Model），两者的差异在于它们之间允许的不同的拓扑结构。详细地可以参考<a target="_blank" rel="noopener" href="https://keras.io/models/sequential/">Keras官方文档</a>，这里我就简单讲解一下。Sequential模型结构是一种简单的线性结构，是多个网络层的堆叠（这说的网络层指的是卷积层、池化层等）。而Model模型结构是非线性的，允许多输入多输出的模型。利用Model模型我们设计非常复杂、任意拓扑的神经网络，可以说用法更灵活，但难度明显更大。</p>
+<p><code>from keras import layers</code>允许我们使用各种各样的网络结构，是组成完整模型的零件。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/ssswill/article/details/88310812">CSDN-keras-layers:Dense,Embedding,LSTM</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/winter_python/article/details/108612636">CSDN-keras.layers汇总</a></li>
+</ul>
+<p><code>from tensorflow.keras.optimizers import Adam</code>这是一个名叫Adam的优化器，在监督学习中我们使用梯度下降算法的时候，学习率是一个很重要的指标。Adam能够让学习率从大到小自适应，实现效率与效果的兼得。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/I_canjnu/article/details/106035640">CSDN-机器学习之优化器keras.optimizers.Adam()详解</a></p>
+</blockquote>
+<h1 id="Generate-the-datasets-both-the-training-and-the-test-sets"><a href="#Generate-the-datasets-both-the-training-and-the-test-sets" class="headerlink" title="Generate the datasets, both the training and the test sets"></a>Generate the datasets, both the training and the test sets</h1><h2 id="define-the-paths-to-the-dataset"><a href="#define-the-paths-to-the-dataset" class="headerlink" title="define the paths to the dataset."></a>define the paths to the dataset.</h2><figure class="highlight plaintext"><figcaption><span>[title] [lang:python] [url] [link text] [additional options]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">training_path = &#x27;../input/cat-and-dog/training_set/training_set/&#x27;</span><br><span class="line">test_path = &#x27;../input/cat-and-dog/test_set/test_set/&#x27;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Create-dataset"><a href="#Create-dataset" class="headerlink" title="Create dataset"></a>Create dataset</h2><figure class="highlight plaintext"><figcaption><span>[title] [lang:python] [url] [link text] [additional options]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">image_size = (200, 200)</span><br><span class="line">batch_size = 32</span><br><span class="line"></span><br><span class="line">training_set = keras.preprocessing.image.image_dataset_from_directory(</span><br><span class="line">    directory=training_path,</span><br><span class="line">    class_names=[&#x27;cats&#x27;, &#x27;dogs&#x27;],</span><br><span class="line">    image_size=image_size,</span><br><span class="line">    batch_size=batch_size</span><br><span class="line">)</span><br><span class="line">test_set = keras.preprocessing.image.image_dataset_from_directory(</span><br><span class="line">    directory=test_path,</span><br><span class="line">    class_names=[&#x27;cats&#x27;, &#x27;dogs&#x27;],</span><br><span class="line">    image_size=image_size,</span><br><span class="line">    batch_size=batch_size,</span><br><span class="line">    </span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>keras.preprocessing.image.image_dataset_from_directory可以理解成数据预处理工具包，TensorFlow的官方文档在<a target="_blank" rel="noopener" href="https://tensorflow.google.cn/api_docs/python/tf/keras/utils/image_dataset_from_directory">此</a>。它能够从文件夹里对子目录猫和狗分别生成标签0和1，将数据返回到tf.data.Dateset中，并且在加载的同时还会打乱数据。</p>
+<h1 id="Visualize-some-images-from-the-training-set"><a href="#Visualize-some-images-from-the-training-set" class="headerlink" title="Visualize some images from the training set"></a>Visualize some images from the training set</h1><h2 id="visualize-the-training-set"><a href="#visualize-the-training-set" class="headerlink" title="visualize the training set"></a>visualize the training set</h2><figure class="highlight plaintext"><figcaption><span>[title] [lang:language] [url] [link text] [additional options]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">plt.figure(figsize=(15, 9))</span><br><span class="line">def cat_or_dog(a):</span><br><span class="line">    if a==0:</span><br><span class="line">        return &#x27;Cat&#x27;</span><br><span class="line">    return &#x27;Dog&#x27;</span><br><span class="line">    </span><br><span class="line">for images, labels in training_set.take(1):</span><br><span class="line">    for i in range(12):</span><br><span class="line">        plt.subplot(3, 4, i+1)</span><br><span class="line">        plt.imshow(images[i].numpy().astype(&#x27;uint8&#x27;))</span><br><span class="line">        plt.title(f&#x27;&#123;int(labels[i])&#125; (&#123;cat_or_dog(int(labels[i]))&#125;)&#x27;)</span><br><span class="line">        plt.axis(&#x27;off&#x27;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="visualize-the-test-set"><a href="#visualize-the-test-set" class="headerlink" title="visualize the test set"></a>visualize the test set</h2><figure class="highlight plaintext"><figcaption><span>[title] [lang:python] [url] [link text] [additional options]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">plt.figure(figsize=(15, 9))</span><br><span class="line">def cat_or_dog(a):</span><br><span class="line">    if a==0:</span><br><span class="line">        return &#x27;Cat&#x27;</span><br><span class="line">    return &#x27;Dog&#x27;</span><br><span class="line">    </span><br><span class="line">for images, labels in test_set.take(1):</span><br><span class="line">    for i in range(12):</span><br><span class="line">        plt.subplot(3, 4, i+1)</span><br><span class="line">        plt.imshow(images[i].numpy().astype(&#x27;uint8&#x27;))</span><br><span class="line">        plt.title(f&#x27;&#123;int(labels[i])&#125; (&#123;cat_or_dog(int(labels[i]))&#125;)&#x27;)</span><br><span class="line">        plt.axis(&#x27;off&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>要是对**plt.figure(figsize &#x3D; (a, b)<strong>和</strong>plt.subplot()<strong>不懂的话，可以看看<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43685844/article/details/88982811">这里</a>。而这里的</strong>dataset.take(1)**指的是取构建dataset的第一组元素，看样子一组好像有12个（因为下面的circle）,并且可以返回图片image和标签label两个值。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43935696/article/details/112691755">CSDN-dataset.take</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/95f11648be2c">简书-dataset.take</a></li>
+</ul>
+<h1 id="Data-Augmentation"><a href="#Data-Augmentation" class="headerlink" title="Data Augmentation"></a>Data Augmentation</h1><blockquote>
+<p>augmentation &#x2F;ˌɔːɡmenˈteɪʃ(ə)n&#x2F; 增大，增多；增加物；延长，扩充</p>
+</blockquote>
+<h2 id="define-some-layers-of-data-augmentation"><a href="#define-some-layers-of-data-augmentation" class="headerlink" title="define some layers of data augmentation"></a>define some layers of data augmentation</h2><figure class="highlight plaintext"><figcaption><span>[title] [lang:python] [url] [link text] [additional options]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">augmented_data = Sequential([</span><br><span class="line">    layers.RandomFlip(&#x27;horizontal&#x27;),</span><br><span class="line">    layers.RandomRotation(0.1)</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+
+<h2 id="visualize-it"><a href="#visualize-it" class="headerlink" title="visualize it"></a>visualize it</h2><figure class="highlight plaintext"><figcaption><span>[title] [lang:python] [url] [link text] [additional options]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">plt.figure(figsize=(15, 9))</span><br><span class="line">    </span><br><span class="line">for images, labels in test_set.take(1):</span><br><span class="line">    for i in range(12):</span><br><span class="line">        plt.subplot(3, 4, i+1)</span><br><span class="line">        augmented_image = augmented_data(images[0])</span><br><span class="line">        plt.imshow(augmented_image.numpy().astype(&#x27;uint8&#x27;))</span><br><span class="line">        plt.title(int(labels[0]))</span><br><span class="line">        plt.axis(&#x27;off&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>tf.keras.layers.RandomFlip</strong>的作用是一个预处理层,在训练期间随机翻转图像<a target="_blank" rel="noopener" href="https://runebook.dev/zh-CN/docs/tensorflow/keras/layers/randomflip">runebook</a>、<a target="_blank" rel="noopener" href="https://keras.io/api/layers/preprocessing_layers/image_preprocessing/random_flip/">官方文档</a></p>
+<h1 id="Build-a-model"><a href="#Build-a-model" class="headerlink" title="Build a model"></a>Build a model</h1><h2 id="build-the-model"><a href="#build-the-model" class="headerlink" title="build the model"></a>build the model</h2><figure class="highlight plaintext"><figcaption><span>[title] [lang:python] [url] [link text] [additional options]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">model = Sequential([</span><br><span class="line">    layers.Conv2D(filters=128, kernel_size=(3, 3), activation=&#x27;relu&#x27;, padding=&#x27;same&#x27;, input_shape=(200, 200, 3)),</span><br><span class="line">    </span><br><span class="line">    # preprocessing</span><br><span class="line">    layers.CenterCrop(180, 180),</span><br><span class="line">    layers.Rescaling(scale=1./255),</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    # applying image data augmentation</span><br><span class="line">    layers.RandomFlip(&#x27;horizontal&#x27;),</span><br><span class="line">    layers.RandomRotation(0.1),</span><br><span class="line">    </span><br><span class="line">    layers.MaxPooling2D(pool_size=(2, 2), strides=2),</span><br><span class="line">    </span><br><span class="line">    layers.Conv2D(filters=256, kernel_size=(3, 3), activation=&#x27;relu&#x27;, padding=&#x27;same&#x27;),</span><br><span class="line">    layers.MaxPooling2D(pool_size=(2, 2), strides=2),</span><br><span class="line">    </span><br><span class="line">    layers.Conv2D(filters=64, kernel_size=(3, 3), activation=&#x27;relu&#x27;, padding=&#x27;same&#x27;),</span><br><span class="line">    layers.MaxPooling2D(pool_size=(2, 2), strides=2),</span><br><span class="line">    </span><br><span class="line">    layers.Conv2D(filters=32, kernel_size=(3, 3), activation=&#x27;relu&#x27;, padding=&#x27;same&#x27;),</span><br><span class="line">    layers.MaxPooling2D(pool_size=(2, 2), strides=2),</span><br><span class="line">    </span><br><span class="line">    layers.Flatten(),</span><br><span class="line">    </span><br><span class="line">    # output layer</span><br><span class="line">    layers.Dense(1, activation=&#x27;sigmoid&#x27;)</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+
+<p>tf.keras.layers.Conv2D的filter为什么是128呢？这一点让我很疑惑。查阅资料发现许多都讲得模棱两可，不过大概可以解释的是这个filter指的是过滤器的深度。我没有查阅官方文档，后来发现<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/498713060">知乎-tf.keras.layers.Conv2D参数详解</a>中的分析比较可取。”我几乎总是建议使用2的次方作为值”说明2的次方并不是filter的专利，并且我们需要根据数据集的复杂性和神经网络的深度来调整确切的值，也就是说filter的选择主观性强。</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://runebook.dev/zh-CN/docs/tensorflow/keras/layers/centercrop" title="runebook的Keras文档">tf.keras.layers.CenterCropCrop</a>对图片进行裁切，去两边留中心。官方解释–&gt;<em>the central portion of the images to target height and width</em></li>
+<li><a target="_blank" rel="noopener" href="https://docs.w3cub.com/tensorflow~2.9/keras/layers/rescaling.html" title="W3C的Keras文档">tf.keras.layers.Rescaling</a>To rescale an input in the [0, 255] range to be in the [0, 1] range, you would pass scale&#x3D;1.&#x2F;255</li>
+<li>Dense层(全连接层）</li>
+<li>Flatten层用来将输入“压平”，即把多维的输入一维化，常用在从卷积层到全连接层的过渡。Flatten不影响batch的大小。据说Convolution卷积层之后是无法直接连接Dense全连接层的，需要把Convolution层的数据压平（Flatten），然后才可以直接加Dense层。</li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/peng8098/p/keras_7.html#:~:text=%20Flatten%E5%B1%82%E7%94%A8%E6%9D%A5%E5%B0%86%E8%BE%93%E5%85%A5%E2%80%9C%E5%8E%8B%E5%B9%B3%E2%80%9D%EF%BC%8C%E5%8D%B3%E6%8A%8A%E5%A4%9A%E7%BB%B4%E7%9A%84%E8%BE%93%E5%85%A5%E4%B8%80%E7%BB%B4%E5%8C%96%EF%BC%8C%E5%B8%B8%E7%94%A8%E5%9C%A8%E4%BB%8E%E5%8D%B7%E7%A7%AF%E5%B1%82%E5%88%B0%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%B1%82%E7%9A%84%E8%BF%87%E6%B8%A1%E3%80%82%20Flatten%E4%B8%8D%E5%BD%B1%E5%93%8Dbatch%E7%9A%84%E5%A4%A7%E5%B0%8F%E3%80%82,%E8%BE%93%E5%85%A5shape%EF%BC%9A%E4%BB%BB%E6%84%8F%EF%BC%8C%E4%BD%86%E8%BE%93%E5%85%A5%E7%9A%84shape%E5%BF%85%E9%A1%BB%E5%9B%BA%E5%AE%9A%E3%80%82%20%E5%BD%93%E4%BD%BF%E7%94%A8%E8%AF%A5%E5%B1%82%E4%B8%BA%E6%A8%A1%E5%9E%8B%E9%A6%96%E5%B1%82%E6%97%B6%EF%BC%8C%E9%9C%80%E8%A6%81%E6%8C%87%E5%AE%9Ainput_shape%E5%8F%82%E6%95%B0%20Permute%E5%B1%82%E5%B0%86%E8%BE%93%E5%85%A5%E7%9A%84%E7%BB%B4%E5%BA%A6%E6%8C%89%E7%85%A7%E7%BB%99%E5%AE%9A%E6%A8%A1%E5%BC%8F%E8%BF%9B%E8%A1%8C%E9%87%8D%E6%8E%92%EF%BC%8C%E4%BE%8B%E5%A6%82%EF%BC%8C%E5%BD%93%E9%9C%80%E8%A6%81%E5%B0%86RNN%E5%92%8CCNN%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E6%97%B6%EF%BC%8C%E5%8F%AF%E8%83%BD%E4%BC%9A%E7%94%A8%E5%88%B0%E8%AF%A5%E5%B1%82%E3%80%82" title="cnblog">cnblog对Keras.layers各种层的介绍-比较准确</a></li>
+</ol>
+<h2 id="model-summary"><a href="#model-summary" class="headerlink" title="model summary"></a>model summary</h2><figure class="highlight plaintext"><figcaption><span>[title] [lang:python] [url] [link text] [additional options]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.summary()</span><br></pre></td></tr></table></figure>
+
+<p>使用keras构建深度学习模型，我们会通过model.summary()输出模型各层的参数状况。通过这些参数，可以看到模型各个层的组成（dense表示全连接层）。也能看到数据经过每个层后，输出的数据维度。还能看到Param，它表示每个层参数的个数，详情参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/ybdesire/article/details/85217688" title="CSDN">此处</a>。这一步是先将模型搭建起来，然后用summary查看相关的信息，不属于训练过程，所以运行不需要花多少时间。</p>
+<h1 id="Train-the-model"><a href="#Train-the-model" class="headerlink" title="Train the model"></a>Train the model</h1><figure class="highlight plaintext"><figcaption><span>[title] [lang:python] [url] [link text] [additional options]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">epochs = 50</span><br><span class="line"># callbacks (save the model at each epoch)</span><br><span class="line">callbacks = [</span><br><span class="line">    keras.callbacks.ModelCheckpoint(&quot;checkpoints/model_at_&#123;epoch&#125;.h5&quot;),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p><strong>tf.keras.callbacks.ModelCheckpoint</strong>回调函数的作用是在每个训练期（epoch）后保存模型–&gt;<a target="_blank" rel="noopener" href="https://www.w3cschool.cn/tensorflow_python/tf_keras_callbacks_ModelCheckpoint.html" title="W3C">Reference</a></p>
+<figure class="highlight plaintext"><figcaption><span>[title] [lang:python] [url] [link text] [additional options]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># compile the model</span><br><span class="line">model.compile(</span><br><span class="line">    optimizer=Adam(learning_rate=0.001),</span><br><span class="line">    loss=&#x27;binary_crossentropy&#x27;,</span><br><span class="line">    metrics=[&#x27;accuracy&#x27;]</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>Keras的model.compile参数介绍：</p>
+<figure class="highlight plaintext"><figcaption><span>[title] [lang:python] [url] [link text] [additional options]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">model.compile(</span><br><span class="line">   optimizer, </span><br><span class="line">   loss = None, </span><br><span class="line">   metrics = None, </span><br><span class="line">   loss_weights = None, </span><br><span class="line">   sample_weight_mode = None, </span><br><span class="line">   weighted_metrics = None, </span><br><span class="line">   target_tensors = None</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>常用的就下面三个参数：</p>
+<ol>
+<li>optimizer：优化器，用于控制梯度裁剪</li>
+<li>loss：损失函数（或称目标函数、优化评分函数）</li>
+<li>metrics：评价函数用于评估当前训练模型的性能。当模型编译后（compile），评价函数应该作为 metrics 的参数来输入。评价函数和损失函数相似，只不过评价函数的结果不会用于训练过程中。</li>
+</ol>
+<figure class="highlight plaintext"><figcaption><span>[title] [lang:python] [url] [link text] [additional options]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># fit the model</span><br><span class="line">model.fit(training_set, validation_data=test_set, epochs=epochs, callbacks=callbacks, verbose=2)</span><br></pre></td></tr></table></figure>
+
+<p>这里的fit起到将训练集和测试集载入模型的作用。但是还有另外一个fit_generator函数，作用相似。首先Keras中的fit()函数传入的x_train和y_train是被完整的加载进内存的,当然用起来很方便，但是如果我们数据量很大，那么是不可能将所有数据载入内存的，必将导致内存泄漏，这时候我们可以用fit_generator函数来进行训练。<br><a target="_blank" rel="noopener" href="https://www.w3cschool.cn/article/62757839.html#:~:text=%E9%A6%96%E5%85%88Keras%E4%B8%AD%E7%9A%84fit,%28%29%E5%87%BD%E6%95%B0%E4%BC%A0%E5%85%A5%E7%9A%84x_train%E5%92%8Cy_train%E6%98%AF%E8%A2%AB%E5%AE%8C%E6%95%B4%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%9B%E5%86%85%E5%AD%98%E7%9A%84%2C%E5%BD%93%E7%84%B6%E7%94%A8%E8%B5%B7%E6%9D%A5%E5%BE%88%E6%96%B9%E4%BE%BF%EF%BC%8C%E4%BD%86%E6%98%AF%E5%A6%82%E6%9E%9C%E6%88%91%E4%BB%AC%E6%95%B0%E6%8D%AE%E9%87%8F%E5%BE%88%E5%A4%A7%EF%BC%8C%E9%82%A3%E4%B9%88%E6%98%AF%E4%B8%8D%E5%8F%AF%E8%83%BD%E5%B0%86%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E8%BD%BD%E5%85%A5%E5%86%85%E5%AD%98%E7%9A%84%EF%BC%8C%E5%BF%85%E5%B0%86%E5%AF%BC%E8%87%B4%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%EF%BC%8C%E8%BF%99%E6%97%B6%E5%80%99%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E7%94%A8fit_generator%E5%87%BD%E6%95%B0%E6%9D%A5%E8%BF%9B%E8%A1%8C%E8%AE%AD%E7%BB%83%E3%80%82" title="W3C">参考</a>其中有一个常见的参数verbose–&gt;<em>verbose:默认值为1，是指在训练过程中日志的显示模式，取 1 时表示“进度条模式”，取2时表示“每轮一行”，取0时表示“安静模式”</em></p>
+<h1 id="Visualize-the-predicted-images"><a href="#Visualize-the-predicted-images" class="headerlink" title="Visualize the predicted images"></a>Visualize the predicted images</h1><figure class="highlight plaintext"><figcaption><span>[title] [lang:python] [url] [link text] [additional options]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># visualize the predicted data</span><br><span class="line">loaded_model = keras.models.load_model(&#x27;checkpoints/model_at_50.h5&#x27;)</span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(15, 9))</span><br><span class="line"></span><br><span class="line">def predict(imgs):</span><br><span class="line">    pred = []</span><br><span class="line">    for i in loaded_model.predict(images.numpy().astype(&#x27;uint8&#x27;)):</span><br><span class="line">        if i[0] &gt; .5:</span><br><span class="line">            pred.append(1)</span><br><span class="line">        else:</span><br><span class="line">            pred.append(0)</span><br><span class="line">    return pred</span><br><span class="line">    </span><br><span class="line">for images, labels in test_set.take(1):</span><br><span class="line">    pred = predict(images)</span><br><span class="line">    for i in range(12):</span><br><span class="line">        plt.subplot(3, 4, i+1)</span><br><span class="line">        plt.imshow(images[i].numpy().astype(&#x27;uint8&#x27;))</span><br><span class="line">        plt.title(f&#x27;True: &#123;int(labels[i])&#125;, Predicted: &#123;pred[i]&#125;&#x27;)</span><br><span class="line">        plt.axis(&#x27;off&#x27;)</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://mobile.twitter.com/Kiddwenfeng">
+          <span class="icon">
+            <i class="fab fa-twitter"></i>
+          </span>
+
+          <span class="label">Twitter</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://github.com/fengyepiaosa">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+
+          <span class="label">GitHub</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://www.instagram.com/fengyepiaosa/">
+          <span class="icon">
+            <i class="fab fa-instagram"></i>
+          </span>
+
+          <span class="label">Instagram</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 深度学习</a>
+              <a href="/tags/CNN/" rel="tag"># CNN</a>
+              <a href="/tags/%E6%AF%94%E8%B5%9B/" rel="tag"># 比赛</a>
+              <a href="/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/" rel="tag"># 图像分类</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/11/24/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9CCNN%E5%AD%A6%E4%B9%A0%E4%B8%80/" rel="prev" title="卷积神经网络CNN学习一">
+                  <i class="fa fa-chevron-left"></i> 卷积神经网络CNN学习一
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wenfeng</span>
+</div>
+
+<!--
+隐藏网页底部 powered By Hexo / 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+-->
+
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

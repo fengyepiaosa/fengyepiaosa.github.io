@@ -1,6 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Jupyter Notebook</title>
+    <url>/2022/11/23/Jupyter-Notebook/</url>
+    <content><![CDATA[<p>Jupyter Notebook的常见操作-需要熟记！</p>
+<span id="more"></span>
+
+<h1 id="Jupyter-Notebook常见快捷键操作"><a href="#Jupyter-Notebook常见快捷键操作" class="headerlink" title="Jupyter Notebook常见快捷键操作"></a>Jupyter Notebook常见快捷键操作</h1><blockquote>
+<p>首先要知道Jupyter有三种cell类型</p>
+</blockquote>
+<ol>
+<li><strong>Code</strong></li>
+<li><strong>Markdown</strong></li>
+<li><strong>Raw NBConvert</strong>（普通文本，运行不会输出结果）</li>
+</ol>
+<blockquote>
+<p>两种模式</p>
+</blockquote>
+<ol>
+<li><strong>编辑模式（Enter）</strong></li>
+<li><strong>命令模式（Esc）</strong></li>
+</ol>
+<h2 id="1-两种模式都可以使用的快捷键"><a href="#1-两种模式都可以使用的快捷键" class="headerlink" title="1.两种模式都可以使用的快捷键"></a>1.两种模式都可以使用的快捷键</h2><ul>
+<li><strong>Shift+Enter</strong>执行本单元代码，并且跳转到下一单元</li>
+<li><strong>Ctrl+Enter</strong>执行本单元代码，留在本单元</li>
+</ul>
+<h2 id="2-命令模式"><a href="#2-命令模式" class="headerlink" title="2.命令模式"></a>2.命令模式</h2><ul>
+<li><strong>Y</strong>：cell切换到Code模式</li>
+<li><strong>M</strong>：cell切换到Markdown模式</li>
+<li><strong>A</strong>：在当前cell的上面添加cell</li>
+<li><strong>B</strong>：在当前cell的下面添加cell</li>
+<li><strong>双击D</strong>：删除当前cell</li>
+<li><strong>Z</strong>：回退</li>
+<li><strong>Ctrl+Shift+减号</strong>：分隔cell，在光标处</li>
+<li><strong>L</strong>：为当前cell加上行号</li>
+</ul>
+<h2 id="3-编辑模式：按Enter或鼠标单击代码块内部进入"><a href="#3-编辑模式：按Enter或鼠标单击代码块内部进入" class="headerlink" title="3.编辑模式：按Enter或鼠标单击代码块内部进入"></a>3.编辑模式：按Enter或鼠标单击代码块内部进入</h2><ul>
+<li><strong>Ctrl+鼠标单击</strong>：多光标操作</li>
+<li><strong>Ctrl+Z</strong>：回退</li>
+<li><strong>Tab键</strong>：代码补全</li>
+<li><strong>Ctrl</strong>：注释多行代码</li>
+</ul>
+]]></content>
+      <categories>
+        <category>notebook operation</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2022/11/20/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -80,6 +126,57 @@
       </categories>
   </entry>
   <entry>
+    <title>cv2报错处理</title>
+    <url>/2022/11/24/cv2%E6%8A%A5%E9%94%99%E5%A4%84%E7%90%86/</url>
+    <content><![CDATA[<p>cv2报错：raise TypeError(“Image data of dtype {} cannot be converted to “TypeError: Image data of dtype object cannot be converted to float</p>
+<span id="more"></span>
+
+<h1 id="raise-TypeError-“Image-data-of-dtype-cannot-be-converted-to-“-TypeError-Image-data-of-dtype-object-cannot-be-converted-to-float"><a href="#raise-TypeError-“Image-data-of-dtype-cannot-be-converted-to-“-TypeError-Image-data-of-dtype-object-cannot-be-converted-to-float" class="headerlink" title="raise TypeError(“Image data of dtype {} cannot be converted to “     TypeError: Image data of dtype object cannot be converted to float"></a>raise TypeError(“Image data of dtype {} cannot be converted to “     TypeError: Image data of dtype object cannot be converted to float</h1><p>刚想要研究一下CV2内置的图像类型的不同，结果发现CSDN上找的代码跑不出来？其实也正常，天下哪有免费的午餐，拿到的代码还不是得修修改改？</p>
+<h1 id="报错如下"><a href="#报错如下" class="headerlink" title="报错如下"></a>报错如下</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">raise TypeError(&quot;Image data of dtype &#123;&#125; cannot be converted to &quot;     TypeError: Image data of dtype object cannot be converted to float</span><br></pre></td></tr></table></figure>
+
+<p>至于解决方案众说纷坛，有说要看看数据类型是不是不对应，还有的人说路径里面有中文。其实我的文件夹真的有中文，但是更改之后，报错依旧。</p>
+<p>网上都说是引入图片路径的问题，但是我这句代码应该也没有错吧？因为下载的visual code插件可以成功显示出图片在代码的左边，左思右想决定还是更改路径试试。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># cv2.imread()接口读图像，读进来直接是BGR 格式数据格式在 0~255，通道格式为(W,H,C)</span><br><span class="line">img_BGR = cv2.imread(&#x27;sea.jpg&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>更改成visual code直接复制图片的相对路径</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">img_BGR = cv2.imread(&#x27;web\sea.jpg&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>后面发现真的成功运行。这次运行的代码文件和图片文件在同一个文件夹里，但是却要加个前缀，可能与我IDE打开的工作区有关吧？</p>
+<p>总之就是路径的问题。</p>
+<h1 id="不存在skimage库"><a href="#不存在skimage库" class="headerlink" title="不存在skimage库"></a>不存在skimage库</h1><p>Python库函数的下载放到了另外一篇文章…</p>
+]]></content>
+      <categories>
+        <category>Library function</category>
+      </categories>
+      <tags>
+        <tag>report an error</tag>
+        <tag>库函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>github文件夹有白色箭头并且不能打开的解决办法</title>
+    <url>/2022/11/20/github%E6%96%87%E4%BB%B6%E5%A4%B9%E6%9C%89%E7%99%BD%E8%89%B2%E7%AE%AD%E5%A4%B4%E5%B9%B6%E4%B8%94%E4%B8%8D%E8%83%BD%E6%89%93%E5%BC%80%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
+    <content><![CDATA[<p>Github文件夹有白色箭头并且不能打开?可能是因为你提交的Git文件中有叫做.git的文件！</p>
+<span id="more"></span>
+
+<h1 id="1-问题描述"><a href="#1-问题描述" class="headerlink" title="1.问题描述"></a>1.问题描述</h1><p>前几天在Git上向GitHub提交了自己的文件，但是在GitHub却无法打开文件夹，并且文件夹上面还多了一个白色的箭头？本着求知的精神，我上百度上找了找，发现是因为我提交的这个文件本身就已经是Git仓库了，而子文件里面还藏着Git仓库，也就是说子文件里还有.git隐藏文件。因为层层的嵌套关系，导致GitHub对文件的识别发生了错误。</p>
+<h1 id="2-解决方案"><a href="#2-解决方案" class="headerlink" title="2.解决方案"></a>2.解决方案</h1><p>把子文件的.git文件夹删掉就好了</p>
+<ol>
+<li>执行<code>git rm --cached [文件夹名]</code></li>
+<li>执行<code>git add [文件夹名]</code></li>
+<li>执行<code>git commit -m &quot;git folder report an error!&quot;</code></li>
+<li>执行<code>git push origin [branch_name] </code></li>
+</ol>
+]]></content>
+      <categories>
+        <category>git operation</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>工具操作</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>pip安装新库</title>
     <url>/2022/11/24/pip%E5%AE%89%E8%A3%85%E6%96%B0%E5%BA%93/</url>
     <content><![CDATA[<p>书接上回，研究一下在visual code上如何通过pip安装库函数，这次要安装的库函数是skimage</p>
@@ -113,144 +210,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Jupyter Notebook</title>
-    <url>/2022/11/23/Jupyter-Notebook/</url>
-    <content><![CDATA[<p>Jupyter Notebook的常见操作-需要熟记！</p>
-<span id="more"></span>
-
-<h1 id="Jupyter-Notebook常见快捷键操作"><a href="#Jupyter-Notebook常见快捷键操作" class="headerlink" title="Jupyter Notebook常见快捷键操作"></a>Jupyter Notebook常见快捷键操作</h1><blockquote>
-<p>首先要知道Jupyter有三种cell类型</p>
-</blockquote>
-<ol>
-<li><strong>Code</strong></li>
-<li><strong>Markdown</strong></li>
-<li><strong>Raw NBConvert</strong>（普通文本，运行不会输出结果）</li>
-</ol>
-<blockquote>
-<p>两种模式</p>
-</blockquote>
-<ol>
-<li><strong>编辑模式（Enter）</strong></li>
-<li><strong>命令模式（Esc）</strong></li>
-</ol>
-<h2 id="1-两种模式都可以使用的快捷键"><a href="#1-两种模式都可以使用的快捷键" class="headerlink" title="1.两种模式都可以使用的快捷键"></a>1.两种模式都可以使用的快捷键</h2><ul>
-<li><strong>Shift+Enter</strong>执行本单元代码，并且跳转到下一单元</li>
-<li><strong>Ctrl+Enter</strong>执行本单元代码，留在本单元</li>
-</ul>
-<h2 id="2-命令模式"><a href="#2-命令模式" class="headerlink" title="2.命令模式"></a>2.命令模式</h2><ul>
-<li><strong>Y</strong>：cell切换到Code模式</li>
-<li><strong>M</strong>：cell切换到Markdown模式</li>
-<li><strong>A</strong>：在当前cell的上面添加cell</li>
-<li><strong>B</strong>：在当前cell的下面添加cell</li>
-<li><strong>双击D</strong>：删除当前cell</li>
-<li><strong>Z</strong>：回退</li>
-<li><strong>Ctrl+Shift+减号</strong>：分隔cell，在光标处</li>
-<li><strong>L</strong>：为当前cell加上行号</li>
-</ul>
-<h2 id="3-编辑模式：按Enter或鼠标单击代码块内部进入"><a href="#3-编辑模式：按Enter或鼠标单击代码块内部进入" class="headerlink" title="3.编辑模式：按Enter或鼠标单击代码块内部进入"></a>3.编辑模式：按Enter或鼠标单击代码块内部进入</h2><ul>
-<li><strong>Ctrl+鼠标单击</strong>：多光标操作</li>
-<li><strong>Ctrl+Z</strong>：回退</li>
-<li><strong>Tab键</strong>：代码补全</li>
-<li><strong>Ctrl</strong>：注释多行代码</li>
-</ul>
-]]></content>
-      <categories>
-        <category>notebook operation</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>cv2报错处理</title>
-    <url>/2022/11/24/cv2%E6%8A%A5%E9%94%99%E5%A4%84%E7%90%86/</url>
-    <content><![CDATA[<p>cv2报错：raise TypeError(“Image data of dtype {} cannot be converted to “TypeError: Image data of dtype object cannot be converted to float</p>
-<span id="more"></span>
-
-<h1 id="raise-TypeError-“Image-data-of-dtype-cannot-be-converted-to-“-TypeError-Image-data-of-dtype-object-cannot-be-converted-to-float"><a href="#raise-TypeError-“Image-data-of-dtype-cannot-be-converted-to-“-TypeError-Image-data-of-dtype-object-cannot-be-converted-to-float" class="headerlink" title="raise TypeError(“Image data of dtype {} cannot be converted to “     TypeError: Image data of dtype object cannot be converted to float"></a>raise TypeError(“Image data of dtype {} cannot be converted to “     TypeError: Image data of dtype object cannot be converted to float</h1><p>刚想要研究一下CV2内置的图像类型的不同，结果发现CSDN上找的代码跑不出来？其实也正常，天下哪有免费的午餐，拿到的代码还不是得修修改改？</p>
-<h1 id="报错如下"><a href="#报错如下" class="headerlink" title="报错如下"></a>报错如下</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">raise TypeError(&quot;Image data of dtype &#123;&#125; cannot be converted to &quot;     TypeError: Image data of dtype object cannot be converted to float</span><br></pre></td></tr></table></figure>
-
-<p>至于解决方案众说纷坛，有说要看看数据类型是不是不对应，还有的人说路径里面有中文。其实我的文件夹真的有中文，但是更改之后，报错依旧。</p>
-<p>网上都说是引入图片路径的问题，但是我这句代码应该也没有错吧？因为下载的visual code插件可以成功显示出图片在代码的左边，左思右想决定还是更改路径试试。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># cv2.imread()接口读图像，读进来直接是BGR 格式数据格式在 0~255，通道格式为(W,H,C)</span><br><span class="line">img_BGR = cv2.imread(&#x27;sea.jpg&#x27;)</span><br></pre></td></tr></table></figure>
-
-<p>更改成visual code直接复制图片的相对路径</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">img_BGR = cv2.imread(&#x27;web\sea.jpg&#x27;)</span><br></pre></td></tr></table></figure>
-
-<p>后面发现真的成功运行。这次运行的代码文件和图片文件在同一个文件夹里，但是却要加个前缀，可能与我IDE打开的工作区有关吧？</p>
-<p>总之就是路径的问题。</p>
-<h1 id="不存在skimage库"><a href="#不存在skimage库" class="headerlink" title="不存在skimage库"></a>不存在skimage库</h1><p>Python库函数的下载放到了另外一篇文章…</p>
-]]></content>
-      <categories>
-        <category>Library function</category>
-      </categories>
-      <tags>
-        <tag>库函数</tag>
-        <tag>report an error</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>github文件夹有白色箭头并且不能打开的解决办法</title>
-    <url>/2022/11/20/github%E6%96%87%E4%BB%B6%E5%A4%B9%E6%9C%89%E7%99%BD%E8%89%B2%E7%AE%AD%E5%A4%B4%E5%B9%B6%E4%B8%94%E4%B8%8D%E8%83%BD%E6%89%93%E5%BC%80%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
-    <content><![CDATA[<p>Github文件夹有白色箭头并且不能打开?可能是因为你提交的Git文件中有叫做.git的文件！</p>
-<span id="more"></span>
-
-<h1 id="1-问题描述"><a href="#1-问题描述" class="headerlink" title="1.问题描述"></a>1.问题描述</h1><p>前几天在Git上向GitHub提交了自己的文件，但是在GitHub却无法打开文件夹，并且文件夹上面还多了一个白色的箭头？本着求知的精神，我上百度上找了找，发现是因为我提交的这个文件本身就已经是Git仓库了，而子文件里面还藏着Git仓库，也就是说子文件里还有.git隐藏文件。因为层层的嵌套关系，导致GitHub对文件的识别发生了错误。</p>
-<h1 id="2-解决方案"><a href="#2-解决方案" class="headerlink" title="2.解决方案"></a>2.解决方案</h1><p>把子文件的.git文件夹删掉就好了</p>
-<ol>
-<li>执行<code>git rm --cached [文件夹名]</code></li>
-<li>执行<code>git add [文件夹名]</code></li>
-<li>执行<code>git commit -m &quot;git folder report an error!&quot;</code></li>
-<li>执行<code>git push origin [branch_name] </code></li>
-</ol>
-]]></content>
-      <categories>
-        <category>git operation</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>工具操作</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>交叉验证</title>
-    <url>/2022/11/23/%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81/</url>
-    <content><![CDATA[<p>这里介绍一下K-Fold交叉验证，这是防止过拟合的一种方法…</p>
-<span id="more"></span>
-
-<h1 id="K-Fold-交叉验证-Cross-Validation-的理解与应用"><a href="#K-Fold-交叉验证-Cross-Validation-的理解与应用" class="headerlink" title="K-Fold 交叉验证 (Cross-Validation)的理解与应用"></a>K-Fold 交叉验证 (Cross-Validation)的理解与应用</h1><h1 id="1-简单介绍一下验证集"><a href="#1-简单介绍一下验证集" class="headerlink" title="1.简单介绍一下验证集"></a>1.简单介绍一下验证集</h1><p>在机器学习建模过程中，通行的做法通常是将数据分为训练集和测试集。测试集是与训练独立的数据，完全不参与训练，用于最终模型的评估。在训练过程中，经常会出现过拟合的问题，就是模型可以很好的匹配训练数据，却不能很好在预测训练集外的数据。如果此时就使用测试数据来调整模型参数，就相当于在训练时已知部分测试数据的信息，会影响最终评估结果的准确性。通常的做法是在训练数据再中分出一部分做为验证(Validation)数据，用来评估模型的训练效果。<em>验证集的好处在于，可以对训练的模型进行评估，并且更换超参数后继续训练评估…</em></p>
-<h1 id="2-通过验证集理解K-Fold-交叉验证"><a href="#2-通过验证集理解K-Fold-交叉验证" class="headerlink" title="2.通过验证集理解K-Fold 交叉验证"></a>2.通过验证集理解K-Fold 交叉验证</h1><p>验证数据取自训练数据，但不参与训练，这样可以相对客观的评估模型对于训练集之外数据的匹配程度。模型在验证数据中的评估常用的是交叉验证，又称循环验证。它将原始数据分成K组(K-Fold)，将每个子集数据分别做一次验证集，其余的K-1组子集数据作为训练集，这样会得到K个模型。</p>
-<p>这K个模型分别在验证集中评估结果，最后的误差MSE(Mean Squared Error)加权平均就得到交叉验证误差。交叉验证有效利用了有限的数据，并且评估结果能够尽可能接近模型在测试集上的表现，可以做为模型优化的指标使用。</p>
-<h1 id="3-简单介绍一下常用的回归评价指标MSE、RMSE、MAE、R-Squared"><a href="#3-简单介绍一下常用的回归评价指标MSE、RMSE、MAE、R-Squared" class="headerlink" title="3.简单介绍一下常用的回归评价指标MSE、RMSE、MAE、R-Squared"></a>3.简单介绍一下常用的回归评价指标MSE、RMSE、MAE、R-Squared</h1><p>如果说分类问题的评价指标是<strong>准确率</strong>，那么回归算法的评价指标就是<em>MSE，RMSE，MAE、R-Squared</em>。在进行机器学习实验二的K-fold的时候，遇到了评价指标MSE，在好奇心的驱使下，我尝试研究这<a href="https://www.jianshu.com/p/9ee85fdad150">四个评价指标…</a></p>
-<h2 id="3-1-均方误差-MSE"><a href="#3-1-均方误差-MSE" class="headerlink" title="3.1 均方误差-MSE"></a>3.1 均方误差-MSE</h2><p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula1.png%22" alt="MSE"></p>
-<p>MSE （Mean Squared Error）叫做均方误差。这里的y帽指的是预测值。这个公式长得有点像是线性回归模型的损失函数。</p>
-<h2 id="3-2-均方根误差-RMSE"><a href="#3-2-均方根误差-RMSE" class="headerlink" title="3.2 均方根误差-RMSE"></a>3.2 均方根误差-RMSE</h2><p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula2.png%22" alt="RMSE"></p>
-<p>RMSE（Root Mean Squard Error）均方根误差。这就是给MSE开一个根号，目的是更好的描述数据。因为开一个根号，RMSE在单位上就应该与所研究的数据的单位差不多了。</p>
-<h2 id="3-3-平均绝对误差-MAE"><a href="#3-3-平均绝对误差-MAE" class="headerlink" title="3.3 平均绝对误差-MAE"></a>3.3 平均绝对误差-MAE</h2><p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula3.png%22" alt="MAE"></p>
-<p>MAE(平均绝对误差)，这个看起来与上面的没有差别。<strong>有均方根的地方好像就会有绝对值？？？</strong></p>
-<h2 id="3-4-R方-R-Squared"><a href="#3-4-R方-R-Squared" class="headerlink" title="3.4 R方-R Squared"></a>3.4 R方-R Squared</h2><p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula4.png%22" alt="R Squared"></p>
-<p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula5.png%22" alt="R Squared"></p>
-<p>分类算法的衡量标准是正确率，它的范围是从零到一，很直观，并且在不同模型上也是一样的，看正确率就完事了。所以回归模型上有没有这种衡量的标准呢？答案是有的，它就是R Aquared也就是<strong>R方</strong>。至于式子的意思，应该也是很好理解的，但是<a href="https://www.jianshu.com/p/9ee85fdad150">参考博主</a>写得有点不明不白，暂且就不深究了吧？总的来说，就是描述我们训练出来的模型的所有误差与当y帽等于y平均值时的误差之间的偏离程度。当R方结果为1时，表示我们的模型完全正确，这个时候分式项为0。</p>
-<p>上面的公式可以化简成如下，此时分式分子就变成了均方误差MSE，分母变成了方差var（标准差是std）</p>
-<p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula6.png%22" alt="R Squared"></p>
-<h1 id="4-K-Fold用来干啥？"><a href="#4-K-Fold用来干啥？" class="headerlink" title="4.K-Fold用来干啥？"></a>4.K-Fold用来干啥？</h1><h2 id="有些博主认为K折交叉验证用来进行模型调优，方便找到使得模型泛化性能最优的超参数？我认为，模型调优实在算不上，应该算是用来模型选择的吧？用来评价模型的泛化能力，从而在多个模型中进行选择。"><a href="#有些博主认为K折交叉验证用来进行模型调优，方便找到使得模型泛化性能最优的超参数？我认为，模型调优实在算不上，应该算是用来模型选择的吧？用来评价模型的泛化能力，从而在多个模型中进行选择。" class="headerlink" title="有些博主认为K折交叉验证用来进行模型调优，方便找到使得模型泛化性能最优的超参数？我认为，模型调优实在算不上，应该算是用来模型选择的吧？用来评价模型的泛化能力，从而在多个模型中进行选择。"></a><a href="https://blog.csdn.net/xiaohutong1991/article/details/107924703">有些博主</a>认为K折交叉验证用来进行模型调优，方便找到使得模型泛化性能最优的超参数？我认为，模型调优实在算不上，应该算是用来模型选择的吧？用来评价模型的泛化能力，从而在多个模型中进行选择。</h2><pre><code>sklearn.model_selection.KFold(n_splits=3, shuffle=False, random_state=None)
-</code></pre>
-<p>根据代码对K-Fold的参数进行剖析：</p>
-<blockquote>
-<p>n_splits：将数据集划分n_splits个互斥子集，每次用其中一个子集当作验证集，剩下的n_splits-1个作为训练集，进行n_splits次训练和测试，得到n_splits个结果。表示划分几等份</p>
-<p>shuffle：在每次划分时，是否进行洗牌</p>
-<p>若为Falses时，其效果等同于random_state等于整数，每次划分的结果相同</p>
-<p>若为True时，每次划分的结果都不一样，表示经过洗牌，随机取样的</p>
-<p>random_state：随机种子数，如果设置了具体数值比如42（随便一个具体数值），那么每次运行结果都是一样的，不会随机产生结果，即每次运行结果都可以复现</p>
-</blockquote>
-<h1 id="5-K-Fold什么时候用呢？"><a href="#5-K-Fold什么时候用呢？" class="headerlink" title="5.K-Fold什么时候用呢？"></a>5.K-Fold什么时候用呢？</h1><p>问起什么时候才需要用到交叉验证，当然是数据不是很充足的时候才用交叉验证啦！凭借经验，一般数据样本量小于一万条的时候，我们就会采用交叉验证的方法来训练优化选择模型。如果样本量是大于一万条的话，那么我们就是用最常规的方法，也就是将数据集分成三份分别是训练集、验证集和测试集。直接用验证集来评估模型预测的好坏和选择模型及其对应的参数。把最终得到的模型再用于测试集，最终决定使用哪个模型以及对应参数。毕竟你数据量真有这么大，你还要将你的训练成本扩大K倍，权衡利弊使用K-Fold是不明智之选。<em>选择的k值常常是小于等于10的。</em></p>
-<p><a href="https://zhuanlan.zhihu.com/p/32627500">知乎用户-鱼遇雨欲语与余</a>根据切分方式的不同，将交叉验证分成了下面三种：</p>
-<h2 id="5-1-简单交叉验证"><a href="#5-1-简单交叉验证" class="headerlink" title="5.1 简单交叉验证"></a>5.1 简单交叉验证</h2><p>所谓简单，是相对其他交叉验证而言的。我们先是随机地将样本数据分成两部分，比如说我分了百分之六十的训练集，百分之四十的测试集。训练集训练模型，测试集验证模型以及参数。接着我们将样本打乱，然后重新选择训练集和测试集，继续训练数据和验证模型。最后一步就是选择损失函数评估最优的模型和参数了。<em>在我看来，简单是真的简单，为了评估最优的模型和参数，不惜连测试集都用了…</em></p>
-<h2 id="5-2-S折交叉验证"><a href="#5-2-S折交叉验证" class="headerlink" title="5.2 S折交叉验证"></a>5.2 S折交叉验证</h2><p>这是经常会用到的一种验证方法。和第一种方法不同，S折交叉验证先将数据集Dataset随机划分成S个大小相同的互斥子集，每次选择S-1份作为训练集，剩下的1份用来做测试集。当这一轮完成后，重新随机选择  份来训练数据。若干轮（小于  ）之后，选择损失函数评估最优的模型和参数。<em>需要注意的是，交叉验证法评估结果的稳定性和保真性在很大程度上取决于S的取值。那纳闷了，选择哪个S是最好的呢？我认为不论选择哪个S值，应该对最后的模型和参数选择不产生太大的影响吧？</em></p>
-<h2 id="5-3-留一交叉验证-Leave-one-out-Cross-Validation"><a href="#5-3-留一交叉验证-Leave-one-out-Cross-Validation" class="headerlink" title="5.3 留一交叉验证 Leave-one-out Cross Validation"></a>5.3 留一交叉验证 Leave-one-out Cross Validation</h2><p>这是一种特别抠门的方法，每一次只用一个样本来预测模型的好坏，也就是说每一次只有一个测试集。这种方法被视为S折交叉验证的特例，只在样本量非常少的情况下才使用。还有一种更抠门的方法是<a href="https://zhuanlan.zhihu.com/p/32412775">自助法</a>…</p>
-]]></content>
-      <categories>
-        <category>Mathine Learning</category>
-      </categories>
-  </entry>
-  <entry>
     <title>交叉验证补充</title>
     <url>/2022/11/23/%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81%E8%A1%A5%E5%85%85/</url>
     <content><![CDATA[<p>前面我介绍了K折交叉验证该如何划分，还有具体的使用效果。但是对于K折交叉验证该什么时候用，怎么使用还没有讲的很清楚，这里我就再学习一遍加深记忆吧！</p>
@@ -276,6 +235,75 @@
 ]]></content>
       <categories>
         <category>Mathine Learning</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>图像处理之扇形与矩形图像之间的相互转换</title>
+    <url>/2022/11/23/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B9%8B%E6%89%87%E5%BD%A2%E4%B8%8E%E7%9F%A9%E5%BD%A2%E5%9B%BE%E5%83%8F%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2/</url>
+    <content><![CDATA[<p>数字图像处理作业–将图像进行扇形和矩形之间的变换！</p>
+<span id="more"></span>
+
+<h1 id="图像处理之扇形与矩形图像之间的相互转换（Python）"><a href="#图像处理之扇形与矩形图像之间的相互转换（Python）" class="headerlink" title="图像处理之扇形与矩形图像之间的相互转换（Python）"></a>图像处理之扇形与矩形图像之间的相互转换（Python）</h1><h1 id="1-应用"><a href="#1-应用" class="headerlink" title="1.应用"></a>1.应用</h1><p>在分析扇形与矩形图像之间相互处理的程序之前，需要大概了解一下它们存在的意义是什么？</p>
+<p>那当然字如其名，将扇形转化为矩形，将矩形转化为扇形啦！🤪🤪🤪</p>
+<p>原理当然是这样，但是用处还是很多的！就比如说你上课的时候坐在角落，老师讲到重要内容的时候需要拍照记录。可是你拍出来的效果却是斜的，虽然勉强看的懂，但是看的不舒服。文档校正应运而生。当然，你斜着扫二维码的时候也是同种原理。即使你没有意识到，但是它却实实在在存在。该映射学术名称叫做中心投影变换 &amp;nbsp;  –&gt; &amp;nbsp;  <em><strong>Perspective Mapping</strong></em></p>
+<p>我们的扇形与矩形之间的变换也有很多应用，只是我暂时没有想到。</p>
+<h1 id="2-引用"><a href="#2-引用" class="headerlink" title="2.引用"></a>2.引用</h1><p>刚拿到课程题目的时候我不是很懂，于是上百度搜寻相关的资料。本着研究中心投影变换的初衷，但是却没想到找到了相关的代码，真是意外的收获。CSDN大佬<strong>天元浪子</strong>在这篇博文中是研究从矩形到扇形的变换，而我是相反的。代码我copy到了文末，用于与原来的代码作比较，下面是原文链接。</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/xufive/article/details/104675998">https://blog.csdn.net/xufive/article/details/104675998</a></p>
+</blockquote>
+<p>如果需要用的是MATLAB，那么可以参考以下两个链接。</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/u014495306/article/details/74079963">https://blog.csdn.net/u014495306/article/details/74079963</a></p>
+<p><a href="https://blog.csdn.net/weixin_34068198/article/details/94256613">https://blog.csdn.net/weixin_34068198/article/details/94256613</a></p>
+</blockquote>
+<h1 id="3-使用"><a href="#3-使用" class="headerlink" title="3.使用"></a>3.使用</h1><p>代码我就不打算分析了，看注释很快就可以理解。</p>
+<p>&#96;&#96;# -<em>- coding:utf-8 -</em>-</p>
+<p>import numpy as np</p>
+<p>from PIL import Image</p>
+<p>import matplotlib.pyplot as plt</p>
+<p>def square2fan(input, output, angle&#x3D;45):</p>
+<h1 id="将扇形图像转化为矩阵图像"><a href="#将扇形图像转化为矩阵图像" class="headerlink" title="将扇形图像转化为矩阵图像"></a>将扇形图像转化为矩阵图像</h1><pre><code>input      - 输入文件名
+output      - 输出文件名
+angle       - 扇形夹角度数
+angle在这个例子中是45度，如果改大的话将会缩小输出图片的宽度cols
+
+im = Image.open(input)  # 打开输入图像为PIL对象 
+mode = im.mode  # 输入图像模式\
+w, h = im.size  # 输入图像分辨率(宽在前，高在后)
+rows, cols = int(np.ceil(h)), int(np.ceil(w))  # 输出图像高度和宽度
+in_interval = np.array(im)  # 输入图像转为numpy数组
+# 生成输出图像的numpy数组（全透明）
+out_interval = np.zeros((rows, cols, in_interval.shape[2]), dtype=np.uint8)
+
+alpha = np.radians(np.linspace(-angle, angle, w))  # 生成扇形角度序列，长度与输入图像宽度一致
+for i in range(w):  # 遍历输入图像的每一列
+    # 当前列各像素在输出图像上的行号
+
+    # d = np.cos(alpha[i])*h 和 d = np.cos(alpha[i])*rows效果等同，方便后边的切片
+    d = np.cos(alpha[i])*h
+    lats = np.int_(np.linspace(0, d, h)).astype(np.int)
+    # 当前列各像素在输出图像上的列号
+    d = np.sin(alpha[i])*h
+    lons = np.int_(np.linspace(cols/2,
+                   cols/2+d, h)).astype(np.int)
+    # 将算出来的扇形的斜列的值，放进空矩阵中
+    out_interval[:, i] = in_interval[(lats, lons)]
+# 保存为文件
+im = Image.fromarray(out_interval, mode=im.mode)
+im.save(output)
+</code></pre>
+<p>if <strong>name</strong> &#x3D;&#x3D; ‘<strong>main</strong>‘:<br>    square2fan(‘out.png’, ‘rectangle.png’, angle&#x3D;45)</p>
+<p>&#96;&#96;</p>
+<h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h1><p>题目不难，但是花了我挺多时间，也暴露出了我一些问题…😅😅😅</p>
+<blockquote>
+<p>对Python的库不是很熟悉（其实不经常用，记不得我觉得也很正常）</p>
+<p>嗯？让我想想我到底还有啥问题先？</p>
+<p>……</p>
+<p>好像并没有什么问题?😦</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Homework</category>
       </categories>
   </entry>
   <entry>
@@ -346,6 +374,47 @@
       </tags>
   </entry>
   <entry>
+    <title>交叉验证</title>
+    <url>/2022/11/23/%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81/</url>
+    <content><![CDATA[<p>这里介绍一下K-Fold交叉验证，这是防止过拟合的一种方法…</p>
+<span id="more"></span>
+
+<h1 id="K-Fold-交叉验证-Cross-Validation-的理解与应用"><a href="#K-Fold-交叉验证-Cross-Validation-的理解与应用" class="headerlink" title="K-Fold 交叉验证 (Cross-Validation)的理解与应用"></a>K-Fold 交叉验证 (Cross-Validation)的理解与应用</h1><h1 id="1-简单介绍一下验证集"><a href="#1-简单介绍一下验证集" class="headerlink" title="1.简单介绍一下验证集"></a>1.简单介绍一下验证集</h1><p>在机器学习建模过程中，通行的做法通常是将数据分为训练集和测试集。测试集是与训练独立的数据，完全不参与训练，用于最终模型的评估。在训练过程中，经常会出现过拟合的问题，就是模型可以很好的匹配训练数据，却不能很好在预测训练集外的数据。如果此时就使用测试数据来调整模型参数，就相当于在训练时已知部分测试数据的信息，会影响最终评估结果的准确性。通常的做法是在训练数据再中分出一部分做为验证(Validation)数据，用来评估模型的训练效果。<em>验证集的好处在于，可以对训练的模型进行评估，并且更换超参数后继续训练评估…</em></p>
+<h1 id="2-通过验证集理解K-Fold-交叉验证"><a href="#2-通过验证集理解K-Fold-交叉验证" class="headerlink" title="2.通过验证集理解K-Fold 交叉验证"></a>2.通过验证集理解K-Fold 交叉验证</h1><p>验证数据取自训练数据，但不参与训练，这样可以相对客观的评估模型对于训练集之外数据的匹配程度。模型在验证数据中的评估常用的是交叉验证，又称循环验证。它将原始数据分成K组(K-Fold)，将每个子集数据分别做一次验证集，其余的K-1组子集数据作为训练集，这样会得到K个模型。</p>
+<p>这K个模型分别在验证集中评估结果，最后的误差MSE(Mean Squared Error)加权平均就得到交叉验证误差。交叉验证有效利用了有限的数据，并且评估结果能够尽可能接近模型在测试集上的表现，可以做为模型优化的指标使用。</p>
+<h1 id="3-简单介绍一下常用的回归评价指标MSE、RMSE、MAE、R-Squared"><a href="#3-简单介绍一下常用的回归评价指标MSE、RMSE、MAE、R-Squared" class="headerlink" title="3.简单介绍一下常用的回归评价指标MSE、RMSE、MAE、R-Squared"></a>3.简单介绍一下常用的回归评价指标MSE、RMSE、MAE、R-Squared</h1><p>如果说分类问题的评价指标是<strong>准确率</strong>，那么回归算法的评价指标就是<em>MSE，RMSE，MAE、R-Squared</em>。在进行机器学习实验二的K-fold的时候，遇到了评价指标MSE，在好奇心的驱使下，我尝试研究这<a href="https://www.jianshu.com/p/9ee85fdad150">四个评价指标…</a></p>
+<h2 id="3-1-均方误差-MSE"><a href="#3-1-均方误差-MSE" class="headerlink" title="3.1 均方误差-MSE"></a>3.1 均方误差-MSE</h2><p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula1.png%22" alt="MSE"></p>
+<p>MSE （Mean Squared Error）叫做均方误差。这里的y帽指的是预测值。这个公式长得有点像是线性回归模型的损失函数。</p>
+<h2 id="3-2-均方根误差-RMSE"><a href="#3-2-均方根误差-RMSE" class="headerlink" title="3.2 均方根误差-RMSE"></a>3.2 均方根误差-RMSE</h2><p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula2.png%22" alt="RMSE"></p>
+<p>RMSE（Root Mean Squard Error）均方根误差。这就是给MSE开一个根号，目的是更好的描述数据。因为开一个根号，RMSE在单位上就应该与所研究的数据的单位差不多了。</p>
+<h2 id="3-3-平均绝对误差-MAE"><a href="#3-3-平均绝对误差-MAE" class="headerlink" title="3.3 平均绝对误差-MAE"></a>3.3 平均绝对误差-MAE</h2><p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula3.png%22" alt="MAE"></p>
+<p>MAE(平均绝对误差)，这个看起来与上面的没有差别。<strong>有均方根的地方好像就会有绝对值？？？</strong></p>
+<h2 id="3-4-R方-R-Squared"><a href="#3-4-R方-R-Squared" class="headerlink" title="3.4 R方-R Squared"></a>3.4 R方-R Squared</h2><p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula4.png%22" alt="R Squared"></p>
+<p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula5.png%22" alt="R Squared"></p>
+<p>分类算法的衡量标准是正确率，它的范围是从零到一，很直观，并且在不同模型上也是一样的，看正确率就完事了。所以回归模型上有没有这种衡量的标准呢？答案是有的，它就是R Aquared也就是<strong>R方</strong>。至于式子的意思，应该也是很好理解的，但是<a href="https://www.jianshu.com/p/9ee85fdad150">参考博主</a>写得有点不明不白，暂且就不深究了吧？总的来说，就是描述我们训练出来的模型的所有误差与当y帽等于y平均值时的误差之间的偏离程度。当R方结果为1时，表示我们的模型完全正确，这个时候分式项为0。</p>
+<p>上面的公式可以化简成如下，此时分式分子就变成了均方误差MSE，分母变成了方差var（标准差是std）</p>
+<p><img src="/%22F:%5C%E5%9B%BE%E7%89%87%5Cwebsite%5Cformula6.png%22" alt="R Squared"></p>
+<h1 id="4-K-Fold用来干啥？"><a href="#4-K-Fold用来干啥？" class="headerlink" title="4.K-Fold用来干啥？"></a>4.K-Fold用来干啥？</h1><h2 id="有些博主认为K折交叉验证用来进行模型调优，方便找到使得模型泛化性能最优的超参数？我认为，模型调优实在算不上，应该算是用来模型选择的吧？用来评价模型的泛化能力，从而在多个模型中进行选择。"><a href="#有些博主认为K折交叉验证用来进行模型调优，方便找到使得模型泛化性能最优的超参数？我认为，模型调优实在算不上，应该算是用来模型选择的吧？用来评价模型的泛化能力，从而在多个模型中进行选择。" class="headerlink" title="有些博主认为K折交叉验证用来进行模型调优，方便找到使得模型泛化性能最优的超参数？我认为，模型调优实在算不上，应该算是用来模型选择的吧？用来评价模型的泛化能力，从而在多个模型中进行选择。"></a><a href="https://blog.csdn.net/xiaohutong1991/article/details/107924703">有些博主</a>认为K折交叉验证用来进行模型调优，方便找到使得模型泛化性能最优的超参数？我认为，模型调优实在算不上，应该算是用来模型选择的吧？用来评价模型的泛化能力，从而在多个模型中进行选择。</h2><pre><code>sklearn.model_selection.KFold(n_splits=3, shuffle=False, random_state=None)
+</code></pre>
+<p>根据代码对K-Fold的参数进行剖析：</p>
+<blockquote>
+<p>n_splits：将数据集划分n_splits个互斥子集，每次用其中一个子集当作验证集，剩下的n_splits-1个作为训练集，进行n_splits次训练和测试，得到n_splits个结果。表示划分几等份</p>
+<p>shuffle：在每次划分时，是否进行洗牌</p>
+<p>若为Falses时，其效果等同于random_state等于整数，每次划分的结果相同</p>
+<p>若为True时，每次划分的结果都不一样，表示经过洗牌，随机取样的</p>
+<p>random_state：随机种子数，如果设置了具体数值比如42（随便一个具体数值），那么每次运行结果都是一样的，不会随机产生结果，即每次运行结果都可以复现</p>
+</blockquote>
+<h1 id="5-K-Fold什么时候用呢？"><a href="#5-K-Fold什么时候用呢？" class="headerlink" title="5.K-Fold什么时候用呢？"></a>5.K-Fold什么时候用呢？</h1><p>问起什么时候才需要用到交叉验证，当然是数据不是很充足的时候才用交叉验证啦！凭借经验，一般数据样本量小于一万条的时候，我们就会采用交叉验证的方法来训练优化选择模型。如果样本量是大于一万条的话，那么我们就是用最常规的方法，也就是将数据集分成三份分别是训练集、验证集和测试集。直接用验证集来评估模型预测的好坏和选择模型及其对应的参数。把最终得到的模型再用于测试集，最终决定使用哪个模型以及对应参数。毕竟你数据量真有这么大，你还要将你的训练成本扩大K倍，权衡利弊使用K-Fold是不明智之选。<em>选择的k值常常是小于等于10的。</em></p>
+<p><a href="https://zhuanlan.zhihu.com/p/32627500">知乎用户-鱼遇雨欲语与余</a>根据切分方式的不同，将交叉验证分成了下面三种：</p>
+<h2 id="5-1-简单交叉验证"><a href="#5-1-简单交叉验证" class="headerlink" title="5.1 简单交叉验证"></a>5.1 简单交叉验证</h2><p>所谓简单，是相对其他交叉验证而言的。我们先是随机地将样本数据分成两部分，比如说我分了百分之六十的训练集，百分之四十的测试集。训练集训练模型，测试集验证模型以及参数。接着我们将样本打乱，然后重新选择训练集和测试集，继续训练数据和验证模型。最后一步就是选择损失函数评估最优的模型和参数了。<em>在我看来，简单是真的简单，为了评估最优的模型和参数，不惜连测试集都用了…</em></p>
+<h2 id="5-2-S折交叉验证"><a href="#5-2-S折交叉验证" class="headerlink" title="5.2 S折交叉验证"></a>5.2 S折交叉验证</h2><p>这是经常会用到的一种验证方法。和第一种方法不同，S折交叉验证先将数据集Dataset随机划分成S个大小相同的互斥子集，每次选择S-1份作为训练集，剩下的1份用来做测试集。当这一轮完成后，重新随机选择  份来训练数据。若干轮（小于  ）之后，选择损失函数评估最优的模型和参数。<em>需要注意的是，交叉验证法评估结果的稳定性和保真性在很大程度上取决于S的取值。那纳闷了，选择哪个S是最好的呢？我认为不论选择哪个S值，应该对最后的模型和参数选择不产生太大的影响吧？</em></p>
+<h2 id="5-3-留一交叉验证-Leave-one-out-Cross-Validation"><a href="#5-3-留一交叉验证-Leave-one-out-Cross-Validation" class="headerlink" title="5.3 留一交叉验证 Leave-one-out Cross Validation"></a>5.3 留一交叉验证 Leave-one-out Cross Validation</h2><p>这是一种特别抠门的方法，每一次只用一个样本来预测模型的好坏，也就是说每一次只有一个测试集。这种方法被视为S折交叉验证的特例，只在样本量非常少的情况下才使用。还有一种更抠门的方法是<a href="https://zhuanlan.zhihu.com/p/32412775">自助法</a>…</p>
+]]></content>
+      <categories>
+        <category>Mathine Learning</category>
+      </categories>
+  </entry>
+  <entry>
     <title>插入YouTube视频</title>
     <url>/2022/11/23/%E6%8F%92%E5%85%A5YouTube%E8%A7%86%E9%A2%91/</url>
     <content><![CDATA[<p>尝试在文章中插入一段YouTube视频，就放我最近经常听的一首歌吧！</p>
@@ -364,73 +433,290 @@
       </tags>
   </entry>
   <entry>
-    <title>图像处理之扇形与矩形图像之间的相互转换</title>
-    <url>/2022/11/23/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E4%B9%8B%E6%89%87%E5%BD%A2%E4%B8%8E%E7%9F%A9%E5%BD%A2%E5%9B%BE%E5%83%8F%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2/</url>
-    <content><![CDATA[<p>数字图像处理作业–将图像进行扇形和矩形之间的变换！</p>
+    <title>数学建模大赛</title>
+    <url>/2022/11/23/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E5%A4%A7%E8%B5%9B/</url>
+    <content><![CDATA[<p>直到今天为止，数模比赛已经结束咯！任务完成，参赛题目也提交了，结果如何就看人品了🤗</p>
 <span id="more"></span>
 
-<h1 id="图像处理之扇形与矩形图像之间的相互转换（Python）"><a href="#图像处理之扇形与矩形图像之间的相互转换（Python）" class="headerlink" title="图像处理之扇形与矩形图像之间的相互转换（Python）"></a>图像处理之扇形与矩形图像之间的相互转换（Python）</h1><h1 id="1-应用"><a href="#1-应用" class="headerlink" title="1.应用"></a>1.应用</h1><p>在分析扇形与矩形图像之间相互处理的程序之前，需要大概了解一下它们存在的意义是什么？</p>
-<p>那当然字如其名，将扇形转化为矩形，将矩形转化为扇形啦！🤪🤪🤪</p>
-<p>原理当然是这样，但是用处还是很多的！就比如说你上课的时候坐在角落，老师讲到重要内容的时候需要拍照记录。可是你拍出来的效果却是斜的，虽然勉强看的懂，但是看的不舒服。文档校正应运而生。当然，你斜着扫二维码的时候也是同种原理。即使你没有意识到，但是它却实实在在存在。该映射学术名称叫做中心投影变换 &amp;nbsp;  –&gt; &amp;nbsp;  <em><strong>Perspective Mapping</strong></em></p>
-<p>我们的扇形与矩形之间的变换也有很多应用，只是我暂时没有想到。</p>
-<h1 id="2-引用"><a href="#2-引用" class="headerlink" title="2.引用"></a>2.引用</h1><p>刚拿到课程题目的时候我不是很懂，于是上百度搜寻相关的资料。本着研究中心投影变换的初衷，但是却没想到找到了相关的代码，真是意外的收获。CSDN大佬<strong>天元浪子</strong>在这篇博文中是研究从矩形到扇形的变换，而我是相反的。代码我copy到了文末，用于与原来的代码作比较，下面是原文链接。</p>
+<h1 id="1-数模比赛"><a href="#1-数模比赛" class="headerlink" title="1.数模比赛"></a>1.数模比赛</h1><p>直到今天为止，数模比赛已经结束咯！任务完成，参赛题目也提交了，结果如何就看人品了🤗<br>这是是第一次使用Markdown写短文，虽然说Markdown很容易上手，但是一些细节上的东西总是无法反应过来😵😵😵</p>
 <blockquote>
-<p><a href="https://blog.csdn.net/xufive/article/details/104675998">https://blog.csdn.net/xufive/article/details/104675998</a></p>
+<p>下面是我学习Markdown的一些经历，希望在写作的时候对你有些帮助！😉</p>
+<p>点击跳转Markdown  –&gt;目前这项功能还在开发中，ちょっと待っね！</p>
 </blockquote>
-<p>如果需要用的是MATLAB，那么可以参考以下两个链接。</p>
+<h1 id="2-比赛前"><a href="#2-比赛前" class="headerlink" title="2.比赛前"></a>2.比赛前</h1><h2 id="2-1第一次校赛"><a href="#2-1第一次校赛" class="headerlink" title="2.1第一次校赛"></a>2.1第一次校赛</h2><p>虽然说今年四月份就开始准备数模比赛了，到今天有五个多月的时间，但是我们队真正学习的时间却不多，至少对我来说。可能我真正静下心来学习数模知识的时间还不足两个星期吧！😅</p>
+<p>刚开始我的工作是负责建模的工作，在队长的敦促下，买了份价值一百五的学习视频及教程。我对于视频学习并没有多大的想法，我还是更喜欢看书学。这就是为什么iPad里的电子书都发霉发臭了，都不曾被我看过的原因吧？再一点，比起付费的资料，我更喜欢白嫖（虽然这并不好），因为在我认为在网上寻找资料是一件很享受的事情，おかしいでしょ？</p>
+<p>一个队伍的核心成员应该是建模手，作为整支队伍的leader，我带领着队伍齐头并进，最后连校三等都没有…</p>
+<p>😀😀😀但是这也是在意料之内的，因为没有什么知识储备，脑子里当时就只有层次分析法这几个简单的模型，再加上论文的阅读次数都不足双位数，能获奖就有鬼！而且为期三天的数模，我们整整搞了十天才提交上去，虽然但是有多少水分谁不不揭穿了啊！</p>
+<h2 id="2-2暑假"><a href="#2-2暑假" class="headerlink" title="2.2暑假"></a>2.2暑假</h2><p>搞完校赛，处理完期末考试，差不多就进入了暑假。由于和写作手的配合没有那么好，所以我们打算换一名成员。队长推荐了一名算法高手，很显然，我该换岗位了。</p>
+<p>在漫长的暑假，我只希望自己能够每天抽出时间读一篇，哪怕是一篇数模优秀文章也好！但是事与愿违，事…还是没做成。后面学校组织训练，我们参加并且完成了一篇19年的C题。嗯，很显然我们又是十天左右才完成。当时就想着，这么搞肯定得玩完。于是思前想后，打算用LaTeX替换现在的WPS，说不定写作工具变了，我们的工作就更有效率了呢？😲</p>
+<p>好主意！下一次训练连半成品都没有交上去…</p>
+<p>当时学习LaTeX花了不到半天时间，便清楚它的工作流程，于是迫不及待的去找了一些有数模LaTeX的tex文件。看到了一个钟意的，便敲定了，也就是现在我使用的这也数模模板。</p>
+<p>由于我没有将模板与正文分离，所以我两次写论文的时候，都是夹着别人的论文一起写的，这次数模也不例外…</p>
 <blockquote>
-<p><a href="https://blog.csdn.net/u014495306/article/details/74079963">https://blog.csdn.net/u014495306/article/details/74079963</a></p>
-<p><a href="https://blog.csdn.net/weixin_34068198/article/details/94256613">https://blog.csdn.net/weixin_34068198/article/details/94256613</a></p>
+<p>我将LaTeX文件放到了这里，模板和正文自己分离。懒😪😪😪</p>
+<p>这项工作也还在完善中，请稍后！</p>
 </blockquote>
-<h1 id="3-使用"><a href="#3-使用" class="headerlink" title="3.使用"></a>3.使用</h1><p>代码我就不打算分析了，看注释很快就可以理解。</p>
-<p>&#96;&#96;# -<em>- coding:utf-8 -</em>-</p>
-<p>import numpy as np</p>
-<p>from PIL import Image</p>
-<p>import matplotlib.pyplot as plt</p>
-<p>def square2fan(input, output, angle&#x3D;45):</p>
-<h1 id="将扇形图像转化为矩阵图像"><a href="#将扇形图像转化为矩阵图像" class="headerlink" title="将扇形图像转化为矩阵图像"></a>将扇形图像转化为矩阵图像</h1><pre><code>input      - 输入文件名
-output      - 输出文件名
-angle       - 扇形夹角度数
-angle在这个例子中是45度，如果改大的话将会缩小输出图片的宽度cols
+<p>然后就开学咯🎉</p>
+<h2 id="2-3开学到比赛前这段时间"><a href="#2-3开学到比赛前这段时间" class="headerlink" title="2.3开学到比赛前这段时间"></a>2.3开学到比赛前这段时间</h2><p>很显然，我什么都没有干。</p>
+<h1 id="3-比赛"><a href="#3-比赛" class="headerlink" title="3.比赛"></a>3.比赛</h1><p>据说参加国赛需要校赛经历，我们已经算是合格的国赛选手了吧？我们比赛的时间是9月15号（周四）晚上六点钟到9月18号（周日）晚上十点钟之前。又多了四个小时时间，Lucky！希望能够用这多出来的四个小时改变点什么…</p>
+<h2 id="3-1周四晚上"><a href="#3-1周四晚上" class="headerlink" title="3.1周四晚上"></a>3.1周四晚上</h2><p>出赛题的时候我们在饭堂，不是因为我们不准备坐着等题，而是我忘记打包进实验室了。当天晚上我们商量好，要确定选题，不要犹豫。今年的A题对于我们来说，简直是魔鬼程度的。两三页篇幅的说明，让我们望而祛步🙄。如果硬啃的话，肯定可以理解它想要表达什么，但是求解确实一大难事。后面看别人大佬绞尽脑汁的想，才发现这个决定无疑对我们来说是十分正确的。</p>
+<p>选题按理来说应该要由建模手和编程手决定，因为他们更清楚问题的复杂性。他们现在卡在了B题和C题之前，队长更想选C题，但是算法糕手希望能够挑战一下。他内心看起来很动摇，因为他看不出解题思路。其实我和新队员也是第一次见面，之前都是在WeChat上聊天。谢天谢地，我们俩很快就磨合了，变得更多少年的好友一般畅所欲言？！</p>
+<p>我在几何方面很敏感，但是对数学公式很感冒。当时想过选数学专业，但是哪有人只学几何不用数学公式啊？恰好B题就是与几何有关的，我用高中的知识看出了第一小问的求解思路，然后我就坚持选B题。最后没有依我，选择了C题。我当时虽然很不爽，但是我确实只想得出第一问，对于全局来说，我还是服气的。虽然题目更简单了，但是意味着更多人选。只有语文建模基础足够深厚，才有机会获得一个最小的省三。<strong>最后统计有三百八十多人选择了C题，这个人数差不多就是去年我们学校的参赛人数…</strong></p>
+<h2 id="3-2周五"><a href="#3-2周五" class="headerlink" title="3.2周五"></a>3.2周五</h2><p>周五我们搜寻资料，解决了第一小问，然后卡在了第二小问的预测上，想了差不多一天的时间都没有想出来。确实浪费了很多时间，也做了很多无用功。第一小问的论文我很快就与论文交接了，但是剩余的时间与其是在划水，倒不如说是在无用功。C题与化学有关，于是我想着会用到化学方程式，去找了很多。但是最后发现要么就是用不上，要么就是没时间用。</p>
+<h2 id="3-3周六"><a href="#3-3周六" class="headerlink" title="3.3周六"></a>3.3周六</h2><p>C题有大概六七个小问，想要查看原题的话点击这里。</p>
+<p>我们一天时间才解决了第一小问，如果再这么下去，论文很有可能写不完。虽然我们也很努力，我也是第一次尝试了这种朝八晚十二的作息规律。嗯？怎么和我平时的作息有点像？关键是放弃了宝贵的午休时间。没有午休我的精神状态就会下降，特别是写论文的时候，无法理解模型的概念与问题的解决思路，又没有文思泉涌，将会导致写出来的论文质量差。一天除了睡觉的时间都呆在实验室，看起来很努力，在我看来是在做无用功（包括我）。队长和建模手对于模型的选择有一定的困难，导致了问题的拖延。明白了这一点，今天开始我尝试着来安排工作。</p>
+<p>对于模型，需要用指标来衡量。我肯定表现好的模型，否定表现差的模型。这种斩钉截铁的工作模式很快让我和各位都进入了流水线上，开始各司其职。当然，前提是做出了跳过第二小问的决定。</p>
+<p>直到晚上，第二问第一小问、第三问和第四问的问题都得到了解决。但是跟他们一起讨论，导致我到目前为止并没有进行论文撰写，也就是说只完成了论文进度还是停留在周五。</p>
+<h2 id="3-4周日"><a href="#3-4周日" class="headerlink" title="3.4周日"></a>3.4周日</h2><p>即便如此，我早上还是睡到了差不多九点，因为我认为工作效率才是最重要的，假努力欺骗的是自己还有身边的人。但时间真的很赶！早上我留在宿舍通过大屏操作LaTeX很快就完成了第二问的论文撰写，并且我交代队友明天早上完成第三问的论文撰写以及求解出第二小问的预测结果。队友很给力，差不多两点我去实验室的时候他们已经完成了这两个任务。但我看完论文结构后猛地一惊，发现摘要和问题分析没有写！包括第四问在内，还有一些零零星星的结果没有贴到论文中，六个小时能够完成吗？真是一项挑战啊！我不禁擦了擦额头上的假汗😰😰😰</p>
+<p>我安排他们完成了问题二和问题三的问题分析，因为他们求解的他们来写这种解题思路的话简直如鱼得水。而第四问的方法是我想出来的，所以我先完成第四问先。但是做了一半，发现SPSSPro上的热力图根本无法反映出我想要的结果。于是在三点钟的时候我临时改用了其它方法，用画图代替了建立模型的繁琐。</p>
+<p>大概五点钟我们就完成了基本上的任务，但是对于XeLatex编译出来的文件，还是有很多bug。并且每一个bug都是包含致命错误的，一旦出现即无缘获奖（<em>虽然说这次的也不知道能不能够获奖😵‍💫</em>）其中解决的很多问题都是以前遇到过但是解决不出的🤔</p>
+<ul>
+<li>从使用之初一直困扰我的表格边框以及复杂表格的LaTeX代码</li>
+<li>LaTeX含特殊字符的那段文字会超出编译生成的PDF之外</li>
+<li>LaTeX中图片并列</li>
+<li>LaTeX正文会被图片和表格夹断，阅读出现障碍</li>
+<li>LaTeX模板上页眉的内容不知道在哪个文件清空</li>
+<li>LaTeX附录粘贴代码有点麻烦</li>
+</ul>
+<p><code>解决方案放到了LaTeX篇，如果有需要请点击此处跳转...</code></p>
+<p>多亏LaTeX有在源代码和PDF相互跳转到指定位置的功能，不然真的用不下去了😭😭😭</p>
+<p>我们一起改论文，改到了7点57还有很多问题，但是8点钟之前可以提交多次PDF论文和RAR压缩包，也就是说MD5码在8点钟之前是允许反复更改的。但是在8点到10点之内，就只能提交一次文件和生成指定不可变的MD5码。并且MD5码在8点后生成的，就不允许更改文件了，一旦你更改文件，或许只是打开一下PDF都有可能让MD5码发生改变，机器会判定在10点钟之后正式提交参赛作品的时候你的文件发生了改动，这个时候它是不承认你的MD5码，也就是说你无法参赛了。这是一个很严重的问题，自己辛辛苦苦做了这么久，结果却交不上去，心态多少有点崩溃。所以我们为了保险起见，先在8点钟之前提交一次。</p>
+<p>然后我们预测在9点钟之前正式将作品做最后一次的提交（10点钟之前的提交可以认为只是参赛资格的获取），但是发现bug根本改不过来。三个人忙得团团转，当时想着9点半之前提交就好了，网络不会这么拥挤的。但是忙到了9点半，bug依然有，而且严重程度会让论文直接降档。没办法，抱着试一逝的心态，我们改bug改到了9点45。虽然说还有不少bug，但都是不痛不痒的，对阅读论文没有什么大影响的小问题了。</p>
+<p>我编译出最新的PDF，通过WeChat准备发给队长时，由于轻薄本已经承担了太多软件，并且三四天都没有合过眼了。LaTeX直接卡退，屏幕被黑块笼罩着，就像我们此刻的心情一样。大概到9点50的时候，电脑缓过来了，我赶紧将PDF发给队长。压缩完我的LaTeX代码文件后突然发现我电脑里的压缩软件是360压缩，只能生成zip类型的压缩包。而我之前一直想着队长有WinRAR就够了，反正是他通过客户端提交的。下载WinRAR显然不切实际，由于多天的劳累，我们的CPU已经转不过来了。我赶紧将文件压缩成zip格式，然后发给建模手，因为此时队长在忙活着PDF名称的修改。但未承想建模手把我的文件解压放进总附件文件中，压缩后找不到找不到压缩包，遂叫我来操作。我看到他的安装路径，狂点桌面，然后点击确定。终于，我们的压缩包出现在了桌面。但他的桌面都是蓝蓝的doc和绿绿xls，一时间竟无法找出压缩包！此时时间已经来到了9点55分。一顿丝滑的操作后视野来到了队长这边，只见他颤颤巍巍地移动着鼠标，指尖高频触动着鼠标左键，但就是无法达到那最后的终点！“好了吗？”“好！冲！”伴随着呐喊声，我们点击了提交。幸运的是，软件并没有卡顿，显得如此顺理成章，此时时间是9点57分。一切都结束后，没有欢呼、没有喝彩，只留下一片鸦雀无声。紧绷着的心情还没有完全放松下来，眼前还停留着黑白的文字与代码，一切都还显得这么历历在目！</p>
+<h1 id="4-Final"><a href="#4-Final" class="headerlink" title="4.Final"></a>4.Final</h1><p>虽然过程很苦很累，甚至对一百蚊有点舍不得。但就最后两个小时的感受而言，让我觉得这钱交的值了！自打上大学以来，还是第一次切实地体会到了团队合作的重要性。以前一直都是单打独斗，现在发现自己并不是万能的，队友就是用来弥补自己的缺点的。虽然说有百分之五十的概率获奖，但是无论结果如何我都能平淡接受，因为这场比赛我已经获得了自己想要的东西！<em>（其实心里还是想着希望得个省三就好了，因为有一千块钱回血…）</em>🐤🐤🐤</p>
+]]></content>
+      <categories>
+        <category>School Life</category>
+      </categories>
+      <tags>
+        <tag>学校</tag>
+        <tag>比赛</tag>
+        <tag>生活</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>激活函数</title>
+    <url>/2022/11/23/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<p>学习一下机器学习中常见的激活函数，大部分只是了解即可，不必深究</p>
+<span id="more"></span>
 
-im = Image.open(input)  # 打开输入图像为PIL对象 
-mode = im.mode  # 输入图像模式\
-w, h = im.size  # 输入图像分辨率(宽在前，高在后)
-rows, cols = int(np.ceil(h)), int(np.ceil(w))  # 输出图像高度和宽度
-in_interval = np.array(im)  # 输入图像转为numpy数组
-# 生成输出图像的numpy数组（全透明）
-out_interval = np.zeros((rows, cols, in_interval.shape[2]), dtype=np.uint8)
-
-alpha = np.radians(np.linspace(-angle, angle, w))  # 生成扇形角度序列，长度与输入图像宽度一致
-for i in range(w):  # 遍历输入图像的每一列
-    # 当前列各像素在输出图像上的行号
-
-    # d = np.cos(alpha[i])*h 和 d = np.cos(alpha[i])*rows效果等同，方便后边的切片
-    d = np.cos(alpha[i])*h
-    lats = np.int_(np.linspace(0, d, h)).astype(np.int)
-    # 当前列各像素在输出图像上的列号
-    d = np.sin(alpha[i])*h
-    lons = np.int_(np.linspace(cols/2,
-                   cols/2+d, h)).astype(np.int)
-    # 将算出来的扇形的斜列的值，放进空矩阵中
-    out_interval[:, i] = in_interval[(lats, lons)]
-# 保存为文件
-im = Image.fromarray(out_interval, mode=im.mode)
-im.save(output)
-</code></pre>
-<p>if <strong>name</strong> &#x3D;&#x3D; ‘<strong>main</strong>‘:<br>    square2fan(‘out.png’, ‘rectangle.png’, angle&#x3D;45)</p>
-<p>&#96;&#96;</p>
-<h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h1><p>题目不难，但是花了我挺多时间，也暴露出了我一些问题…😅😅😅</p>
+<h1 id="常用的激活函数"><a href="#常用的激活函数" class="headerlink" title="常用的激活函数"></a>常用的激活函数</h1><h2 id="首先要知道什么是激活函数？"><a href="#首先要知道什么是激活函数？" class="headerlink" title="首先要知道什么是激活函数？"></a>首先要知道什么是激活函数？</h2><p>激活函数就是在神经网络的神经元上运行的函数，负责将神经元的输入映射到输出端。它类似于人类大脑中基于神经元的模型，激活函数最终决定了要发射给下一个神经元的内容。</p>
+<p>它的可视化过程如图所示：</p>
+<p><img src="https://ask.qcloudimg.com/http-save/8352478/mn5asmil0s.png?imageView2/2/w/1620" alt="激活函数工作过程"></p>
+<p>如果不用激励函数，每一层输出都是上层输入的线性函数，无论神经网络有多少层，输出都是输入的线性组合。神经网络中使用激活函数来加入非线性因素，提高模型的表达能力。</p>
+<h2 id="1-sigmoid激活函数"><a href="#1-sigmoid激活函数" class="headerlink" title="1. sigmoid激活函数"></a>1. sigmoid激活函数</h2><p><img src="https://ask.qcloudimg.com/http-save/8352478/nhi9swy8ln.png?imageView2/2/w/1620" alt="sigmoid函数"></p>
+<p>Sigmoid 函数的图像看起来像一个 S 形曲线。它的表达式如下：</p>
+<p>f(z) &#x3D; \frac{1}{1+e^{-z} } </p>
+<p>Sigmoid函数是传统神经网络中最常用的激活函数，一度被视为神经网络的核心所在。 </p>
+<p>从数学上来看，Sigmoid函数对中央区的信号增益较大，对两侧区的信号增益小，在信号的特征空间映射上，有很好的效果。从神经科学上来看，中央区酷似神经元的兴奋态，两侧区酷似神经元的抑制态，因而在神经网络学习方面，可以将重点特征推向中央区，将非重点特征推向两侧区。</p>
+<h3 id="1-1-在什么情况下适合使用-Sigmoid-激活函数呢？"><a href="#1-1-在什么情况下适合使用-Sigmoid-激活函数呢？" class="headerlink" title="1.1 在什么情况下适合使用 Sigmoid 激活函数呢？"></a>1.1 在什么情况下适合使用 Sigmoid 激活函数呢？</h3><ul>
+<li>Sigmoid 函数的输出范围是 0 到 1。由于输出值限定在 0 到 1，因此它对每个神经元的输出进行了归一化；</li>
+<li>用于将预测概率作为输出的模型。由于概率的取值范围是 0 到 1，因此 Sigmoid 函数非常合适；</li>
+<li>梯度平滑，避免「跳跃」的输出值；</li>
+<li>函数是可微的。这意味着可以找到任意两个点的 sigmoid 曲线的斜率；</li>
+<li>明确的预测，即非常接近 1 或 0。</li>
+<li></li>
+</ul>
+<h3 id="1-2-Sigmoid-激活函数有哪些缺点？"><a href="#1-2-Sigmoid-激活函数有哪些缺点？" class="headerlink" title="1.2 Sigmoid 激活函数有哪些缺点？"></a>1.2 Sigmoid 激活函数有哪些缺点？</h3><ul>
+<li>倾向于梯度消失；</li>
+<li>函数输出不是以 0 为中心的，这会降低权重更新的效率；</li>
+<li>Sigmoid 函数执行指数运算，计算机运行得较慢。</li>
+</ul>
+<p>现在基本上已经用不上sigmoid函数了。</p>
+<h2 id="2-TanHyperbolic（tanh）双曲正切激活函数"><a href="#2-TanHyperbolic（tanh）双曲正切激活函数" class="headerlink" title="2. TanHyperbolic（tanh）双曲正切激活函数"></a>2. TanHyperbolic（tanh）双曲正切激活函数</h2><p><img src="https://ask.qcloudimg.com/http-save/8352478/gm9p8du88z.png?imageView2/2/w/1620" alt="tanh函数"></p>
+<p>tanh 激活函数的图像也是 S 形，表达式如下：</p>
+<p>f(z) &#x3D; tanh(z) &#x3D;  \frac{e^{z} - e^{-z}  }{e^{z} + e^{-z} }  &#x3D; \frac{2}{1 + e^{-2z} }-1 </p>
+<p>tanh 是双曲正切函数。tanh 函数和 sigmoid 函数的曲线相似。但是它比 sigmoid 函数更有一些优势。</p>
+<ul>
+<li><p>sigmoid函数和tanh函数都存在一个问题：当神经网络的层数增多的时候，由于在进行反向传播的时候，链式求导，多项相乘，函数进入饱和区（导数接近于零的地方）就会逐层传递，这种现象被称为梯度消失。</p>
+</li>
+<li><p>首先要明确的一点是，当输入较大或较小时，输出几乎是平滑的并且梯度较小，这不利于权重更新。tanh 整个函数以 0 为中心，比 sigmoid 函数更好。在实际操作的时候，tanh 函数延迟了饱和期，在特征相差比较明显的时候效果会更好，并且在循环过程中也能够不断地扩大特征的效果。</p>
+</li>
+<li><p>在一般的二元分类问题中，tanh 函数用于隐藏层，而 sigmoid 函数用于输出层，但这并不是固定的，需要根据特定问题进行调整。</p>
+</li>
+</ul>
+<h2 id="3-softmax激活函数"><a href="#3-softmax激活函数" class="headerlink" title="3. softmax激活函数"></a>3. softmax激活函数</h2><p>公式表达为：</p>
+<p>f(z) &#x3D; \frac{e^{Z_j} }{\sum_{k}^{}e^{Z_k} } </p>
+<p>Sigmoid函数如果用来分类的话，只能进行二分类，而这里的softmax函数可以看做是Sigmoid函数的一般化，可以进行多分类。</p>
+<h3 id="3-0-Softmax激活函数的特点："><a href="#3-0-Softmax激活函数的特点：" class="headerlink" title="3.0 Softmax激活函数的特点："></a>3.0 Softmax激活函数的特点：</h3><ul>
+<li>在零点不可微。</li>
+<li>负输入的梯度为零，这意味着对于该区域的激活，权重不会在反向传播期间更新，因此会产生永不激活的死亡神经元。</li>
+</ul>
+<h3 id="3-1-sigmoid与softmax比较-–-gt-sigmoid"><a href="#3-1-sigmoid与softmax比较-–-gt-sigmoid" class="headerlink" title="3.1 sigmoid与softmax比较 –&gt; sigmoid"></a>3.1 sigmoid与softmax比较 –&gt; sigmoid</h3><p>二分类和多分类其实没有多少区别。用的公式仍然是y &#x3D; wx + b。 但有一个非常大的区别是他们用的激活函数是不同的。 逻辑回归用的是sigmoid，这个激活函数的除了给函数增加非线性之外还会把最后的预测值转换成在[0,1]中的数据值。也就是预测值是0&lt;y&lt;1。 我们可以把最后的这个预测值当做是一个预测为正例的概率。在进行模型应用的时候我们会设置一个阈值，当预测值大于这个阈值的时候，我们判定为正例子，反之我们判断为负例。这样我们可以很好的进行二分类问题。 </p>
+<h3 id="3-2-sigmoid与softmax比较-–-gt-softmax"><a href="#3-2-sigmoid与softmax比较-–-gt-softmax" class="headerlink" title="3.2 sigmoid与softmax比较 –&gt; softmax"></a>3.2 sigmoid与softmax比较 –&gt; softmax</h3><p>Softmax函数是用于多类分类问题的激活函数，在多类分类问题中，超过两个类标签则需要类成员关系。对于长度为K的任意实向量，Softmax函数可以将其压缩为长度为K，值在[0,1]范围内，并且向量中元素的总和为1的实向量。</p>
 <blockquote>
-<p>对Python的库不是很熟悉（其实不经常用，记不得我觉得也很正常）</p>
-<p>嗯？让我想想我到底还有啥问题先？</p>
-<p>……</p>
-<p>好像并没有什么问题?😦</p>
+<p>Softmax函数与正常的max函数不同：max函数仅输出最大值，但Softmax函数确保较小的值具有较小的概率，不会直接丢弃。我们可以认为它是arg max函数的概率版本或“soft”版本。Softmax函数的分母结合了原始输出值的所有因子，这意味着Softmax函数获得的各种概率彼此相关。</p>
+</blockquote>
+<blockquote>
+<p>利用 softmax 可以用于多分类问题，而用多个logistic回归通过叠加也同样可以实现多分类的效果，但是 softmax回归进行的多分类，类与类之间是互斥的，即一个输入只能被归为一类。多个logistic回归进行多分类，输出的类别并不是互斥的，即”苹果”这个词语既属于”水果”类也属于”3C”类别。</p>
+</blockquote>
+<h2 id="4-ReLU-激活函数"><a href="#4-ReLU-激活函数" class="headerlink" title="4. ReLU 激活函数"></a>4. ReLU 激活函数</h2><p><img src="https://ask.qcloudimg.com/http-save/8352478/ck888so4in.png?imageView2/2/w/1620" alt="ReLu激活函数"></p>
+<p>ReLu函数的全称为Rectified Linear Units–&gt;修正线性单元,表达式为</p>
+<p>f(z) &#x3D; max(0,z)</p>
+<h3 id="Sigmoid-，tanh与ReLU-比较"><a href="#Sigmoid-，tanh与ReLU-比较" class="headerlink" title="Sigmoid ，tanh与ReLU 比较"></a>Sigmoid ，tanh与ReLU 比较</h3><p>sigmoid，tanh 会出现梯度消失问题，ReLU 的导数就不存在这样的问题。</p>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
+<li>从计算的角度上，Sigmoid和Tanh激活函数均需要计算指数，复杂度高，而ReLU只需要一个阈值即可得到激活值。</li>
+<li>ReLU的非饱和性有效地解决梯度消失的问题，提供相对宽的激活边界。</li>
+<li>ReLU的单侧抑制，提供了网络的稀疏表达能力</li>
+</ul>
+<p><strong>稀疏表示（Sparse Representations）的定义：用较少的基本信号的线性组合来表达大部分或者全部的原始信号。</strong></p>
+<p><em>具体稀疏性的体现是：Relu会使一部分神经元的输出为0，这样就造成了网络的稀疏性，并且减少了参数的相互依存关系，缓解了过拟合问题的发生。</em><strong>只能说有利有弊了…</strong></p>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul>
+<li>Dead ReLU 问题。当输入为负时，ReLU 完全失效，在正向传播过程中，这不是问题。但是在反向传播过程中，如果输入负数，则梯度将完全为零，即在训练过程中会导致神经元死亡。sigmoid 函数和 tanh 函数也具有相同的问题。</li>
+<li>我们发现 ReLU 函数的输出为 0 或正数，这意味着 ReLU 函数不是以 0 为中心的函数。</li>
+</ul>
+<p><strong>神经元死亡会导致该神经元在之后不被任何数据激活，即流经该神经元的梯度永远为0，不对任何数据产生响应。在实际训练中，如果学习率设置较大，会导致一定比例的神经元不可逆死亡，进而参数梯度无法更新，整个训练过程失败。</strong></p>
+<h2 id="5-softplus激活函数"><a href="#5-softplus激活函数" class="headerlink" title="5. softplus激活函数"></a>5. softplus激活函数</h2><p>公式表达式为：</p>
+<p>softplus(z)&#x3D;log(1+e^z)</p>
+<p>softplus函数与ReLU函数接近,但比较平滑, 同ReLU一样是单边抑制,有宽广的接受域(0,+inf), 但是由于指数运算,对数运算计算量大的原因,而不太被人使用。</p>
+<p><img src="https://images2018.cnblogs.com/blog/1252882/201807/1252882-20180707095338849-1750990328.png" alt="softplus激活函数"></p>
+<p>可以看到，softplus可以看作是ReLu的平滑。根据神经科学家的相关研究，softplus和ReLu与脑神经元激活频率函数有神似的地方。也就是说，在生物层面上，相比于早期的激活函数，softplus和ReLu更加接近脑神经元的激活模型。其中，<strong>RELU函数的引入给神经网络增加了生物学特性，可以称为灵魂激活函数。</strong></p>
+<p>softplus的导数就是sigmoid函数，还是很巧合的。还有一点就是，据说softplus的出现要比ReLu要早，也就是说softplus可以看成是ReLu的鼻祖？</p>
+<h2 id="6-Leaky-ReLU激活函数"><a href="#6-Leaky-ReLU激活函数" class="headerlink" title="6. Leaky ReLU激活函数"></a>6. Leaky ReLU激活函数</h2><p>它是一种专门设计用于解决 Dead ReLU 问题的激活函数：</p>
+<p><img src="https://ask.qcloudimg.com/http-save/8352478/zdls8bt48h.png?imageView2/2/w/1620" alt="Leaky ReLu"></p>
+<p>当 x &lt; 0的时候， f(x) &#x3D; \alpha x,其中\alpha 非常小，这样可以避免在x &lt; 0的时候，不能够学习的情况。</p>
+<p>f(x) &#x3D; max(\alpha x,x)</p>
+<blockquote>
+<p>将\alpha 作为可学习的参数，称为Parametric Rectifier(PReLU)</p>
+<p>当\alpha 从高斯分布中随机产生时称为Random Rectifier（RReLU）</p>
+<p>当固定为\alpha &#x3D; 0.01时,称为Leaky ReLU</p>
+</blockquote>
+<h3 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>不会过拟合(saturate)</li>
+<li>计算简单有效</li>
+<li>比sigmoid&#x2F;tanh收敛快</li>
+</ul>
+<h2 id="7-其他常见的激活函数"><a href="#7-其他常见的激活函数" class="headerlink" title="7. 其他常见的激活函数"></a>7. 其他常见的激活函数</h2><p>其他常见的激活函数还有</p>
+<ul>
+<li>Noisy ReLU</li>
+<li>指数线性单元ELU(exponential linear unit)</li>
+<li>SELU</li>
+<li>GELU</li>
+<li>Swish</li>
+<li>…</li>
+</ul>
+<p>还有挺多的激活函数没有列举，但是我目前常见的就只有以上列举的几种，剩下的激活函数等到到时候用到的时候再来补充就好了！</p>
+<p><em>参考的网站：</em></p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/makefile/p/activation-function.html">https://www.cnblogs.com/makefile/p/activation-function.html</a><br><a href="https://www.cnblogs.com/nxf-rabbit75/p/9276412.html">https://www.cnblogs.com/nxf-rabbit75/p/9276412.html</a><br><a href="https://cloud.tencent.com/developer/article/1800954">https://cloud.tencent.com/developer/article/1800954</a><br><a href="https://blog.csdn.net/hy592070616/article/details/120618490">https://blog.csdn.net/hy592070616/article/details/120618490</a><br><a href="https://blog.csdn.net/weixin_42057852/article/details/84644348?spm=1001.2101.3001.6650.11&amp;utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-11-84644348-blog-120618490.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-11-84644348-blog-120618490.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=15">https://blog.csdn.net/weixin_42057852/article/details/84644348?spm=1001.2101.3001.6650.11&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-11-84644348-blog-120618490.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-11-84644348-blog-120618490.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=15</a></p>
+<p><a href="https://www.cnblogs.com/pinard/p/6437495.html">https://www.cnblogs.com/pinard/p/6437495.html</a></p>
 </blockquote>
 ]]></content>
       <categories>
-        <category>Homework</category>
+        <category>Mathine Learning</category>
       </categories>
+      <tags>
+        <tag>机器学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>机器学习派系</title>
+    <url>/2022/11/24/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%B4%BE%E7%B3%BB/</url>
+    <content><![CDATA[<p>机器学习有不同的学派，每个学派从不同的角度看问题。这也是偶然了解到，感觉对日后的理解和学习有帮助，于是便记录下来…</p>
+<span id="more"></span>
+
+<h1 id="机器学习5大学派！"><a href="#机器学习5大学派！" class="headerlink" title="机器学习5大学派！"></a>机器学习5大学派！</h1><p>机器学习有不同的学派，每个学派从不同的角度看问题。</p>
+<ol>
+<li><p>符号学派（symbolists） 更多关注哲学，逻辑学和心理学， 并将学习视为逆向演绎 。使用符号、规则和逻辑来表征知识和进行逻辑推理主要是基于规则的，算法如 ：决策树。</p>
+</li>
+<li><p>联结学派（connectionists）专注物理学和神经科学，并相信大脑的逆向工程。使用概率矩阵和加权神经元来动态地识别和归纳模式，算法如 ：神经网络 。</p>
+</li>
+<li><p>进化学派，在遗传学和进化生物学的基础上得出结论。生成变化，然后为特定目标获取其中最优的， 算法如 ：遗传算法 。</p>
+</li>
+</ol>
+<p>4. 贝叶斯学派（Bayesians）注重统计学和概率推理。 获取发生的可能性来进行概率推理，算法如 ：朴素贝叶斯，马尔可夫。</p>
+<p>5. 类推学派（analogizers）更多是关注心理学和数学优化来推断相似性判断。 根据约束条件来优化函数，算法如：支持向量机SVM。</p>
+<h1 id="演化的阶段"><a href="#演化的阶段" class="headerlink" title="演化的阶段"></a>演化的阶段</h1><blockquote>
+<p>1980 年代             主导流派：符号主义</p>
+<p>1990 年代到 2000 年    主导流派：贝叶斯</p>
+<p>2010 年代早期到中期   主导流派：联结主义</p>
+<p>2010 年代末期    主导流派：联结主义+符号主义</p>
+<p>2020 年代+         主导流派：联结主义+符号主义+贝叶斯+……</p>
+<p>2040 年代+         主导流派：算法融合 </p>
+</blockquote>
+<h1 id="联结学派（The-connectionists）"><a href="#联结学派（The-connectionists）" class="headerlink" title="联结学派（The connectionists）"></a>联结学派（The connectionists）</h1><p>联结学派的主要思想是通过神经元之间的连接来推导知识。联结学派聚焦于物理学和神经科学，并相信大脑的逆向工程（reverse engineering）。他们相信用反向传播算法或“向后传播错误”的算法来训练人工神经网络以获取结果。</p>
+<p>多伦多大学的 Geoff Hinton 是机器学习领域的顶尖研究者之一。Hinton 积极与谷歌合作，也是推动“深度学习”模式的人物。深度学习在许多不同领域彻底变革了 AI，如语音识别，图像描述及生成有意义的句子。</p>
+<p>几乎所有大科技公司，包括 Facebook，微软，谷歌等，都正在使用这种模式来改进它们的系统。Navdeep Jaitly 是谷歌大脑团队的研究科学家，他在 Hinton 门下进行研究，使用深度学习模型超越了 Android 系统中已经“精细调好”（fine-tuned）的语音识别算法。</p>
+<p>Facebook AI Research（FAIR）的主管 Yann LeCun 是这个研究领域的另一位大牛。Yann 也是在 Hinton 门下读博士学位，并致力于深度学习领域。</p>
+<p>作为蒙特利尔学习算法研究所的负责人，Yoshua Bengio 是另一个值得注意的名字，是联结学派方法的领军人物。Bengio 致力于组织不同的 AI 相关活动和会议，包括学习研讨会。Bengio 和他的学生 Ian Goodfellow（现在是 OpenAI 的研究员）以及 Aaron Courville 一起合著了著名的深度学习教材Deep Learning。</p>
+<p>机器学习领域的许多研究者，特别是联结学派者，认为深度学习模型是 AI 的所有问题的答案，并认为它是一个主算法。</p>
+<h1 id="符号学派（The-symbolists）"><a href="#符号学派（The-symbolists）" class="headerlink" title="符号学派（The symbolists）"></a>符号学派（The symbolists）</h1><p>符号学派的方法基于对问题的“高阶”（high-level）解释。符号主义者更侧重哲学，逻辑学和心理学，并把学习视为逆向演绎（inverse of deduction）。John Haugeland 在他的著作 Artificial Intelligence: The Very Idea中称之为“Good Old-Fashioned Artificial Intelligence” (GOFAI)。符号学派解决问题的方法是使用预先存在的知识来填补空白。大多数专家系统使用符号学派的方法，以 If-Then 的方式解决问题。</p>
+<p>卡内基梅隆大学的 Tom Mitchell 是符号学派的领军人物之一。Udacity 联合创始人，斯坦福大学教授，前谷歌副总裁 Sebastian Thrun，以及艾伦人工智能研究所 CEO Oren Etzioni 都是 Tom Mitchell 的学生。</p>
+<p>伦敦帝国理工学院教授，Inductive Acquisition of Expert Knowledge的作者 Stephen Muggleton，以及 RuleRequest 的创始人 Ross Quinlan 均是推崇符号学派机器学习方法的著名研究者。</p>
+<h1 id="进化学派（The-evolutionaries）"><a href="#进化学派（The-evolutionaries）" class="headerlink" title="进化学派（The evolutionaries）"></a>进化学派（The evolutionaries）</h1><p>第三个学派，是进化学派，他们在遗传学和进化生物学的基础上得出结论。2015年去世的 John Holland 曾在密歇根大学任教，他在将达尔文的进化理论引入计算机科学方面发挥了非常重要的作用。Holland 是遗传算法（genetics algorithms）的先驱，他提出的“遗传算法的基本定理”被认为是这个领域的基础。</p>
+<p>机器人学，3D打印和生物信息学领域的许多工作是哥伦比亚大学创意力学实验室主任 Hod Lipson 等进化论者进行的。John Koza 是前斯坦福大学教授，Scientific Games 公司的创始人，也是遗传算法的另一名先驱人物。另外，Serafim 实验室的创始人，斯坦福大学计算机科学教授 Serafim Batzoglou 也是计算机基因组领域的著名研究者。</p>
+<h1 id="贝叶斯学派（The-Bayesian-school-of-thought）"><a href="#贝叶斯学派（The-Bayesian-school-of-thought）" class="headerlink" title="贝叶斯学派（The Bayesian school of thought）"></a>贝叶斯学派（The Bayesian school of thought）</h1><p>如果你使用电子邮件超过10年，应该能感觉到垃圾邮件过滤系统的改进。这是机器学习中的贝叶斯学派的功劳。贝叶斯学派专注于研究概率推理和用贝叶斯定理解决问题。贝叶斯学派从一个信念开始，他们称之为“先验”（prior）。然后，他们收集一些数据，并基于该数据更新先验；得到的结果他们称之为“后验”（posterior）。然后，他们用更多的数据来处理后验，并使之变成先验。这个过程不断循环往复，知道得到最终的答案。大多数垃圾邮件过滤系统是在这种基础上起作用。</p>
+<p>加州大学洛杉矶分校计算机科学系的 Judea Pearl 是贝叶斯方法的著名研究者之一。微软 Genomics Group 的负责人 David Heckerman 也是著名的贝叶斯方法研究者，他帮助微软在 Outlook 和 Hotmail 邮件系统中开发了不同的数据挖掘工具和垃圾邮件过滤工具。</p>
+<p>加州大学伯克利分校的 Michael Jordan 也是这一领域的主要研究者。</p>
+<h1 id="类推学派（The-analogizers）"><a href="#类推学派（The-analogizers）" class="headerlink" title="类推学派（The analogizers）"></a>类推学派（The analogizers）</h1><p>机器学习的第五个分支学派是类推学派（Analogizers），他们更多地关注心理学和数学最优化，通过外推来进行相似性判断。类推学派遵循“最近邻”原理进行研究。各种电子商务网站上的产品推荐（例如亚马逊或 Netflix的电影评级）是类推方法最常见的示例。</p>
+<p>印第安纳大学的 Douglas Hofstadter（侯世达）是认知科学中最有名的科学家。同一领域的另一位知名科学家是 Vladimir Vapnik，他也是“支持向量机”的共同发明者和 Vapnik-Chervonenkis 理论的主要开发者。Facebook 最近聘请 Vapnik 与其他几位知名研究人员一起加入 Facebook AI 实验室。此外，理光创新（Ricoh Innovations）创始人 Peter Hart 也是遵循类推方法的著名学者，Hart 与人合著了《模式分类》一书。</p>
+<h1 id="危机与问题"><a href="#危机与问题" class="headerlink" title="危机与问题"></a>危机与问题</h1><p>所有上述学派解决不同的问题，提出了不同的解决方案。而真正的挑战是设计一个算法，解决这些方法尝试要解决的所有不同的问题——单一的一个“终极算法”。</p>
+<p>我们仍然处在机器学习和 AI 的早期，还有很多事情要做。我们不知道什么时候，哪里会出现问题，而这将会减缓整个发展进程，带来下一个“AI冬天”。又或者，将来会出现一个新的突破，彻底改变目前的情况。</p>
+<p>机器学习的进步更像是一场演化。正如微生物的发展速度远比人类更快，机器学习的发展也比人类快，但会到达一个阶段，在这个阶段上这些学习算法会变得太过复杂而不能快速演化。</p>
+<p>也存在其他的危机。一个“理想的”终极算法将了解有关我们的一切。虽然机器学习需要人类的输入作为启动，但它最终会达到一个点，它会超越人类。那么接下来会发生什么呢？只要它们的目标和我们的目标稍有分歧，可能就足以消灭人类。</p>
+<p>这只是一种情况。假设我们成功建立了一个能够控制这些超级智能的机制，就类似于蚂蚁创造了一个能够控制我们人类的机制。但是，国家，人们和团体之间存在的利益冲突，可能会引发类似“天网”（终结者）的战争。</p>
+<h1 id="机器学习如何改变世界？"><a href="#机器学习如何改变世界？" class="headerlink" title="机器学习如何改变世界？"></a>机器学习如何改变世界？</h1><p>有许多初创公司专注于机器学习及其为生活中的不同问题带来的解决方案；而且，更重要的是，有大型科技公司支持他们。例如，谷歌收购的 DeepMind 专注于医疗保健，利用机器学习研究癌症的治疗；Facebook 的 Chan Zuckerberg Initiative 宣布计划在未来十年投资30亿美元，以帮助治疗、预防和管控疾病。</p>
+<p>另外，世界上最大的一些科技公司，包括亚马逊，Facebook，谷歌，微软等形成了联盟“Partnership on AI”，以共享他们的大型数据库进行研究，推广好的实践。</p>
+<p>AI 是否将技术的发展引向了一条危险的路径？我们将要成为机器的奴隶，又或 AI 是将人类引向终极的进步的入口？</p>
+<p>任何希望了解 AI 和机器学习的人士都应该阅读一下 Pedro Domingos 的《终极算法》一书。最后，让我们借用此书序言里的一句话作为本文的结语：围绕大数据以及机器学习的讨论充满争议，如果你对此感到好奇，且怀疑有比论文上看到的更为深层次的东西，那么这本书就是你进行革命的指南。</p>
+<h1 id="出处"><a href="#出处" class="headerlink" title="出处"></a>出处</h1><p><em>今天在学习机器学习的时候，发现机器学习惊竟然还分派系，略感兴趣，遂转于此！</em></p>
+<ol>
+<li><a href="https://www.jianshu.com/p/55ccb15747b5">简书-转载</a></li>
+<li><a href="https://techcrunch.com/2017/01/30/is-a-master-algorithm-the-solution-to-our-machine-learning-problems/">Yahoo原文</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Mathine Learning</category>
+        <category>Things of Interest</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>特征工程</title>
+    <url>/2022/11/23/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/</url>
+    <content><![CDATA[<p>数据和特征决定了机器学习的上限，而模型和算法只是逼近这个上限而已</p>
+<span id="more"></span>
+
+<h1 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a>特征工程</h1><p><a href="https://easyai.tech/ai-definition/feature-engineering/">特征工程</a>是机器学习工作流程中重要的组成部分，它将原始数据「翻译」成模型可理解的形式。</p>
+<p>美国计算机科学家 Peter Norvig 说过两句经典名言</p>
+<ol>
+<li>基于大量数据的简单模型优于基于少量数据的复杂模型</li>
+<li>更多的数据优于聪明的算法，而好的数据优于多的数据</li>
+</ol>
+<p>足以可见数据量和特征工程的重要性，不过数据量已经给定了，我们能做的只有特征工程。如何基于原来的数据发挥出更大的数据价值就是特征工程要做的事情。</p>
+<p><em>在16年的一项调查中发现，<a href="https://whatsthebigdata.com/2016/05/01/data-scientists-spend-most-of-their-time-cleaning-data/">数据科学家</a>的工作中，有80%的时间都在获取、清洗和组织数据。构造机器学习流水线的时间不到20%…</em></p>
+<h1 id="1-特征工程一些注意事项"><a href="#1-特征工程一些注意事项" class="headerlink" title="1.特征工程一些注意事项"></a>1.特征工程一些注意事项</h1><p>e.g. 人类是需要吃加工过的食物才行，这样更安全也更美味。机器算法模型也是类似，原始数据不能直接喂给模型，也需要对数据进行清洗、组织、转换。最后才能得到模型可以消化的特征。这样你对特征工程在数据和模型之间扮演的角色已经十分了解了吧？</p>
+<h2 id="1-1-当前我对特征工程的理解"><a href="#1-1-当前我对特征工程的理解" class="headerlink" title="1.1 当前我对特征工程的理解"></a>1.1 当前我对特征工程的理解</h2><p>当前我对特征工程的理解仅仅停留在特征提取和特征选择，这样是待会会提到的内容。首先要知道，这两种方法都是降维的方法。特征选择后的字段是原数据字段的子集，也就是说删减了一些冗杂的对模型训练没有用的字段。特征提取理解成原来特征的映射，e.g.三个字段合并在一起表现的会比三个字段独立更好一些–&gt;<a href="https://blog.csdn.net/Neil_Pan/article/details/51940849">特征选择和特征提取区别</a></p>
+<p>如果想要看看，特征工程具体是包括哪些具体步骤的，还可以参考<a href="https://blog.csdn.net/tiange_xiao/article/details/79723177#:~:text=%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%20%E6%98%AF%E4%BD%BF%E7%94%A8%E4%B8%93%E4%B8%9A%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86%E5%92%8C%E6%8A%80%E5%B7%A7%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%EF%BC%8C%E4%BD%BF%E5%BE%97%20%E7%89%B9%E5%BE%81%20%E8%83%BD%E5%9C%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E4%B8%8A%E5%8F%91%E6%8C%A5%E6%9B%B4%E5%A5%BD%E7%9A%84%E4%BD%9C%E7%94%A8%E7%9A%84%E8%BF%87%E7%A8%8B%E3%80%82%20%E8%BF%87%E7%A8%8B%20%E5%8C%85%E5%90%AB%20%E4%BA%86%20%E7%89%B9%E5%BE%81,%E7%89%B9%E5%BE%81%20%E6%9E%84%E5%BB%BA%E3%80%81%20%E7%89%B9%E5%BE%81%20%E9%80%89%E6%8B%A9%E7%AD%89%E6%A8%A1%E5%9D%97%E3%80%82%20%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%20%E7%9A%84%E7%9B%AE%E7%9A%84%E6%98%AF%E7%AD%9B%E9%80%89%E5%87%BA%E6%9B%B4%E5%A5%BD%E7%9A%84%20%E7%89%B9%E5%BE%81%20%EF%BC%8C%E8%8E%B7%E5%8F%96%E6%9B%B4%E5%A5%BD%E7%9A%84%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E3%80%82">这里</a></p>
+<h2 id="1-2-更好的业务逻辑表达"><a href="#1-2-更好的业务逻辑表达" class="headerlink" title="1.2 更好的业务逻辑表达"></a>1.2 更好的业务逻辑表达</h2><p>将特征工程理解成是业务逻辑的一种数学表达。说是说业务逻辑表达，其实实质上就是指为了解决机器学习中特定的问题。因为原始数据有很多种转换为特征的方式，我们需要选择那些能够「更好的表示业务逻辑」，从而更好的解决问题，而不是那些更简单的方法。</p>
+<h2 id="1-3-提升机器学习性能"><a href="#1-3-提升机器学习性能" class="headerlink" title="1.3 提升机器学习性能"></a>1.3 提升机器学习性能</h2><p>性能意味着更短时间和更低成本，哪怕相同的模型，也会因为特征工程的不同而性能不同。所以我们需要选择那些可以发挥更好性能的特征工程</p>
+<h1 id="2-特征选择"><a href="#2-特征选择" class="headerlink" title="2. 特征选择"></a>2. 特征选择</h1><p>特征选择是特征工程里的一个重要问题，其目标是寻找最优特征子集。特征选择能剔除不相关(irrelevant)或冗余(redundant)的特征，从而达到减少特征个数，提高模型精确度，减少运行时间的目的。另一方面，<strong>选取出真正相关的特征简化模型</strong>，协助理解数据产生的过程。并且常能听到“数据和特征决定了机器学习的上限，而模型和算法只是逼近这个上限而已”，由此可见其重要性。但是它几乎很少出现于机器学习书本里面的某一章。然而在机器学习方面的成功很大程度上在于如果使用特征工程。</p>
+<p>之所以要考虑特征选择，是因为机器学习经常面临过拟合的问题。 过拟合的表现是模型参数太贴合训练集数据，模型在训练集上效果很好而在测试集上表现不好。简言之模型的泛化能力差。过拟合的原因是模型对于训练集数据来说太复杂，要解决过拟合问题，一般考虑如下方法：<a href="https://zhuanlan.zhihu.com/p/74198735#:~:text=%E4%B9%8B%E6%89%80%E4%BB%A5%E8%A6%81%E8%80%83%E8%99%91%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9%EF%BC%8C%E6%98%AF%E5%9B%A0%E4%B8%BA%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BB%8F%E5%B8%B8%E9%9D%A2%E4%B8%B4%E8%BF%87%E6%8B%9F%E5%90%88%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82%20%E8%BF%87%E6%8B%9F%E5%90%88,%E7%9A%84%E8%A1%A8%E7%8E%B0%E6%98%AF%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%20%E5%A4%AA%E8%B4%B4%E5%90%88%E8%AE%AD%E7%BB%83%E9%9B%86%E6%95%B0%E6%8D%AE%20%EF%BC%8C%E6%A8%A1%E5%9E%8B%E5%9C%A8%E8%AE%AD%E7%BB%83%E9%9B%86%E4%B8%8A%E6%95%88%E6%9E%9C%E5%BE%88%E5%A5%BD%E8%80%8C%E5%9C%A8%E6%B5%8B%E8%AF%95%E9%9B%86%E4%B8%8A%E8%A1%A8%E7%8E%B0%E4%B8%8D%E5%A5%BD%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%9C%A8%E9%AB%98%E6%96%B9%E5%B7%AE%E3%80%82">参考</a></p>
+<ol>
+<li>收集更多数据</li>
+<li>通过正则化引入对复杂度的惩罚</li>
+<li>选择更少参数的简单模型</li>
+<li>对数据降维（降维有两种方式：特征选择和特征抽取）</li>
+</ol>
+<p>其中第1条一般是很难做到的，一般主要采用第2和第4点</p>
+<h1 id="3-特征提取"><a href="#3-特征提取" class="headerlink" title="3. 特征提取"></a>3. 特征提取</h1><p>像上面所说，将特征提取理解成原来特征的映射，只是一种不同于特征选择的选取字段的方式罢了。</p>
+<h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h1><ul>
+<li><a href="https://blog.csdn.net/hren_ron/article/details/80914491">了解生成特征子集的搜索方式</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/74198735#:~:text=%E4%B9%8B%E6%89%80%E4%BB%A5%E8%A6%81%E8%80%83%E8%99%91%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9%EF%BC%8C%E6%98%AF%E5%9B%A0%E4%B8%BA%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BB%8F%E5%B8%B8%E9%9D%A2%E4%B8%B4%E8%BF%87%E6%8B%9F%E5%90%88%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82%20%E8%BF%87%E6%8B%9F%E5%90%88,%E7%9A%84%E8%A1%A8%E7%8E%B0%E6%98%AF%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%20%E5%A4%AA%E8%B4%B4%E5%90%88%E8%AE%AD%E7%BB%83%E9%9B%86%E6%95%B0%E6%8D%AE%20%EF%BC%8C%E6%A8%A1%E5%9E%8B%E5%9C%A8%E8%AE%AD%E7%BB%83%E9%9B%86%E4%B8%8A%E6%95%88%E6%9E%9C%E5%BE%88%E5%A5%BD%E8%80%8C%E5%9C%A8%E6%B5%8B%E8%AF%95%E9%9B%86%E4%B8%8A%E8%A1%A8%E7%8E%B0%E4%B8%8D%E5%A5%BD%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%9C%A8%E9%AB%98%E6%96%B9%E5%B7%AE%E3%80%82">详细地介绍了特征选择的方法</a></li>
+<li><a href="https://asialee.blog.csdn.net/article/details/84863410?spm=1001.2101.3001.6650.3&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-3-84863410-blog-79723177.pc_relevant_multi_platform_whitelistv3&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-3-84863410-blog-79723177.pc_relevant_multi_platform_whitelistv3&utm_relevant_index=6">机器学习特征工程的具体步骤</a></li>
+<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectKBest.html">sklearn.select_feature.SelectKBest官方文档</a></li>
+<li><a href="https://www.cnblogs.com/ai-ldj/p/14269023.html">SelectKBest博客园</a></li>
+<li><a href="https://blog.csdn.net/moonoon1/article/details/120074949">SelectKBest-CSDN</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Mathine Learning</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+      </tags>
   </entry>
   <entry>
     <title>机器学习实验二</title>
@@ -584,290 +870,151 @@ print_result(lgb_r2_score, lgb_rmse, &#39;Lightgbm&#39;)
       </categories>
   </entry>
   <entry>
-    <title>数学建模大赛</title>
-    <url>/2022/11/23/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E5%A4%A7%E8%B5%9B/</url>
-    <content><![CDATA[<p>直到今天为止，数模比赛已经结束咯！任务完成，参赛题目也提交了，结果如何就看人品了🤗</p>
+    <title>特征缩放</title>
+    <url>/2022/11/23/%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE/</url>
+    <content><![CDATA[<p>将数据进行归一化和标准化可以使不同维度的特征放在一起进行比较，可以大大提高模型的准确性。</p>
 <span id="more"></span>
 
-<h1 id="1-数模比赛"><a href="#1-数模比赛" class="headerlink" title="1.数模比赛"></a>1.数模比赛</h1><p>直到今天为止，数模比赛已经结束咯！任务完成，参赛题目也提交了，结果如何就看人品了🤗<br>这是是第一次使用Markdown写短文，虽然说Markdown很容易上手，但是一些细节上的东西总是无法反应过来😵😵😵</p>
+<h1 id="特征缩放"><a href="#特征缩放" class="headerlink" title="特征缩放"></a>特征缩放</h1><h2 id="1-为什么要进行特征缩放"><a href="#1-为什么要进行特征缩放" class="headerlink" title="1. 为什么要进行特征缩放"></a>1. 为什么要进行特征缩放</h2><h3 id="1-1-统一特征的权重和提升模型准确性"><a href="#1-1-统一特征的权重和提升模型准确性" class="headerlink" title="1.1 统一特征的权重和提升模型准确性"></a>1.1 统一特征的权重和提升模型准确性</h3><p>如果某个特征的取值范围比其他特征大很多，那么数值计算（比如说计算欧式距离）就受该特征的主要影响。但实际上并不一定是这个特征最重要，通常需要把每个特征看成同等重要。归一化和标准化数据可以使不同维度的特征放在一起进行比较，可以大大提高模型的准确性。</p>
+<h3 id="1-2-提升梯度下降法的收敛速度"><a href="#1-2-提升梯度下降法的收敛速度" class="headerlink" title="1.2 提升梯度下降法的收敛速度"></a>1.2 提升梯度下降法的收敛速度</h3><p><img src="https://img-blog.csdnimg.cn/20191113192133110.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzAwODgwNA==,size_16,color_FFFFFF,t_70" alt="左边是未归一化数据的梯度下降过程"></p>
+<h2 id="2-特征缩放的方法有哪些？"><a href="#2-特征缩放的方法有哪些？" class="headerlink" title="2. 特征缩放的方法有哪些？"></a>2. 特征缩放的方法有哪些？</h2><h3 id="2-1-最大最小值归一化（min-max-normalization）：将数值范围缩放到-0-1-区间里"><a href="#2-1-最大最小值归一化（min-max-normalization）：将数值范围缩放到-0-1-区间里" class="headerlink" title="2.1 最大最小值归一化（min-max normalization）：将数值范围缩放到 [0, 1] 区间里"></a>2.1 最大最小值归一化（min-max normalization）：将数值范围缩放到 [0, 1] 区间里</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190103162752557-711062993.png"></p>
+<h3 id="2-2-均值归一化（mean-normalization）：将数值范围缩放到-1-1-区间里，且数据的均值变为0"><a href="#2-2-均值归一化（mean-normalization）：将数值范围缩放到-1-1-区间里，且数据的均值变为0" class="headerlink" title="2.2 均值归一化（mean normalization）：将数值范围缩放到 [-1, 1] 区间里，且数据的均值变为0"></a>2.2 均值归一化（mean normalization）：将数值范围缩放到 [-1, 1] 区间里，且数据的均值变为0</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190103162807303-1305019357.png"></p>
+<h3 id="2-3-标准化-Z-值归一化（standardization-x2F-z-score-normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行-中心化-mean-centering-处理，再除以标准差进行缩放）"><a href="#2-3-标准化-Z-值归一化（standardization-x2F-z-score-normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行-中心化-mean-centering-处理，再除以标准差进行缩放）" class="headerlink" title="2.3 标准化 ,Z 值归一化（standardization &#x2F; z-score normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行 中心化 mean centering 处理，再除以标准差进行缩放）"></a>2.3 标准化 ,Z 值归一化（standardization &#x2F; z-score normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行 中心化 mean centering 处理，再除以标准差进行缩放）</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190103162903434-1406801774.png"></p>
+<h3 id="2-4-最大绝对值归一化（max-abs-normalization-）：也就是将数值变为单位长度（scaling-to-unit-length），将数值范围缩放到-1-1-区间里"><a href="#2-4-最大绝对值归一化（max-abs-normalization-）：也就是将数值变为单位长度（scaling-to-unit-length），将数值范围缩放到-1-1-区间里" class="headerlink" title="2.4 最大绝对值归一化（max abs normalization ）：也就是将数值变为单位长度（scaling to unit length），将数值范围缩放到 [-1, 1] 区间里"></a>2.4 最大绝对值归一化（max abs normalization ）：也就是将数值变为单位长度（scaling to unit length），将数值范围缩放到 [-1, 1] 区间里</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190112114759202-190163995.png"> </p>
+<h3 id="2-5-稳键标准化（robust-standardization）：先减去中位数，再除以四分位间距（interquartile-range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健"><a href="#2-5-稳键标准化（robust-standardization）：先减去中位数，再除以四分位间距（interquartile-range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健" class="headerlink" title="2.5 稳键标准化（robust standardization）：先减去中位数，再除以四分位间距（interquartile range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健"></a>2.5 稳键标准化（robust standardization）：先减去中位数，再除以四分位间距（interquartile range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201908/1247570-20190811172514046-446486849.png"></p>
 <blockquote>
-<p>下面是我学习Markdown的一些经历，希望在写作的时候对你有些帮助！😉</p>
-<p>点击跳转Markdown  –&gt;目前这项功能还在开发中，ちょっと待っね！</p>
+<p><em>有一些时候，只对数据进行中心化和缩放是不够的，还需对数据进行白化（whitening）处理来消除特征间的线性相关性</em></p>
 </blockquote>
-<h1 id="2-比赛前"><a href="#2-比赛前" class="headerlink" title="2.比赛前"></a>2.比赛前</h1><h2 id="2-1第一次校赛"><a href="#2-1第一次校赛" class="headerlink" title="2.1第一次校赛"></a>2.1第一次校赛</h2><p>虽然说今年四月份就开始准备数模比赛了，到今天有五个多月的时间，但是我们队真正学习的时间却不多，至少对我来说。可能我真正静下心来学习数模知识的时间还不足两个星期吧！😅</p>
-<p>刚开始我的工作是负责建模的工作，在队长的敦促下，买了份价值一百五的学习视频及教程。我对于视频学习并没有多大的想法，我还是更喜欢看书学。这就是为什么iPad里的电子书都发霉发臭了，都不曾被我看过的原因吧？再一点，比起付费的资料，我更喜欢白嫖（虽然这并不好），因为在我认为在网上寻找资料是一件很享受的事情，おかしいでしょ？</p>
-<p>一个队伍的核心成员应该是建模手，作为整支队伍的leader，我带领着队伍齐头并进，最后连校三等都没有…</p>
-<p>😀😀😀但是这也是在意料之内的，因为没有什么知识储备，脑子里当时就只有层次分析法这几个简单的模型，再加上论文的阅读次数都不足双位数，能获奖就有鬼！而且为期三天的数模，我们整整搞了十天才提交上去，虽然但是有多少水分谁不不揭穿了啊！</p>
-<h2 id="2-2暑假"><a href="#2-2暑假" class="headerlink" title="2.2暑假"></a>2.2暑假</h2><p>搞完校赛，处理完期末考试，差不多就进入了暑假。由于和写作手的配合没有那么好，所以我们打算换一名成员。队长推荐了一名算法高手，很显然，我该换岗位了。</p>
-<p>在漫长的暑假，我只希望自己能够每天抽出时间读一篇，哪怕是一篇数模优秀文章也好！但是事与愿违，事…还是没做成。后面学校组织训练，我们参加并且完成了一篇19年的C题。嗯，很显然我们又是十天左右才完成。当时就想着，这么搞肯定得玩完。于是思前想后，打算用LaTeX替换现在的WPS，说不定写作工具变了，我们的工作就更有效率了呢？😲</p>
-<p>好主意！下一次训练连半成品都没有交上去…</p>
-<p>当时学习LaTeX花了不到半天时间，便清楚它的工作流程，于是迫不及待的去找了一些有数模LaTeX的tex文件。看到了一个钟意的，便敲定了，也就是现在我使用的这也数模模板。</p>
-<p>由于我没有将模板与正文分离，所以我两次写论文的时候，都是夹着别人的论文一起写的，这次数模也不例外…</p>
-<blockquote>
-<p>我将LaTeX文件放到了这里，模板和正文自己分离。懒😪😪😪</p>
-<p>这项工作也还在完善中，请稍后！</p>
-</blockquote>
-<p>然后就开学咯🎉</p>
-<h2 id="2-3开学到比赛前这段时间"><a href="#2-3开学到比赛前这段时间" class="headerlink" title="2.3开学到比赛前这段时间"></a>2.3开学到比赛前这段时间</h2><p>很显然，我什么都没有干。</p>
-<h1 id="3-比赛"><a href="#3-比赛" class="headerlink" title="3.比赛"></a>3.比赛</h1><p>据说参加国赛需要校赛经历，我们已经算是合格的国赛选手了吧？我们比赛的时间是9月15号（周四）晚上六点钟到9月18号（周日）晚上十点钟之前。又多了四个小时时间，Lucky！希望能够用这多出来的四个小时改变点什么…</p>
-<h2 id="3-1周四晚上"><a href="#3-1周四晚上" class="headerlink" title="3.1周四晚上"></a>3.1周四晚上</h2><p>出赛题的时候我们在饭堂，不是因为我们不准备坐着等题，而是我忘记打包进实验室了。当天晚上我们商量好，要确定选题，不要犹豫。今年的A题对于我们来说，简直是魔鬼程度的。两三页篇幅的说明，让我们望而祛步🙄。如果硬啃的话，肯定可以理解它想要表达什么，但是求解确实一大难事。后面看别人大佬绞尽脑汁的想，才发现这个决定无疑对我们来说是十分正确的。</p>
-<p>选题按理来说应该要由建模手和编程手决定，因为他们更清楚问题的复杂性。他们现在卡在了B题和C题之前，队长更想选C题，但是算法糕手希望能够挑战一下。他内心看起来很动摇，因为他看不出解题思路。其实我和新队员也是第一次见面，之前都是在WeChat上聊天。谢天谢地，我们俩很快就磨合了，变得更多少年的好友一般畅所欲言？！</p>
-<p>我在几何方面很敏感，但是对数学公式很感冒。当时想过选数学专业，但是哪有人只学几何不用数学公式啊？恰好B题就是与几何有关的，我用高中的知识看出了第一小问的求解思路，然后我就坚持选B题。最后没有依我，选择了C题。我当时虽然很不爽，但是我确实只想得出第一问，对于全局来说，我还是服气的。虽然题目更简单了，但是意味着更多人选。只有语文建模基础足够深厚，才有机会获得一个最小的省三。<strong>最后统计有三百八十多人选择了C题，这个人数差不多就是去年我们学校的参赛人数…</strong></p>
-<h2 id="3-2周五"><a href="#3-2周五" class="headerlink" title="3.2周五"></a>3.2周五</h2><p>周五我们搜寻资料，解决了第一小问，然后卡在了第二小问的预测上，想了差不多一天的时间都没有想出来。确实浪费了很多时间，也做了很多无用功。第一小问的论文我很快就与论文交接了，但是剩余的时间与其是在划水，倒不如说是在无用功。C题与化学有关，于是我想着会用到化学方程式，去找了很多。但是最后发现要么就是用不上，要么就是没时间用。</p>
-<h2 id="3-3周六"><a href="#3-3周六" class="headerlink" title="3.3周六"></a>3.3周六</h2><p>C题有大概六七个小问，想要查看原题的话点击这里。</p>
-<p>我们一天时间才解决了第一小问，如果再这么下去，论文很有可能写不完。虽然我们也很努力，我也是第一次尝试了这种朝八晚十二的作息规律。嗯？怎么和我平时的作息有点像？关键是放弃了宝贵的午休时间。没有午休我的精神状态就会下降，特别是写论文的时候，无法理解模型的概念与问题的解决思路，又没有文思泉涌，将会导致写出来的论文质量差。一天除了睡觉的时间都呆在实验室，看起来很努力，在我看来是在做无用功（包括我）。队长和建模手对于模型的选择有一定的困难，导致了问题的拖延。明白了这一点，今天开始我尝试着来安排工作。</p>
-<p>对于模型，需要用指标来衡量。我肯定表现好的模型，否定表现差的模型。这种斩钉截铁的工作模式很快让我和各位都进入了流水线上，开始各司其职。当然，前提是做出了跳过第二小问的决定。</p>
-<p>直到晚上，第二问第一小问、第三问和第四问的问题都得到了解决。但是跟他们一起讨论，导致我到目前为止并没有进行论文撰写，也就是说只完成了论文进度还是停留在周五。</p>
-<h2 id="3-4周日"><a href="#3-4周日" class="headerlink" title="3.4周日"></a>3.4周日</h2><p>即便如此，我早上还是睡到了差不多九点，因为我认为工作效率才是最重要的，假努力欺骗的是自己还有身边的人。但时间真的很赶！早上我留在宿舍通过大屏操作LaTeX很快就完成了第二问的论文撰写，并且我交代队友明天早上完成第三问的论文撰写以及求解出第二小问的预测结果。队友很给力，差不多两点我去实验室的时候他们已经完成了这两个任务。但我看完论文结构后猛地一惊，发现摘要和问题分析没有写！包括第四问在内，还有一些零零星星的结果没有贴到论文中，六个小时能够完成吗？真是一项挑战啊！我不禁擦了擦额头上的假汗😰😰😰</p>
-<p>我安排他们完成了问题二和问题三的问题分析，因为他们求解的他们来写这种解题思路的话简直如鱼得水。而第四问的方法是我想出来的，所以我先完成第四问先。但是做了一半，发现SPSSPro上的热力图根本无法反映出我想要的结果。于是在三点钟的时候我临时改用了其它方法，用画图代替了建立模型的繁琐。</p>
-<p>大概五点钟我们就完成了基本上的任务，但是对于XeLatex编译出来的文件，还是有很多bug。并且每一个bug都是包含致命错误的，一旦出现即无缘获奖（<em>虽然说这次的也不知道能不能够获奖😵‍💫</em>）其中解决的很多问题都是以前遇到过但是解决不出的🤔</p>
-<ul>
-<li>从使用之初一直困扰我的表格边框以及复杂表格的LaTeX代码</li>
-<li>LaTeX含特殊字符的那段文字会超出编译生成的PDF之外</li>
-<li>LaTeX中图片并列</li>
-<li>LaTeX正文会被图片和表格夹断，阅读出现障碍</li>
-<li>LaTeX模板上页眉的内容不知道在哪个文件清空</li>
-<li>LaTeX附录粘贴代码有点麻烦</li>
-</ul>
-<p><code>解决方案放到了LaTeX篇，如果有需要请点击此处跳转...</code></p>
-<p>多亏LaTeX有在源代码和PDF相互跳转到指定位置的功能，不然真的用不下去了😭😭😭</p>
-<p>我们一起改论文，改到了7点57还有很多问题，但是8点钟之前可以提交多次PDF论文和RAR压缩包，也就是说MD5码在8点钟之前是允许反复更改的。但是在8点到10点之内，就只能提交一次文件和生成指定不可变的MD5码。并且MD5码在8点后生成的，就不允许更改文件了，一旦你更改文件，或许只是打开一下PDF都有可能让MD5码发生改变，机器会判定在10点钟之后正式提交参赛作品的时候你的文件发生了改动，这个时候它是不承认你的MD5码，也就是说你无法参赛了。这是一个很严重的问题，自己辛辛苦苦做了这么久，结果却交不上去，心态多少有点崩溃。所以我们为了保险起见，先在8点钟之前提交一次。</p>
-<p>然后我们预测在9点钟之前正式将作品做最后一次的提交（10点钟之前的提交可以认为只是参赛资格的获取），但是发现bug根本改不过来。三个人忙得团团转，当时想着9点半之前提交就好了，网络不会这么拥挤的。但是忙到了9点半，bug依然有，而且严重程度会让论文直接降档。没办法，抱着试一逝的心态，我们改bug改到了9点45。虽然说还有不少bug，但都是不痛不痒的，对阅读论文没有什么大影响的小问题了。</p>
-<p>我编译出最新的PDF，通过WeChat准备发给队长时，由于轻薄本已经承担了太多软件，并且三四天都没有合过眼了。LaTeX直接卡退，屏幕被黑块笼罩着，就像我们此刻的心情一样。大概到9点50的时候，电脑缓过来了，我赶紧将PDF发给队长。压缩完我的LaTeX代码文件后突然发现我电脑里的压缩软件是360压缩，只能生成zip类型的压缩包。而我之前一直想着队长有WinRAR就够了，反正是他通过客户端提交的。下载WinRAR显然不切实际，由于多天的劳累，我们的CPU已经转不过来了。我赶紧将文件压缩成zip格式，然后发给建模手，因为此时队长在忙活着PDF名称的修改。但未承想建模手把我的文件解压放进总附件文件中，压缩后找不到找不到压缩包，遂叫我来操作。我看到他的安装路径，狂点桌面，然后点击确定。终于，我们的压缩包出现在了桌面。但他的桌面都是蓝蓝的doc和绿绿xls，一时间竟无法找出压缩包！此时时间已经来到了9点55分。一顿丝滑的操作后视野来到了队长这边，只见他颤颤巍巍地移动着鼠标，指尖高频触动着鼠标左键，但就是无法达到那最后的终点！“好了吗？”“好！冲！”伴随着呐喊声，我们点击了提交。幸运的是，软件并没有卡顿，显得如此顺理成章，此时时间是9点57分。一切都结束后，没有欢呼、没有喝彩，只留下一片鸦雀无声。紧绷着的心情还没有完全放松下来，眼前还停留着黑白的文字与代码，一切都还显得这么历历在目！</p>
-<h1 id="4-Final"><a href="#4-Final" class="headerlink" title="4.Final"></a>4.Final</h1><p>虽然过程很苦很累，甚至对一百蚊有点舍不得。但就最后两个小时的感受而言，让我觉得这钱交的值了！自打上大学以来，还是第一次切实地体会到了团队合作的重要性。以前一直都是单打独斗，现在发现自己并不是万能的，队友就是用来弥补自己的缺点的。虽然说有百分之五十的概率获奖，但是无论结果如何我都能平淡接受，因为这场比赛我已经获得了自己想要的东西！<em>（其实心里还是想着希望得个省三就好了，因为有一千块钱回血…）</em>🐤🐤🐤</p>
+<h2 id="3-标准化和归一化的区别是什么？"><a href="#3-标准化和归一化的区别是什么？" class="headerlink" title="3. 标准化和归一化的区别是什么？"></a>3. 标准化和归一化的区别是什么？</h2><h3 id="3-1-归一化-NormalizationNormalization-：将一列数据变化到某个固定区间-范围-中，通常，这个区间是-0-1-，广义的讲，可以是各种区间，比如映射到-0，1-一样可以继续映射到其他范围，图像中可能会映射到-0-255-，其他情况可能映射到-1-1"><a href="#3-1-归一化-NormalizationNormalization-：将一列数据变化到某个固定区间-范围-中，通常，这个区间是-0-1-，广义的讲，可以是各种区间，比如映射到-0，1-一样可以继续映射到其他范围，图像中可能会映射到-0-255-，其他情况可能映射到-1-1" class="headerlink" title="3.1 归一化(NormalizationNormalization)：将一列数据变化到某个固定区间(范围)中，通常，这个区间是[0, 1]，广义的讲，可以是各种区间，比如映射到[0，1]一样可以继续映射到其他范围，图像中可能会映射到[0,255]，其他情况可能映射到[-1,1]"></a>3.1 归一化(NormalizationNormalization)：将一列数据变化到某个固定区间(范围)中，通常，这个区间是[0, 1]，广义的讲，可以是各种区间，比如映射到[0，1]一样可以继续映射到其他范围，图像中可能会映射到[0,255]，其他情况可能映射到[-1,1]</h3><h3 id="3-2-标准化-StandardizationStandardization-：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的"><a href="#3-2-标准化-StandardizationStandardization-：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的" class="headerlink" title="3.2 标准化(StandardizationStandardization)：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的"></a>3.2 标准化(StandardizationStandardization)：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的</h3><p><img src="https://img-blog.csdnimg.cn/20191021220509274.png#pic_center"></p>
+<h3 id="3-3-中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值"><a href="#3-3-中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值" class="headerlink" title="3.3 中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值"></a>3.3 中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值</h3><p><img src="https://img-blog.csdnimg.cn/20191021220535129.png#pic_center"></p>
+<h2 id="4-什么时候用标准化，什么时候用归一化？"><a href="#4-什么时候用标准化，什么时候用归一化？" class="headerlink" title="4. 什么时候用标准化，什么时候用归一化？"></a>4. 什么时候用标准化，什么时候用归一化？</h2><p>某博主理解：如果你对处理后的数据范围有严格要求，那肯定是归一化，个人经验，标准化是机器学习中更通用的手段，如果你无从下手，可以直接使用标准化。如果数据不为稳定，存在极端的最大最小值，不要用归一化。</p>
+<p>在分类、聚类算法中，需要使用距离来度量相似性的时候、或者使用PCA技术进行降维的时候，标准化表现更好；在不涉及距离度量、协方差计算的时候，可以使用归一化方法。</p>
+<p><strong>在需要使用距离来度量相似性的算法中，或者使用PCA技术进行降维的时候，通常使用标准化（standardization）或均值归一化（mean normalization）比较好，但如果数据分布不是正态分布或者标准差非常小，以及需要把数据固定在 [0, 1] 范围内，那么使用最大最小值归一化（min-max normalization）比较好（min-max 常用于归一化图像的灰度值）。但是min-max比较容易受异常值的影响，如果数据集包含较多的异常值，可以考虑使用稳键归一化（robust normalization）。对于已经中心化的数据或稀疏数据的缩放，比较推荐使用最大绝对值归一化（max abs normalization ），因为它会保住数据中的０元素，不会破坏数据的稀疏性（sparsity）。</strong></p>
+<h2 id="5-什么机器学习模型需要用到特征缩放？"><a href="#5-什么机器学习模型需要用到特征缩放？" class="headerlink" title="5. 什么机器学习模型需要用到特征缩放？"></a>5. 什么机器学习模型需要用到特征缩放？</h2><h3 id="5-1-通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear-Regression）、逻辑回归（Logistic-Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural-Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。"><a href="#5-1-通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear-Regression）、逻辑回归（Logistic-Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural-Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。" class="headerlink" title="5.1 通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear Regression）、逻辑回归（Logistic Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。"></a>5.1 通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear Regression）、逻辑回归（Logistic Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。</h3><h3 id="5-2-决策树（Decision-Tree），随机森林（Random-Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。"><a href="#5-2-决策树（Decision-Tree），随机森林（Random-Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。" class="headerlink" title="5.2 决策树（Decision Tree），随机森林（Random Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。"></a>5.2 决策树（Decision Tree），随机森林（Random Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。</h3><h2 id="6-在进行特征缩放的时候需要注意的地方？"><a href="#6-在进行特征缩放的时候需要注意的地方？" class="headerlink" title="6. 在进行特征缩放的时候需要注意的地方？"></a>6. 在进行特征缩放的时候需要注意的地方？</h2><p><em>需要先把数据先拆分成训练集与验证集，在训练集上计算出需要的数值（如均值和标准值），对训练集数据做标准化&#x2F;归一化处理，然后再用之前计算出的数据（如均值和标准值）对验证集数据做相同的标准化&#x2F;归一化处理。不要在整个数据集上直接做标准化&#x2F;归一化处理，因为这样会将验证集的信息带入到训练集中，这是一个非常容易犯的错误</em></p>
+<h2 id="7-参考链接"><a href="#7-参考链接" class="headerlink" title="7. 参考链接"></a>7. 参考链接</h2><p><a href="https://www.cnblogs.com/HuZihu/p/9761161.html">https://www.cnblogs.com/HuZihu/p/9761161.html</a></p>
+<p><a href="https://blog.csdn.net/weixin_43008804/article/details/103087447">https://blog.csdn.net/weixin_43008804/article/details/103087447</a></p>
+<p><a href="https://blog.csdn.net/weixin_36604953/article/details/102652160">https://blog.csdn.net/weixin_36604953/article/details/102652160</a></p>
 ]]></content>
       <categories>
-        <category>School Life</category>
+        <category>Mathine Learning</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>猫狗大战之CNN分类</title>
+    <url>/2022/11/24/%E7%8C%AB%E7%8B%97%E5%A4%A7%E6%88%98%E4%B9%8BCNN%E5%88%86%E7%B1%BB/</url>
+    <content><![CDATA[<p>实践出真知！在kaggle上找的CNN经典案例练练手，猫狗大战属于图像分类问题。</p>
+<span id="more"></span>
+
+<h1 id="Import-required-libraries-x2F-dependencies"><a href="#Import-required-libraries-x2F-dependencies" class="headerlink" title="Import required libraries &#x2F; dependencies"></a>Import required libraries &#x2F; dependencies</h1><figure class="highlight plaintext"><figcaption><span>[导入库和依赖] [lang:python] [url] [link text] [additional options]</span></figcaption><table><tr><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line">import numpy as np</span><br><span class="line">import seaborn as sns</span><br><span class="line">from matplotlib import pyplot as plt</span><br><span class="line"></span><br><span class="line">import keras</span><br><span class="line">import tensorflow as tf</span><br><span class="line">from keras.models import Sequential</span><br><span class="line">from keras import layers</span><br><span class="line">from tensorflow.keras.optimizers import Adam</span><br></pre></td></tr></table></figure>
+
+<p><strong>tf.keras</strong>是用于构建和训练深度学习模型的 TensorFlow 高阶 API。它和TensorFlow相比具有以下的优点：</p>
+<ol>
+<li>对错误实现精确反馈，方便用户使用</li>
+<li>将可配置的构造块组合在一起便能构建Keras模型，模块化</li>
+<li>得益于上一点，我们可以编写自定义构造块，表达新的研究创意，即易于拓展</li>
+</ol>
+<p>而对于<code>from keras.models import Sequential</code>，在Keras中有两种深度学习的模型，分别是序列模型（Sequential）和通用模型（Model），两者的差异在于它们之间允许的不同的拓扑结构。详细地可以参考<a href="https://keras.io/models/sequential/">Keras官方文档</a>，这里我就简单讲解一下。Sequential模型结构是一种简单的线性结构，是多个网络层的堆叠（这说的网络层指的是卷积层、池化层等）。而Model模型结构是非线性的，允许多输入多输出的模型。利用Model模型我们设计非常复杂、任意拓扑的神经网络，可以说用法更灵活，但难度明显更大。</p>
+<p><code>from keras import layers</code>允许我们使用各种各样的网络结构，是组成完整模型的零件。</p>
+<ul>
+<li><a href="https://blog.csdn.net/ssswill/article/details/88310812">CSDN-keras-layers:Dense,Embedding,LSTM</a></li>
+<li><a href="https://blog.csdn.net/winter_python/article/details/108612636">CSDN-keras.layers汇总</a></li>
+</ul>
+<p><code>from tensorflow.keras.optimizers import Adam</code>这是一个名叫Adam的优化器，在监督学习中我们使用梯度下降算法的时候，学习率是一个很重要的指标。Adam能够让学习率从大到小自适应，实现效率与效果的兼得。</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/I_canjnu/article/details/106035640">CSDN-机器学习之优化器keras.optimizers.Adam()详解</a></p>
+</blockquote>
+<h1 id="Generate-the-datasets-both-the-training-and-the-test-sets"><a href="#Generate-the-datasets-both-the-training-and-the-test-sets" class="headerlink" title="Generate the datasets, both the training and the test sets"></a>Generate the datasets, both the training and the test sets</h1><h2 id="define-the-paths-to-the-dataset"><a href="#define-the-paths-to-the-dataset" class="headerlink" title="define the paths to the dataset."></a>define the paths to the dataset.</h2><figure class="highlight plaintext"><figcaption><span>[title] [lang:python] [url] [link text] [additional options]</span></figcaption><table><tr><td class="code"><pre><span class="line">training_path = &#x27;../input/cat-and-dog/training_set/training_set/&#x27;</span><br><span class="line">test_path = &#x27;../input/cat-and-dog/test_set/test_set/&#x27;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Create-dataset"><a href="#Create-dataset" class="headerlink" title="Create dataset"></a>Create dataset</h2><figure class="highlight plaintext"><figcaption><span>[title] [lang:python] [url] [link text] [additional options]</span></figcaption><table><tr><td class="code"><pre><span class="line">image_size = (200, 200)</span><br><span class="line">batch_size = 32</span><br><span class="line"></span><br><span class="line">training_set = keras.preprocessing.image.image_dataset_from_directory(</span><br><span class="line">    directory=training_path,</span><br><span class="line">    class_names=[&#x27;cats&#x27;, &#x27;dogs&#x27;],</span><br><span class="line">    image_size=image_size,</span><br><span class="line">    batch_size=batch_size</span><br><span class="line">)</span><br><span class="line">test_set = keras.preprocessing.image.image_dataset_from_directory(</span><br><span class="line">    directory=test_path,</span><br><span class="line">    class_names=[&#x27;cats&#x27;, &#x27;dogs&#x27;],</span><br><span class="line">    image_size=image_size,</span><br><span class="line">    batch_size=batch_size,</span><br><span class="line">    </span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>keras.preprocessing.image.image_dataset_from_directory可以理解成数据预处理工具包，TensorFlow的官方文档在<a href="https://tensorflow.google.cn/api_docs/python/tf/keras/utils/image_dataset_from_directory">此</a>。它能够从文件夹里对子目录猫和狗分别生成标签0和1，将数据返回到tf.data.Dateset中，并且在加载的同时还会打乱数据。</p>
+<h1 id="Visualize-some-images-from-the-training-set"><a href="#Visualize-some-images-from-the-training-set" class="headerlink" title="Visualize some images from the training set"></a>Visualize some images from the training set</h1><h2 id="visualize-the-training-set"><a href="#visualize-the-training-set" class="headerlink" title="visualize the training set"></a>visualize the training set</h2><figure class="highlight plaintext"><figcaption><span>[title] [lang:language] [url] [link text] [additional options]</span></figcaption><table><tr><td class="code"><pre><span class="line">plt.figure(figsize=(15, 9))</span><br><span class="line">def cat_or_dog(a):</span><br><span class="line">    if a==0:</span><br><span class="line">        return &#x27;Cat&#x27;</span><br><span class="line">    return &#x27;Dog&#x27;</span><br><span class="line">    </span><br><span class="line">for images, labels in training_set.take(1):</span><br><span class="line">    for i in range(12):</span><br><span class="line">        plt.subplot(3, 4, i+1)</span><br><span class="line">        plt.imshow(images[i].numpy().astype(&#x27;uint8&#x27;))</span><br><span class="line">        plt.title(f&#x27;&#123;int(labels[i])&#125; (&#123;cat_or_dog(int(labels[i]))&#125;)&#x27;)</span><br><span class="line">        plt.axis(&#x27;off&#x27;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="visualize-the-test-set"><a href="#visualize-the-test-set" class="headerlink" title="visualize the test set"></a>visualize the test set</h2><figure class="highlight plaintext"><figcaption><span>[title] [lang:python] [url] [link text] [additional options]</span></figcaption><table><tr><td class="code"><pre><span class="line">plt.figure(figsize=(15, 9))</span><br><span class="line">def cat_or_dog(a):</span><br><span class="line">    if a==0:</span><br><span class="line">        return &#x27;Cat&#x27;</span><br><span class="line">    return &#x27;Dog&#x27;</span><br><span class="line">    </span><br><span class="line">for images, labels in test_set.take(1):</span><br><span class="line">    for i in range(12):</span><br><span class="line">        plt.subplot(3, 4, i+1)</span><br><span class="line">        plt.imshow(images[i].numpy().astype(&#x27;uint8&#x27;))</span><br><span class="line">        plt.title(f&#x27;&#123;int(labels[i])&#125; (&#123;cat_or_dog(int(labels[i]))&#125;)&#x27;)</span><br><span class="line">        plt.axis(&#x27;off&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>要是对**plt.figure(figsize &#x3D; (a, b)<strong>和</strong>plt.subplot()<strong>不懂的话，可以看看<a href="https://blog.csdn.net/weixin_43685844/article/details/88982811">这里</a>。而这里的</strong>dataset.take(1)**指的是取构建dataset的第一组元素，看样子一组好像有12个（因为下面的circle）,并且可以返回图片image和标签label两个值。</p>
+<ul>
+<li><a href="https://blog.csdn.net/weixin_43935696/article/details/112691755">CSDN-dataset.take</a></li>
+<li><a href="https://www.jianshu.com/p/95f11648be2c">简书-dataset.take</a></li>
+</ul>
+<h1 id="Data-Augmentation"><a href="#Data-Augmentation" class="headerlink" title="Data Augmentation"></a>Data Augmentation</h1><blockquote>
+<p>augmentation &#x2F;ˌɔːɡmenˈteɪʃ(ə)n&#x2F; 增大，增多；增加物；延长，扩充</p>
+</blockquote>
+<h2 id="define-some-layers-of-data-augmentation"><a href="#define-some-layers-of-data-augmentation" class="headerlink" title="define some layers of data augmentation"></a>define some layers of data augmentation</h2><figure class="highlight plaintext"><figcaption><span>[title] [lang:python] [url] [link text] [additional options]</span></figcaption><table><tr><td class="code"><pre><span class="line">augmented_data = Sequential([</span><br><span class="line">    layers.RandomFlip(&#x27;horizontal&#x27;),</span><br><span class="line">    layers.RandomRotation(0.1)</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+
+<h2 id="visualize-it"><a href="#visualize-it" class="headerlink" title="visualize it"></a>visualize it</h2><figure class="highlight plaintext"><figcaption><span>[title] [lang:python] [url] [link text] [additional options]</span></figcaption><table><tr><td class="code"><pre><span class="line">plt.figure(figsize=(15, 9))</span><br><span class="line">    </span><br><span class="line">for images, labels in test_set.take(1):</span><br><span class="line">    for i in range(12):</span><br><span class="line">        plt.subplot(3, 4, i+1)</span><br><span class="line">        augmented_image = augmented_data(images[0])</span><br><span class="line">        plt.imshow(augmented_image.numpy().astype(&#x27;uint8&#x27;))</span><br><span class="line">        plt.title(int(labels[0]))</span><br><span class="line">        plt.axis(&#x27;off&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>tf.keras.layers.RandomFlip</strong>的作用是一个预处理层,在训练期间随机翻转图像<a href="https://runebook.dev/zh-CN/docs/tensorflow/keras/layers/randomflip">runebook</a>、<a href="https://keras.io/api/layers/preprocessing_layers/image_preprocessing/random_flip/">官方文档</a></p>
+<h1 id="Build-a-model"><a href="#Build-a-model" class="headerlink" title="Build a model"></a>Build a model</h1><h2 id="build-the-model"><a href="#build-the-model" class="headerlink" title="build the model"></a>build the model</h2><figure class="highlight plaintext"><figcaption><span>[title] [lang:python] [url] [link text] [additional options]</span></figcaption><table><tr><td class="code"><pre><span class="line">model = Sequential([</span><br><span class="line">    layers.Conv2D(filters=128, kernel_size=(3, 3), activation=&#x27;relu&#x27;, padding=&#x27;same&#x27;, input_shape=(200, 200, 3)),</span><br><span class="line">    </span><br><span class="line">    # preprocessing</span><br><span class="line">    layers.CenterCrop(180, 180),</span><br><span class="line">    layers.Rescaling(scale=1./255),</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    # applying image data augmentation</span><br><span class="line">    layers.RandomFlip(&#x27;horizontal&#x27;),</span><br><span class="line">    layers.RandomRotation(0.1),</span><br><span class="line">    </span><br><span class="line">    layers.MaxPooling2D(pool_size=(2, 2), strides=2),</span><br><span class="line">    </span><br><span class="line">    layers.Conv2D(filters=256, kernel_size=(3, 3), activation=&#x27;relu&#x27;, padding=&#x27;same&#x27;),</span><br><span class="line">    layers.MaxPooling2D(pool_size=(2, 2), strides=2),</span><br><span class="line">    </span><br><span class="line">    layers.Conv2D(filters=64, kernel_size=(3, 3), activation=&#x27;relu&#x27;, padding=&#x27;same&#x27;),</span><br><span class="line">    layers.MaxPooling2D(pool_size=(2, 2), strides=2),</span><br><span class="line">    </span><br><span class="line">    layers.Conv2D(filters=32, kernel_size=(3, 3), activation=&#x27;relu&#x27;, padding=&#x27;same&#x27;),</span><br><span class="line">    layers.MaxPooling2D(pool_size=(2, 2), strides=2),</span><br><span class="line">    </span><br><span class="line">    layers.Flatten(),</span><br><span class="line">    </span><br><span class="line">    # output layer</span><br><span class="line">    layers.Dense(1, activation=&#x27;sigmoid&#x27;)</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+
+<p>tf.keras.layers.Conv2D的filter为什么是128呢？这一点让我很疑惑。查阅资料发现许多都讲得模棱两可，不过大概可以解释的是这个filter指的是过滤器的深度。我没有查阅官方文档，后来发现<a href="https://zhuanlan.zhihu.com/p/498713060">知乎-tf.keras.layers.Conv2D参数详解</a>中的分析比较可取。”我几乎总是建议使用2的次方作为值”说明2的次方并不是filter的专利，并且我们需要根据数据集的复杂性和神经网络的深度来调整确切的值，也就是说filter的选择主观性强。</p>
+<ol>
+<li><a href="https://runebook.dev/zh-CN/docs/tensorflow/keras/layers/centercrop" title="runebook的Keras文档">tf.keras.layers.CenterCropCrop</a>对图片进行裁切，去两边留中心。官方解释–&gt;<em>the central portion of the images to target height and width</em></li>
+<li><a href="https://docs.w3cub.com/tensorflow~2.9/keras/layers/rescaling.html" title="W3C的Keras文档">tf.keras.layers.Rescaling</a>To rescale an input in the [0, 255] range to be in the [0, 1] range, you would pass scale&#x3D;1.&#x2F;255</li>
+<li>Dense层(全连接层）</li>
+<li>Flatten层用来将输入“压平”，即把多维的输入一维化，常用在从卷积层到全连接层的过渡。Flatten不影响batch的大小。据说Convolution卷积层之后是无法直接连接Dense全连接层的，需要把Convolution层的数据压平（Flatten），然后才可以直接加Dense层。</li>
+<li><a href="https://www.cnblogs.com/peng8098/p/keras_7.html#:~:text=%20Flatten%E5%B1%82%E7%94%A8%E6%9D%A5%E5%B0%86%E8%BE%93%E5%85%A5%E2%80%9C%E5%8E%8B%E5%B9%B3%E2%80%9D%EF%BC%8C%E5%8D%B3%E6%8A%8A%E5%A4%9A%E7%BB%B4%E7%9A%84%E8%BE%93%E5%85%A5%E4%B8%80%E7%BB%B4%E5%8C%96%EF%BC%8C%E5%B8%B8%E7%94%A8%E5%9C%A8%E4%BB%8E%E5%8D%B7%E7%A7%AF%E5%B1%82%E5%88%B0%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%B1%82%E7%9A%84%E8%BF%87%E6%B8%A1%E3%80%82%20Flatten%E4%B8%8D%E5%BD%B1%E5%93%8Dbatch%E7%9A%84%E5%A4%A7%E5%B0%8F%E3%80%82,%E8%BE%93%E5%85%A5shape%EF%BC%9A%E4%BB%BB%E6%84%8F%EF%BC%8C%E4%BD%86%E8%BE%93%E5%85%A5%E7%9A%84shape%E5%BF%85%E9%A1%BB%E5%9B%BA%E5%AE%9A%E3%80%82%20%E5%BD%93%E4%BD%BF%E7%94%A8%E8%AF%A5%E5%B1%82%E4%B8%BA%E6%A8%A1%E5%9E%8B%E9%A6%96%E5%B1%82%E6%97%B6%EF%BC%8C%E9%9C%80%E8%A6%81%E6%8C%87%E5%AE%9Ainput_shape%E5%8F%82%E6%95%B0%20Permute%E5%B1%82%E5%B0%86%E8%BE%93%E5%85%A5%E7%9A%84%E7%BB%B4%E5%BA%A6%E6%8C%89%E7%85%A7%E7%BB%99%E5%AE%9A%E6%A8%A1%E5%BC%8F%E8%BF%9B%E8%A1%8C%E9%87%8D%E6%8E%92%EF%BC%8C%E4%BE%8B%E5%A6%82%EF%BC%8C%E5%BD%93%E9%9C%80%E8%A6%81%E5%B0%86RNN%E5%92%8CCNN%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E6%97%B6%EF%BC%8C%E5%8F%AF%E8%83%BD%E4%BC%9A%E7%94%A8%E5%88%B0%E8%AF%A5%E5%B1%82%E3%80%82" title="cnblog">cnblog对Keras.layers各种层的介绍-比较准确</a></li>
+</ol>
+<h2 id="model-summary"><a href="#model-summary" class="headerlink" title="model summary"></a>model summary</h2><figure class="highlight plaintext"><figcaption><span>[title] [lang:python] [url] [link text] [additional options]</span></figcaption><table><tr><td class="code"><pre><span class="line">model.summary()</span><br></pre></td></tr></table></figure>
+
+<p>使用keras构建深度学习模型，我们会通过model.summary()输出模型各层的参数状况。通过这些参数，可以看到模型各个层的组成（dense表示全连接层）。也能看到数据经过每个层后，输出的数据维度。还能看到Param，它表示每个层参数的个数，详情参考<a href="https://blog.csdn.net/ybdesire/article/details/85217688" title="CSDN">此处</a>。这一步是先将模型搭建起来，然后用summary查看相关的信息，不属于训练过程，所以运行不需要花多少时间。</p>
+<h1 id="Train-the-model"><a href="#Train-the-model" class="headerlink" title="Train the model"></a>Train the model</h1><figure class="highlight plaintext"><figcaption><span>[title] [lang:python] [url] [link text] [additional options]</span></figcaption><table><tr><td class="code"><pre><span class="line">epochs = 50</span><br><span class="line"># callbacks (save the model at each epoch)</span><br><span class="line">callbacks = [</span><br><span class="line">    keras.callbacks.ModelCheckpoint(&quot;checkpoints/model_at_&#123;epoch&#125;.h5&quot;),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p><strong>tf.keras.callbacks.ModelCheckpoint</strong>回调函数的作用是在每个训练期（epoch）后保存模型–&gt;<a href="https://www.w3cschool.cn/tensorflow_python/tf_keras_callbacks_ModelCheckpoint.html" title="W3C">Reference</a></p>
+<figure class="highlight plaintext"><figcaption><span>[title] [lang:python] [url] [link text] [additional options]</span></figcaption><table><tr><td class="code"><pre><span class="line"># compile the model</span><br><span class="line">model.compile(</span><br><span class="line">    optimizer=Adam(learning_rate=0.001),</span><br><span class="line">    loss=&#x27;binary_crossentropy&#x27;,</span><br><span class="line">    metrics=[&#x27;accuracy&#x27;]</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>Keras的model.compile参数介绍：</p>
+<figure class="highlight plaintext"><figcaption><span>[title] [lang:python] [url] [link text] [additional options]</span></figcaption><table><tr><td class="code"><pre><span class="line">model.compile(</span><br><span class="line">   optimizer, </span><br><span class="line">   loss = None, </span><br><span class="line">   metrics = None, </span><br><span class="line">   loss_weights = None, </span><br><span class="line">   sample_weight_mode = None, </span><br><span class="line">   weighted_metrics = None, </span><br><span class="line">   target_tensors = None</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>常用的就下面三个参数：</p>
+<ol>
+<li>optimizer：优化器，用于控制梯度裁剪</li>
+<li>loss：损失函数（或称目标函数、优化评分函数）</li>
+<li>metrics：评价函数用于评估当前训练模型的性能。当模型编译后（compile），评价函数应该作为 metrics 的参数来输入。评价函数和损失函数相似，只不过评价函数的结果不会用于训练过程中。</li>
+</ol>
+<figure class="highlight plaintext"><figcaption><span>[title] [lang:python] [url] [link text] [additional options]</span></figcaption><table><tr><td class="code"><pre><span class="line"># fit the model</span><br><span class="line">model.fit(training_set, validation_data=test_set, epochs=epochs, callbacks=callbacks, verbose=2)</span><br></pre></td></tr></table></figure>
+
+<p>这里的fit起到将训练集和测试集载入模型的作用。但是还有另外一个fit_generator函数，作用相似。首先Keras中的fit()函数传入的x_train和y_train是被完整的加载进内存的,当然用起来很方便，但是如果我们数据量很大，那么是不可能将所有数据载入内存的，必将导致内存泄漏，这时候我们可以用fit_generator函数来进行训练。<br><a href="https://www.w3cschool.cn/article/62757839.html#:~:text=%E9%A6%96%E5%85%88Keras%E4%B8%AD%E7%9A%84fit,%28%29%E5%87%BD%E6%95%B0%E4%BC%A0%E5%85%A5%E7%9A%84x_train%E5%92%8Cy_train%E6%98%AF%E8%A2%AB%E5%AE%8C%E6%95%B4%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%9B%E5%86%85%E5%AD%98%E7%9A%84%2C%E5%BD%93%E7%84%B6%E7%94%A8%E8%B5%B7%E6%9D%A5%E5%BE%88%E6%96%B9%E4%BE%BF%EF%BC%8C%E4%BD%86%E6%98%AF%E5%A6%82%E6%9E%9C%E6%88%91%E4%BB%AC%E6%95%B0%E6%8D%AE%E9%87%8F%E5%BE%88%E5%A4%A7%EF%BC%8C%E9%82%A3%E4%B9%88%E6%98%AF%E4%B8%8D%E5%8F%AF%E8%83%BD%E5%B0%86%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E8%BD%BD%E5%85%A5%E5%86%85%E5%AD%98%E7%9A%84%EF%BC%8C%E5%BF%85%E5%B0%86%E5%AF%BC%E8%87%B4%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%EF%BC%8C%E8%BF%99%E6%97%B6%E5%80%99%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E7%94%A8fit_generator%E5%87%BD%E6%95%B0%E6%9D%A5%E8%BF%9B%E8%A1%8C%E8%AE%AD%E7%BB%83%E3%80%82" title="W3C">参考</a>其中有一个常见的参数verbose–&gt;<em>verbose:默认值为1，是指在训练过程中日志的显示模式，取 1 时表示“进度条模式”，取2时表示“每轮一行”，取0时表示“安静模式”</em></p>
+<h1 id="Visualize-the-predicted-images"><a href="#Visualize-the-predicted-images" class="headerlink" title="Visualize the predicted images"></a>Visualize the predicted images</h1><figure class="highlight plaintext"><figcaption><span>[title] [lang:python] [url] [link text] [additional options]</span></figcaption><table><tr><td class="code"><pre><span class="line"># visualize the predicted data</span><br><span class="line">loaded_model = keras.models.load_model(&#x27;checkpoints/model_at_50.h5&#x27;)</span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(15, 9))</span><br><span class="line"></span><br><span class="line">def predict(imgs):</span><br><span class="line">    pred = []</span><br><span class="line">    for i in loaded_model.predict(images.numpy().astype(&#x27;uint8&#x27;)):</span><br><span class="line">        if i[0] &gt; .5:</span><br><span class="line">            pred.append(1)</span><br><span class="line">        else:</span><br><span class="line">            pred.append(0)</span><br><span class="line">    return pred</span><br><span class="line">    </span><br><span class="line">for images, labels in test_set.take(1):</span><br><span class="line">    pred = predict(images)</span><br><span class="line">    for i in range(12):</span><br><span class="line">        plt.subplot(3, 4, i+1)</span><br><span class="line">        plt.imshow(images[i].numpy().astype(&#x27;uint8&#x27;))</span><br><span class="line">        plt.title(f&#x27;True: &#123;int(labels[i])&#125;, Predicted: &#123;pred[i]&#125;&#x27;)</span><br><span class="line">        plt.axis(&#x27;off&#x27;)</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Deep Learning</category>
       </categories>
       <tags>
-        <tag>学校</tag>
+        <tag>深度学习</tag>
+        <tag>CNN</tag>
         <tag>比赛</tag>
-        <tag>生活</tag>
+        <tag>图像分类</tag>
       </tags>
   </entry>
   <entry>
-    <title>机器学习派系</title>
-    <url>/2022/11/24/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%B4%BE%E7%B3%BB/</url>
-    <content><![CDATA[<p>机器学习有不同的学派，每个学派从不同的角度看问题。这也是偶然了解到，感觉对日后的理解和学习有帮助，于是便记录下来…</p>
+    <title>维度灾难</title>
+    <url>/2022/11/23/%E7%BB%B4%E5%BA%A6%E7%81%BE%E9%9A%BE/</url>
+    <content><![CDATA[<p>今天學習機器學習的時候，發現有<em>維度災難</em>這個東西。挺感興趣的，於是一探究竟！</p>
 <span id="more"></span>
 
-<h1 id="机器学习5大学派！"><a href="#机器学习5大学派！" class="headerlink" title="机器学习5大学派！"></a>机器学习5大学派！</h1><p>机器学习有不同的学派，每个学派从不同的角度看问题。</p>
-<ol>
-<li><p>符号学派（symbolists） 更多关注哲学，逻辑学和心理学， 并将学习视为逆向演绎 。使用符号、规则和逻辑来表征知识和进行逻辑推理主要是基于规则的，算法如 ：决策树。</p>
-</li>
-<li><p>联结学派（connectionists）专注物理学和神经科学，并相信大脑的逆向工程。使用概率矩阵和加权神经元来动态地识别和归纳模式，算法如 ：神经网络 。</p>
-</li>
-<li><p>进化学派，在遗传学和进化生物学的基础上得出结论。生成变化，然后为特定目标获取其中最优的， 算法如 ：遗传算法 。</p>
-</li>
-</ol>
-<p>4. 贝叶斯学派（Bayesians）注重统计学和概率推理。 获取发生的可能性来进行概率推理，算法如 ：朴素贝叶斯，马尔可夫。</p>
-<p>5. 类推学派（analogizers）更多是关注心理学和数学优化来推断相似性判断。 根据约束条件来优化函数，算法如：支持向量机SVM。</p>
-<h1 id="演化的阶段"><a href="#演化的阶段" class="headerlink" title="演化的阶段"></a>演化的阶段</h1><blockquote>
-<p>1980 年代             主导流派：符号主义</p>
-<p>1990 年代到 2000 年    主导流派：贝叶斯</p>
-<p>2010 年代早期到中期   主导流派：联结主义</p>
-<p>2010 年代末期    主导流派：联结主义+符号主义</p>
-<p>2020 年代+         主导流派：联结主义+符号主义+贝叶斯+……</p>
-<p>2040 年代+         主导流派：算法融合 </p>
-</blockquote>
-<h1 id="联结学派（The-connectionists）"><a href="#联结学派（The-connectionists）" class="headerlink" title="联结学派（The connectionists）"></a>联结学派（The connectionists）</h1><p>联结学派的主要思想是通过神经元之间的连接来推导知识。联结学派聚焦于物理学和神经科学，并相信大脑的逆向工程（reverse engineering）。他们相信用反向传播算法或“向后传播错误”的算法来训练人工神经网络以获取结果。</p>
-<p>多伦多大学的 Geoff Hinton 是机器学习领域的顶尖研究者之一。Hinton 积极与谷歌合作，也是推动“深度学习”模式的人物。深度学习在许多不同领域彻底变革了 AI，如语音识别，图像描述及生成有意义的句子。</p>
-<p>几乎所有大科技公司，包括 Facebook，微软，谷歌等，都正在使用这种模式来改进它们的系统。Navdeep Jaitly 是谷歌大脑团队的研究科学家，他在 Hinton 门下进行研究，使用深度学习模型超越了 Android 系统中已经“精细调好”（fine-tuned）的语音识别算法。</p>
-<p>Facebook AI Research（FAIR）的主管 Yann LeCun 是这个研究领域的另一位大牛。Yann 也是在 Hinton 门下读博士学位，并致力于深度学习领域。</p>
-<p>作为蒙特利尔学习算法研究所的负责人，Yoshua Bengio 是另一个值得注意的名字，是联结学派方法的领军人物。Bengio 致力于组织不同的 AI 相关活动和会议，包括学习研讨会。Bengio 和他的学生 Ian Goodfellow（现在是 OpenAI 的研究员）以及 Aaron Courville 一起合著了著名的深度学习教材Deep Learning。</p>
-<p>机器学习领域的许多研究者，特别是联结学派者，认为深度学习模型是 AI 的所有问题的答案，并认为它是一个主算法。</p>
-<h1 id="符号学派（The-symbolists）"><a href="#符号学派（The-symbolists）" class="headerlink" title="符号学派（The symbolists）"></a>符号学派（The symbolists）</h1><p>符号学派的方法基于对问题的“高阶”（high-level）解释。符号主义者更侧重哲学，逻辑学和心理学，并把学习视为逆向演绎（inverse of deduction）。John Haugeland 在他的著作 Artificial Intelligence: The Very Idea中称之为“Good Old-Fashioned Artificial Intelligence” (GOFAI)。符号学派解决问题的方法是使用预先存在的知识来填补空白。大多数专家系统使用符号学派的方法，以 If-Then 的方式解决问题。</p>
-<p>卡内基梅隆大学的 Tom Mitchell 是符号学派的领军人物之一。Udacity 联合创始人，斯坦福大学教授，前谷歌副总裁 Sebastian Thrun，以及艾伦人工智能研究所 CEO Oren Etzioni 都是 Tom Mitchell 的学生。</p>
-<p>伦敦帝国理工学院教授，Inductive Acquisition of Expert Knowledge的作者 Stephen Muggleton，以及 RuleRequest 的创始人 Ross Quinlan 均是推崇符号学派机器学习方法的著名研究者。</p>
-<h1 id="进化学派（The-evolutionaries）"><a href="#进化学派（The-evolutionaries）" class="headerlink" title="进化学派（The evolutionaries）"></a>进化学派（The evolutionaries）</h1><p>第三个学派，是进化学派，他们在遗传学和进化生物学的基础上得出结论。2015年去世的 John Holland 曾在密歇根大学任教，他在将达尔文的进化理论引入计算机科学方面发挥了非常重要的作用。Holland 是遗传算法（genetics algorithms）的先驱，他提出的“遗传算法的基本定理”被认为是这个领域的基础。</p>
-<p>机器人学，3D打印和生物信息学领域的许多工作是哥伦比亚大学创意力学实验室主任 Hod Lipson 等进化论者进行的。John Koza 是前斯坦福大学教授，Scientific Games 公司的创始人，也是遗传算法的另一名先驱人物。另外，Serafim 实验室的创始人，斯坦福大学计算机科学教授 Serafim Batzoglou 也是计算机基因组领域的著名研究者。</p>
-<h1 id="贝叶斯学派（The-Bayesian-school-of-thought）"><a href="#贝叶斯学派（The-Bayesian-school-of-thought）" class="headerlink" title="贝叶斯学派（The Bayesian school of thought）"></a>贝叶斯学派（The Bayesian school of thought）</h1><p>如果你使用电子邮件超过10年，应该能感觉到垃圾邮件过滤系统的改进。这是机器学习中的贝叶斯学派的功劳。贝叶斯学派专注于研究概率推理和用贝叶斯定理解决问题。贝叶斯学派从一个信念开始，他们称之为“先验”（prior）。然后，他们收集一些数据，并基于该数据更新先验；得到的结果他们称之为“后验”（posterior）。然后，他们用更多的数据来处理后验，并使之变成先验。这个过程不断循环往复，知道得到最终的答案。大多数垃圾邮件过滤系统是在这种基础上起作用。</p>
-<p>加州大学洛杉矶分校计算机科学系的 Judea Pearl 是贝叶斯方法的著名研究者之一。微软 Genomics Group 的负责人 David Heckerman 也是著名的贝叶斯方法研究者，他帮助微软在 Outlook 和 Hotmail 邮件系统中开发了不同的数据挖掘工具和垃圾邮件过滤工具。</p>
-<p>加州大学伯克利分校的 Michael Jordan 也是这一领域的主要研究者。</p>
-<h1 id="类推学派（The-analogizers）"><a href="#类推学派（The-analogizers）" class="headerlink" title="类推学派（The analogizers）"></a>类推学派（The analogizers）</h1><p>机器学习的第五个分支学派是类推学派（Analogizers），他们更多地关注心理学和数学最优化，通过外推来进行相似性判断。类推学派遵循“最近邻”原理进行研究。各种电子商务网站上的产品推荐（例如亚马逊或 Netflix的电影评级）是类推方法最常见的示例。</p>
-<p>印第安纳大学的 Douglas Hofstadter（侯世达）是认知科学中最有名的科学家。同一领域的另一位知名科学家是 Vladimir Vapnik，他也是“支持向量机”的共同发明者和 Vapnik-Chervonenkis 理论的主要开发者。Facebook 最近聘请 Vapnik 与其他几位知名研究人员一起加入 Facebook AI 实验室。此外，理光创新（Ricoh Innovations）创始人 Peter Hart 也是遵循类推方法的著名学者，Hart 与人合著了《模式分类》一书。</p>
-<h1 id="危机与问题"><a href="#危机与问题" class="headerlink" title="危机与问题"></a>危机与问题</h1><p>所有上述学派解决不同的问题，提出了不同的解决方案。而真正的挑战是设计一个算法，解决这些方法尝试要解决的所有不同的问题——单一的一个“终极算法”。</p>
-<p>我们仍然处在机器学习和 AI 的早期，还有很多事情要做。我们不知道什么时候，哪里会出现问题，而这将会减缓整个发展进程，带来下一个“AI冬天”。又或者，将来会出现一个新的突破，彻底改变目前的情况。</p>
-<p>机器学习的进步更像是一场演化。正如微生物的发展速度远比人类更快，机器学习的发展也比人类快，但会到达一个阶段，在这个阶段上这些学习算法会变得太过复杂而不能快速演化。</p>
-<p>也存在其他的危机。一个“理想的”终极算法将了解有关我们的一切。虽然机器学习需要人类的输入作为启动，但它最终会达到一个点，它会超越人类。那么接下来会发生什么呢？只要它们的目标和我们的目标稍有分歧，可能就足以消灭人类。</p>
-<p>这只是一种情况。假设我们成功建立了一个能够控制这些超级智能的机制，就类似于蚂蚁创造了一个能够控制我们人类的机制。但是，国家，人们和团体之间存在的利益冲突，可能会引发类似“天网”（终结者）的战争。</p>
-<h1 id="机器学习如何改变世界？"><a href="#机器学习如何改变世界？" class="headerlink" title="机器学习如何改变世界？"></a>机器学习如何改变世界？</h1><p>有许多初创公司专注于机器学习及其为生活中的不同问题带来的解决方案；而且，更重要的是，有大型科技公司支持他们。例如，谷歌收购的 DeepMind 专注于医疗保健，利用机器学习研究癌症的治疗；Facebook 的 Chan Zuckerberg Initiative 宣布计划在未来十年投资30亿美元，以帮助治疗、预防和管控疾病。</p>
-<p>另外，世界上最大的一些科技公司，包括亚马逊，Facebook，谷歌，微软等形成了联盟“Partnership on AI”，以共享他们的大型数据库进行研究，推广好的实践。</p>
-<p>AI 是否将技术的发展引向了一条危险的路径？我们将要成为机器的奴隶，又或 AI 是将人类引向终极的进步的入口？</p>
-<p>任何希望了解 AI 和机器学习的人士都应该阅读一下 Pedro Domingos 的《终极算法》一书。最后，让我们借用此书序言里的一句话作为本文的结语：围绕大数据以及机器学习的讨论充满争议，如果你对此感到好奇，且怀疑有比论文上看到的更为深层次的东西，那么这本书就是你进行革命的指南。</p>
-<h1 id="出处"><a href="#出处" class="headerlink" title="出处"></a>出处</h1><p><em>今天在学习机器学习的时候，发现机器学习惊竟然还分派系，略感兴趣，遂转于此！</em></p>
-<ol>
-<li><a href="https://www.jianshu.com/p/55ccb15747b5">简书-转载</a></li>
-<li><a href="https://techcrunch.com/2017/01/30/is-a-master-algorithm-the-solution-to-our-machine-learning-problems/">Yahoo原文</a></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Mathine Learning</category>
-        <category>Things of Interest</category>
-      </categories>
-      <tags>
-        <tag>机器学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>激活函数</title>
-    <url>/2022/11/23/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<p>学习一下机器学习中常见的激活函数，大部分只是了解即可，不必深究</p>
-<span id="more"></span>
-
-<h1 id="常用的激活函数"><a href="#常用的激活函数" class="headerlink" title="常用的激活函数"></a>常用的激活函数</h1><h2 id="首先要知道什么是激活函数？"><a href="#首先要知道什么是激活函数？" class="headerlink" title="首先要知道什么是激活函数？"></a>首先要知道什么是激活函数？</h2><p>激活函数就是在神经网络的神经元上运行的函数，负责将神经元的输入映射到输出端。它类似于人类大脑中基于神经元的模型，激活函数最终决定了要发射给下一个神经元的内容。</p>
-<p>它的可视化过程如图所示：</p>
-<p><img src="https://ask.qcloudimg.com/http-save/8352478/mn5asmil0s.png?imageView2/2/w/1620" alt="激活函数工作过程"></p>
-<p>如果不用激励函数，每一层输出都是上层输入的线性函数，无论神经网络有多少层，输出都是输入的线性组合。神经网络中使用激活函数来加入非线性因素，提高模型的表达能力。</p>
-<h2 id="1-sigmoid激活函数"><a href="#1-sigmoid激活函数" class="headerlink" title="1. sigmoid激活函数"></a>1. sigmoid激活函数</h2><p><img src="https://ask.qcloudimg.com/http-save/8352478/nhi9swy8ln.png?imageView2/2/w/1620" alt="sigmoid函数"></p>
-<p>Sigmoid 函数的图像看起来像一个 S 形曲线。它的表达式如下：</p>
-<p>f(z) &#x3D; \frac{1}{1+e^{-z} } </p>
-<p>Sigmoid函数是传统神经网络中最常用的激活函数，一度被视为神经网络的核心所在。 </p>
-<p>从数学上来看，Sigmoid函数对中央区的信号增益较大，对两侧区的信号增益小，在信号的特征空间映射上，有很好的效果。从神经科学上来看，中央区酷似神经元的兴奋态，两侧区酷似神经元的抑制态，因而在神经网络学习方面，可以将重点特征推向中央区，将非重点特征推向两侧区。</p>
-<h3 id="1-1-在什么情况下适合使用-Sigmoid-激活函数呢？"><a href="#1-1-在什么情况下适合使用-Sigmoid-激活函数呢？" class="headerlink" title="1.1 在什么情况下适合使用 Sigmoid 激活函数呢？"></a>1.1 在什么情况下适合使用 Sigmoid 激活函数呢？</h3><ul>
-<li>Sigmoid 函数的输出范围是 0 到 1。由于输出值限定在 0 到 1，因此它对每个神经元的输出进行了归一化；</li>
-<li>用于将预测概率作为输出的模型。由于概率的取值范围是 0 到 1，因此 Sigmoid 函数非常合适；</li>
-<li>梯度平滑，避免「跳跃」的输出值；</li>
-<li>函数是可微的。这意味着可以找到任意两个点的 sigmoid 曲线的斜率；</li>
-<li>明确的预测，即非常接近 1 或 0。</li>
-<li></li>
-</ul>
-<h3 id="1-2-Sigmoid-激活函数有哪些缺点？"><a href="#1-2-Sigmoid-激活函数有哪些缺点？" class="headerlink" title="1.2 Sigmoid 激活函数有哪些缺点？"></a>1.2 Sigmoid 激活函数有哪些缺点？</h3><ul>
-<li>倾向于梯度消失；</li>
-<li>函数输出不是以 0 为中心的，这会降低权重更新的效率；</li>
-<li>Sigmoid 函数执行指数运算，计算机运行得较慢。</li>
-</ul>
-<p>现在基本上已经用不上sigmoid函数了。</p>
-<h2 id="2-TanHyperbolic（tanh）双曲正切激活函数"><a href="#2-TanHyperbolic（tanh）双曲正切激活函数" class="headerlink" title="2. TanHyperbolic（tanh）双曲正切激活函数"></a>2. TanHyperbolic（tanh）双曲正切激活函数</h2><p><img src="https://ask.qcloudimg.com/http-save/8352478/gm9p8du88z.png?imageView2/2/w/1620" alt="tanh函数"></p>
-<p>tanh 激活函数的图像也是 S 形，表达式如下：</p>
-<p>f(z) &#x3D; tanh(z) &#x3D;  \frac{e^{z} - e^{-z}  }{e^{z} + e^{-z} }  &#x3D; \frac{2}{1 + e^{-2z} }-1 </p>
-<p>tanh 是双曲正切函数。tanh 函数和 sigmoid 函数的曲线相似。但是它比 sigmoid 函数更有一些优势。</p>
-<ul>
-<li><p>sigmoid函数和tanh函数都存在一个问题：当神经网络的层数增多的时候，由于在进行反向传播的时候，链式求导，多项相乘，函数进入饱和区（导数接近于零的地方）就会逐层传递，这种现象被称为梯度消失。</p>
-</li>
-<li><p>首先要明确的一点是，当输入较大或较小时，输出几乎是平滑的并且梯度较小，这不利于权重更新。tanh 整个函数以 0 为中心，比 sigmoid 函数更好。在实际操作的时候，tanh 函数延迟了饱和期，在特征相差比较明显的时候效果会更好，并且在循环过程中也能够不断地扩大特征的效果。</p>
-</li>
-<li><p>在一般的二元分类问题中，tanh 函数用于隐藏层，而 sigmoid 函数用于输出层，但这并不是固定的，需要根据特定问题进行调整。</p>
-</li>
-</ul>
-<h2 id="3-softmax激活函数"><a href="#3-softmax激活函数" class="headerlink" title="3. softmax激活函数"></a>3. softmax激活函数</h2><p>公式表达为：</p>
-<p>f(z) &#x3D; \frac{e^{Z_j} }{\sum_{k}^{}e^{Z_k} } </p>
-<p>Sigmoid函数如果用来分类的话，只能进行二分类，而这里的softmax函数可以看做是Sigmoid函数的一般化，可以进行多分类。</p>
-<h3 id="3-0-Softmax激活函数的特点："><a href="#3-0-Softmax激活函数的特点：" class="headerlink" title="3.0 Softmax激活函数的特点："></a>3.0 Softmax激活函数的特点：</h3><ul>
-<li>在零点不可微。</li>
-<li>负输入的梯度为零，这意味着对于该区域的激活，权重不会在反向传播期间更新，因此会产生永不激活的死亡神经元。</li>
-</ul>
-<h3 id="3-1-sigmoid与softmax比较-–-gt-sigmoid"><a href="#3-1-sigmoid与softmax比较-–-gt-sigmoid" class="headerlink" title="3.1 sigmoid与softmax比较 –&gt; sigmoid"></a>3.1 sigmoid与softmax比较 –&gt; sigmoid</h3><p>二分类和多分类其实没有多少区别。用的公式仍然是y &#x3D; wx + b。 但有一个非常大的区别是他们用的激活函数是不同的。 逻辑回归用的是sigmoid，这个激活函数的除了给函数增加非线性之外还会把最后的预测值转换成在[0,1]中的数据值。也就是预测值是0&lt;y&lt;1。 我们可以把最后的这个预测值当做是一个预测为正例的概率。在进行模型应用的时候我们会设置一个阈值，当预测值大于这个阈值的时候，我们判定为正例子，反之我们判断为负例。这样我们可以很好的进行二分类问题。 </p>
-<h3 id="3-2-sigmoid与softmax比较-–-gt-softmax"><a href="#3-2-sigmoid与softmax比较-–-gt-softmax" class="headerlink" title="3.2 sigmoid与softmax比较 –&gt; softmax"></a>3.2 sigmoid与softmax比较 –&gt; softmax</h3><p>Softmax函数是用于多类分类问题的激活函数，在多类分类问题中，超过两个类标签则需要类成员关系。对于长度为K的任意实向量，Softmax函数可以将其压缩为长度为K，值在[0,1]范围内，并且向量中元素的总和为1的实向量。</p>
+<h1 id="机器学习中的维度灾难"><a href="#机器学习中的维度灾难" class="headerlink" title="机器学习中的维度灾难"></a>机器学习中的维度灾难</h1><p>在介绍机器学习的维度灾难之前，我推荐给大家一个网站，名字虽然说是<a href="https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">计算机视觉的傻瓜书</a>，但是有关机器学习的答疑部分它做得还是蛮好的。除此之外还有<a href="https://www.kdnuggets.com/news/index.html">KDnuggest</a>，也是有关机器学习的论坛。</p>
+<p>本文是参考<a href="https://www.jianshu.com/p/867193608bbd">简书-红色石头Will</a>所得到的观点，虽然他是翻译<a href="https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">计算机视觉的傻瓜书</a>的，但是对于我理解维度灾难起着指导方向的作用。</p>
+<h2 id="1-介绍维度灾难"><a href="#1-介绍维度灾难" class="headerlink" title="1.介绍维度灾难"></a>1.介绍维度灾难</h2><p>维度灾难是在设计一个分类器的时候需要注意的问题。为了得到更好的分类效果，我们可以无限的增加特征。但是事实上，特征数量超过一定值的时候，分类器的效果反而会下降。这种由于特征数量太多导致的分类效果下降的情况，就被称作是<strong>维度灾难</strong>。</p>
+<h2 id="2-维度灾难与过拟合"><a href="#2-维度灾难与过拟合" class="headerlink" title="2.维度灾难与过拟合"></a>2.维度灾难与过拟合</h2><p>貌似特征越多，越有可能实现正确分类，但是情况并非如此。一个直观的情况时，随着特征维度的增加，训练样本在特征空间中的密度是呈指数下降的。</p>
 <blockquote>
-<p>Softmax函数与正常的max函数不同：max函数仅输出最大值，但Softmax函数确保较小的值具有较小的概率，不会直接丢弃。我们可以认为它是arg max函数的概率版本或“soft”版本。Softmax函数的分母结合了原始输出值的所有因子，这意味着Softmax函数获得的各种概率彼此相关。</p>
+<p>样本数不变，但是特征空间不断地增加，那训练样本在特征空间中的密度岂不是就是呈指数下降的？</p>
 </blockquote>
-<blockquote>
-<p>利用 softmax 可以用于多分类问题，而用多个logistic回归通过叠加也同样可以实现多分类的效果，但是 softmax回归进行的多分类，类与类之间是互斥的，即一个输入只能被归为一类。多个logistic回归进行多分类，输出的类别并不是互斥的，即”苹果”这个词语既属于”水果”类也属于”3C”类别。</p>
-</blockquote>
-<h2 id="4-ReLU-激活函数"><a href="#4-ReLU-激活函数" class="headerlink" title="4. ReLU 激活函数"></a>4. ReLU 激活函数</h2><p><img src="https://ask.qcloudimg.com/http-save/8352478/ck888so4in.png?imageView2/2/w/1620" alt="ReLu激活函数"></p>
-<p>ReLu函数的全称为Rectified Linear Units–&gt;修正线性单元,表达式为</p>
-<p>f(z) &#x3D; max(0,z)</p>
-<h3 id="Sigmoid-，tanh与ReLU-比较"><a href="#Sigmoid-，tanh与ReLU-比较" class="headerlink" title="Sigmoid ，tanh与ReLU 比较"></a>Sigmoid ，tanh与ReLU 比较</h3><p>sigmoid，tanh 会出现梯度消失问题，ReLU 的导数就不存在这样的问题。</p>
-<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
-<li>从计算的角度上，Sigmoid和Tanh激活函数均需要计算指数，复杂度高，而ReLU只需要一个阈值即可得到激活值。</li>
-<li>ReLU的非饱和性有效地解决梯度消失的问题，提供相对宽的激活边界。</li>
-<li>ReLU的单侧抑制，提供了网络的稀疏表达能力</li>
-</ul>
-<p><strong>稀疏表示（Sparse Representations）的定义：用较少的基本信号的线性组合来表达大部分或者全部的原始信号。</strong></p>
-<p><em>具体稀疏性的体现是：Relu会使一部分神经元的输出为0，这样就造成了网络的稀疏性，并且减少了参数的相互依存关系，缓解了过拟合问题的发生。</em><strong>只能说有利有弊了…</strong></p>
-<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul>
-<li>Dead ReLU 问题。当输入为负时，ReLU 完全失效，在正向传播过程中，这不是问题。但是在反向传播过程中，如果输入负数，则梯度将完全为零，即在训练过程中会导致神经元死亡。sigmoid 函数和 tanh 函数也具有相同的问题。</li>
-<li>我们发现 ReLU 函数的输出为 0 或正数，这意味着 ReLU 函数不是以 0 为中心的函数。</li>
-</ul>
-<p><strong>神经元死亡会导致该神经元在之后不被任何数据激活，即流经该神经元的梯度永远为0，不对任何数据产生响应。在实际训练中，如果学习率设置较大，会导致一定比例的神经元不可逆死亡，进而参数梯度无法更新，整个训练过程失败。</strong></p>
-<h2 id="5-softplus激活函数"><a href="#5-softplus激活函数" class="headerlink" title="5. softplus激活函数"></a>5. softplus激活函数</h2><p>公式表达式为：</p>
-<p>softplus(z)&#x3D;log(1+e^z)</p>
-<p>softplus函数与ReLU函数接近,但比较平滑, 同ReLU一样是单边抑制,有宽广的接受域(0,+inf), 但是由于指数运算,对数运算计算量大的原因,而不太被人使用。</p>
-<p><img src="https://images2018.cnblogs.com/blog/1252882/201807/1252882-20180707095338849-1750990328.png" alt="softplus激活函数"></p>
-<p>可以看到，softplus可以看作是ReLu的平滑。根据神经科学家的相关研究，softplus和ReLu与脑神经元激活频率函数有神似的地方。也就是说，在生物层面上，相比于早期的激活函数，softplus和ReLu更加接近脑神经元的激活模型。其中，<strong>RELU函数的引入给神经网络增加了生物学特性，可以称为灵魂激活函数。</strong></p>
-<p>softplus的导数就是sigmoid函数，还是很巧合的。还有一点就是，据说softplus的出现要比ReLu要早，也就是说softplus可以看成是ReLu的鼻祖？</p>
-<h2 id="6-Leaky-ReLU激活函数"><a href="#6-Leaky-ReLU激活函数" class="headerlink" title="6. Leaky ReLU激活函数"></a>6. Leaky ReLU激活函数</h2><p>它是一种专门设计用于解决 Dead ReLU 问题的激活函数：</p>
-<p><img src="https://ask.qcloudimg.com/http-save/8352478/zdls8bt48h.png?imageView2/2/w/1620" alt="Leaky ReLu"></p>
-<p>当 x &lt; 0的时候， f(x) &#x3D; \alpha x,其中\alpha 非常小，这样可以避免在x &lt; 0的时候，不能够学习的情况。</p>
-<p>f(x) &#x3D; max(\alpha x,x)</p>
-<blockquote>
-<p>将\alpha 作为可学习的参数，称为Parametric Rectifier(PReLU)</p>
-<p>当\alpha 从高斯分布中随机产生时称为Random Rectifier（RReLU）</p>
-<p>当固定为\alpha &#x3D; 0.01时,称为Leaky ReLU</p>
-</blockquote>
-<h3 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h3><ul>
-<li>不会过拟合(saturate)</li>
-<li>计算简单有效</li>
-<li>比sigmoid&#x2F;tanh收敛快</li>
-</ul>
-<h2 id="7-其他常见的激活函数"><a href="#7-其他常见的激活函数" class="headerlink" title="7. 其他常见的激活函数"></a>7. 其他常见的激活函数</h2><p>其他常见的激活函数还有</p>
-<ul>
-<li>Noisy ReLU</li>
-<li>指数线性单元ELU(exponential linear unit)</li>
-<li>SELU</li>
-<li>GELU</li>
-<li>Swish</li>
-<li>…</li>
-</ul>
-<p>还有挺多的激活函数没有列举，但是我目前常见的就只有以上列举的几种，剩下的激活函数等到到时候用到的时候再来补充就好了！</p>
-<p><em>参考的网站：</em></p>
-<blockquote>
-<p><a href="https://www.cnblogs.com/makefile/p/activation-function.html">https://www.cnblogs.com/makefile/p/activation-function.html</a><br><a href="https://www.cnblogs.com/nxf-rabbit75/p/9276412.html">https://www.cnblogs.com/nxf-rabbit75/p/9276412.html</a><br><a href="https://cloud.tencent.com/developer/article/1800954">https://cloud.tencent.com/developer/article/1800954</a><br><a href="https://blog.csdn.net/hy592070616/article/details/120618490">https://blog.csdn.net/hy592070616/article/details/120618490</a><br><a href="https://blog.csdn.net/weixin_42057852/article/details/84644348?spm=1001.2101.3001.6650.11&amp;utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-11-84644348-blog-120618490.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-11-84644348-blog-120618490.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=15">https://blog.csdn.net/weixin_42057852/article/details/84644348?spm=1001.2101.3001.6650.11&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-11-84644348-blog-120618490.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-11-84644348-blog-120618490.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=15</a></p>
-<p><a href="https://www.cnblogs.com/pinard/p/6437495.html">https://www.cnblogs.com/pinard/p/6437495.html</a></p>
+<p>如果我们继续增加特征，整个特征空间维度增加，并变得越来越稀疏。由于稀疏性，我们更加容易找到一个超平面来实现分类。这是因为随着特征数量变得无限大，训练样本在最佳超平面的错误侧的可能性将会变得无限小。然而，如果我们将高维的分类结果投影到低维空间中，将会出现一个严重的问题。</p>
+<p>比如说样本数据在3D是线性可分的，但是在2D却并非如此。事实上，增加第三个维度来获得最佳的线性分类效果，等同于在低维特征空间中使用非线性分类器。其结果是，分类器学习了训练数据的噪声和异常，而对样本外的数据拟合效果并不理想，甚至很差。这个概念称为过拟合，是维度灾难的一个直接后果。</p>
+<p><em>换句话讲，如果增加特征维度，为了覆盖同样的特征值范围，防止过拟合，需要用到的样本数就会呈指数型增长！</em></p>
+<h2 id="3-维度灾难与数据稀疏程度分布不均"><a href="#3-维度灾难与数据稀疏程度分布不均" class="headerlink" title="3.维度灾难与数据稀疏程度分布不均"></a>3.维度灾难与数据稀疏程度分布不均</h2><p>我们展示了维度灾难会引起训练数据的稀疏化。使用的特征越多，数据就会变得越稀疏，从而导致分类器的分类效果就会越差。维度灾难还会造成<strong>搜索空间的数据稀疏程度</strong>分布不均。事实上，围绕原点的数据（在超立方体的中心）比在搜索空间的角落处的数据要稀疏得多。</p>
+<p>举例2D，如果大部分的样本都落在了单位内接圆里的话，会更容易分类。但是在高维的空间中，大部分的训练数据都是分布在定义为特征空间的超立方体的角落处，导致难以分类。、</p>
+<p>对于8维的超球体，大约98%的数据集中在它256个角落处。其结果是，当特征空间的维度变得无限大时，从样本点到质心的最大、最小欧氏距离的差值与其最小欧式距离的比值趋于零。因此，距离测量在高维空间中逐渐变得无效。因为分类器是基于这些距离测量的（例如Euclidean距离、Mahalanobis距离、Manhattan距离），所以低维空间特征更少，分类更加容易。同样地，在高维空间的高斯分布会变平坦且尾巴更长。</p>
+<h2 id="4-如何避免维度灾难"><a href="#4-如何避免维度灾难" class="headerlink" title="4.如何避免维度灾难"></a>4.如何避免维度灾难</h2><p>很遗憾，在分类问题中，没有固定的规则来指定该使用多少特征。事实上，用多少特征量取决于你训练样本的数量、决策边界的复杂性和使用的是啥分类器。</p>
+<p>比如说一些非线性决策边界的分类器（e.g. 神经网络、KNN分类器、决策树等），它们的分类效果虽然好，但是泛化能力差容易发生过拟合，这个时候就需要降低点维度。如果使用泛化能力稍微好点的（e.g. 贝叶斯分类器、线性分类器），那么就可以使用稍微多一点的特征。</p>
+<h2 id="5-参考链接"><a href="#5-参考链接" class="headerlink" title="5.参考链接"></a>5.参考链接</h2><blockquote>
+<p><a href="https://www.jianshu.com/p/867193608bbd">简书</a><br><a href="https://cloud.tencent.com/developer/article/1143269">手工特征选取降维</a><br><a href="https://www.kdnuggets.com/2015/03/deep-learning-curse-dimensionality-autoencoders.html">原文</a></p>
 </blockquote>
 ]]></content>
       <categories>
         <category>Mathine Learning</category>
       </categories>
-      <tags>
-        <tag>机器学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>特征工程</title>
-    <url>/2022/11/23/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/</url>
-    <content><![CDATA[<p>数据和特征决定了机器学习的上限，而模型和算法只是逼近这个上限而已</p>
-<span id="more"></span>
-
-<h1 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a>特征工程</h1><p><a href="https://easyai.tech/ai-definition/feature-engineering/">特征工程</a>是机器学习工作流程中重要的组成部分，它将原始数据「翻译」成模型可理解的形式。</p>
-<p>美国计算机科学家 Peter Norvig 说过两句经典名言</p>
-<ol>
-<li>基于大量数据的简单模型优于基于少量数据的复杂模型</li>
-<li>更多的数据优于聪明的算法，而好的数据优于多的数据</li>
-</ol>
-<p>足以可见数据量和特征工程的重要性，不过数据量已经给定了，我们能做的只有特征工程。如何基于原来的数据发挥出更大的数据价值就是特征工程要做的事情。</p>
-<p><em>在16年的一项调查中发现，<a href="https://whatsthebigdata.com/2016/05/01/data-scientists-spend-most-of-their-time-cleaning-data/">数据科学家</a>的工作中，有80%的时间都在获取、清洗和组织数据。构造机器学习流水线的时间不到20%…</em></p>
-<h1 id="1-特征工程一些注意事项"><a href="#1-特征工程一些注意事项" class="headerlink" title="1.特征工程一些注意事项"></a>1.特征工程一些注意事项</h1><p>e.g. 人类是需要吃加工过的食物才行，这样更安全也更美味。机器算法模型也是类似，原始数据不能直接喂给模型，也需要对数据进行清洗、组织、转换。最后才能得到模型可以消化的特征。这样你对特征工程在数据和模型之间扮演的角色已经十分了解了吧？</p>
-<h2 id="1-1-当前我对特征工程的理解"><a href="#1-1-当前我对特征工程的理解" class="headerlink" title="1.1 当前我对特征工程的理解"></a>1.1 当前我对特征工程的理解</h2><p>当前我对特征工程的理解仅仅停留在特征提取和特征选择，这样是待会会提到的内容。首先要知道，这两种方法都是降维的方法。特征选择后的字段是原数据字段的子集，也就是说删减了一些冗杂的对模型训练没有用的字段。特征提取理解成原来特征的映射，e.g.三个字段合并在一起表现的会比三个字段独立更好一些–&gt;<a href="https://blog.csdn.net/Neil_Pan/article/details/51940849">特征选择和特征提取区别</a></p>
-<p>如果想要看看，特征工程具体是包括哪些具体步骤的，还可以参考<a href="https://blog.csdn.net/tiange_xiao/article/details/79723177#:~:text=%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%20%E6%98%AF%E4%BD%BF%E7%94%A8%E4%B8%93%E4%B8%9A%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86%E5%92%8C%E6%8A%80%E5%B7%A7%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%EF%BC%8C%E4%BD%BF%E5%BE%97%20%E7%89%B9%E5%BE%81%20%E8%83%BD%E5%9C%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E4%B8%8A%E5%8F%91%E6%8C%A5%E6%9B%B4%E5%A5%BD%E7%9A%84%E4%BD%9C%E7%94%A8%E7%9A%84%E8%BF%87%E7%A8%8B%E3%80%82%20%E8%BF%87%E7%A8%8B%20%E5%8C%85%E5%90%AB%20%E4%BA%86%20%E7%89%B9%E5%BE%81,%E7%89%B9%E5%BE%81%20%E6%9E%84%E5%BB%BA%E3%80%81%20%E7%89%B9%E5%BE%81%20%E9%80%89%E6%8B%A9%E7%AD%89%E6%A8%A1%E5%9D%97%E3%80%82%20%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%20%E7%9A%84%E7%9B%AE%E7%9A%84%E6%98%AF%E7%AD%9B%E9%80%89%E5%87%BA%E6%9B%B4%E5%A5%BD%E7%9A%84%20%E7%89%B9%E5%BE%81%20%EF%BC%8C%E8%8E%B7%E5%8F%96%E6%9B%B4%E5%A5%BD%E7%9A%84%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E3%80%82">这里</a></p>
-<h2 id="1-2-更好的业务逻辑表达"><a href="#1-2-更好的业务逻辑表达" class="headerlink" title="1.2 更好的业务逻辑表达"></a>1.2 更好的业务逻辑表达</h2><p>将特征工程理解成是业务逻辑的一种数学表达。说是说业务逻辑表达，其实实质上就是指为了解决机器学习中特定的问题。因为原始数据有很多种转换为特征的方式，我们需要选择那些能够「更好的表示业务逻辑」，从而更好的解决问题，而不是那些更简单的方法。</p>
-<h2 id="1-3-提升机器学习性能"><a href="#1-3-提升机器学习性能" class="headerlink" title="1.3 提升机器学习性能"></a>1.3 提升机器学习性能</h2><p>性能意味着更短时间和更低成本，哪怕相同的模型，也会因为特征工程的不同而性能不同。所以我们需要选择那些可以发挥更好性能的特征工程</p>
-<h1 id="2-特征选择"><a href="#2-特征选择" class="headerlink" title="2. 特征选择"></a>2. 特征选择</h1><p>特征选择是特征工程里的一个重要问题，其目标是寻找最优特征子集。特征选择能剔除不相关(irrelevant)或冗余(redundant)的特征，从而达到减少特征个数，提高模型精确度，减少运行时间的目的。另一方面，<strong>选取出真正相关的特征简化模型</strong>，协助理解数据产生的过程。并且常能听到“数据和特征决定了机器学习的上限，而模型和算法只是逼近这个上限而已”，由此可见其重要性。但是它几乎很少出现于机器学习书本里面的某一章。然而在机器学习方面的成功很大程度上在于如果使用特征工程。</p>
-<p>之所以要考虑特征选择，是因为机器学习经常面临过拟合的问题。 过拟合的表现是模型参数太贴合训练集数据，模型在训练集上效果很好而在测试集上表现不好。简言之模型的泛化能力差。过拟合的原因是模型对于训练集数据来说太复杂，要解决过拟合问题，一般考虑如下方法：<a href="https://zhuanlan.zhihu.com/p/74198735#:~:text=%E4%B9%8B%E6%89%80%E4%BB%A5%E8%A6%81%E8%80%83%E8%99%91%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9%EF%BC%8C%E6%98%AF%E5%9B%A0%E4%B8%BA%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BB%8F%E5%B8%B8%E9%9D%A2%E4%B8%B4%E8%BF%87%E6%8B%9F%E5%90%88%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82%20%E8%BF%87%E6%8B%9F%E5%90%88,%E7%9A%84%E8%A1%A8%E7%8E%B0%E6%98%AF%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%20%E5%A4%AA%E8%B4%B4%E5%90%88%E8%AE%AD%E7%BB%83%E9%9B%86%E6%95%B0%E6%8D%AE%20%EF%BC%8C%E6%A8%A1%E5%9E%8B%E5%9C%A8%E8%AE%AD%E7%BB%83%E9%9B%86%E4%B8%8A%E6%95%88%E6%9E%9C%E5%BE%88%E5%A5%BD%E8%80%8C%E5%9C%A8%E6%B5%8B%E8%AF%95%E9%9B%86%E4%B8%8A%E8%A1%A8%E7%8E%B0%E4%B8%8D%E5%A5%BD%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%9C%A8%E9%AB%98%E6%96%B9%E5%B7%AE%E3%80%82">参考</a></p>
-<ol>
-<li>收集更多数据</li>
-<li>通过正则化引入对复杂度的惩罚</li>
-<li>选择更少参数的简单模型</li>
-<li>对数据降维（降维有两种方式：特征选择和特征抽取）</li>
-</ol>
-<p>其中第1条一般是很难做到的，一般主要采用第2和第4点</p>
-<h1 id="3-特征提取"><a href="#3-特征提取" class="headerlink" title="3. 特征提取"></a>3. 特征提取</h1><p>像上面所说，将特征提取理解成原来特征的映射，只是一种不同于特征选择的选取字段的方式罢了。</p>
-<h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h1><ul>
-<li><a href="https://blog.csdn.net/hren_ron/article/details/80914491">了解生成特征子集的搜索方式</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/74198735#:~:text=%E4%B9%8B%E6%89%80%E4%BB%A5%E8%A6%81%E8%80%83%E8%99%91%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9%EF%BC%8C%E6%98%AF%E5%9B%A0%E4%B8%BA%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BB%8F%E5%B8%B8%E9%9D%A2%E4%B8%B4%E8%BF%87%E6%8B%9F%E5%90%88%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82%20%E8%BF%87%E6%8B%9F%E5%90%88,%E7%9A%84%E8%A1%A8%E7%8E%B0%E6%98%AF%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%20%E5%A4%AA%E8%B4%B4%E5%90%88%E8%AE%AD%E7%BB%83%E9%9B%86%E6%95%B0%E6%8D%AE%20%EF%BC%8C%E6%A8%A1%E5%9E%8B%E5%9C%A8%E8%AE%AD%E7%BB%83%E9%9B%86%E4%B8%8A%E6%95%88%E6%9E%9C%E5%BE%88%E5%A5%BD%E8%80%8C%E5%9C%A8%E6%B5%8B%E8%AF%95%E9%9B%86%E4%B8%8A%E8%A1%A8%E7%8E%B0%E4%B8%8D%E5%A5%BD%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%9C%A8%E9%AB%98%E6%96%B9%E5%B7%AE%E3%80%82">详细地介绍了特征选择的方法</a></li>
-<li><a href="https://asialee.blog.csdn.net/article/details/84863410?spm=1001.2101.3001.6650.3&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-3-84863410-blog-79723177.pc_relevant_multi_platform_whitelistv3&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-3-84863410-blog-79723177.pc_relevant_multi_platform_whitelistv3&utm_relevant_index=6">机器学习特征工程的具体步骤</a></li>
-<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectKBest.html">sklearn.select_feature.SelectKBest官方文档</a></li>
-<li><a href="https://www.cnblogs.com/ai-ldj/p/14269023.html">SelectKBest博客园</a></li>
-<li><a href="https://blog.csdn.net/moonoon1/article/details/120074949">SelectKBest-CSDN</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Mathine Learning</category>
-      </categories>
-      <tags>
-        <tag>机器学习</tag>
-      </tags>
   </entry>
   <entry>
     <title>网格搜索</title>
@@ -924,64 +1071,5 @@ print_result(lgb_r2_score, lgb_rmse, &#39;Lightgbm&#39;)
         <tag>机器学习</tag>
         <tag>调参</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>特征缩放</title>
-    <url>/2022/11/23/%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE/</url>
-    <content><![CDATA[<p>将数据进行归一化和标准化可以使不同维度的特征放在一起进行比较，可以大大提高模型的准确性。</p>
-<span id="more"></span>
-
-<h1 id="特征缩放"><a href="#特征缩放" class="headerlink" title="特征缩放"></a>特征缩放</h1><h2 id="1-为什么要进行特征缩放"><a href="#1-为什么要进行特征缩放" class="headerlink" title="1. 为什么要进行特征缩放"></a>1. 为什么要进行特征缩放</h2><h3 id="1-1-统一特征的权重和提升模型准确性"><a href="#1-1-统一特征的权重和提升模型准确性" class="headerlink" title="1.1 统一特征的权重和提升模型准确性"></a>1.1 统一特征的权重和提升模型准确性</h3><p>如果某个特征的取值范围比其他特征大很多，那么数值计算（比如说计算欧式距离）就受该特征的主要影响。但实际上并不一定是这个特征最重要，通常需要把每个特征看成同等重要。归一化和标准化数据可以使不同维度的特征放在一起进行比较，可以大大提高模型的准确性。</p>
-<h3 id="1-2-提升梯度下降法的收敛速度"><a href="#1-2-提升梯度下降法的收敛速度" class="headerlink" title="1.2 提升梯度下降法的收敛速度"></a>1.2 提升梯度下降法的收敛速度</h3><p><img src="https://img-blog.csdnimg.cn/20191113192133110.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzAwODgwNA==,size_16,color_FFFFFF,t_70" alt="左边是未归一化数据的梯度下降过程"></p>
-<h2 id="2-特征缩放的方法有哪些？"><a href="#2-特征缩放的方法有哪些？" class="headerlink" title="2. 特征缩放的方法有哪些？"></a>2. 特征缩放的方法有哪些？</h2><h3 id="2-1-最大最小值归一化（min-max-normalization）：将数值范围缩放到-0-1-区间里"><a href="#2-1-最大最小值归一化（min-max-normalization）：将数值范围缩放到-0-1-区间里" class="headerlink" title="2.1 最大最小值归一化（min-max normalization）：将数值范围缩放到 [0, 1] 区间里"></a>2.1 最大最小值归一化（min-max normalization）：将数值范围缩放到 [0, 1] 区间里</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190103162752557-711062993.png"></p>
-<h3 id="2-2-均值归一化（mean-normalization）：将数值范围缩放到-1-1-区间里，且数据的均值变为0"><a href="#2-2-均值归一化（mean-normalization）：将数值范围缩放到-1-1-区间里，且数据的均值变为0" class="headerlink" title="2.2 均值归一化（mean normalization）：将数值范围缩放到 [-1, 1] 区间里，且数据的均值变为0"></a>2.2 均值归一化（mean normalization）：将数值范围缩放到 [-1, 1] 区间里，且数据的均值变为0</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190103162807303-1305019357.png"></p>
-<h3 id="2-3-标准化-Z-值归一化（standardization-x2F-z-score-normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行-中心化-mean-centering-处理，再除以标准差进行缩放）"><a href="#2-3-标准化-Z-值归一化（standardization-x2F-z-score-normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行-中心化-mean-centering-处理，再除以标准差进行缩放）" class="headerlink" title="2.3 标准化 ,Z 值归一化（standardization &#x2F; z-score normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行 中心化 mean centering 处理，再除以标准差进行缩放）"></a>2.3 标准化 ,Z 值归一化（standardization &#x2F; z-score normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行 中心化 mean centering 处理，再除以标准差进行缩放）</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190103162903434-1406801774.png"></p>
-<h3 id="2-4-最大绝对值归一化（max-abs-normalization-）：也就是将数值变为单位长度（scaling-to-unit-length），将数值范围缩放到-1-1-区间里"><a href="#2-4-最大绝对值归一化（max-abs-normalization-）：也就是将数值变为单位长度（scaling-to-unit-length），将数值范围缩放到-1-1-区间里" class="headerlink" title="2.4 最大绝对值归一化（max abs normalization ）：也就是将数值变为单位长度（scaling to unit length），将数值范围缩放到 [-1, 1] 区间里"></a>2.4 最大绝对值归一化（max abs normalization ）：也就是将数值变为单位长度（scaling to unit length），将数值范围缩放到 [-1, 1] 区间里</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190112114759202-190163995.png"> </p>
-<h3 id="2-5-稳键标准化（robust-standardization）：先减去中位数，再除以四分位间距（interquartile-range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健"><a href="#2-5-稳键标准化（robust-standardization）：先减去中位数，再除以四分位间距（interquartile-range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健" class="headerlink" title="2.5 稳键标准化（robust standardization）：先减去中位数，再除以四分位间距（interquartile range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健"></a>2.5 稳键标准化（robust standardization）：先减去中位数，再除以四分位间距（interquartile range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201908/1247570-20190811172514046-446486849.png"></p>
-<blockquote>
-<p><em>有一些时候，只对数据进行中心化和缩放是不够的，还需对数据进行白化（whitening）处理来消除特征间的线性相关性</em></p>
-</blockquote>
-<h2 id="3-标准化和归一化的区别是什么？"><a href="#3-标准化和归一化的区别是什么？" class="headerlink" title="3. 标准化和归一化的区别是什么？"></a>3. 标准化和归一化的区别是什么？</h2><h3 id="3-1-归一化-NormalizationNormalization-：将一列数据变化到某个固定区间-范围-中，通常，这个区间是-0-1-，广义的讲，可以是各种区间，比如映射到-0，1-一样可以继续映射到其他范围，图像中可能会映射到-0-255-，其他情况可能映射到-1-1"><a href="#3-1-归一化-NormalizationNormalization-：将一列数据变化到某个固定区间-范围-中，通常，这个区间是-0-1-，广义的讲，可以是各种区间，比如映射到-0，1-一样可以继续映射到其他范围，图像中可能会映射到-0-255-，其他情况可能映射到-1-1" class="headerlink" title="3.1 归一化(NormalizationNormalization)：将一列数据变化到某个固定区间(范围)中，通常，这个区间是[0, 1]，广义的讲，可以是各种区间，比如映射到[0，1]一样可以继续映射到其他范围，图像中可能会映射到[0,255]，其他情况可能映射到[-1,1]"></a>3.1 归一化(NormalizationNormalization)：将一列数据变化到某个固定区间(范围)中，通常，这个区间是[0, 1]，广义的讲，可以是各种区间，比如映射到[0，1]一样可以继续映射到其他范围，图像中可能会映射到[0,255]，其他情况可能映射到[-1,1]</h3><h3 id="3-2-标准化-StandardizationStandardization-：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的"><a href="#3-2-标准化-StandardizationStandardization-：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的" class="headerlink" title="3.2 标准化(StandardizationStandardization)：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的"></a>3.2 标准化(StandardizationStandardization)：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的</h3><p><img src="https://img-blog.csdnimg.cn/20191021220509274.png#pic_center"></p>
-<h3 id="3-3-中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值"><a href="#3-3-中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值" class="headerlink" title="3.3 中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值"></a>3.3 中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值</h3><p><img src="https://img-blog.csdnimg.cn/20191021220535129.png#pic_center"></p>
-<h2 id="4-什么时候用标准化，什么时候用归一化？"><a href="#4-什么时候用标准化，什么时候用归一化？" class="headerlink" title="4. 什么时候用标准化，什么时候用归一化？"></a>4. 什么时候用标准化，什么时候用归一化？</h2><p>某博主理解：如果你对处理后的数据范围有严格要求，那肯定是归一化，个人经验，标准化是机器学习中更通用的手段，如果你无从下手，可以直接使用标准化。如果数据不为稳定，存在极端的最大最小值，不要用归一化。</p>
-<p>在分类、聚类算法中，需要使用距离来度量相似性的时候、或者使用PCA技术进行降维的时候，标准化表现更好；在不涉及距离度量、协方差计算的时候，可以使用归一化方法。</p>
-<p><strong>在需要使用距离来度量相似性的算法中，或者使用PCA技术进行降维的时候，通常使用标准化（standardization）或均值归一化（mean normalization）比较好，但如果数据分布不是正态分布或者标准差非常小，以及需要把数据固定在 [0, 1] 范围内，那么使用最大最小值归一化（min-max normalization）比较好（min-max 常用于归一化图像的灰度值）。但是min-max比较容易受异常值的影响，如果数据集包含较多的异常值，可以考虑使用稳键归一化（robust normalization）。对于已经中心化的数据或稀疏数据的缩放，比较推荐使用最大绝对值归一化（max abs normalization ），因为它会保住数据中的０元素，不会破坏数据的稀疏性（sparsity）。</strong></p>
-<h2 id="5-什么机器学习模型需要用到特征缩放？"><a href="#5-什么机器学习模型需要用到特征缩放？" class="headerlink" title="5. 什么机器学习模型需要用到特征缩放？"></a>5. 什么机器学习模型需要用到特征缩放？</h2><h3 id="5-1-通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear-Regression）、逻辑回归（Logistic-Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural-Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。"><a href="#5-1-通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear-Regression）、逻辑回归（Logistic-Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural-Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。" class="headerlink" title="5.1 通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear Regression）、逻辑回归（Logistic Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。"></a>5.1 通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear Regression）、逻辑回归（Logistic Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。</h3><h3 id="5-2-决策树（Decision-Tree），随机森林（Random-Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。"><a href="#5-2-决策树（Decision-Tree），随机森林（Random-Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。" class="headerlink" title="5.2 决策树（Decision Tree），随机森林（Random Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。"></a>5.2 决策树（Decision Tree），随机森林（Random Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。</h3><h2 id="6-在进行特征缩放的时候需要注意的地方？"><a href="#6-在进行特征缩放的时候需要注意的地方？" class="headerlink" title="6. 在进行特征缩放的时候需要注意的地方？"></a>6. 在进行特征缩放的时候需要注意的地方？</h2><p><em>需要先把数据先拆分成训练集与验证集，在训练集上计算出需要的数值（如均值和标准值），对训练集数据做标准化&#x2F;归一化处理，然后再用之前计算出的数据（如均值和标准值）对验证集数据做相同的标准化&#x2F;归一化处理。不要在整个数据集上直接做标准化&#x2F;归一化处理，因为这样会将验证集的信息带入到训练集中，这是一个非常容易犯的错误</em></p>
-<h2 id="7-参考链接"><a href="#7-参考链接" class="headerlink" title="7. 参考链接"></a>7. 参考链接</h2><p><a href="https://www.cnblogs.com/HuZihu/p/9761161.html">https://www.cnblogs.com/HuZihu/p/9761161.html</a></p>
-<p><a href="https://blog.csdn.net/weixin_43008804/article/details/103087447">https://blog.csdn.net/weixin_43008804/article/details/103087447</a></p>
-<p><a href="https://blog.csdn.net/weixin_36604953/article/details/102652160">https://blog.csdn.net/weixin_36604953/article/details/102652160</a></p>
-]]></content>
-      <categories>
-        <category>Mathine Learning</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>维度灾难</title>
-    <url>/2022/11/23/%E7%BB%B4%E5%BA%A6%E7%81%BE%E9%9A%BE/</url>
-    <content><![CDATA[<p>今天學習機器學習的時候，發現有<em>維度災難</em>這個東西。挺感興趣的，於是一探究竟！</p>
-<span id="more"></span>
-
-<h1 id="机器学习中的维度灾难"><a href="#机器学习中的维度灾难" class="headerlink" title="机器学习中的维度灾难"></a>机器学习中的维度灾难</h1><p>在介绍机器学习的维度灾难之前，我推荐给大家一个网站，名字虽然说是<a href="https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">计算机视觉的傻瓜书</a>，但是有关机器学习的答疑部分它做得还是蛮好的。除此之外还有<a href="https://www.kdnuggets.com/news/index.html">KDnuggest</a>，也是有关机器学习的论坛。</p>
-<p>本文是参考<a href="https://www.jianshu.com/p/867193608bbd">简书-红色石头Will</a>所得到的观点，虽然他是翻译<a href="https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">计算机视觉的傻瓜书</a>的，但是对于我理解维度灾难起着指导方向的作用。</p>
-<h2 id="1-介绍维度灾难"><a href="#1-介绍维度灾难" class="headerlink" title="1.介绍维度灾难"></a>1.介绍维度灾难</h2><p>维度灾难是在设计一个分类器的时候需要注意的问题。为了得到更好的分类效果，我们可以无限的增加特征。但是事实上，特征数量超过一定值的时候，分类器的效果反而会下降。这种由于特征数量太多导致的分类效果下降的情况，就被称作是<strong>维度灾难</strong>。</p>
-<h2 id="2-维度灾难与过拟合"><a href="#2-维度灾难与过拟合" class="headerlink" title="2.维度灾难与过拟合"></a>2.维度灾难与过拟合</h2><p>貌似特征越多，越有可能实现正确分类，但是情况并非如此。一个直观的情况时，随着特征维度的增加，训练样本在特征空间中的密度是呈指数下降的。</p>
-<blockquote>
-<p>样本数不变，但是特征空间不断地增加，那训练样本在特征空间中的密度岂不是就是呈指数下降的？</p>
-</blockquote>
-<p>如果我们继续增加特征，整个特征空间维度增加，并变得越来越稀疏。由于稀疏性，我们更加容易找到一个超平面来实现分类。这是因为随着特征数量变得无限大，训练样本在最佳超平面的错误侧的可能性将会变得无限小。然而，如果我们将高维的分类结果投影到低维空间中，将会出现一个严重的问题。</p>
-<p>比如说样本数据在3D是线性可分的，但是在2D却并非如此。事实上，增加第三个维度来获得最佳的线性分类效果，等同于在低维特征空间中使用非线性分类器。其结果是，分类器学习了训练数据的噪声和异常，而对样本外的数据拟合效果并不理想，甚至很差。这个概念称为过拟合，是维度灾难的一个直接后果。</p>
-<p><em>换句话讲，如果增加特征维度，为了覆盖同样的特征值范围，防止过拟合，需要用到的样本数就会呈指数型增长！</em></p>
-<h2 id="3-维度灾难与数据稀疏程度分布不均"><a href="#3-维度灾难与数据稀疏程度分布不均" class="headerlink" title="3.维度灾难与数据稀疏程度分布不均"></a>3.维度灾难与数据稀疏程度分布不均</h2><p>我们展示了维度灾难会引起训练数据的稀疏化。使用的特征越多，数据就会变得越稀疏，从而导致分类器的分类效果就会越差。维度灾难还会造成<strong>搜索空间的数据稀疏程度</strong>分布不均。事实上，围绕原点的数据（在超立方体的中心）比在搜索空间的角落处的数据要稀疏得多。</p>
-<p>举例2D，如果大部分的样本都落在了单位内接圆里的话，会更容易分类。但是在高维的空间中，大部分的训练数据都是分布在定义为特征空间的超立方体的角落处，导致难以分类。、</p>
-<p>对于8维的超球体，大约98%的数据集中在它256个角落处。其结果是，当特征空间的维度变得无限大时，从样本点到质心的最大、最小欧氏距离的差值与其最小欧式距离的比值趋于零。因此，距离测量在高维空间中逐渐变得无效。因为分类器是基于这些距离测量的（例如Euclidean距离、Mahalanobis距离、Manhattan距离），所以低维空间特征更少，分类更加容易。同样地，在高维空间的高斯分布会变平坦且尾巴更长。</p>
-<h2 id="4-如何避免维度灾难"><a href="#4-如何避免维度灾难" class="headerlink" title="4.如何避免维度灾难"></a>4.如何避免维度灾难</h2><p>很遗憾，在分类问题中，没有固定的规则来指定该使用多少特征。事实上，用多少特征量取决于你训练样本的数量、决策边界的复杂性和使用的是啥分类器。</p>
-<p>比如说一些非线性决策边界的分类器（e.g. 神经网络、KNN分类器、决策树等），它们的分类效果虽然好，但是泛化能力差容易发生过拟合，这个时候就需要降低点维度。如果使用泛化能力稍微好点的（e.g. 贝叶斯分类器、线性分类器），那么就可以使用稍微多一点的特征。</p>
-<h2 id="5-参考链接"><a href="#5-参考链接" class="headerlink" title="5.参考链接"></a>5.参考链接</h2><blockquote>
-<p><a href="https://www.jianshu.com/p/867193608bbd">简书</a><br><a href="https://cloud.tencent.com/developer/article/1143269">手工特征选取降维</a><br><a href="https://www.kdnuggets.com/2015/03/deep-learning-curse-dimensionality-autoencoders.html">原文</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Mathine Learning</category>
-      </categories>
   </entry>
 </search>
