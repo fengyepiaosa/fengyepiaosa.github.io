@@ -36,15 +36,43 @@
 <li><strong>L</strong>：为当前cell加上行号</li>
 </ul>
 <h2 id="3-编辑模式：按Enter或鼠标单击代码块内部进入"><a href="#3-编辑模式：按Enter或鼠标单击代码块内部进入" class="headerlink" title="3.编辑模式：按Enter或鼠标单击代码块内部进入"></a>3.编辑模式：按Enter或鼠标单击代码块内部进入</h2><ul>
-<li>**Ctrl+鼠标单击(Mac:CMD+鼠标单击)**：多光标操作</li>
-<li>**Ctrl+Z(Mac:CMD+Z)**：回退</li>
+<li><strong>Ctrl+鼠标单击</strong>：多光标操作</li>
+<li><strong>Ctrl+Z</strong>：回退</li>
 <li><strong>Tab键</strong>：代码补全</li>
-<li>**Ctrl(Mac:CMD+&#x2F;)**：注释多行代码</li>
+<li><strong>Ctrl</strong>：注释多行代码</li>
 </ul>
 ]]></content>
       <categories>
         <category>notebook operation</category>
       </categories>
+  </entry>
+  <entry>
+    <title>cv2报错处理</title>
+    <url>/2022/11/24/cv2%E6%8A%A5%E9%94%99%E5%A4%84%E7%90%86/</url>
+    <content><![CDATA[<p>cv2报错：raise TypeError(“Image data of dtype {} cannot be converted to “TypeError: Image data of dtype object cannot be converted to float</p>
+<span id="more"></span>
+
+<h1 id="raise-TypeError-“Image-data-of-dtype-cannot-be-converted-to-“-TypeError-Image-data-of-dtype-object-cannot-be-converted-to-float"><a href="#raise-TypeError-“Image-data-of-dtype-cannot-be-converted-to-“-TypeError-Image-data-of-dtype-object-cannot-be-converted-to-float" class="headerlink" title="raise TypeError(“Image data of dtype {} cannot be converted to “     TypeError: Image data of dtype object cannot be converted to float"></a>raise TypeError(“Image data of dtype {} cannot be converted to “     TypeError: Image data of dtype object cannot be converted to float</h1><p>刚想要研究一下CV2内置的图像类型的不同，结果发现CSDN上找的代码跑不出来？其实也正常，天下哪有免费的午餐，拿到的代码还不是得修修改改？</p>
+<h1 id="报错如下"><a href="#报错如下" class="headerlink" title="报错如下"></a>报错如下</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">raise TypeError(&quot;Image data of dtype &#123;&#125; cannot be converted to &quot;     TypeError: Image data of dtype object cannot be converted to float</span><br></pre></td></tr></table></figure>
+
+<p>至于解决方案众说纷坛，有说要看看数据类型是不是不对应，还有的人说路径里面有中文。其实我的文件夹真的有中文，但是更改之后，报错依旧。</p>
+<p>网上都说是引入图片路径的问题，但是我这句代码应该也没有错吧？因为下载的visual code插件可以成功显示出图片在代码的左边，左思右想决定还是更改路径试试。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># cv2.imread()接口读图像，读进来直接是BGR 格式数据格式在 0~255，通道格式为(W,H,C)</span><br><span class="line">img_BGR = cv2.imread(&#x27;sea.jpg&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>更改成visual code直接复制图片的相对路径</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">img_BGR = cv2.imread(&#x27;web\sea.jpg&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>后面发现真的成功运行。这次运行的代码文件和图片文件在同一个文件夹里，但是却要加个前缀，可能与我IDE打开的工作区有关吧？</p>
+<p>总之就是路径的问题。</p>
+<h1 id="不存在skimage库"><a href="#不存在skimage库" class="headerlink" title="不存在skimage库"></a>不存在skimage库</h1><p>Python库函数的下载放到了另外一篇文章…</p>
+]]></content>
+      <categories>
+        <category>Library function</category>
+      </categories>
+      <tags>
+        <tag>report an error</tag>
+        <tag>库函数</tag>
+      </tags>
   </entry>
   <entry>
     <title>github文件夹有白色箭头并且不能打开的解决办法</title>
@@ -149,34 +177,6 @@
       </categories>
   </entry>
   <entry>
-    <title>交叉验证补充</title>
-    <url>/2022/11/23/%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81%E8%A1%A5%E5%85%85/</url>
-    <content><![CDATA[<p>前面我介绍了K折交叉验证该如何划分，还有具体的使用效果。但是对于K折交叉验证该什么时候用，怎么使用还没有讲的很清楚，这里我就再学习一遍加深记忆吧！</p>
-<span id="more"></span>
-
-<h1 id="交叉验证补充"><a href="#交叉验证补充" class="headerlink" title="交叉验证补充"></a>交叉验证补充</h1><p>事情的起因是我看到了下面一段代码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">from sklearn.model_selection import KFold, train_test_split</span><br></pre></td></tr></table></figure>
-
-<p>这个KFolder怎么和train_test_split都在一起？我查了一下，发现train_test_split就是我之前所鄙夷的简单交叉验证。没有验证集，都是总集合不断打乱然后划分训练集和测试集，利用测试集的表现性能（也就是损失函数）来评估最优的模型和参数。由于是随机的将原始数据分组，所以最后验证集分类准确率的高低与原始数据的分组有很大的关系，得到的结果并不具有说服性<a href="https://blog.csdn.net/u010986753/article/details/98069124">…</a></p>
-<h1 id="对K折交叉验证的再理解"><a href="#对K折交叉验证的再理解" class="headerlink" title="对K折交叉验证的再理解"></a>对K折交叉验证的再理解</h1><p>前面我介绍了K折交叉验证该如何划分，还有具体的使用效果。但是对于K折交叉验证该什么时候用，怎么使用还没有讲的很清楚，这里我就再学习一遍加深记忆吧！</p>
-<p>K折交叉只是一种划分数据集的策略。把它和传统划分数据集（train_test_split）的方式进行比较，它可以避免固定划分数据集的局限性、特殊性，这个优势在小规模数据集上更明显。不用K折交叉验证就不能进行模型评估和模型选择了吗？当然不是。只要有测试集，就能进行模型评估；只要有验证集，就能进行模型选择。所以N折交叉验证只是在做这两件事时的一种可选的优化手段。当数据集很小时，建议用交叉验证的方法来避免过拟合。</p>
-<p>引用<a href="https://zhuanlan.zhihu.com/p/113623623">王亮博主</a>的观点，K折交叉验证可以分成两个用途：</p>
-<ol>
-<li>模型选择</li>
-<li>模型评估</li>
-</ol>
-<h2 id="1-模型选择"><a href="#1-模型选择" class="headerlink" title="1.模型选择"></a>1.模型选择</h2><p>当对训练集和验证集采取Kfolder进行划分的时候，被称为是模型选择，也就是参数选择。验证集是在训练过程中用于检验模型的训练情况，从而确定合适的超参数。而测试集完全不参与训练的数据，仅仅用来观测测试效果、测试模型的泛化能力。</p>
-<p>具体的过程是，首先在训练集和验证集上对多种模型选择（超参数选择）进行验证，选出平均误差最小的模型（超参数）。选出合适的模型（超参数）后，可以把训练集和验证集合并起来，在上面重新把模型训练一遍，得到最终模型，然后再用测试集测试其泛化能力。	</p>
-<h2 id="2-模型选择"><a href="#2-模型选择" class="headerlink" title="2.模型选择"></a>2.模型选择</h2><p>交叉验证的另一个用途，就是模型是确定的，没有多个候选模型需要选，只是用交叉验证的方法来对模型的performance进行评估。这种情况下，数据集被划分成训练集、测试集两部分，训练集和测试集的划分采用N折交叉的方式。我的理解是，找出一种训练集与测试集的划分方法，让测试集的表现最好！这一点如果在数据量小的时候还好，K个组合中的分数差距可能会比较大。但如果数据量大起来了，相比这K组的测试集表现都差不多吧？这也说明了K折只适合用于小样本的数据集上…</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>当用交叉验证进行模型选择时，可以从多种模型中选择出泛化能力最好的（即最不容易发生过拟合）的模型。从这个角度上讲，交叉验证是避免发生过拟合的手段。同样是解决过拟合的方法，交叉验证与正则化不同：交叉验证通过寻找最佳模型的方式来解决过拟合；而正则化则是通过约束参数的范数来解决过拟合。</p>
-<p>当用交叉验证进行模型评估时，交叉验证不能解决过拟合问题，只能用来评估模型的performance。</p>
-<p>如果还不熟悉的话建议拿<a href="https://blog.csdn.net/weixin_43685844/article/details/88635492">练习1</a>和<a href="https://zhuanlan.zhihu.com/p/250253050">练习2</a>练练手</p>
-]]></content>
-      <categories>
-        <category>Mathine Learning</category>
-      </categories>
-  </entry>
-  <entry>
     <title>交叉验证</title>
     <url>/2022/11/23/%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81/</url>
     <content><![CDATA[<p>这里介绍一下K-Fold交叉验证，这是防止过拟合的一种方法…</p>
@@ -218,66 +218,35 @@
       </categories>
   </entry>
   <entry>
-    <title>在hexo搭建博客遇到的问题</title>
-    <url>/2022/11/23/%E5%9C%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>之前我用的主题感觉索然无味，于是我尝试换了一个主题，结果发现了新大陆！激动的话我就不在这里详细张开来讲了，我会放在另外一篇文章里，这里主要讲讲我在Hexo上搭建Next遇到的问题以及解决方法。</p>
+    <title>pip安装新库</title>
+    <url>/2022/11/24/pip%E5%AE%89%E8%A3%85%E6%96%B0%E5%BA%93/</url>
+    <content><![CDATA[<p>书接上回，研究一下在visual code上如何通过pip安装库函数，这次要安装的库函数是skimage</p>
 <span id="more"></span>
 
-<h1 id="Hexo搭建了博客显示不出Categories和Tags"><a href="#Hexo搭建了博客显示不出Categories和Tags" class="headerlink" title="Hexo搭建了博客显示不出Categories和Tags"></a>Hexo搭建了博客显示不出Categories和Tags</h1><h2 id="在主题配置文件中取消注释Categories和Tags"><a href="#在主题配置文件中取消注释Categories和Tags" class="headerlink" title="在主题配置文件中取消注释Categories和Tags"></a>在主题配置文件中取消注释Categories和Tags</h2><p>博客文件中一共有两类配置文件，一类是Hexo的配置文件、另一类是主题配置文件。首先要做的事是将主题配置文件打开，找到Menu Settings并且把Categories和Tags取消注释。</p>
-<h2 id="新建页面"><a href="#新建页面" class="headerlink" title="新建页面"></a>新建页面</h2><p>在你的source文件夹中新建文件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new page categories</span><br><span class="line">hexo new page tags</span><br><span class="line">hexo new page about</span><br><span class="line">hexo new page schedule</span><br></pre></td></tr></table></figure>
+<h1 id="pip安装skimage库"><a href="#pip安装skimage库" class="headerlink" title="pip安装skimage库"></a>pip安装skimage库</h1><p>书接上回，研究一下在visual code上如何通过pip安装库函数</p>
+<h1 id="找到Python的路径"><a href="#找到Python的路径" class="headerlink" title="找到Python的路径"></a>找到Python的路径</h1><p>我的是<em>“D:\Python\Scripts”</em></p>
+<p>visual code或者cmd命令台执行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd D:\Python\Scripts</span><br></pre></td></tr></table></figure>
 
-<h2 id="修改index-md"><a href="#修改index-md" class="headerlink" title="修改index.md"></a>修改index.md</h2><p>上面除了categories和tags我还写入了关于和日程表页面，只要你有需求就可以在主题配置文件中将他们打开。它们的处理方式都是类似的，所以我将它们放在一起讨论。</p>
-<p>打开source文件夹下的index.md文件后，开头只有title和data，我们要做就是在后面加上一句<code>type: categories</code>，其它也是同理。注意冒号后面有空格。</p>
-<p>之前有人说用<code>layout: categories</code>的方式也可以，我尝试了一下，发现已经失效了。原因可能是因为当前的hexo已经不支持layout这种格式了。</p>
-<h1 id="hexo建立同级categories"><a href="#hexo建立同级categories" class="headerlink" title="hexo建立同级categories"></a>hexo建立同级categories</h1><p>之前我对categories还没有分级和同级的概念，直到我对一篇文章想要运用多个categories的时候才初现端倪。网上的人都说hexo已经不支持同级分类了（但是我确实实现同级分类了）</p>
-<p>如果我们在outline如何命名：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">categories: </span><br><span class="line">- ML</span><br><span class="line">- Homework</span><br></pre></td></tr></table></figure>
+<p>然后输入pip install skimage</p>
+<h1 id="pip版本要更新"><a href="#pip版本要更新" class="headerlink" title="pip版本要更新"></a>pip版本要更新</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">D:\Python\Scripts&gt;pip install skimage</span><br><span class="line">Collecting skimage</span><br><span class="line">  Using cached skimage-0.0.tar.gz (757 bytes)</span><br><span class="line">  Preparing metadata (setup.py) ... error</span><br><span class="line">  error: subprocess-exited-with-error</span><br><span class="line"></span><br><span class="line">  × python setup.py egg_info did not run successfully.</span><br><span class="line">  │ exit code: 1</span><br><span class="line">  ╰─&gt; [3 lines of output]</span><br><span class="line"></span><br><span class="line">      *** Please install the `scikit-image` package (instead of `skimage`) ***</span><br><span class="line"></span><br><span class="line">      [end of output]</span><br><span class="line"></span><br><span class="line">  note: This error originates from a subprocess, and is likely not a problem with pip.</span><br><span class="line">error: metadata-generation-failed</span><br><span class="line"></span><br><span class="line">× Encountered error while generating package metadata.</span><br><span class="line">╰─&gt; See above for output.</span><br><span class="line"></span><br><span class="line">note: This is an issue with the package mentioned above, not pip.</span><br><span class="line">hint: See above for details.</span><br><span class="line"></span><br><span class="line">[notice] A new release of pip available: 22.1.2 -&gt; 22.3</span><br><span class="line">[notice] To update, run: python.exe -m pip install --upgrade pip</span><br></pre></td></tr></table></figure>
 
-<p>或者说是这样</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">categories: [ML, Homework]</span><br></pre></td></tr></table></figure>
+<p>没办法，照着提示更新</p>
+<h1 id="更新完下载仍然报错"><a href="#更新完下载仍然报错" class="headerlink" title="更新完下载仍然报错"></a>更新完下载仍然报错</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">D:\Python\Scripts&gt;.\pip install skimage</span><br><span class="line">Collecting skimage</span><br><span class="line">  Using cached skimage-0.0.tar.gz (757 bytes)</span><br><span class="line">  Preparing metadata (setup.py) ... error</span><br><span class="line">  error: subprocess-exited-with-error</span><br><span class="line"></span><br><span class="line">  × python setup.py egg_info did not run successfully.</span><br><span class="line">  │ exit code: 1</span><br><span class="line">  ╰─&gt; [3 lines of output]</span><br><span class="line"></span><br><span class="line">      *** Please install the `scikit-image` package (instead of `skimage`) ***</span><br><span class="line"></span><br><span class="line">      [end of output]</span><br><span class="line"></span><br><span class="line">  note: This error originates from a subprocess, and is likely not a problem with pip.</span><br><span class="line">error: metadata-generation-failed</span><br><span class="line"></span><br><span class="line">× Encountered error while generating package metadata.</span><br><span class="line">╰─&gt; See above for output.</span><br><span class="line"></span><br><span class="line">note: This is an issue with the package mentioned above, not pip.</span><br><span class="line">hint: See above for details.</span><br></pre></td></tr></table></figure>
 
-<p>上面两种方法效果一样，Homework都是ML下的子类，你要是有<code>categories: [Homework]</code>这个目录，你会发现它们并不是相同的！因为一个是Homework一个是ML下的Homework。</p>
-<p>要是真想ML和Homework有同样的级别，可以尝试一下以下方法：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">categories:</span><br><span class="line">- [ML]</span><br><span class="line">- [Homework]</span><br></pre></td></tr></table></figure>
-
-<h1 id="hexo主页不显示全文"><a href="#hexo主页不显示全文" class="headerlink" title="hexo主页不显示全文"></a>hexo主页不显示全文</h1><p>在outline下面，你需要加入一段简介，作为这篇文章的介绍，随后再加入<code>&lt;!-- more --&gt;</code>，那么下面的内容便可以被隐藏。若是不加简介的话，<code>&lt;!-- more --&gt;</code>隐藏下面的功能便会失效。</p>
-<h1 id="hexo配置Next教程链接"><a href="#hexo配置Next教程链接" class="headerlink" title="hexo配置Next教程链接"></a>hexo配置Next教程链接</h1><ul>
-<li><a href="https://zhuanlan.zhihu.com/p/351031589">知乎详细配置</a></li>
-<li><a href="https://blog.csdn.net/nightmare_dimple/article/details/86661502?spm=1001.2101.3001.6650.2&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-2-86661502-blog-100138838.pc_relevant_3mothn_strategy_and_data_recovery&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-2-86661502-blog-100138838.pc_relevant_3mothn_strategy_and_data_recovery&utm_relevant_index=3">CSDN-主题优化1</a></li>
-<li><a href="https://blog.csdn.net/as480133937/article/details/100138838">CSDN-主题优化2-more extended functions!</a></li>
-<li><a href="http://home.ustc.edu.cn/~liujunyan/blog/hexo-next-theme-config/#hexo-%E9%85%8D%E7%BD%AE">Next页面配置</a></li>
-<li><a href="http://theme-next.iissnan.com/getting-started.html">Next官方文档</a></li>
-</ul>
-<h1 id="hexo常用命令"><a href="#hexo常用命令" class="headerlink" title="hexo常用命令"></a>hexo常用命令</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo n &quot;name&quot;       # 新建文章</span><br><span class="line">hexo new page &quot;name&quot;  # 新建页面</span><br><span class="line">hexo g                # 生成页面</span><br><span class="line">hexo d                # 部署</span><br><span class="line">hexo g -d             # 生成页面并部署</span><br><span class="line">hexo s                # 本地预览</span><br><span class="line">hexo clean            # 清除缓存和已生成的静态文件</span><br><span class="line">hexo help             # 帮助</span><br></pre></td></tr></table></figure>
-
-<p>但是我通常都是使用<code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code>,因为其他的很少用到！</p>
+<p>原来是库函数命名的问题，为什么我要的是</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">from skimage import io, data</span><br></pre></td></tr></table></figure>
+<p>但是却给了我个“scikit-image”呢？</p>
+<p>不知道，更改名字后执行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">D:\Python\Scripts&gt;pip install scikit-image</span><br></pre></td></tr></table></figure>
+<p><strong>成功！</strong></p>
 ]]></content>
       <categories>
-        <category>blog</category>
+        <category>Library function</category>
       </categories>
       <tags>
-        <tag>博客</tag>
-        <tag>hexo</tag>
-        <tag>Next</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>插入YouTube视频</title>
-    <url>/2022/11/23/%E6%8F%92%E5%85%A5YouTube%E8%A7%86%E9%A2%91/</url>
-    <content><![CDATA[<p>尝试在文章中插入一段YouTube视频，就放我最近经常听的一首歌吧！</p>
-<span id="more"></span>
-
-<div class="video-container"><iframe src="https://www.youtube.com/embed/crIP7PuC8Bc" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
-
-]]></content>
-      <categories>
-        <category>Blog</category>
-      </categories>
-      <tags>
-        <tag>博客</tag>
-        <tag>YouTube</tag>
-        <tag>音视频</tag>
+        <tag>库函数</tag>
+        <tag>安装</tag>
       </tags>
   </entry>
   <entry>
@@ -350,6 +319,79 @@ im.save(output)
       </categories>
   </entry>
   <entry>
+    <title>交叉验证补充</title>
+    <url>/2022/11/23/%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81%E8%A1%A5%E5%85%85/</url>
+    <content><![CDATA[<p>前面我介绍了K折交叉验证该如何划分，还有具体的使用效果。但是对于K折交叉验证该什么时候用，怎么使用还没有讲的很清楚，这里我就再学习一遍加深记忆吧！</p>
+<span id="more"></span>
+
+<h1 id="交叉验证补充"><a href="#交叉验证补充" class="headerlink" title="交叉验证补充"></a>交叉验证补充</h1><p>事情的起因是我看到了下面一段代码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">from sklearn.model_selection import KFold, train_test_split</span><br></pre></td></tr></table></figure>
+
+<p>这个KFolder怎么和train_test_split都在一起？我查了一下，发现train_test_split就是我之前所鄙夷的简单交叉验证。没有验证集，都是总集合不断打乱然后划分训练集和测试集，利用测试集的表现性能（也就是损失函数）来评估最优的模型和参数。由于是随机的将原始数据分组，所以最后验证集分类准确率的高低与原始数据的分组有很大的关系，得到的结果并不具有说服性<a href="https://blog.csdn.net/u010986753/article/details/98069124">…</a></p>
+<h1 id="对K折交叉验证的再理解"><a href="#对K折交叉验证的再理解" class="headerlink" title="对K折交叉验证的再理解"></a>对K折交叉验证的再理解</h1><p>前面我介绍了K折交叉验证该如何划分，还有具体的使用效果。但是对于K折交叉验证该什么时候用，怎么使用还没有讲的很清楚，这里我就再学习一遍加深记忆吧！</p>
+<p>K折交叉只是一种划分数据集的策略。把它和传统划分数据集（train_test_split）的方式进行比较，它可以避免固定划分数据集的局限性、特殊性，这个优势在小规模数据集上更明显。不用K折交叉验证就不能进行模型评估和模型选择了吗？当然不是。只要有测试集，就能进行模型评估；只要有验证集，就能进行模型选择。所以N折交叉验证只是在做这两件事时的一种可选的优化手段。当数据集很小时，建议用交叉验证的方法来避免过拟合。</p>
+<p>引用<a href="https://zhuanlan.zhihu.com/p/113623623">王亮博主</a>的观点，K折交叉验证可以分成两个用途：</p>
+<ol>
+<li>模型选择</li>
+<li>模型评估</li>
+</ol>
+<h2 id="1-模型选择"><a href="#1-模型选择" class="headerlink" title="1.模型选择"></a>1.模型选择</h2><p>当对训练集和验证集采取Kfolder进行划分的时候，被称为是模型选择，也就是参数选择。验证集是在训练过程中用于检验模型的训练情况，从而确定合适的超参数。而测试集完全不参与训练的数据，仅仅用来观测测试效果、测试模型的泛化能力。</p>
+<p>具体的过程是，首先在训练集和验证集上对多种模型选择（超参数选择）进行验证，选出平均误差最小的模型（超参数）。选出合适的模型（超参数）后，可以把训练集和验证集合并起来，在上面重新把模型训练一遍，得到最终模型，然后再用测试集测试其泛化能力。	</p>
+<h2 id="2-模型选择"><a href="#2-模型选择" class="headerlink" title="2.模型选择"></a>2.模型选择</h2><p>交叉验证的另一个用途，就是模型是确定的，没有多个候选模型需要选，只是用交叉验证的方法来对模型的performance进行评估。这种情况下，数据集被划分成训练集、测试集两部分，训练集和测试集的划分采用N折交叉的方式。我的理解是，找出一种训练集与测试集的划分方法，让测试集的表现最好！这一点如果在数据量小的时候还好，K个组合中的分数差距可能会比较大。但如果数据量大起来了，相比这K组的测试集表现都差不多吧？这也说明了K折只适合用于小样本的数据集上…</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>当用交叉验证进行模型选择时，可以从多种模型中选择出泛化能力最好的（即最不容易发生过拟合）的模型。从这个角度上讲，交叉验证是避免发生过拟合的手段。同样是解决过拟合的方法，交叉验证与正则化不同：交叉验证通过寻找最佳模型的方式来解决过拟合；而正则化则是通过约束参数的范数来解决过拟合。</p>
+<p>当用交叉验证进行模型评估时，交叉验证不能解决过拟合问题，只能用来评估模型的performance。</p>
+<p>如果还不熟悉的话建议拿<a href="https://blog.csdn.net/weixin_43685844/article/details/88635492">练习1</a>和<a href="https://zhuanlan.zhihu.com/p/250253050">练习2</a>练练手</p>
+]]></content>
+      <categories>
+        <category>Mathine Learning</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>在hexo搭建博客遇到的问题</title>
+    <url>/2022/11/23/%E5%9C%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>之前我用的主题感觉索然无味，于是我尝试换了一个主题，结果发现了新大陆！激动的话我就不在这里详细张开来讲了，我会放在另外一篇文章里，这里主要讲讲我在Hexo上搭建Next遇到的问题以及解决方法。</p>
+<span id="more"></span>
+
+<h1 id="Hexo搭建了博客显示不出Categories和Tags"><a href="#Hexo搭建了博客显示不出Categories和Tags" class="headerlink" title="Hexo搭建了博客显示不出Categories和Tags"></a>Hexo搭建了博客显示不出Categories和Tags</h1><h2 id="在主题配置文件中取消注释Categories和Tags"><a href="#在主题配置文件中取消注释Categories和Tags" class="headerlink" title="在主题配置文件中取消注释Categories和Tags"></a>在主题配置文件中取消注释Categories和Tags</h2><p>博客文件中一共有两类配置文件，一类是Hexo的配置文件、另一类是主题配置文件。首先要做的事是将主题配置文件打开，找到Menu Settings并且把Categories和Tags取消注释。</p>
+<h2 id="新建页面"><a href="#新建页面" class="headerlink" title="新建页面"></a>新建页面</h2><p>在你的source文件夹中新建文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new page categories</span><br><span class="line">hexo new page tags</span><br><span class="line">hexo new page about</span><br><span class="line">hexo new page schedule</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改index-md"><a href="#修改index-md" class="headerlink" title="修改index.md"></a>修改index.md</h2><p>上面除了categories和tags我还写入了关于和日程表页面，只要你有需求就可以在主题配置文件中将他们打开。它们的处理方式都是类似的，所以我将它们放在一起讨论。</p>
+<p>打开source文件夹下的index.md文件后，开头只有title和data，我们要做就是在后面加上一句<code>type: categories</code>，其它也是同理。注意冒号后面有空格。</p>
+<p>之前有人说用<code>layout: categories</code>的方式也可以，我尝试了一下，发现已经失效了。原因可能是因为当前的hexo已经不支持layout这种格式了。</p>
+<h1 id="hexo建立同级categories"><a href="#hexo建立同级categories" class="headerlink" title="hexo建立同级categories"></a>hexo建立同级categories</h1><p>之前我对categories还没有分级和同级的概念，直到我对一篇文章想要运用多个categories的时候才初现端倪。网上的人都说hexo已经不支持同级分类了（但是我确实实现同级分类了）</p>
+<p>如果我们在outline如何命名：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">categories: </span><br><span class="line">- ML</span><br><span class="line">- Homework</span><br></pre></td></tr></table></figure>
+
+<p>或者说是这样</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">categories: [ML, Homework]</span><br></pre></td></tr></table></figure>
+
+<p>上面两种方法效果一样，Homework都是ML下的子类，你要是有<code>categories: [Homework]</code>这个目录，你会发现它们并不是相同的！因为一个是Homework一个是ML下的Homework。</p>
+<p>要是真想ML和Homework有同样的级别，可以尝试一下以下方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">categories:</span><br><span class="line">- [ML]</span><br><span class="line">- [Homework]</span><br></pre></td></tr></table></figure>
+
+<h1 id="hexo主页不显示全文"><a href="#hexo主页不显示全文" class="headerlink" title="hexo主页不显示全文"></a>hexo主页不显示全文</h1><p>在outline下面，你需要加入一段简介，作为这篇文章的介绍，随后再加入<code>&lt;!-- more --&gt;</code>，那么下面的内容便可以被隐藏。若是不加简介的话，<code>&lt;!-- more --&gt;</code>隐藏下面的功能便会失效。</p>
+<h1 id="hexo配置Next教程链接"><a href="#hexo配置Next教程链接" class="headerlink" title="hexo配置Next教程链接"></a>hexo配置Next教程链接</h1><ul>
+<li><a href="https://zhuanlan.zhihu.com/p/351031589">知乎详细配置</a></li>
+<li><a href="https://blog.csdn.net/nightmare_dimple/article/details/86661502?spm=1001.2101.3001.6650.2&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-2-86661502-blog-100138838.pc_relevant_3mothn_strategy_and_data_recovery&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-2-86661502-blog-100138838.pc_relevant_3mothn_strategy_and_data_recovery&utm_relevant_index=3">CSDN-主题优化1</a></li>
+<li><a href="https://blog.csdn.net/as480133937/article/details/100138838">CSDN-主题优化2-more extended functions!</a></li>
+<li><a href="http://home.ustc.edu.cn/~liujunyan/blog/hexo-next-theme-config/#hexo-%E9%85%8D%E7%BD%AE">Next页面配置</a></li>
+<li><a href="http://theme-next.iissnan.com/getting-started.html">Next官方文档</a></li>
+</ul>
+<h1 id="hexo常用命令"><a href="#hexo常用命令" class="headerlink" title="hexo常用命令"></a>hexo常用命令</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo n &quot;name&quot;       # 新建文章</span><br><span class="line">hexo new page &quot;name&quot;  # 新建页面</span><br><span class="line">hexo g                # 生成页面</span><br><span class="line">hexo d                # 部署</span><br><span class="line">hexo g -d             # 生成页面并部署</span><br><span class="line">hexo s                # 本地预览</span><br><span class="line">hexo clean            # 清除缓存和已生成的静态文件</span><br><span class="line">hexo help             # 帮助</span><br></pre></td></tr></table></figure>
+
+<p>但是我通常都是使用<code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code>,因为其他的很少用到！</p>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>博客</tag>
+        <tag>hexo</tag>
+        <tag>Next</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>数学建模大赛</title>
     <url>/2022/11/23/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E5%A4%A7%E8%B5%9B/</url>
     <content><![CDATA[<p>直到今天为止，数模比赛已经结束咯！任务完成，参赛题目也提交了，结果如何就看人品了🤗</p>
@@ -412,118 +454,85 @@ im.save(output)
       </tags>
   </entry>
   <entry>
-    <title>激活函数</title>
-    <url>/2022/11/23/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<p>学习一下机器学习中常见的激活函数，大部分只是了解即可，不必深究</p>
+    <title>机器学习派系</title>
+    <url>/2022/11/24/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%B4%BE%E7%B3%BB/</url>
+    <content><![CDATA[<p>机器学习有不同的学派，每个学派从不同的角度看问题。这也是偶然了解到，感觉对日后的理解和学习有帮助，于是便记录下来…</p>
 <span id="more"></span>
 
-<h1 id="常用的激活函数"><a href="#常用的激活函数" class="headerlink" title="常用的激活函数"></a>常用的激活函数</h1><h2 id="首先要知道什么是激活函数？"><a href="#首先要知道什么是激活函数？" class="headerlink" title="首先要知道什么是激活函数？"></a>首先要知道什么是激活函数？</h2><p>激活函数就是在神经网络的神经元上运行的函数，负责将神经元的输入映射到输出端。它类似于人类大脑中基于神经元的模型，激活函数最终决定了要发射给下一个神经元的内容。</p>
-<p>它的可视化过程如图所示：</p>
-<p><img src="https://ask.qcloudimg.com/http-save/8352478/mn5asmil0s.png?imageView2/2/w/1620" alt="激活函数工作过程"></p>
-<p>如果不用激励函数，每一层输出都是上层输入的线性函数，无论神经网络有多少层，输出都是输入的线性组合。神经网络中使用激活函数来加入非线性因素，提高模型的表达能力。</p>
-<h2 id="1-sigmoid激活函数"><a href="#1-sigmoid激活函数" class="headerlink" title="1. sigmoid激活函数"></a>1. sigmoid激活函数</h2><p><img src="https://ask.qcloudimg.com/http-save/8352478/nhi9swy8ln.png?imageView2/2/w/1620" alt="sigmoid函数"></p>
-<p>Sigmoid 函数的图像看起来像一个 S 形曲线。它的表达式如下：</p>
-<p>f(z) &#x3D; \frac{1}{1+e^{-z} } </p>
-<p>Sigmoid函数是传统神经网络中最常用的激活函数，一度被视为神经网络的核心所在。 </p>
-<p>从数学上来看，Sigmoid函数对中央区的信号增益较大，对两侧区的信号增益小，在信号的特征空间映射上，有很好的效果。从神经科学上来看，中央区酷似神经元的兴奋态，两侧区酷似神经元的抑制态，因而在神经网络学习方面，可以将重点特征推向中央区，将非重点特征推向两侧区。</p>
-<h3 id="1-1-在什么情况下适合使用-Sigmoid-激活函数呢？"><a href="#1-1-在什么情况下适合使用-Sigmoid-激活函数呢？" class="headerlink" title="1.1 在什么情况下适合使用 Sigmoid 激活函数呢？"></a>1.1 在什么情况下适合使用 Sigmoid 激活函数呢？</h3><ul>
-<li>Sigmoid 函数的输出范围是 0 到 1。由于输出值限定在 0 到 1，因此它对每个神经元的输出进行了归一化；</li>
-<li>用于将预测概率作为输出的模型。由于概率的取值范围是 0 到 1，因此 Sigmoid 函数非常合适；</li>
-<li>梯度平滑，避免「跳跃」的输出值；</li>
-<li>函数是可微的。这意味着可以找到任意两个点的 sigmoid 曲线的斜率；</li>
-<li>明确的预测，即非常接近 1 或 0。</li>
-<li></li>
-</ul>
-<h3 id="1-2-Sigmoid-激活函数有哪些缺点？"><a href="#1-2-Sigmoid-激活函数有哪些缺点？" class="headerlink" title="1.2 Sigmoid 激活函数有哪些缺点？"></a>1.2 Sigmoid 激活函数有哪些缺点？</h3><ul>
-<li>倾向于梯度消失；</li>
-<li>函数输出不是以 0 为中心的，这会降低权重更新的效率；</li>
-<li>Sigmoid 函数执行指数运算，计算机运行得较慢。</li>
-</ul>
-<p>现在基本上已经用不上sigmoid函数了。</p>
-<h2 id="2-TanHyperbolic（tanh）双曲正切激活函数"><a href="#2-TanHyperbolic（tanh）双曲正切激活函数" class="headerlink" title="2. TanHyperbolic（tanh）双曲正切激活函数"></a>2. TanHyperbolic（tanh）双曲正切激活函数</h2><p><img src="https://ask.qcloudimg.com/http-save/8352478/gm9p8du88z.png?imageView2/2/w/1620" alt="tanh函数"></p>
-<p>tanh 激活函数的图像也是 S 形，表达式如下：</p>
-<p>f(z) &#x3D; tanh(z) &#x3D;  \frac{e^{z} - e^{-z}  }{e^{z} + e^{-z} }  &#x3D; \frac{2}{1 + e^{-2z} }-1 </p>
-<p>tanh 是双曲正切函数。tanh 函数和 sigmoid 函数的曲线相似。但是它比 sigmoid 函数更有一些优势。</p>
-<ul>
-<li><p>sigmoid函数和tanh函数都存在一个问题：当神经网络的层数增多的时候，由于在进行反向传播的时候，链式求导，多项相乘，函数进入饱和区（导数接近于零的地方）就会逐层传递，这种现象被称为梯度消失。</p>
+<h1 id="机器学习5大学派！"><a href="#机器学习5大学派！" class="headerlink" title="机器学习5大学派！"></a>机器学习5大学派！</h1><p>机器学习有不同的学派，每个学派从不同的角度看问题。</p>
+<ol>
+<li><p>符号学派（symbolists） 更多关注哲学，逻辑学和心理学， 并将学习视为逆向演绎 。使用符号、规则和逻辑来表征知识和进行逻辑推理主要是基于规则的，算法如 ：决策树。</p>
 </li>
-<li><p>首先要明确的一点是，当输入较大或较小时，输出几乎是平滑的并且梯度较小，这不利于权重更新。tanh 整个函数以 0 为中心，比 sigmoid 函数更好。在实际操作的时候，tanh 函数延迟了饱和期，在特征相差比较明显的时候效果会更好，并且在循环过程中也能够不断地扩大特征的效果。</p>
+<li><p>联结学派（connectionists）专注物理学和神经科学，并相信大脑的逆向工程。使用概率矩阵和加权神经元来动态地识别和归纳模式，算法如 ：神经网络 。</p>
 </li>
-<li><p>在一般的二元分类问题中，tanh 函数用于隐藏层，而 sigmoid 函数用于输出层，但这并不是固定的，需要根据特定问题进行调整。</p>
+<li><p>进化学派，在遗传学和进化生物学的基础上得出结论。生成变化，然后为特定目标获取其中最优的， 算法如 ：遗传算法 。</p>
 </li>
-</ul>
-<h2 id="3-softmax激活函数"><a href="#3-softmax激活函数" class="headerlink" title="3. softmax激活函数"></a>3. softmax激活函数</h2><p>公式表达为：</p>
-<p>f(z) &#x3D; \frac{e^{Z_j} }{\sum_{k}^{}e^{Z_k} } </p>
-<p>Sigmoid函数如果用来分类的话，只能进行二分类，而这里的softmax函数可以看做是Sigmoid函数的一般化，可以进行多分类。</p>
-<h3 id="3-0-Softmax激活函数的特点："><a href="#3-0-Softmax激活函数的特点：" class="headerlink" title="3.0 Softmax激活函数的特点："></a>3.0 Softmax激活函数的特点：</h3><ul>
-<li>在零点不可微。</li>
-<li>负输入的梯度为零，这意味着对于该区域的激活，权重不会在反向传播期间更新，因此会产生永不激活的死亡神经元。</li>
-</ul>
-<h3 id="3-1-sigmoid与softmax比较-–-gt-sigmoid"><a href="#3-1-sigmoid与softmax比较-–-gt-sigmoid" class="headerlink" title="3.1 sigmoid与softmax比较 –&gt; sigmoid"></a>3.1 sigmoid与softmax比较 –&gt; sigmoid</h3><p>二分类和多分类其实没有多少区别。用的公式仍然是y &#x3D; wx + b。 但有一个非常大的区别是他们用的激活函数是不同的。 逻辑回归用的是sigmoid，这个激活函数的除了给函数增加非线性之外还会把最后的预测值转换成在[0,1]中的数据值。也就是预测值是0&lt;y&lt;1。 我们可以把最后的这个预测值当做是一个预测为正例的概率。在进行模型应用的时候我们会设置一个阈值，当预测值大于这个阈值的时候，我们判定为正例子，反之我们判断为负例。这样我们可以很好的进行二分类问题。 </p>
-<h3 id="3-2-sigmoid与softmax比较-–-gt-softmax"><a href="#3-2-sigmoid与softmax比较-–-gt-softmax" class="headerlink" title="3.2 sigmoid与softmax比较 –&gt; softmax"></a>3.2 sigmoid与softmax比较 –&gt; softmax</h3><p>Softmax函数是用于多类分类问题的激活函数，在多类分类问题中，超过两个类标签则需要类成员关系。对于长度为K的任意实向量，Softmax函数可以将其压缩为长度为K，值在[0,1]范围内，并且向量中元素的总和为1的实向量。</p>
-<blockquote>
-<p>Softmax函数与正常的max函数不同：max函数仅输出最大值，但Softmax函数确保较小的值具有较小的概率，不会直接丢弃。我们可以认为它是arg max函数的概率版本或“soft”版本。Softmax函数的分母结合了原始输出值的所有因子，这意味着Softmax函数获得的各种概率彼此相关。</p>
+</ol>
+<p>4. 贝叶斯学派（Bayesians）注重统计学和概率推理。 获取发生的可能性来进行概率推理，算法如 ：朴素贝叶斯，马尔可夫。</p>
+<p>5. 类推学派（analogizers）更多是关注心理学和数学优化来推断相似性判断。 根据约束条件来优化函数，算法如：支持向量机SVM。</p>
+<h1 id="演化的阶段"><a href="#演化的阶段" class="headerlink" title="演化的阶段"></a>演化的阶段</h1><blockquote>
+<p>1980 年代             主导流派：符号主义</p>
+<p>1990 年代到 2000 年    主导流派：贝叶斯</p>
+<p>2010 年代早期到中期   主导流派：联结主义</p>
+<p>2010 年代末期    主导流派：联结主义+符号主义</p>
+<p>2020 年代+         主导流派：联结主义+符号主义+贝叶斯+……</p>
+<p>2040 年代+         主导流派：算法融合 </p>
 </blockquote>
-<blockquote>
-<p>利用 softmax 可以用于多分类问题，而用多个logistic回归通过叠加也同样可以实现多分类的效果，但是 softmax回归进行的多分类，类与类之间是互斥的，即一个输入只能被归为一类。多个logistic回归进行多分类，输出的类别并不是互斥的，即”苹果”这个词语既属于”水果”类也属于”3C”类别。</p>
-</blockquote>
-<h2 id="4-ReLU-激活函数"><a href="#4-ReLU-激活函数" class="headerlink" title="4. ReLU 激活函数"></a>4. ReLU 激活函数</h2><p><img src="https://ask.qcloudimg.com/http-save/8352478/ck888so4in.png?imageView2/2/w/1620" alt="ReLu激活函数"></p>
-<p>ReLu函数的全称为Rectified Linear Units–&gt;修正线性单元,表达式为</p>
-<p>f(z) &#x3D; max(0,z)</p>
-<h3 id="Sigmoid-，tanh与ReLU-比较"><a href="#Sigmoid-，tanh与ReLU-比较" class="headerlink" title="Sigmoid ，tanh与ReLU 比较"></a>Sigmoid ，tanh与ReLU 比较</h3><p>sigmoid，tanh 会出现梯度消失问题，ReLU 的导数就不存在这样的问题。</p>
-<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
-<li>从计算的角度上，Sigmoid和Tanh激活函数均需要计算指数，复杂度高，而ReLU只需要一个阈值即可得到激活值。</li>
-<li>ReLU的非饱和性有效地解决梯度消失的问题，提供相对宽的激活边界。</li>
-<li>ReLU的单侧抑制，提供了网络的稀疏表达能力</li>
-</ul>
-<p><strong>稀疏表示（Sparse Representations）的定义：用较少的基本信号的线性组合来表达大部分或者全部的原始信号。</strong></p>
-<p><em>具体稀疏性的体现是：Relu会使一部分神经元的输出为0，这样就造成了网络的稀疏性，并且减少了参数的相互依存关系，缓解了过拟合问题的发生。</em><strong>只能说有利有弊了…</strong></p>
-<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul>
-<li>Dead ReLU 问题。当输入为负时，ReLU 完全失效，在正向传播过程中，这不是问题。但是在反向传播过程中，如果输入负数，则梯度将完全为零，即在训练过程中会导致神经元死亡。sigmoid 函数和 tanh 函数也具有相同的问题。</li>
-<li>我们发现 ReLU 函数的输出为 0 或正数，这意味着 ReLU 函数不是以 0 为中心的函数。</li>
-</ul>
-<p><strong>神经元死亡会导致该神经元在之后不被任何数据激活，即流经该神经元的梯度永远为0，不对任何数据产生响应。在实际训练中，如果学习率设置较大，会导致一定比例的神经元不可逆死亡，进而参数梯度无法更新，整个训练过程失败。</strong></p>
-<h2 id="5-softplus激活函数"><a href="#5-softplus激活函数" class="headerlink" title="5. softplus激活函数"></a>5. softplus激活函数</h2><p>公式表达式为：</p>
-<p>softplus(z)&#x3D;log(1+e^z)</p>
-<p>softplus函数与ReLU函数接近,但比较平滑, 同ReLU一样是单边抑制,有宽广的接受域(0,+inf), 但是由于指数运算,对数运算计算量大的原因,而不太被人使用。</p>
-<p><img src="https://images2018.cnblogs.com/blog/1252882/201807/1252882-20180707095338849-1750990328.png" alt="softplus激活函数"></p>
-<p>可以看到，softplus可以看作是ReLu的平滑。根据神经科学家的相关研究，softplus和ReLu与脑神经元激活频率函数有神似的地方。也就是说，在生物层面上，相比于早期的激活函数，softplus和ReLu更加接近脑神经元的激活模型。其中，<strong>RELU函数的引入给神经网络增加了生物学特性，可以称为灵魂激活函数。</strong></p>
-<p>softplus的导数就是sigmoid函数，还是很巧合的。还有一点就是，据说softplus的出现要比ReLu要早，也就是说softplus可以看成是ReLu的鼻祖？</p>
-<h2 id="6-Leaky-ReLU激活函数"><a href="#6-Leaky-ReLU激活函数" class="headerlink" title="6. Leaky ReLU激活函数"></a>6. Leaky ReLU激活函数</h2><p>它是一种专门设计用于解决 Dead ReLU 问题的激活函数：</p>
-<p><img src="https://ask.qcloudimg.com/http-save/8352478/zdls8bt48h.png?imageView2/2/w/1620" alt="Leaky ReLu"></p>
-<p>当 x &lt; 0的时候， f(x) &#x3D; \alpha x,其中\alpha 非常小，这样可以避免在x &lt; 0的时候，不能够学习的情况。</p>
-<p>f(x) &#x3D; max(\alpha x,x)</p>
-<blockquote>
-<p>将\alpha 作为可学习的参数，称为Parametric Rectifier(PReLU)</p>
-<p>当\alpha 从高斯分布中随机产生时称为Random Rectifier（RReLU）</p>
-<p>当固定为\alpha &#x3D; 0.01时,称为Leaky ReLU</p>
-</blockquote>
-<h3 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h3><ul>
-<li>不会过拟合(saturate)</li>
-<li>计算简单有效</li>
-<li>比sigmoid&#x2F;tanh收敛快</li>
-</ul>
-<h2 id="7-其他常见的激活函数"><a href="#7-其他常见的激活函数" class="headerlink" title="7. 其他常见的激活函数"></a>7. 其他常见的激活函数</h2><p>其他常见的激活函数还有</p>
-<ul>
-<li>Noisy ReLU</li>
-<li>指数线性单元ELU(exponential linear unit)</li>
-<li>SELU</li>
-<li>GELU</li>
-<li>Swish</li>
-<li>…</li>
-</ul>
-<p>还有挺多的激活函数没有列举，但是我目前常见的就只有以上列举的几种，剩下的激活函数等到到时候用到的时候再来补充就好了！</p>
-<p><em>参考的网站：</em></p>
-<blockquote>
-<p><a href="https://www.cnblogs.com/makefile/p/activation-function.html">https://www.cnblogs.com/makefile/p/activation-function.html</a><br><a href="https://www.cnblogs.com/nxf-rabbit75/p/9276412.html">https://www.cnblogs.com/nxf-rabbit75/p/9276412.html</a><br><a href="https://cloud.tencent.com/developer/article/1800954">https://cloud.tencent.com/developer/article/1800954</a><br><a href="https://blog.csdn.net/hy592070616/article/details/120618490">https://blog.csdn.net/hy592070616/article/details/120618490</a><br><a href="https://blog.csdn.net/weixin_42057852/article/details/84644348?spm=1001.2101.3001.6650.11&amp;utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-11-84644348-blog-120618490.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-11-84644348-blog-120618490.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=15">https://blog.csdn.net/weixin_42057852/article/details/84644348?spm=1001.2101.3001.6650.11&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-11-84644348-blog-120618490.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-11-84644348-blog-120618490.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=15</a></p>
-<p><a href="https://www.cnblogs.com/pinard/p/6437495.html">https://www.cnblogs.com/pinard/p/6437495.html</a></p>
-</blockquote>
+<h1 id="联结学派（The-connectionists）"><a href="#联结学派（The-connectionists）" class="headerlink" title="联结学派（The connectionists）"></a>联结学派（The connectionists）</h1><p>联结学派的主要思想是通过神经元之间的连接来推导知识。联结学派聚焦于物理学和神经科学，并相信大脑的逆向工程（reverse engineering）。他们相信用反向传播算法或“向后传播错误”的算法来训练人工神经网络以获取结果。</p>
+<p>多伦多大学的 Geoff Hinton 是机器学习领域的顶尖研究者之一。Hinton 积极与谷歌合作，也是推动“深度学习”模式的人物。深度学习在许多不同领域彻底变革了 AI，如语音识别，图像描述及生成有意义的句子。</p>
+<p>几乎所有大科技公司，包括 Facebook，微软，谷歌等，都正在使用这种模式来改进它们的系统。Navdeep Jaitly 是谷歌大脑团队的研究科学家，他在 Hinton 门下进行研究，使用深度学习模型超越了 Android 系统中已经“精细调好”（fine-tuned）的语音识别算法。</p>
+<p>Facebook AI Research（FAIR）的主管 Yann LeCun 是这个研究领域的另一位大牛。Yann 也是在 Hinton 门下读博士学位，并致力于深度学习领域。</p>
+<p>作为蒙特利尔学习算法研究所的负责人，Yoshua Bengio 是另一个值得注意的名字，是联结学派方法的领军人物。Bengio 致力于组织不同的 AI 相关活动和会议，包括学习研讨会。Bengio 和他的学生 Ian Goodfellow（现在是 OpenAI 的研究员）以及 Aaron Courville 一起合著了著名的深度学习教材Deep Learning。</p>
+<p>机器学习领域的许多研究者，特别是联结学派者，认为深度学习模型是 AI 的所有问题的答案，并认为它是一个主算法。</p>
+<h1 id="符号学派（The-symbolists）"><a href="#符号学派（The-symbolists）" class="headerlink" title="符号学派（The symbolists）"></a>符号学派（The symbolists）</h1><p>符号学派的方法基于对问题的“高阶”（high-level）解释。符号主义者更侧重哲学，逻辑学和心理学，并把学习视为逆向演绎（inverse of deduction）。John Haugeland 在他的著作 Artificial Intelligence: The Very Idea中称之为“Good Old-Fashioned Artificial Intelligence” (GOFAI)。符号学派解决问题的方法是使用预先存在的知识来填补空白。大多数专家系统使用符号学派的方法，以 If-Then 的方式解决问题。</p>
+<p>卡内基梅隆大学的 Tom Mitchell 是符号学派的领军人物之一。Udacity 联合创始人，斯坦福大学教授，前谷歌副总裁 Sebastian Thrun，以及艾伦人工智能研究所 CEO Oren Etzioni 都是 Tom Mitchell 的学生。</p>
+<p>伦敦帝国理工学院教授，Inductive Acquisition of Expert Knowledge的作者 Stephen Muggleton，以及 RuleRequest 的创始人 Ross Quinlan 均是推崇符号学派机器学习方法的著名研究者。</p>
+<h1 id="进化学派（The-evolutionaries）"><a href="#进化学派（The-evolutionaries）" class="headerlink" title="进化学派（The evolutionaries）"></a>进化学派（The evolutionaries）</h1><p>第三个学派，是进化学派，他们在遗传学和进化生物学的基础上得出结论。2015年去世的 John Holland 曾在密歇根大学任教，他在将达尔文的进化理论引入计算机科学方面发挥了非常重要的作用。Holland 是遗传算法（genetics algorithms）的先驱，他提出的“遗传算法的基本定理”被认为是这个领域的基础。</p>
+<p>机器人学，3D打印和生物信息学领域的许多工作是哥伦比亚大学创意力学实验室主任 Hod Lipson 等进化论者进行的。John Koza 是前斯坦福大学教授，Scientific Games 公司的创始人，也是遗传算法的另一名先驱人物。另外，Serafim 实验室的创始人，斯坦福大学计算机科学教授 Serafim Batzoglou 也是计算机基因组领域的著名研究者。</p>
+<h1 id="贝叶斯学派（The-Bayesian-school-of-thought）"><a href="#贝叶斯学派（The-Bayesian-school-of-thought）" class="headerlink" title="贝叶斯学派（The Bayesian school of thought）"></a>贝叶斯学派（The Bayesian school of thought）</h1><p>如果你使用电子邮件超过10年，应该能感觉到垃圾邮件过滤系统的改进。这是机器学习中的贝叶斯学派的功劳。贝叶斯学派专注于研究概率推理和用贝叶斯定理解决问题。贝叶斯学派从一个信念开始，他们称之为“先验”（prior）。然后，他们收集一些数据，并基于该数据更新先验；得到的结果他们称之为“后验”（posterior）。然后，他们用更多的数据来处理后验，并使之变成先验。这个过程不断循环往复，知道得到最终的答案。大多数垃圾邮件过滤系统是在这种基础上起作用。</p>
+<p>加州大学洛杉矶分校计算机科学系的 Judea Pearl 是贝叶斯方法的著名研究者之一。微软 Genomics Group 的负责人 David Heckerman 也是著名的贝叶斯方法研究者，他帮助微软在 Outlook 和 Hotmail 邮件系统中开发了不同的数据挖掘工具和垃圾邮件过滤工具。</p>
+<p>加州大学伯克利分校的 Michael Jordan 也是这一领域的主要研究者。</p>
+<h1 id="类推学派（The-analogizers）"><a href="#类推学派（The-analogizers）" class="headerlink" title="类推学派（The analogizers）"></a>类推学派（The analogizers）</h1><p>机器学习的第五个分支学派是类推学派（Analogizers），他们更多地关注心理学和数学最优化，通过外推来进行相似性判断。类推学派遵循“最近邻”原理进行研究。各种电子商务网站上的产品推荐（例如亚马逊或 Netflix的电影评级）是类推方法最常见的示例。</p>
+<p>印第安纳大学的 Douglas Hofstadter（侯世达）是认知科学中最有名的科学家。同一领域的另一位知名科学家是 Vladimir Vapnik，他也是“支持向量机”的共同发明者和 Vapnik-Chervonenkis 理论的主要开发者。Facebook 最近聘请 Vapnik 与其他几位知名研究人员一起加入 Facebook AI 实验室。此外，理光创新（Ricoh Innovations）创始人 Peter Hart 也是遵循类推方法的著名学者，Hart 与人合著了《模式分类》一书。</p>
+<h1 id="危机与问题"><a href="#危机与问题" class="headerlink" title="危机与问题"></a>危机与问题</h1><p>所有上述学派解决不同的问题，提出了不同的解决方案。而真正的挑战是设计一个算法，解决这些方法尝试要解决的所有不同的问题——单一的一个“终极算法”。</p>
+<p>我们仍然处在机器学习和 AI 的早期，还有很多事情要做。我们不知道什么时候，哪里会出现问题，而这将会减缓整个发展进程，带来下一个“AI冬天”。又或者，将来会出现一个新的突破，彻底改变目前的情况。</p>
+<p>机器学习的进步更像是一场演化。正如微生物的发展速度远比人类更快，机器学习的发展也比人类快，但会到达一个阶段，在这个阶段上这些学习算法会变得太过复杂而不能快速演化。</p>
+<p>也存在其他的危机。一个“理想的”终极算法将了解有关我们的一切。虽然机器学习需要人类的输入作为启动，但它最终会达到一个点，它会超越人类。那么接下来会发生什么呢？只要它们的目标和我们的目标稍有分歧，可能就足以消灭人类。</p>
+<p>这只是一种情况。假设我们成功建立了一个能够控制这些超级智能的机制，就类似于蚂蚁创造了一个能够控制我们人类的机制。但是，国家，人们和团体之间存在的利益冲突，可能会引发类似“天网”（终结者）的战争。</p>
+<h1 id="机器学习如何改变世界？"><a href="#机器学习如何改变世界？" class="headerlink" title="机器学习如何改变世界？"></a>机器学习如何改变世界？</h1><p>有许多初创公司专注于机器学习及其为生活中的不同问题带来的解决方案；而且，更重要的是，有大型科技公司支持他们。例如，谷歌收购的 DeepMind 专注于医疗保健，利用机器学习研究癌症的治疗；Facebook 的 Chan Zuckerberg Initiative 宣布计划在未来十年投资30亿美元，以帮助治疗、预防和管控疾病。</p>
+<p>另外，世界上最大的一些科技公司，包括亚马逊，Facebook，谷歌，微软等形成了联盟“Partnership on AI”，以共享他们的大型数据库进行研究，推广好的实践。</p>
+<p>AI 是否将技术的发展引向了一条危险的路径？我们将要成为机器的奴隶，又或 AI 是将人类引向终极的进步的入口？</p>
+<p>任何希望了解 AI 和机器学习的人士都应该阅读一下 Pedro Domingos 的《终极算法》一书。最后，让我们借用此书序言里的一句话作为本文的结语：围绕大数据以及机器学习的讨论充满争议，如果你对此感到好奇，且怀疑有比论文上看到的更为深层次的东西，那么这本书就是你进行革命的指南。</p>
+<h1 id="出处"><a href="#出处" class="headerlink" title="出处"></a>出处</h1><p><em>今天在学习机器学习的时候，发现机器学习惊竟然还分派系，略感兴趣，遂转于此！</em></p>
+<ol>
+<li><a href="https://www.jianshu.com/p/55ccb15747b5">简书-转载</a></li>
+<li><a href="https://techcrunch.com/2017/01/30/is-a-master-algorithm-the-solution-to-our-machine-learning-problems/">Yahoo原文</a></li>
+</ol>
 ]]></content>
       <categories>
         <category>Mathine Learning</category>
+        <category>Things of Interest</category>
       </categories>
       <tags>
         <tag>机器学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>插入YouTube视频</title>
+    <url>/2022/11/23/%E6%8F%92%E5%85%A5YouTube%E8%A7%86%E9%A2%91/</url>
+    <content><![CDATA[<p>尝试在文章中插入一段YouTube视频，就放我最近经常听的一首歌吧！</p>
+<span id="more"></span>
+
+<div class="video-container"><iframe src="https://www.youtube.com/embed/crIP7PuC8Bc" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+
+]]></content>
+      <categories>
+        <category>Blog</category>
+      </categories>
+      <tags>
+        <tag>博客</tag>
+        <tag>YouTube</tag>
+        <tag>音视频</tag>
       </tags>
   </entry>
   <entry>
@@ -678,36 +687,6 @@ print_result(lgb_r2_score, lgb_rmse, &#39;Lightgbm&#39;)
       </categories>
   </entry>
   <entry>
-    <title>维度灾难</title>
-    <url>/2022/11/23/%E7%BB%B4%E5%BA%A6%E7%81%BE%E9%9A%BE/</url>
-    <content><![CDATA[<p>今天學習機器學習的時候，發現有<em>維度災難</em>這個東西。挺感興趣的，於是一探究竟！</p>
-<span id="more"></span>
-
-<h1 id="机器学习中的维度灾难"><a href="#机器学习中的维度灾难" class="headerlink" title="机器学习中的维度灾难"></a>机器学习中的维度灾难</h1><p>在介绍机器学习的维度灾难之前，我推荐给大家一个网站，名字虽然说是<a href="https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">计算机视觉的傻瓜书</a>，但是有关机器学习的答疑部分它做得还是蛮好的。除此之外还有<a href="https://www.kdnuggets.com/news/index.html">KDnuggest</a>，也是有关机器学习的论坛。</p>
-<p>本文是参考<a href="https://www.jianshu.com/p/867193608bbd">简书-红色石头Will</a>所得到的观点，虽然他是翻译<a href="https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">计算机视觉的傻瓜书</a>的，但是对于我理解维度灾难起着指导方向的作用。</p>
-<h2 id="1-介绍维度灾难"><a href="#1-介绍维度灾难" class="headerlink" title="1.介绍维度灾难"></a>1.介绍维度灾难</h2><p>维度灾难是在设计一个分类器的时候需要注意的问题。为了得到更好的分类效果，我们可以无限的增加特征。但是事实上，特征数量超过一定值的时候，分类器的效果反而会下降。这种由于特征数量太多导致的分类效果下降的情况，就被称作是<strong>维度灾难</strong>。</p>
-<h2 id="2-维度灾难与过拟合"><a href="#2-维度灾难与过拟合" class="headerlink" title="2.维度灾难与过拟合"></a>2.维度灾难与过拟合</h2><p>貌似特征越多，越有可能实现正确分类，但是情况并非如此。一个直观的情况时，随着特征维度的增加，训练样本在特征空间中的密度是呈指数下降的。</p>
-<blockquote>
-<p>样本数不变，但是特征空间不断地增加，那训练样本在特征空间中的密度岂不是就是呈指数下降的？</p>
-</blockquote>
-<p>如果我们继续增加特征，整个特征空间维度增加，并变得越来越稀疏。由于稀疏性，我们更加容易找到一个超平面来实现分类。这是因为随着特征数量变得无限大，训练样本在最佳超平面的错误侧的可能性将会变得无限小。然而，如果我们将高维的分类结果投影到低维空间中，将会出现一个严重的问题。</p>
-<p>比如说样本数据在3D是线性可分的，但是在2D却并非如此。事实上，增加第三个维度来获得最佳的线性分类效果，等同于在低维特征空间中使用非线性分类器。其结果是，分类器学习了训练数据的噪声和异常，而对样本外的数据拟合效果并不理想，甚至很差。这个概念称为过拟合，是维度灾难的一个直接后果。</p>
-<p><em>换句话讲，如果增加特征维度，为了覆盖同样的特征值范围，防止过拟合，需要用到的样本数就会呈指数型增长！</em></p>
-<h2 id="3-维度灾难与数据稀疏程度分布不均"><a href="#3-维度灾难与数据稀疏程度分布不均" class="headerlink" title="3.维度灾难与数据稀疏程度分布不均"></a>3.维度灾难与数据稀疏程度分布不均</h2><p>我们展示了维度灾难会引起训练数据的稀疏化。使用的特征越多，数据就会变得越稀疏，从而导致分类器的分类效果就会越差。维度灾难还会造成<strong>搜索空间的数据稀疏程度</strong>分布不均。事实上，围绕原点的数据（在超立方体的中心）比在搜索空间的角落处的数据要稀疏得多。</p>
-<p>举例2D，如果大部分的样本都落在了单位内接圆里的话，会更容易分类。但是在高维的空间中，大部分的训练数据都是分布在定义为特征空间的超立方体的角落处，导致难以分类。、</p>
-<p>对于8维的超球体，大约98%的数据集中在它256个角落处。其结果是，当特征空间的维度变得无限大时，从样本点到质心的最大、最小欧氏距离的差值与其最小欧式距离的比值趋于零。因此，距离测量在高维空间中逐渐变得无效。因为分类器是基于这些距离测量的（例如Euclidean距离、Mahalanobis距离、Manhattan距离），所以低维空间特征更少，分类更加容易。同样地，在高维空间的高斯分布会变平坦且尾巴更长。</p>
-<h2 id="4-如何避免维度灾难"><a href="#4-如何避免维度灾难" class="headerlink" title="4.如何避免维度灾难"></a>4.如何避免维度灾难</h2><p>很遗憾，在分类问题中，没有固定的规则来指定该使用多少特征。事实上，用多少特征量取决于你训练样本的数量、决策边界的复杂性和使用的是啥分类器。</p>
-<p>比如说一些非线性决策边界的分类器（e.g. 神经网络、KNN分类器、决策树等），它们的分类效果虽然好，但是泛化能力差容易发生过拟合，这个时候就需要降低点维度。如果使用泛化能力稍微好点的（e.g. 贝叶斯分类器、线性分类器），那么就可以使用稍微多一点的特征。</p>
-<h2 id="5-参考链接"><a href="#5-参考链接" class="headerlink" title="5.参考链接"></a>5.参考链接</h2><blockquote>
-<p><a href="https://www.jianshu.com/p/867193608bbd">简书</a></p>
-<p><a href="https://cloud.tencent.com/developer/article/1143269">手工特征选取降维</a><br><a href="https://www.kdnuggets.com/2015/03/deep-learning-curse-dimensionality-autoencoders.html">原文</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Mathine Learning</category>
-      </categories>
-  </entry>
-  <entry>
     <title>特征工程</title>
     <url>/2022/11/23/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/</url>
     <content><![CDATA[<p>数据和特征决定了机器学习的上限，而模型和算法只是逼近这个上限而已</p>
@@ -781,5 +760,205 @@ print_result(lgb_r2_score, lgb_rmse, &#39;Lightgbm&#39;)
       <categories>
         <category>Mathine Learning</category>
       </categories>
+  </entry>
+  <entry>
+    <title>维度灾难</title>
+    <url>/2022/11/23/%E7%BB%B4%E5%BA%A6%E7%81%BE%E9%9A%BE/</url>
+    <content><![CDATA[<p>今天學習機器學習的時候，發現有<em>維度災難</em>這個東西。挺感興趣的，於是一探究竟！</p>
+<span id="more"></span>
+
+<h1 id="机器学习中的维度灾难"><a href="#机器学习中的维度灾难" class="headerlink" title="机器学习中的维度灾难"></a>机器学习中的维度灾难</h1><p>在介绍机器学习的维度灾难之前，我推荐给大家一个网站，名字虽然说是<a href="https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">计算机视觉的傻瓜书</a>，但是有关机器学习的答疑部分它做得还是蛮好的。除此之外还有<a href="https://www.kdnuggets.com/news/index.html">KDnuggest</a>，也是有关机器学习的论坛。</p>
+<p>本文是参考<a href="https://www.jianshu.com/p/867193608bbd">简书-红色石头Will</a>所得到的观点，虽然他是翻译<a href="https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">计算机视觉的傻瓜书</a>的，但是对于我理解维度灾难起着指导方向的作用。</p>
+<h2 id="1-介绍维度灾难"><a href="#1-介绍维度灾难" class="headerlink" title="1.介绍维度灾难"></a>1.介绍维度灾难</h2><p>维度灾难是在设计一个分类器的时候需要注意的问题。为了得到更好的分类效果，我们可以无限的增加特征。但是事实上，特征数量超过一定值的时候，分类器的效果反而会下降。这种由于特征数量太多导致的分类效果下降的情况，就被称作是<strong>维度灾难</strong>。</p>
+<h2 id="2-维度灾难与过拟合"><a href="#2-维度灾难与过拟合" class="headerlink" title="2.维度灾难与过拟合"></a>2.维度灾难与过拟合</h2><p>貌似特征越多，越有可能实现正确分类，但是情况并非如此。一个直观的情况时，随着特征维度的增加，训练样本在特征空间中的密度是呈指数下降的。</p>
+<blockquote>
+<p>样本数不变，但是特征空间不断地增加，那训练样本在特征空间中的密度岂不是就是呈指数下降的？</p>
+</blockquote>
+<p>如果我们继续增加特征，整个特征空间维度增加，并变得越来越稀疏。由于稀疏性，我们更加容易找到一个超平面来实现分类。这是因为随着特征数量变得无限大，训练样本在最佳超平面的错误侧的可能性将会变得无限小。然而，如果我们将高维的分类结果投影到低维空间中，将会出现一个严重的问题。</p>
+<p>比如说样本数据在3D是线性可分的，但是在2D却并非如此。事实上，增加第三个维度来获得最佳的线性分类效果，等同于在低维特征空间中使用非线性分类器。其结果是，分类器学习了训练数据的噪声和异常，而对样本外的数据拟合效果并不理想，甚至很差。这个概念称为过拟合，是维度灾难的一个直接后果。</p>
+<p><em>换句话讲，如果增加特征维度，为了覆盖同样的特征值范围，防止过拟合，需要用到的样本数就会呈指数型增长！</em></p>
+<h2 id="3-维度灾难与数据稀疏程度分布不均"><a href="#3-维度灾难与数据稀疏程度分布不均" class="headerlink" title="3.维度灾难与数据稀疏程度分布不均"></a>3.维度灾难与数据稀疏程度分布不均</h2><p>我们展示了维度灾难会引起训练数据的稀疏化。使用的特征越多，数据就会变得越稀疏，从而导致分类器的分类效果就会越差。维度灾难还会造成<strong>搜索空间的数据稀疏程度</strong>分布不均。事实上，围绕原点的数据（在超立方体的中心）比在搜索空间的角落处的数据要稀疏得多。</p>
+<p>举例2D，如果大部分的样本都落在了单位内接圆里的话，会更容易分类。但是在高维的空间中，大部分的训练数据都是分布在定义为特征空间的超立方体的角落处，导致难以分类。、</p>
+<p>对于8维的超球体，大约98%的数据集中在它256个角落处。其结果是，当特征空间的维度变得无限大时，从样本点到质心的最大、最小欧氏距离的差值与其最小欧式距离的比值趋于零。因此，距离测量在高维空间中逐渐变得无效。因为分类器是基于这些距离测量的（例如Euclidean距离、Mahalanobis距离、Manhattan距离），所以低维空间特征更少，分类更加容易。同样地，在高维空间的高斯分布会变平坦且尾巴更长。</p>
+<h2 id="4-如何避免维度灾难"><a href="#4-如何避免维度灾难" class="headerlink" title="4.如何避免维度灾难"></a>4.如何避免维度灾难</h2><p>很遗憾，在分类问题中，没有固定的规则来指定该使用多少特征。事实上，用多少特征量取决于你训练样本的数量、决策边界的复杂性和使用的是啥分类器。</p>
+<p>比如说一些非线性决策边界的分类器（e.g. 神经网络、KNN分类器、决策树等），它们的分类效果虽然好，但是泛化能力差容易发生过拟合，这个时候就需要降低点维度。如果使用泛化能力稍微好点的（e.g. 贝叶斯分类器、线性分类器），那么就可以使用稍微多一点的特征。</p>
+<h2 id="5-参考链接"><a href="#5-参考链接" class="headerlink" title="5.参考链接"></a>5.参考链接</h2><blockquote>
+<p><a href="https://www.jianshu.com/p/867193608bbd">简书</a><br><a href="https://cloud.tencent.com/developer/article/1143269">手工特征选取降维</a><br><a href="https://www.kdnuggets.com/2015/03/deep-learning-curse-dimensionality-autoencoders.html">原文</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Mathine Learning</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>激活函数</title>
+    <url>/2022/11/23/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<p>学习一下机器学习中常见的激活函数，大部分只是了解即可，不必深究</p>
+<span id="more"></span>
+
+<h1 id="常用的激活函数"><a href="#常用的激活函数" class="headerlink" title="常用的激活函数"></a>常用的激活函数</h1><h2 id="首先要知道什么是激活函数？"><a href="#首先要知道什么是激活函数？" class="headerlink" title="首先要知道什么是激活函数？"></a>首先要知道什么是激活函数？</h2><p>激活函数就是在神经网络的神经元上运行的函数，负责将神经元的输入映射到输出端。它类似于人类大脑中基于神经元的模型，激活函数最终决定了要发射给下一个神经元的内容。</p>
+<p>它的可视化过程如图所示：</p>
+<p><img src="https://ask.qcloudimg.com/http-save/8352478/mn5asmil0s.png?imageView2/2/w/1620" alt="激活函数工作过程"></p>
+<p>如果不用激励函数，每一层输出都是上层输入的线性函数，无论神经网络有多少层，输出都是输入的线性组合。神经网络中使用激活函数来加入非线性因素，提高模型的表达能力。</p>
+<h2 id="1-sigmoid激活函数"><a href="#1-sigmoid激活函数" class="headerlink" title="1. sigmoid激活函数"></a>1. sigmoid激活函数</h2><p><img src="https://ask.qcloudimg.com/http-save/8352478/nhi9swy8ln.png?imageView2/2/w/1620" alt="sigmoid函数"></p>
+<p>Sigmoid 函数的图像看起来像一个 S 形曲线。它的表达式如下：</p>
+<p>f(z) &#x3D; \frac{1}{1+e^{-z} } </p>
+<p>Sigmoid函数是传统神经网络中最常用的激活函数，一度被视为神经网络的核心所在。 </p>
+<p>从数学上来看，Sigmoid函数对中央区的信号增益较大，对两侧区的信号增益小，在信号的特征空间映射上，有很好的效果。从神经科学上来看，中央区酷似神经元的兴奋态，两侧区酷似神经元的抑制态，因而在神经网络学习方面，可以将重点特征推向中央区，将非重点特征推向两侧区。</p>
+<h3 id="1-1-在什么情况下适合使用-Sigmoid-激活函数呢？"><a href="#1-1-在什么情况下适合使用-Sigmoid-激活函数呢？" class="headerlink" title="1.1 在什么情况下适合使用 Sigmoid 激活函数呢？"></a>1.1 在什么情况下适合使用 Sigmoid 激活函数呢？</h3><ul>
+<li>Sigmoid 函数的输出范围是 0 到 1。由于输出值限定在 0 到 1，因此它对每个神经元的输出进行了归一化；</li>
+<li>用于将预测概率作为输出的模型。由于概率的取值范围是 0 到 1，因此 Sigmoid 函数非常合适；</li>
+<li>梯度平滑，避免「跳跃」的输出值；</li>
+<li>函数是可微的。这意味着可以找到任意两个点的 sigmoid 曲线的斜率；</li>
+<li>明确的预测，即非常接近 1 或 0。</li>
+<li></li>
+</ul>
+<h3 id="1-2-Sigmoid-激活函数有哪些缺点？"><a href="#1-2-Sigmoid-激活函数有哪些缺点？" class="headerlink" title="1.2 Sigmoid 激活函数有哪些缺点？"></a>1.2 Sigmoid 激活函数有哪些缺点？</h3><ul>
+<li>倾向于梯度消失；</li>
+<li>函数输出不是以 0 为中心的，这会降低权重更新的效率；</li>
+<li>Sigmoid 函数执行指数运算，计算机运行得较慢。</li>
+</ul>
+<p>现在基本上已经用不上sigmoid函数了。</p>
+<h2 id="2-TanHyperbolic（tanh）双曲正切激活函数"><a href="#2-TanHyperbolic（tanh）双曲正切激活函数" class="headerlink" title="2. TanHyperbolic（tanh）双曲正切激活函数"></a>2. TanHyperbolic（tanh）双曲正切激活函数</h2><p><img src="https://ask.qcloudimg.com/http-save/8352478/gm9p8du88z.png?imageView2/2/w/1620" alt="tanh函数"></p>
+<p>tanh 激活函数的图像也是 S 形，表达式如下：</p>
+<p>f(z) &#x3D; tanh(z) &#x3D;  \frac{e^{z} - e^{-z}  }{e^{z} + e^{-z} }  &#x3D; \frac{2}{1 + e^{-2z} }-1 </p>
+<p>tanh 是双曲正切函数。tanh 函数和 sigmoid 函数的曲线相似。但是它比 sigmoid 函数更有一些优势。</p>
+<ul>
+<li><p>sigmoid函数和tanh函数都存在一个问题：当神经网络的层数增多的时候，由于在进行反向传播的时候，链式求导，多项相乘，函数进入饱和区（导数接近于零的地方）就会逐层传递，这种现象被称为梯度消失。</p>
+</li>
+<li><p>首先要明确的一点是，当输入较大或较小时，输出几乎是平滑的并且梯度较小，这不利于权重更新。tanh 整个函数以 0 为中心，比 sigmoid 函数更好。在实际操作的时候，tanh 函数延迟了饱和期，在特征相差比较明显的时候效果会更好，并且在循环过程中也能够不断地扩大特征的效果。</p>
+</li>
+<li><p>在一般的二元分类问题中，tanh 函数用于隐藏层，而 sigmoid 函数用于输出层，但这并不是固定的，需要根据特定问题进行调整。</p>
+</li>
+</ul>
+<h2 id="3-softmax激活函数"><a href="#3-softmax激活函数" class="headerlink" title="3. softmax激活函数"></a>3. softmax激活函数</h2><p>公式表达为：</p>
+<p>f(z) &#x3D; \frac{e^{Z_j} }{\sum_{k}^{}e^{Z_k} } </p>
+<p>Sigmoid函数如果用来分类的话，只能进行二分类，而这里的softmax函数可以看做是Sigmoid函数的一般化，可以进行多分类。</p>
+<h3 id="3-0-Softmax激活函数的特点："><a href="#3-0-Softmax激活函数的特点：" class="headerlink" title="3.0 Softmax激活函数的特点："></a>3.0 Softmax激活函数的特点：</h3><ul>
+<li>在零点不可微。</li>
+<li>负输入的梯度为零，这意味着对于该区域的激活，权重不会在反向传播期间更新，因此会产生永不激活的死亡神经元。</li>
+</ul>
+<h3 id="3-1-sigmoid与softmax比较-–-gt-sigmoid"><a href="#3-1-sigmoid与softmax比较-–-gt-sigmoid" class="headerlink" title="3.1 sigmoid与softmax比较 –&gt; sigmoid"></a>3.1 sigmoid与softmax比较 –&gt; sigmoid</h3><p>二分类和多分类其实没有多少区别。用的公式仍然是y &#x3D; wx + b。 但有一个非常大的区别是他们用的激活函数是不同的。 逻辑回归用的是sigmoid，这个激活函数的除了给函数增加非线性之外还会把最后的预测值转换成在[0,1]中的数据值。也就是预测值是0&lt;y&lt;1。 我们可以把最后的这个预测值当做是一个预测为正例的概率。在进行模型应用的时候我们会设置一个阈值，当预测值大于这个阈值的时候，我们判定为正例子，反之我们判断为负例。这样我们可以很好的进行二分类问题。 </p>
+<h3 id="3-2-sigmoid与softmax比较-–-gt-softmax"><a href="#3-2-sigmoid与softmax比较-–-gt-softmax" class="headerlink" title="3.2 sigmoid与softmax比较 –&gt; softmax"></a>3.2 sigmoid与softmax比较 –&gt; softmax</h3><p>Softmax函数是用于多类分类问题的激活函数，在多类分类问题中，超过两个类标签则需要类成员关系。对于长度为K的任意实向量，Softmax函数可以将其压缩为长度为K，值在[0,1]范围内，并且向量中元素的总和为1的实向量。</p>
+<blockquote>
+<p>Softmax函数与正常的max函数不同：max函数仅输出最大值，但Softmax函数确保较小的值具有较小的概率，不会直接丢弃。我们可以认为它是arg max函数的概率版本或“soft”版本。Softmax函数的分母结合了原始输出值的所有因子，这意味着Softmax函数获得的各种概率彼此相关。</p>
+</blockquote>
+<blockquote>
+<p>利用 softmax 可以用于多分类问题，而用多个logistic回归通过叠加也同样可以实现多分类的效果，但是 softmax回归进行的多分类，类与类之间是互斥的，即一个输入只能被归为一类。多个logistic回归进行多分类，输出的类别并不是互斥的，即”苹果”这个词语既属于”水果”类也属于”3C”类别。</p>
+</blockquote>
+<h2 id="4-ReLU-激活函数"><a href="#4-ReLU-激活函数" class="headerlink" title="4. ReLU 激活函数"></a>4. ReLU 激活函数</h2><p><img src="https://ask.qcloudimg.com/http-save/8352478/ck888so4in.png?imageView2/2/w/1620" alt="ReLu激活函数"></p>
+<p>ReLu函数的全称为Rectified Linear Units–&gt;修正线性单元,表达式为</p>
+<p>f(z) &#x3D; max(0,z)</p>
+<h3 id="Sigmoid-，tanh与ReLU-比较"><a href="#Sigmoid-，tanh与ReLU-比较" class="headerlink" title="Sigmoid ，tanh与ReLU 比较"></a>Sigmoid ，tanh与ReLU 比较</h3><p>sigmoid，tanh 会出现梯度消失问题，ReLU 的导数就不存在这样的问题。</p>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
+<li>从计算的角度上，Sigmoid和Tanh激活函数均需要计算指数，复杂度高，而ReLU只需要一个阈值即可得到激活值。</li>
+<li>ReLU的非饱和性有效地解决梯度消失的问题，提供相对宽的激活边界。</li>
+<li>ReLU的单侧抑制，提供了网络的稀疏表达能力</li>
+</ul>
+<p><strong>稀疏表示（Sparse Representations）的定义：用较少的基本信号的线性组合来表达大部分或者全部的原始信号。</strong></p>
+<p><em>具体稀疏性的体现是：Relu会使一部分神经元的输出为0，这样就造成了网络的稀疏性，并且减少了参数的相互依存关系，缓解了过拟合问题的发生。</em><strong>只能说有利有弊了…</strong></p>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul>
+<li>Dead ReLU 问题。当输入为负时，ReLU 完全失效，在正向传播过程中，这不是问题。但是在反向传播过程中，如果输入负数，则梯度将完全为零，即在训练过程中会导致神经元死亡。sigmoid 函数和 tanh 函数也具有相同的问题。</li>
+<li>我们发现 ReLU 函数的输出为 0 或正数，这意味着 ReLU 函数不是以 0 为中心的函数。</li>
+</ul>
+<p><strong>神经元死亡会导致该神经元在之后不被任何数据激活，即流经该神经元的梯度永远为0，不对任何数据产生响应。在实际训练中，如果学习率设置较大，会导致一定比例的神经元不可逆死亡，进而参数梯度无法更新，整个训练过程失败。</strong></p>
+<h2 id="5-softplus激活函数"><a href="#5-softplus激活函数" class="headerlink" title="5. softplus激活函数"></a>5. softplus激活函数</h2><p>公式表达式为：</p>
+<p>softplus(z)&#x3D;log(1+e^z)</p>
+<p>softplus函数与ReLU函数接近,但比较平滑, 同ReLU一样是单边抑制,有宽广的接受域(0,+inf), 但是由于指数运算,对数运算计算量大的原因,而不太被人使用。</p>
+<p><img src="https://images2018.cnblogs.com/blog/1252882/201807/1252882-20180707095338849-1750990328.png" alt="softplus激活函数"></p>
+<p>可以看到，softplus可以看作是ReLu的平滑。根据神经科学家的相关研究，softplus和ReLu与脑神经元激活频率函数有神似的地方。也就是说，在生物层面上，相比于早期的激活函数，softplus和ReLu更加接近脑神经元的激活模型。其中，<strong>RELU函数的引入给神经网络增加了生物学特性，可以称为灵魂激活函数。</strong></p>
+<p>softplus的导数就是sigmoid函数，还是很巧合的。还有一点就是，据说softplus的出现要比ReLu要早，也就是说softplus可以看成是ReLu的鼻祖？</p>
+<h2 id="6-Leaky-ReLU激活函数"><a href="#6-Leaky-ReLU激活函数" class="headerlink" title="6. Leaky ReLU激活函数"></a>6. Leaky ReLU激活函数</h2><p>它是一种专门设计用于解决 Dead ReLU 问题的激活函数：</p>
+<p><img src="https://ask.qcloudimg.com/http-save/8352478/zdls8bt48h.png?imageView2/2/w/1620" alt="Leaky ReLu"></p>
+<p>当 x &lt; 0的时候， f(x) &#x3D; \alpha x,其中\alpha 非常小，这样可以避免在x &lt; 0的时候，不能够学习的情况。</p>
+<p>f(x) &#x3D; max(\alpha x,x)</p>
+<blockquote>
+<p>将\alpha 作为可学习的参数，称为Parametric Rectifier(PReLU)</p>
+<p>当\alpha 从高斯分布中随机产生时称为Random Rectifier（RReLU）</p>
+<p>当固定为\alpha &#x3D; 0.01时,称为Leaky ReLU</p>
+</blockquote>
+<h3 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>不会过拟合(saturate)</li>
+<li>计算简单有效</li>
+<li>比sigmoid&#x2F;tanh收敛快</li>
+</ul>
+<h2 id="7-其他常见的激活函数"><a href="#7-其他常见的激活函数" class="headerlink" title="7. 其他常见的激活函数"></a>7. 其他常见的激活函数</h2><p>其他常见的激活函数还有</p>
+<ul>
+<li>Noisy ReLU</li>
+<li>指数线性单元ELU(exponential linear unit)</li>
+<li>SELU</li>
+<li>GELU</li>
+<li>Swish</li>
+<li>…</li>
+</ul>
+<p>还有挺多的激活函数没有列举，但是我目前常见的就只有以上列举的几种，剩下的激活函数等到到时候用到的时候再来补充就好了！</p>
+<p><em>参考的网站：</em></p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/makefile/p/activation-function.html">https://www.cnblogs.com/makefile/p/activation-function.html</a><br><a href="https://www.cnblogs.com/nxf-rabbit75/p/9276412.html">https://www.cnblogs.com/nxf-rabbit75/p/9276412.html</a><br><a href="https://cloud.tencent.com/developer/article/1800954">https://cloud.tencent.com/developer/article/1800954</a><br><a href="https://blog.csdn.net/hy592070616/article/details/120618490">https://blog.csdn.net/hy592070616/article/details/120618490</a><br><a href="https://blog.csdn.net/weixin_42057852/article/details/84644348?spm=1001.2101.3001.6650.11&amp;utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-11-84644348-blog-120618490.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-11-84644348-blog-120618490.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=15">https://blog.csdn.net/weixin_42057852/article/details/84644348?spm=1001.2101.3001.6650.11&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-11-84644348-blog-120618490.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-11-84644348-blog-120618490.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=15</a></p>
+<p><a href="https://www.cnblogs.com/pinard/p/6437495.html">https://www.cnblogs.com/pinard/p/6437495.html</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Mathine Learning</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>网格搜索</title>
+    <url>/2022/11/24/%E7%BD%91%E6%A0%BC%E6%90%9C%E7%B4%A2/</url>
+    <content><![CDATA[<p>在进行机器学习的过程中，最为核心的概念就是参数了，要得到最好的参数可以采取网格搜索策略。网格搜索是应用最广泛的超参数搜索算法，网格搜索通过查找搜索范围内的所有的点，来确定最优值。</p>
+<span id="more"></span>
+
+<h1 id="调节超参数的方法-GridSearchCV网格搜索"><a href="#调节超参数的方法-GridSearchCV网格搜索" class="headerlink" title="调节超参数的方法-GridSearchCV网格搜索"></a>调节超参数的方法-GridSearchCV网格搜索</h1><p><em>在进行机器学习的过程中，最为核心的概念就是参数了，而参数又可以分为模型参数和超参数。模型参数指的是我们使用的模型根据训练数据的分布学习到的参数，这一部分是不需要我们人为的先验知识。而超参数是在开始学习之前需要设置的一组参数，而不是通过训练得到的参数数据。通常情况下，需要对超参数进行优化，给模型选择一组最优的超参数，以提高学习的性能与效果。</em></p>
+<p>这里简单介绍一下常用的超参数调参方法:除了网格搜索，还有随机搜索、贝叶斯优化和自动超参搜索（遗传算法GA）</p>
+<h2 id="网格搜索"><a href="#网格搜索" class="headerlink" title="网格搜索"></a>网格搜索</h2><p>网格搜索是应用最广泛的超参数搜索算法，网格搜索通过查找搜索范围内的所有的点，来确定最优值。一般通过给出较大的搜索范围以及较小的步长，网格搜索是一定可以找到全局最大值或最小值的。但是，网格搜索一个比较大的问题是，它<strong>十分消耗计算资源</strong>，特别是需要调优的超参数比较多的时候。在比赛中，需要调参的模型数量与对应的超参数比较多，而涉及的数据量又比较大，因此相当的耗费时间。<em>此外，由于给出的超参数组合比较多，因此一般都会固定多数参数，分步对1~2个超参数进行调解，这样能够减少时间但是缺难以自动化进行，而且由于目标参数一般是非凸的，因此容易陷入局部最小值。</em></p>
+<p><a href="https://www.jianshu.com/p/5378ef009cae">原作者</a>是用网格搜索来寻找LightGBM的最优超参数，这里我尝试用它来寻找XGBoost的最优超参数。一方面当做学习，另一方面是当做完成上一次机器学习的拓展作业。</p>
+<h2 id="简单介绍需要向GridSearchCV内传什么东西？"><a href="#简单介绍需要向GridSearchCV内传什么东西？" class="headerlink" title="简单介绍需要向GridSearchCV内传什么东西？"></a>简单介绍需要向GridSearchCV内传什么东西？</h2><p>要实现网格搜索，肯定得暴力遍历超参数。查找GridSearchCV函数的参数，其中有一项是含有待优化超参的字典。<a href="https://github.com/scikit-learn/scikit-learn/blob/0fb307bf3/sklearn/model_selection/_search.py#L867">官方</a>给的参数如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sklearn.model_selection.GridSearchCV(estimator, param_grid, *, scoring=<span class="literal">None</span>, n_jobs=<span class="literal">None</span>, iid=<span class="string">&#x27;deprecated&#x27;</span>, refit=<span class="literal">True</span>, cv=<span class="literal">None</span>, verbose=<span class="number">0</span>, pre_dispatch=<span class="string">&#x27;2*n_jobs&#x27;</span>, error_score=nan, return_train_score=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p>其中重要的参数说明如下：</p>
+<ol>
+<li>estimator：表示选择使用的分类器，并且需要传入除了需要确定最佳的参数之外的其他参数。<em>（还有什么参数？不是很清楚）</em>每一个分类器都需要一个scoring参数，或者说是score方法，例子如下：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">estimator = RandomForestClassifier(min_sample_split=100,min_samples_leaf = 20,max_depth = 8,max_features = &#x27;sqrt&#x27; , random_state =10)</span><br></pre></td></tr></table></figure></li>
+<li>param_grid：需要最优化的参数的取值，值为字典或者列表，例如：</li>
+</ol>
+<p><code>param_grid = param_test1, param_test1 = &#123;&#39;n_estimators&#39; : range(10,71,10)&#125;</code><br>或者另外一种表达形式：<br><code>param_grid = [&#123;&#39;n_estimators&#39;: [3, 10, 30],&#39;max_features&#39;: [2, 4, 6, 8]&#125;,&#123;&#39;bootstrap&#39;: [False],&#39;n_estimators&#39;: [3, 10],&#39;max_features&#39;: [2, 3, 4]&#125;,</code><br>3. scoring &#x3D; None ：模型评价标准，默认为None，这时需要使用score函数；或者如scoring &#x3D; ‘roc_auc’，根据所选模型不同，评价准则不同，字符串（函数名），或是可调用对象，需要其函数签名，形如：scorer(estimator，X，y）；如果是None，则使用estimator的误差估计函数。<br>4. n_jobs &#x3D; 1 ： n_jobs：并行数，默认为1，当n_jobs &#x3D; -1：表示使用所有处理器（建议）<br>5. refit &#x3D; True ：默认为True，程序将会以交叉验证训练集得到的最佳参数，重新对所有可能的训练集与开发集进行，作为最终用于性能评估的最佳模型参数。即在搜索参数结束后，用最佳参数结果再次fit一遍全部数据集（不用管即可）<br>6. cv &#x3D; None：交叉验证参数，默认None，使用五折交叉验证。指定fold数量，默认为5(之前版本为3)，也可以是yield训练&#x2F;测试数据的生成器</p>
+<h1 id="寻找XGBoost的参数及一般定义范围"><a href="#寻找XGBoost的参数及一般定义范围" class="headerlink" title="寻找XGBoost的参数及一般定义范围"></a>寻找XGBoost的参数及一般定义范围</h1><p>首先要知道xgb.XGBRegressor的<a href="https://xgboost.readthedocs.io/en/latest/parameter.html#general-parameters">参数分布</a>,这一点可以靠查询官方文档，或者寻找<a href="https://www.codeleading.com/article/77024318818/">相关的资料</a>进行补充。由于代码格式我想参照<a href="https://www.jianshu.com/p/5378ef009cae">简书某博主</a>的写法，所以需要找到xgboost的参数并且规定遍历的范围。</p>
+<p>找到机器学习实验二的XGBoost部分代码，然后根据参数规范范围。因为现在对参数并不熟悉，我打算对参数的范围规定的大一点，以便可以找到全局最优解。</p>
+<h1 id="装库跑代码"><a href="#装库跑代码" class="headerlink" title="装库跑代码"></a>装库跑代码</h1><p>在Anaconda上执行命令<strong>conda install py-xgboost</strong>，下载到所需要用到的xgboost库（另外还有<strong>from sklearn.model_selection import GridSearchCV</strong>）。我发现上面下载xgboost库的conda指令慢的离谱（其实<strong>pip install xgboost</strong>也很慢），于是换清华源<strong>pip install xgboost -i <a href="https://pypi.tuna.tsinghua.edu.cn/simple">https://pypi.tuna.tsinghua.edu.cn/simple</a></strong>，速度嘎嘎起飞。虽然也是在Anaconda上执行的pip指令，但是pip用起来真就是比conda舒服。</p>
+<p>在<a href="https://www.jianshu.com/p/5378ef009cae">参考代码</a>处我们发现了有一段代码很奇怪,<code>regr = lgb.LGBMRegressor(**params)</code>这里的 **号是什么意思呢？这里的 **params其实指的是，你在上面代码所输入的字典形式的变量。如果你想研究更多有关*和**的实例，可以参考以下这篇<a href="https://blog.csdn.net/zkk9527/article/details/88675129">博文</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">from sklearn.model_selection import GridSearchCV</span><br><span class="line">import numpy as np</span><br><span class="line">import xgboost as xgb</span><br><span class="line">import pandas as pd</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def GridSearch(clf, params, X, y):</span><br><span class="line">    cscv = GridSearchCV(</span><br><span class="line">        clf, params, scoring=&quot;neg_mean_squared_error&quot;, n_jobs=1, cv=5)</span><br><span class="line">    cscv.fit(X, y)</span><br><span class="line">    print(cscv.cv_results_)</span><br><span class="line">    print(cscv.best_params_)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def Dataprocessing(trainPath):</span><br><span class="line">    training_set = pd.read_csv(trainPath)</span><br><span class="line">    training_set.drop(&quot;Id&quot;, axis=1, inplace=True)</span><br><span class="line">    training_set = training_set.drop(training_set[(</span><br><span class="line">        training_set[&#x27;GrLivArea&#x27;] &gt; 4000) &amp; (training_set[&#x27;SalePrice&#x27;] &lt; 300000)].index)</span><br><span class="line">    train_y = training_set.SalePrice.values</span><br><span class="line">    train_x = training_set.drop(&quot;SalePrice&quot;, axis=1, inplace=True)</span><br><span class="line">    return train_x, train_y</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    train_x, train_y = Dataprocessing(&#x27;train.csv&#x27;)</span><br><span class="line"></span><br><span class="line">    params = &#123;</span><br><span class="line">        &#x27;colsample_bytree&#x27;: 0.4603,</span><br><span class="line">        &#x27;gamma&#x27;: 0.0468,</span><br><span class="line">        &#x27;learning_rate&#x27;: 0.05,</span><br><span class="line">        &#x27;max_depth&#x27;: 3,</span><br><span class="line">        &#x27;min_child_weight&#x27;: 1.7817,</span><br><span class="line">        &#x27;n_estimators&#x27;: 2200,</span><br><span class="line">        &#x27;reg_alpha&#x27;: 0.4640,</span><br><span class="line">        &#x27;reg_lambda&#x27;: 0.8571,</span><br><span class="line">        &#x27;subsample&#x27;: 0.5213,</span><br><span class="line">        &#x27;silent&#x27;: 1,</span><br><span class="line">        &#x27;random_state&#x27;: 7,</span><br><span class="line">        &#x27;nthread&#x27;: -1</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    regr = xgb.XGBRegressor(**params)</span><br><span class="line"></span><br><span class="line">    adj_params = &#123;</span><br><span class="line">        &#x27;colsample_bytree&#x27;: np.arange(0.1, 1, 0.1),</span><br><span class="line">        &#x27;gamma&#x27;: [0.01, 0.1, 1],</span><br><span class="line">        &#x27;learning_rate&#x27;: [0.01, 0.1, 1],</span><br><span class="line">        &#x27;max_depth&#x27;: range(1, 11),</span><br><span class="line">        &#x27;min_child_weight&#x27;: np.arange(0.1, 2, 0.1),</span><br><span class="line">        &#x27;n_estimators&#x27;: range(300, 1000, 100),</span><br><span class="line">        &#x27;reg_alpha&#x27;: [0.01, 0.1, 1],</span><br><span class="line">        &#x27;reg_lambda&#x27;: [0.01, 0.1, 1],</span><br><span class="line">        &#x27;subsample&#x27;: [0.01, 0.1, 1],</span><br><span class="line">        # &#x27;silent&#x27;:1,</span><br><span class="line">        &#x27;random_state&#x27;: range(1, 11),</span><br><span class="line">        # &#x27;nthread&#x27;:-1</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    GridSearch(regr, adj_params, train_x, train_y)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>代码实在是跑不动，估计是参数有些缺了的问题，具体操作方法先贴在这里，等到下次有项目的时候再继续研究吧！</p>
+<h2 id="随机搜索"><a href="#随机搜索" class="headerlink" title="随机搜索"></a>随机搜索</h2><p>与网格搜索相比，随机搜索并没有尝试所有给定的参数值，而是从指定的分布中采样固定数量的参数设置。它的理论依据是，如果随即样本点集足够大，那么也可以找到全局的最大或最小值，或它们的近似值。通过对搜索范围的随机取样，随机搜索一般会比网格搜索要快一些。但是和网格搜索的快速版（非自动版）相似，结果也是没法保证的。</p>
+<p>随机搜索的过程如下，使用方法与网格搜索完全一致：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import lightgbm as lgb</span><br><span class="line">from sklearn.model_selection import  RandomizedSearchCV</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def RandomSearch(clf, params, X, y):</span><br><span class="line">    rscv = RandomizedSearchCV(clf, params, scoring=&#x27;neg_mean_squared_error&#x27;, n_jobs=1, cv=5)</span><br><span class="line">    rscv.fit(X, y)</span><br><span class="line"></span><br><span class="line">    print(rscv.cv_results_)</span><br><span class="line">    print(rscv.best_params_)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    train_X, train_y = get_data()</span><br><span class="line"></span><br><span class="line">    param = &#123;</span><br><span class="line">        &#x27;objective&#x27;: &#x27;regression&#x27;,</span><br><span class="line">        &#x27;n_estimators&#x27;: 275,</span><br><span class="line">        &#x27;max_depth&#x27;: 6,</span><br><span class="line">        &#x27;min_child_samples&#x27;: 20,</span><br><span class="line">        &#x27;reg_lambd&#x27;: 0.1,</span><br><span class="line">        &#x27;reg_alpha&#x27;: 0.1,</span><br><span class="line">        &#x27;metric&#x27;: &#x27;rmse&#x27;,</span><br><span class="line">        &#x27;colsample_bytree&#x27;: 1,</span><br><span class="line">        &#x27;subsample&#x27;: 0.8,</span><br><span class="line">        &#x27;num_leaves&#x27; : 40,</span><br><span class="line">        &#x27;random_state&#x27;: 2018</span><br><span class="line">        &#125;</span><br><span class="line">    regr = lgb.LGBMRegressor(**param)</span><br><span class="line"></span><br><span class="line">    adj_params = &#123;&#x27;n_estimators&#x27;: range(100, 400, 10),</span><br><span class="line">                 &#x27;min_child_weight&#x27;: range(3, 20, 2),</span><br><span class="line">                 &#x27;colsample_bytree&#x27;: np.arange(0.4, 1.0),</span><br><span class="line">                 &#x27;max_depth&#x27;: range(5, 15, 2),</span><br><span class="line">                 &#x27;subsample&#x27;: np.arange(0.5, 1.0, 0.1),</span><br><span class="line">                 &#x27;reg_lambda&#x27;: np.arange(0.1, 1.0, 0.2),</span><br><span class="line">                 &#x27;reg_alpha&#x27;: np.arange(0.1, 1.0, 0.2),</span><br><span class="line">                 &#x27;min_child_samples&#x27;: range(10, 30)&#125;</span><br><span class="line"></span><br><span class="line">    RandomSearch(regr , adj_params , train_X, train_y)</span><br></pre></td></tr></table></figure>
+
+<h2 id="贝叶斯优化"><a href="#贝叶斯优化" class="headerlink" title="贝叶斯优化"></a>贝叶斯优化</h2><p>贝叶斯优化用于机器学习调参由J. Snoek(2012)提出，主要思想是，给定优化的目标函数(广义的函数，只需指定输入和输出即可，无需知道内部结构以及数学性质)，通过不断地添加样本点来更新目标函数的后验分布(高斯过程,直到后验分布基本贴合于真实分布。简单的说，就是考虑了上一次参数的信息，从而更好的调整当前的参数。</p>
+<p><em>贝叶斯优化与常规的网格搜索或者随机搜索的区别是：</em></p>
+<ol>
+<li>贝叶斯调参采用高斯过程，考虑之前的参数信息，不断地更新先验；网格搜索未考虑之前的参数信息</li>
+<li>贝叶斯调参迭代次数少，速度快；网格搜索速度慢,参数多时易导致<strong>维度爆炸</strong></li>
+<li>贝叶斯调参针对非凸问题依然稳健；网格搜索针对非凸问题易得到局部优最</li>
+</ol>
+<p>如果想要深究贝叶斯优化，可以参考<a href="https://www.sohu.com/a/165565029_465975">这里</a></p>
+<h2 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h2><p>其他常见的超参数优化方法还有比如自动超参搜索（遗传算法）等等，方法总比问题多，对不同的问题总需要根据情况使用不同的方法来解决。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ol>
+<li><a href="https://www.sohu.com/a/165565029_465975">搜狐新闻-贝叶斯优化细究</a></li>
+<li><a href="https://www.jianshu.com/p/d240dbd62d45">简书-炼丹美学</a></li>
+<li><a href="https://www.cnblogs.com/dalege/p/14175192.html">博客园-具体使用GridSearchCV</a></li>
+<li><a href="https://www.codeleading.com/article/77024318818/">代码先锋网-具体调试LightGBM</a><em>让我清楚了，调参也是得按顺序来的，没有说一口气调完全部</em></li>
+<li><a href="https://blog.csdn.net/csiao_Bing/article/details/84978725">CSDN-XGBoost参数详解</a></li>
+<li><a href="https://blog.csdn.net/Ling_Ze/article/details/126045472">CSDN-XGBoost参数详解</a></li>
+<li><a href="https://www.jianshu.com/p/5378ef009cae">简书-超参调节之我主要参考!</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Mathine Learning</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+        <tag>调参</tag>
+      </tags>
   </entry>
 </search>

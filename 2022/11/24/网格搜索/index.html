@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/Blue.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_small.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"fengyepiaosa.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="在进行机器学习的过程中，最为核心的概念就是参数了，要得到最好的参数可以采取网格搜索策略。网格搜索是应用最广泛的超参数搜索算法，网格搜索通过查找搜索范围内的所有的点，来确定最优值。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网格搜索">
+<meta property="og:url" content="https://fengyepiaosa.github.io/2022/11/24/%E7%BD%91%E6%A0%BC%E6%90%9C%E7%B4%A2/index.html">
+<meta property="og:site_name" content="fengyepiaosa">
+<meta property="og:description" content="在进行机器学习的过程中，最为核心的概念就是参数了，要得到最好的参数可以采取网格搜索策略。网格搜索是应用最广泛的超参数搜索算法，网格搜索通过查找搜索范围内的所有的点，来确定最优值。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-24T00:40:58.000Z">
+<meta property="article:modified_time" content="2022-11-24T00:43:18.690Z">
+<meta property="article:author" content="wenfeng">
+<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="调参">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://fengyepiaosa.github.io/2022/11/24/%E7%BD%91%E6%A0%BC%E6%90%9C%E7%B4%A2/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://fengyepiaosa.github.io/2022/11/24/%E7%BD%91%E6%A0%BC%E6%90%9C%E7%B4%A2/","path":"2022/11/24/网格搜索/","title":"网格搜索"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>网格搜索 | fengyepiaosa</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+  
+
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">fengyepiaosa</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录生活！</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B0%83%E8%8A%82%E8%B6%85%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95-GridSearchCV%E7%BD%91%E6%A0%BC%E6%90%9C%E7%B4%A2"><span class="nav-number">1.</span> <span class="nav-text">调节超参数的方法-GridSearchCV网格搜索</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E6%A0%BC%E6%90%9C%E7%B4%A2"><span class="nav-number">1.1.</span> <span class="nav-text">网格搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D%E9%9C%80%E8%A6%81%E5%90%91GridSearchCV%E5%86%85%E4%BC%A0%E4%BB%80%E4%B9%88%E4%B8%9C%E8%A5%BF%EF%BC%9F"><span class="nav-number">1.2.</span> <span class="nav-text">简单介绍需要向GridSearchCV内传什么东西？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%BB%E6%89%BEXGBoost%E7%9A%84%E5%8F%82%E6%95%B0%E5%8F%8A%E4%B8%80%E8%88%AC%E5%AE%9A%E4%B9%89%E8%8C%83%E5%9B%B4"><span class="nav-number">2.</span> <span class="nav-text">寻找XGBoost的参数及一般定义范围</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A3%85%E5%BA%93%E8%B7%91%E4%BB%A3%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">装库跑代码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%90%9C%E7%B4%A2"><span class="nav-number">3.1.</span> <span class="nav-text">随机搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%9D%E5%8F%B6%E6%96%AF%E4%BC%98%E5%8C%96"><span class="nav-number">3.2.</span> <span class="nav-text">贝叶斯优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95"><span class="nav-number">3.3.</span> <span class="nav-text">其他方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">3.4.</span> <span class="nav-text">参考链接</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="wenfeng"
+      src="/uploads/asuka.jpg">
+  <p class="site-author-name" itemprop="name">wenfeng</p>
+  <div class="site-description" itemprop="description">欢迎来到wenfeng的博客！</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/fengyepiaosa" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;fengyepiaosa" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://plus.google.com/fengyepiaosa" title="Google → https:&#x2F;&#x2F;plus.google.com&#x2F;fengyepiaosa" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>Google</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://mobile.twitter.com/Kiddwenfeng" title="Twitter → https:&#x2F;&#x2F;mobile.twitter.com&#x2F;Kiddwenfeng" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/profile.php?id=100086193167274" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;profile.php?id&#x3D;100086193167274" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/channel/UCYtkEykUyHVBzpy4CgU1Zuw" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;channel&#x2F;UCYtkEykUyHVBzpy4CgU1Zuw" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/fengyepiaosa/" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;fengyepiaosa&#x2F;" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fengyepiaosa.github.io/2022/11/24/%E7%BD%91%E6%A0%BC%E6%90%9C%E7%B4%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/asuka.jpg">
+      <meta itemprop="name" content="wenfeng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fengyepiaosa">
+      <meta itemprop="description" content="欢迎来到wenfeng的博客！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="网格搜索 | fengyepiaosa">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          网格搜索
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-11-24 08:40:58 / 修改时间：08:43:18" itemprop="dateCreated datePublished" datetime="2022-11-24T08:40:58+08:00">2022-11-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Mathine-Learning/" itemprop="url" rel="index"><span itemprop="name">Mathine Learning</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>在进行机器学习的过程中，最为核心的概念就是参数了，要得到最好的参数可以采取网格搜索策略。网格搜索是应用最广泛的超参数搜索算法，网格搜索通过查找搜索范围内的所有的点，来确定最优值。</p>
+<span id="more"></span>
+
+<h1 id="调节超参数的方法-GridSearchCV网格搜索"><a href="#调节超参数的方法-GridSearchCV网格搜索" class="headerlink" title="调节超参数的方法-GridSearchCV网格搜索"></a>调节超参数的方法-GridSearchCV网格搜索</h1><p><em>在进行机器学习的过程中，最为核心的概念就是参数了，而参数又可以分为模型参数和超参数。模型参数指的是我们使用的模型根据训练数据的分布学习到的参数，这一部分是不需要我们人为的先验知识。而超参数是在开始学习之前需要设置的一组参数，而不是通过训练得到的参数数据。通常情况下，需要对超参数进行优化，给模型选择一组最优的超参数，以提高学习的性能与效果。</em></p>
+<p>这里简单介绍一下常用的超参数调参方法:除了网格搜索，还有随机搜索、贝叶斯优化和自动超参搜索（遗传算法GA）</p>
+<h2 id="网格搜索"><a href="#网格搜索" class="headerlink" title="网格搜索"></a>网格搜索</h2><p>网格搜索是应用最广泛的超参数搜索算法，网格搜索通过查找搜索范围内的所有的点，来确定最优值。一般通过给出较大的搜索范围以及较小的步长，网格搜索是一定可以找到全局最大值或最小值的。但是，网格搜索一个比较大的问题是，它<strong>十分消耗计算资源</strong>，特别是需要调优的超参数比较多的时候。在比赛中，需要调参的模型数量与对应的超参数比较多，而涉及的数据量又比较大，因此相当的耗费时间。<em>此外，由于给出的超参数组合比较多，因此一般都会固定多数参数，分步对1~2个超参数进行调解，这样能够减少时间但是缺难以自动化进行，而且由于目标参数一般是非凸的，因此容易陷入局部最小值。</em></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5378ef009cae">原作者</a>是用网格搜索来寻找LightGBM的最优超参数，这里我尝试用它来寻找XGBoost的最优超参数。一方面当做学习，另一方面是当做完成上一次机器学习的拓展作业。</p>
+<h2 id="简单介绍需要向GridSearchCV内传什么东西？"><a href="#简单介绍需要向GridSearchCV内传什么东西？" class="headerlink" title="简单介绍需要向GridSearchCV内传什么东西？"></a>简单介绍需要向GridSearchCV内传什么东西？</h2><p>要实现网格搜索，肯定得暴力遍历超参数。查找GridSearchCV函数的参数，其中有一项是含有待优化超参的字典。<a target="_blank" rel="noopener" href="https://github.com/scikit-learn/scikit-learn/blob/0fb307bf3/sklearn/model_selection/_search.py#L867">官方</a>给的参数如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sklearn.model_selection.GridSearchCV(estimator, param_grid, *, scoring=<span class="literal">None</span>, n_jobs=<span class="literal">None</span>, iid=<span class="string">&#x27;deprecated&#x27;</span>, refit=<span class="literal">True</span>, cv=<span class="literal">None</span>, verbose=<span class="number">0</span>, pre_dispatch=<span class="string">&#x27;2*n_jobs&#x27;</span>, error_score=nan, return_train_score=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p>其中重要的参数说明如下：</p>
+<ol>
+<li>estimator：表示选择使用的分类器，并且需要传入除了需要确定最佳的参数之外的其他参数。<em>（还有什么参数？不是很清楚）</em>每一个分类器都需要一个scoring参数，或者说是score方法，例子如下：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">estimator = RandomForestClassifier(min_sample_split=100,min_samples_leaf = 20,max_depth = 8,max_features = &#x27;sqrt&#x27; , random_state =10)</span><br></pre></td></tr></table></figure></li>
+<li>param_grid：需要最优化的参数的取值，值为字典或者列表，例如：</li>
+</ol>
+<p><code>param_grid = param_test1, param_test1 = &#123;&#39;n_estimators&#39; : range(10,71,10)&#125;</code><br>或者另外一种表达形式：<br><code>param_grid = [&#123;&#39;n_estimators&#39;: [3, 10, 30],&#39;max_features&#39;: [2, 4, 6, 8]&#125;,&#123;&#39;bootstrap&#39;: [False],&#39;n_estimators&#39;: [3, 10],&#39;max_features&#39;: [2, 3, 4]&#125;,</code><br>3. scoring &#x3D; None ：模型评价标准，默认为None，这时需要使用score函数；或者如scoring &#x3D; ‘roc_auc’，根据所选模型不同，评价准则不同，字符串（函数名），或是可调用对象，需要其函数签名，形如：scorer(estimator，X，y）；如果是None，则使用estimator的误差估计函数。<br>4. n_jobs &#x3D; 1 ： n_jobs：并行数，默认为1，当n_jobs &#x3D; -1：表示使用所有处理器（建议）<br>5. refit &#x3D; True ：默认为True，程序将会以交叉验证训练集得到的最佳参数，重新对所有可能的训练集与开发集进行，作为最终用于性能评估的最佳模型参数。即在搜索参数结束后，用最佳参数结果再次fit一遍全部数据集（不用管即可）<br>6. cv &#x3D; None：交叉验证参数，默认None，使用五折交叉验证。指定fold数量，默认为5(之前版本为3)，也可以是yield训练&#x2F;测试数据的生成器</p>
+<h1 id="寻找XGBoost的参数及一般定义范围"><a href="#寻找XGBoost的参数及一般定义范围" class="headerlink" title="寻找XGBoost的参数及一般定义范围"></a>寻找XGBoost的参数及一般定义范围</h1><p>首先要知道xgb.XGBRegressor的<a target="_blank" rel="noopener" href="https://xgboost.readthedocs.io/en/latest/parameter.html#general-parameters">参数分布</a>,这一点可以靠查询官方文档，或者寻找<a target="_blank" rel="noopener" href="https://www.codeleading.com/article/77024318818/">相关的资料</a>进行补充。由于代码格式我想参照<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5378ef009cae">简书某博主</a>的写法，所以需要找到xgboost的参数并且规定遍历的范围。</p>
+<p>找到机器学习实验二的XGBoost部分代码，然后根据参数规范范围。因为现在对参数并不熟悉，我打算对参数的范围规定的大一点，以便可以找到全局最优解。</p>
+<h1 id="装库跑代码"><a href="#装库跑代码" class="headerlink" title="装库跑代码"></a>装库跑代码</h1><p>在Anaconda上执行命令<strong>conda install py-xgboost</strong>，下载到所需要用到的xgboost库（另外还有<strong>from sklearn.model_selection import GridSearchCV</strong>）。我发现上面下载xgboost库的conda指令慢的离谱（其实<strong>pip install xgboost</strong>也很慢），于是换清华源<strong>pip install xgboost -i <a target="_blank" rel="noopener" href="https://pypi.tuna.tsinghua.edu.cn/simple">https://pypi.tuna.tsinghua.edu.cn/simple</a></strong>，速度嘎嘎起飞。虽然也是在Anaconda上执行的pip指令，但是pip用起来真就是比conda舒服。</p>
+<p>在<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5378ef009cae">参考代码</a>处我们发现了有一段代码很奇怪,<code>regr = lgb.LGBMRegressor(**params)</code>这里的 **号是什么意思呢？这里的 **params其实指的是，你在上面代码所输入的字典形式的变量。如果你想研究更多有关*和**的实例，可以参考以下这篇<a target="_blank" rel="noopener" href="https://blog.csdn.net/zkk9527/article/details/88675129">博文</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.model_selection import GridSearchCV</span><br><span class="line">import numpy as np</span><br><span class="line">import xgboost as xgb</span><br><span class="line">import pandas as pd</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def GridSearch(clf, params, X, y):</span><br><span class="line">    cscv = GridSearchCV(</span><br><span class="line">        clf, params, scoring=&quot;neg_mean_squared_error&quot;, n_jobs=1, cv=5)</span><br><span class="line">    cscv.fit(X, y)</span><br><span class="line">    print(cscv.cv_results_)</span><br><span class="line">    print(cscv.best_params_)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def Dataprocessing(trainPath):</span><br><span class="line">    training_set = pd.read_csv(trainPath)</span><br><span class="line">    training_set.drop(&quot;Id&quot;, axis=1, inplace=True)</span><br><span class="line">    training_set = training_set.drop(training_set[(</span><br><span class="line">        training_set[&#x27;GrLivArea&#x27;] &gt; 4000) &amp; (training_set[&#x27;SalePrice&#x27;] &lt; 300000)].index)</span><br><span class="line">    train_y = training_set.SalePrice.values</span><br><span class="line">    train_x = training_set.drop(&quot;SalePrice&quot;, axis=1, inplace=True)</span><br><span class="line">    return train_x, train_y</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    train_x, train_y = Dataprocessing(&#x27;train.csv&#x27;)</span><br><span class="line"></span><br><span class="line">    params = &#123;</span><br><span class="line">        &#x27;colsample_bytree&#x27;: 0.4603,</span><br><span class="line">        &#x27;gamma&#x27;: 0.0468,</span><br><span class="line">        &#x27;learning_rate&#x27;: 0.05,</span><br><span class="line">        &#x27;max_depth&#x27;: 3,</span><br><span class="line">        &#x27;min_child_weight&#x27;: 1.7817,</span><br><span class="line">        &#x27;n_estimators&#x27;: 2200,</span><br><span class="line">        &#x27;reg_alpha&#x27;: 0.4640,</span><br><span class="line">        &#x27;reg_lambda&#x27;: 0.8571,</span><br><span class="line">        &#x27;subsample&#x27;: 0.5213,</span><br><span class="line">        &#x27;silent&#x27;: 1,</span><br><span class="line">        &#x27;random_state&#x27;: 7,</span><br><span class="line">        &#x27;nthread&#x27;: -1</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    regr = xgb.XGBRegressor(**params)</span><br><span class="line"></span><br><span class="line">    adj_params = &#123;</span><br><span class="line">        &#x27;colsample_bytree&#x27;: np.arange(0.1, 1, 0.1),</span><br><span class="line">        &#x27;gamma&#x27;: [0.01, 0.1, 1],</span><br><span class="line">        &#x27;learning_rate&#x27;: [0.01, 0.1, 1],</span><br><span class="line">        &#x27;max_depth&#x27;: range(1, 11),</span><br><span class="line">        &#x27;min_child_weight&#x27;: np.arange(0.1, 2, 0.1),</span><br><span class="line">        &#x27;n_estimators&#x27;: range(300, 1000, 100),</span><br><span class="line">        &#x27;reg_alpha&#x27;: [0.01, 0.1, 1],</span><br><span class="line">        &#x27;reg_lambda&#x27;: [0.01, 0.1, 1],</span><br><span class="line">        &#x27;subsample&#x27;: [0.01, 0.1, 1],</span><br><span class="line">        # &#x27;silent&#x27;:1,</span><br><span class="line">        &#x27;random_state&#x27;: range(1, 11),</span><br><span class="line">        # &#x27;nthread&#x27;:-1</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    GridSearch(regr, adj_params, train_x, train_y)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>代码实在是跑不动，估计是参数有些缺了的问题，具体操作方法先贴在这里，等到下次有项目的时候再继续研究吧！</p>
+<h2 id="随机搜索"><a href="#随机搜索" class="headerlink" title="随机搜索"></a>随机搜索</h2><p>与网格搜索相比，随机搜索并没有尝试所有给定的参数值，而是从指定的分布中采样固定数量的参数设置。它的理论依据是，如果随即样本点集足够大，那么也可以找到全局的最大或最小值，或它们的近似值。通过对搜索范围的随机取样，随机搜索一般会比网格搜索要快一些。但是和网格搜索的快速版（非自动版）相似，结果也是没法保证的。</p>
+<p>随机搜索的过程如下，使用方法与网格搜索完全一致：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">import lightgbm as lgb</span><br><span class="line">from sklearn.model_selection import  RandomizedSearchCV</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def RandomSearch(clf, params, X, y):</span><br><span class="line">    rscv = RandomizedSearchCV(clf, params, scoring=&#x27;neg_mean_squared_error&#x27;, n_jobs=1, cv=5)</span><br><span class="line">    rscv.fit(X, y)</span><br><span class="line"></span><br><span class="line">    print(rscv.cv_results_)</span><br><span class="line">    print(rscv.best_params_)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    train_X, train_y = get_data()</span><br><span class="line"></span><br><span class="line">    param = &#123;</span><br><span class="line">        &#x27;objective&#x27;: &#x27;regression&#x27;,</span><br><span class="line">        &#x27;n_estimators&#x27;: 275,</span><br><span class="line">        &#x27;max_depth&#x27;: 6,</span><br><span class="line">        &#x27;min_child_samples&#x27;: 20,</span><br><span class="line">        &#x27;reg_lambd&#x27;: 0.1,</span><br><span class="line">        &#x27;reg_alpha&#x27;: 0.1,</span><br><span class="line">        &#x27;metric&#x27;: &#x27;rmse&#x27;,</span><br><span class="line">        &#x27;colsample_bytree&#x27;: 1,</span><br><span class="line">        &#x27;subsample&#x27;: 0.8,</span><br><span class="line">        &#x27;num_leaves&#x27; : 40,</span><br><span class="line">        &#x27;random_state&#x27;: 2018</span><br><span class="line">        &#125;</span><br><span class="line">    regr = lgb.LGBMRegressor(**param)</span><br><span class="line"></span><br><span class="line">    adj_params = &#123;&#x27;n_estimators&#x27;: range(100, 400, 10),</span><br><span class="line">                 &#x27;min_child_weight&#x27;: range(3, 20, 2),</span><br><span class="line">                 &#x27;colsample_bytree&#x27;: np.arange(0.4, 1.0),</span><br><span class="line">                 &#x27;max_depth&#x27;: range(5, 15, 2),</span><br><span class="line">                 &#x27;subsample&#x27;: np.arange(0.5, 1.0, 0.1),</span><br><span class="line">                 &#x27;reg_lambda&#x27;: np.arange(0.1, 1.0, 0.2),</span><br><span class="line">                 &#x27;reg_alpha&#x27;: np.arange(0.1, 1.0, 0.2),</span><br><span class="line">                 &#x27;min_child_samples&#x27;: range(10, 30)&#125;</span><br><span class="line"></span><br><span class="line">    RandomSearch(regr , adj_params , train_X, train_y)</span><br></pre></td></tr></table></figure>
+
+<h2 id="贝叶斯优化"><a href="#贝叶斯优化" class="headerlink" title="贝叶斯优化"></a>贝叶斯优化</h2><p>贝叶斯优化用于机器学习调参由J. Snoek(2012)提出，主要思想是，给定优化的目标函数(广义的函数，只需指定输入和输出即可，无需知道内部结构以及数学性质)，通过不断地添加样本点来更新目标函数的后验分布(高斯过程,直到后验分布基本贴合于真实分布。简单的说，就是考虑了上一次参数的信息，从而更好的调整当前的参数。</p>
+<p><em>贝叶斯优化与常规的网格搜索或者随机搜索的区别是：</em></p>
+<ol>
+<li>贝叶斯调参采用高斯过程，考虑之前的参数信息，不断地更新先验；网格搜索未考虑之前的参数信息</li>
+<li>贝叶斯调参迭代次数少，速度快；网格搜索速度慢,参数多时易导致<strong>维度爆炸</strong></li>
+<li>贝叶斯调参针对非凸问题依然稳健；网格搜索针对非凸问题易得到局部优最</li>
+</ol>
+<p>如果想要深究贝叶斯优化，可以参考<a target="_blank" rel="noopener" href="https://www.sohu.com/a/165565029_465975">这里</a></p>
+<h2 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h2><p>其他常见的超参数优化方法还有比如自动超参搜索（遗传算法）等等，方法总比问题多，对不同的问题总需要根据情况使用不同的方法来解决。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://www.sohu.com/a/165565029_465975">搜狐新闻-贝叶斯优化细究</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d240dbd62d45">简书-炼丹美学</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/dalege/p/14175192.html">博客园-具体使用GridSearchCV</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.codeleading.com/article/77024318818/">代码先锋网-具体调试LightGBM</a><em>让我清楚了，调参也是得按顺序来的，没有说一口气调完全部</em></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/csiao_Bing/article/details/84978725">CSDN-XGBoost参数详解</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/Ling_Ze/article/details/126045472">CSDN-XGBoost参数详解</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5378ef009cae">简书-超参调节之我主要参考!</a></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://mobile.twitter.com/Kiddwenfeng">
+          <span class="icon">
+            <i class="fab fa-twitter"></i>
+          </span>
+
+          <span class="label">Twitter</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://github.com/fengyepiaosa">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+
+          <span class="label">GitHub</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://www.instagram.com/fengyepiaosa/">
+          <span class="icon">
+            <i class="fab fa-instagram"></i>
+          </span>
+
+          <span class="label">Instagram</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># 机器学习</a>
+              <a href="/tags/%E8%B0%83%E5%8F%82/" rel="tag"># 调参</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/11/24/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%B4%BE%E7%B3%BB/" rel="prev" title="机器学习派系">
+                  <i class="fa fa-chevron-left"></i> 机器学习派系
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/11/24/cv2%E6%8A%A5%E9%94%99%E5%A4%84%E7%90%86/" rel="next" title="cv2报错处理">
+                  cv2报错处理 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wenfeng</span>
+</div>
+
+<!--
+隐藏网页底部 powered By Hexo / 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+-->
+
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

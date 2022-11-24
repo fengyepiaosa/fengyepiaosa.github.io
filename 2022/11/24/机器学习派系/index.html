@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/Blue.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_small.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"fengyepiaosa.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="机器学习有不同的学派，每个学派从不同的角度看问题。这也是偶然了解到，感觉对日后的理解和学习有帮助，于是便记录下来…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习派系">
+<meta property="og:url" content="https://fengyepiaosa.github.io/2022/11/24/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%B4%BE%E7%B3%BB/index.html">
+<meta property="og:site_name" content="fengyepiaosa">
+<meta property="og:description" content="机器学习有不同的学派，每个学派从不同的角度看问题。这也是偶然了解到，感觉对日后的理解和学习有帮助，于是便记录下来…">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-24T00:35:04.000Z">
+<meta property="article:modified_time" content="2022-11-24T00:39:01.689Z">
+<meta property="article:author" content="wenfeng">
+<meta property="article:tag" content="机器学习">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://fengyepiaosa.github.io/2022/11/24/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%B4%BE%E7%B3%BB/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://fengyepiaosa.github.io/2022/11/24/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%B4%BE%E7%B3%BB/","path":"2022/11/24/机器学习派系/","title":"机器学习派系"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>机器学习派系 | fengyepiaosa</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+  
+
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">fengyepiaosa</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录生活！</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A05%E5%A4%A7%E5%AD%A6%E6%B4%BE%EF%BC%81"><span class="nav-number">1.</span> <span class="nav-text">机器学习5大学派！</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%BC%94%E5%8C%96%E7%9A%84%E9%98%B6%E6%AE%B5"><span class="nav-number">2.</span> <span class="nav-text">演化的阶段</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%81%94%E7%BB%93%E5%AD%A6%E6%B4%BE%EF%BC%88The-connectionists%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">联结学派（The connectionists）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%A6%E5%8F%B7%E5%AD%A6%E6%B4%BE%EF%BC%88The-symbolists%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">符号学派（The symbolists）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9B%E5%8C%96%E5%AD%A6%E6%B4%BE%EF%BC%88The-evolutionaries%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">进化学派（The evolutionaries）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%AD%A6%E6%B4%BE%EF%BC%88The-Bayesian-school-of-thought%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">贝叶斯学派（The Bayesian school of thought）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B1%BB%E6%8E%A8%E5%AD%A6%E6%B4%BE%EF%BC%88The-analogizers%EF%BC%89"><span class="nav-number">7.</span> <span class="nav-text">类推学派（The analogizers）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%B1%E6%9C%BA%E4%B8%8E%E9%97%AE%E9%A2%98"><span class="nav-number">8.</span> <span class="nav-text">危机与问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%A6%82%E4%BD%95%E6%94%B9%E5%8F%98%E4%B8%96%E7%95%8C%EF%BC%9F"><span class="nav-number">9.</span> <span class="nav-text">机器学习如何改变世界？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%BA%E5%A4%84"><span class="nav-number">10.</span> <span class="nav-text">出处</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="wenfeng"
+      src="/uploads/asuka.jpg">
+  <p class="site-author-name" itemprop="name">wenfeng</p>
+  <div class="site-description" itemprop="description">欢迎来到wenfeng的博客！</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/fengyepiaosa" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;fengyepiaosa" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://plus.google.com/fengyepiaosa" title="Google → https:&#x2F;&#x2F;plus.google.com&#x2F;fengyepiaosa" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>Google</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://mobile.twitter.com/Kiddwenfeng" title="Twitter → https:&#x2F;&#x2F;mobile.twitter.com&#x2F;Kiddwenfeng" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/profile.php?id=100086193167274" title="FB Page → https:&#x2F;&#x2F;www.facebook.com&#x2F;profile.php?id&#x3D;100086193167274" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/channel/UCYtkEykUyHVBzpy4CgU1Zuw" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;channel&#x2F;UCYtkEykUyHVBzpy4CgU1Zuw" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/fengyepiaosa/" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;fengyepiaosa&#x2F;" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fengyepiaosa.github.io/2022/11/24/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%B4%BE%E7%B3%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/asuka.jpg">
+      <meta itemprop="name" content="wenfeng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fengyepiaosa">
+      <meta itemprop="description" content="欢迎来到wenfeng的博客！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="机器学习派系 | fengyepiaosa">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          机器学习派系
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-11-24 08:35:04 / 修改时间：08:39:01" itemprop="dateCreated datePublished" datetime="2022-11-24T08:35:04+08:00">2022-11-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Mathine-Learning/" itemprop="url" rel="index"><span itemprop="name">Mathine Learning</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Things-of-Interest/" itemprop="url" rel="index"><span itemprop="name">Things of Interest</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>机器学习有不同的学派，每个学派从不同的角度看问题。这也是偶然了解到，感觉对日后的理解和学习有帮助，于是便记录下来…</p>
+<span id="more"></span>
+
+<h1 id="机器学习5大学派！"><a href="#机器学习5大学派！" class="headerlink" title="机器学习5大学派！"></a>机器学习5大学派！</h1><p>机器学习有不同的学派，每个学派从不同的角度看问题。</p>
+<ol>
+<li><p>符号学派（symbolists） 更多关注哲学，逻辑学和心理学， 并将学习视为逆向演绎 。使用符号、规则和逻辑来表征知识和进行逻辑推理主要是基于规则的，算法如 ：决策树。</p>
+</li>
+<li><p>联结学派（connectionists）专注物理学和神经科学，并相信大脑的逆向工程。使用概率矩阵和加权神经元来动态地识别和归纳模式，算法如 ：神经网络 。</p>
+</li>
+<li><p>进化学派，在遗传学和进化生物学的基础上得出结论。生成变化，然后为特定目标获取其中最优的， 算法如 ：遗传算法 。</p>
+</li>
+</ol>
+<p>4. 贝叶斯学派（Bayesians）注重统计学和概率推理。 获取发生的可能性来进行概率推理，算法如 ：朴素贝叶斯，马尔可夫。</p>
+<p>5. 类推学派（analogizers）更多是关注心理学和数学优化来推断相似性判断。 根据约束条件来优化函数，算法如：支持向量机SVM。</p>
+<h1 id="演化的阶段"><a href="#演化的阶段" class="headerlink" title="演化的阶段"></a>演化的阶段</h1><blockquote>
+<p>1980 年代             主导流派：符号主义</p>
+<p>1990 年代到 2000 年    主导流派：贝叶斯</p>
+<p>2010 年代早期到中期   主导流派：联结主义</p>
+<p>2010 年代末期    主导流派：联结主义+符号主义</p>
+<p>2020 年代+         主导流派：联结主义+符号主义+贝叶斯+……</p>
+<p>2040 年代+         主导流派：算法融合 </p>
+</blockquote>
+<h1 id="联结学派（The-connectionists）"><a href="#联结学派（The-connectionists）" class="headerlink" title="联结学派（The connectionists）"></a>联结学派（The connectionists）</h1><p>联结学派的主要思想是通过神经元之间的连接来推导知识。联结学派聚焦于物理学和神经科学，并相信大脑的逆向工程（reverse engineering）。他们相信用反向传播算法或“向后传播错误”的算法来训练人工神经网络以获取结果。</p>
+<p>多伦多大学的 Geoff Hinton 是机器学习领域的顶尖研究者之一。Hinton 积极与谷歌合作，也是推动“深度学习”模式的人物。深度学习在许多不同领域彻底变革了 AI，如语音识别，图像描述及生成有意义的句子。</p>
+<p>几乎所有大科技公司，包括 Facebook，微软，谷歌等，都正在使用这种模式来改进它们的系统。Navdeep Jaitly 是谷歌大脑团队的研究科学家，他在 Hinton 门下进行研究，使用深度学习模型超越了 Android 系统中已经“精细调好”（fine-tuned）的语音识别算法。</p>
+<p>Facebook AI Research（FAIR）的主管 Yann LeCun 是这个研究领域的另一位大牛。Yann 也是在 Hinton 门下读博士学位，并致力于深度学习领域。</p>
+<p>作为蒙特利尔学习算法研究所的负责人，Yoshua Bengio 是另一个值得注意的名字，是联结学派方法的领军人物。Bengio 致力于组织不同的 AI 相关活动和会议，包括学习研讨会。Bengio 和他的学生 Ian Goodfellow（现在是 OpenAI 的研究员）以及 Aaron Courville 一起合著了著名的深度学习教材Deep Learning。</p>
+<p>机器学习领域的许多研究者，特别是联结学派者，认为深度学习模型是 AI 的所有问题的答案，并认为它是一个主算法。</p>
+<h1 id="符号学派（The-symbolists）"><a href="#符号学派（The-symbolists）" class="headerlink" title="符号学派（The symbolists）"></a>符号学派（The symbolists）</h1><p>符号学派的方法基于对问题的“高阶”（high-level）解释。符号主义者更侧重哲学，逻辑学和心理学，并把学习视为逆向演绎（inverse of deduction）。John Haugeland 在他的著作 Artificial Intelligence: The Very Idea中称之为“Good Old-Fashioned Artificial Intelligence” (GOFAI)。符号学派解决问题的方法是使用预先存在的知识来填补空白。大多数专家系统使用符号学派的方法，以 If-Then 的方式解决问题。</p>
+<p>卡内基梅隆大学的 Tom Mitchell 是符号学派的领军人物之一。Udacity 联合创始人，斯坦福大学教授，前谷歌副总裁 Sebastian Thrun，以及艾伦人工智能研究所 CEO Oren Etzioni 都是 Tom Mitchell 的学生。</p>
+<p>伦敦帝国理工学院教授，Inductive Acquisition of Expert Knowledge的作者 Stephen Muggleton，以及 RuleRequest 的创始人 Ross Quinlan 均是推崇符号学派机器学习方法的著名研究者。</p>
+<h1 id="进化学派（The-evolutionaries）"><a href="#进化学派（The-evolutionaries）" class="headerlink" title="进化学派（The evolutionaries）"></a>进化学派（The evolutionaries）</h1><p>第三个学派，是进化学派，他们在遗传学和进化生物学的基础上得出结论。2015年去世的 John Holland 曾在密歇根大学任教，他在将达尔文的进化理论引入计算机科学方面发挥了非常重要的作用。Holland 是遗传算法（genetics algorithms）的先驱，他提出的“遗传算法的基本定理”被认为是这个领域的基础。</p>
+<p>机器人学，3D打印和生物信息学领域的许多工作是哥伦比亚大学创意力学实验室主任 Hod Lipson 等进化论者进行的。John Koza 是前斯坦福大学教授，Scientific Games 公司的创始人，也是遗传算法的另一名先驱人物。另外，Serafim 实验室的创始人，斯坦福大学计算机科学教授 Serafim Batzoglou 也是计算机基因组领域的著名研究者。</p>
+<h1 id="贝叶斯学派（The-Bayesian-school-of-thought）"><a href="#贝叶斯学派（The-Bayesian-school-of-thought）" class="headerlink" title="贝叶斯学派（The Bayesian school of thought）"></a>贝叶斯学派（The Bayesian school of thought）</h1><p>如果你使用电子邮件超过10年，应该能感觉到垃圾邮件过滤系统的改进。这是机器学习中的贝叶斯学派的功劳。贝叶斯学派专注于研究概率推理和用贝叶斯定理解决问题。贝叶斯学派从一个信念开始，他们称之为“先验”（prior）。然后，他们收集一些数据，并基于该数据更新先验；得到的结果他们称之为“后验”（posterior）。然后，他们用更多的数据来处理后验，并使之变成先验。这个过程不断循环往复，知道得到最终的答案。大多数垃圾邮件过滤系统是在这种基础上起作用。</p>
+<p>加州大学洛杉矶分校计算机科学系的 Judea Pearl 是贝叶斯方法的著名研究者之一。微软 Genomics Group 的负责人 David Heckerman 也是著名的贝叶斯方法研究者，他帮助微软在 Outlook 和 Hotmail 邮件系统中开发了不同的数据挖掘工具和垃圾邮件过滤工具。</p>
+<p>加州大学伯克利分校的 Michael Jordan 也是这一领域的主要研究者。</p>
+<h1 id="类推学派（The-analogizers）"><a href="#类推学派（The-analogizers）" class="headerlink" title="类推学派（The analogizers）"></a>类推学派（The analogizers）</h1><p>机器学习的第五个分支学派是类推学派（Analogizers），他们更多地关注心理学和数学最优化，通过外推来进行相似性判断。类推学派遵循“最近邻”原理进行研究。各种电子商务网站上的产品推荐（例如亚马逊或 Netflix的电影评级）是类推方法最常见的示例。</p>
+<p>印第安纳大学的 Douglas Hofstadter（侯世达）是认知科学中最有名的科学家。同一领域的另一位知名科学家是 Vladimir Vapnik，他也是“支持向量机”的共同发明者和 Vapnik-Chervonenkis 理论的主要开发者。Facebook 最近聘请 Vapnik 与其他几位知名研究人员一起加入 Facebook AI 实验室。此外，理光创新（Ricoh Innovations）创始人 Peter Hart 也是遵循类推方法的著名学者，Hart 与人合著了《模式分类》一书。</p>
+<h1 id="危机与问题"><a href="#危机与问题" class="headerlink" title="危机与问题"></a>危机与问题</h1><p>所有上述学派解决不同的问题，提出了不同的解决方案。而真正的挑战是设计一个算法，解决这些方法尝试要解决的所有不同的问题——单一的一个“终极算法”。</p>
+<p>我们仍然处在机器学习和 AI 的早期，还有很多事情要做。我们不知道什么时候，哪里会出现问题，而这将会减缓整个发展进程，带来下一个“AI冬天”。又或者，将来会出现一个新的突破，彻底改变目前的情况。</p>
+<p>机器学习的进步更像是一场演化。正如微生物的发展速度远比人类更快，机器学习的发展也比人类快，但会到达一个阶段，在这个阶段上这些学习算法会变得太过复杂而不能快速演化。</p>
+<p>也存在其他的危机。一个“理想的”终极算法将了解有关我们的一切。虽然机器学习需要人类的输入作为启动，但它最终会达到一个点，它会超越人类。那么接下来会发生什么呢？只要它们的目标和我们的目标稍有分歧，可能就足以消灭人类。</p>
+<p>这只是一种情况。假设我们成功建立了一个能够控制这些超级智能的机制，就类似于蚂蚁创造了一个能够控制我们人类的机制。但是，国家，人们和团体之间存在的利益冲突，可能会引发类似“天网”（终结者）的战争。</p>
+<h1 id="机器学习如何改变世界？"><a href="#机器学习如何改变世界？" class="headerlink" title="机器学习如何改变世界？"></a>机器学习如何改变世界？</h1><p>有许多初创公司专注于机器学习及其为生活中的不同问题带来的解决方案；而且，更重要的是，有大型科技公司支持他们。例如，谷歌收购的 DeepMind 专注于医疗保健，利用机器学习研究癌症的治疗；Facebook 的 Chan Zuckerberg Initiative 宣布计划在未来十年投资30亿美元，以帮助治疗、预防和管控疾病。</p>
+<p>另外，世界上最大的一些科技公司，包括亚马逊，Facebook，谷歌，微软等形成了联盟“Partnership on AI”，以共享他们的大型数据库进行研究，推广好的实践。</p>
+<p>AI 是否将技术的发展引向了一条危险的路径？我们将要成为机器的奴隶，又或 AI 是将人类引向终极的进步的入口？</p>
+<p>任何希望了解 AI 和机器学习的人士都应该阅读一下 Pedro Domingos 的《终极算法》一书。最后，让我们借用此书序言里的一句话作为本文的结语：围绕大数据以及机器学习的讨论充满争议，如果你对此感到好奇，且怀疑有比论文上看到的更为深层次的东西，那么这本书就是你进行革命的指南。</p>
+<h1 id="出处"><a href="#出处" class="headerlink" title="出处"></a>出处</h1><p><em>今天在学习机器学习的时候，发现机器学习惊竟然还分派系，略感兴趣，遂转于此！</em></p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/55ccb15747b5">简书-转载</a></li>
+<li><a target="_blank" rel="noopener" href="https://techcrunch.com/2017/01/30/is-a-master-algorithm-the-solution-to-our-machine-learning-problems/">Yahoo原文</a></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://mobile.twitter.com/Kiddwenfeng">
+          <span class="icon">
+            <i class="fab fa-twitter"></i>
+          </span>
+
+          <span class="label">Twitter</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://github.com/fengyepiaosa">
+          <span class="icon">
+            <i class="fab fa-github"></i>
+          </span>
+
+          <span class="label">GitHub</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://www.instagram.com/fengyepiaosa/">
+          <span class="icon">
+            <i class="fab fa-instagram"></i>
+          </span>
+
+          <span class="label">Instagram</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># 机器学习</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/11/23/%E6%8F%92%E5%85%A5YouTube%E8%A7%86%E9%A2%91/" rel="prev" title="插入YouTube视频">
+                  <i class="fa fa-chevron-left"></i> 插入YouTube视频
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/11/24/%E7%BD%91%E6%A0%BC%E6%90%9C%E7%B4%A2/" rel="next" title="网格搜索">
+                  网格搜索 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wenfeng</span>
+</div>
+
+<!--
+隐藏网页底部 powered By Hexo / 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+-->
+
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
