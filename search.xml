@@ -1,29 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>github文件夹有白色箭头并且不能打开的解决办法</title>
-    <url>/2022/11/20/github%E6%96%87%E4%BB%B6%E5%A4%B9%E6%9C%89%E7%99%BD%E8%89%B2%E7%AE%AD%E5%A4%B4%E5%B9%B6%E4%B8%94%E4%B8%8D%E8%83%BD%E6%89%93%E5%BC%80%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
-    <content><![CDATA[<p>Github文件夹有白色箭头并且不能打开?可能是因为你提交的Git文件中有叫做.git的文件！</p>
-<span id="more"></span>
-
-<h1 id="1-问题描述"><a href="#1-问题描述" class="headerlink" title="1.问题描述"></a>1.问题描述</h1><p>前几天在Git上向GitHub提交了自己的文件，但是在GitHub却无法打开文件夹，并且文件夹上面还多了一个白色的箭头？本着求知的精神，我上百度上找了找，发现是因为我提交的这个文件本身就已经是Git仓库了，而子文件里面还藏着Git仓库，也就是说子文件里还有.git隐藏文件。因为层层的嵌套关系，导致GitHub对文件的识别发生了错误。</p>
-<h1 id="2-解决方案"><a href="#2-解决方案" class="headerlink" title="2.解决方案"></a>2.解决方案</h1><p>把子文件的.git文件夹删掉就好了</p>
-<ol>
-<li>执行<code>git rm --cached [文件夹名]</code></li>
-<li>执行<code>git add [文件夹名]</code></li>
-<li>执行<code>git commit -m &quot;git folder report an error!&quot;</code></li>
-<li>执行<code>git push origin [branch_name] </code></li>
-</ol>
-]]></content>
-      <categories>
-        <category>git operation</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>工具操作</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Jupyter Notebook</title>
     <url>/2022/11/23/Jupyter-Notebook/</url>
     <content><![CDATA[<p>Jupyter Notebook的常见操作-需要熟记！</p>
@@ -126,6 +103,29 @@
       </categories>
   </entry>
   <entry>
+    <title>github文件夹有白色箭头并且不能打开的解决办法</title>
+    <url>/2022/11/20/github%E6%96%87%E4%BB%B6%E5%A4%B9%E6%9C%89%E7%99%BD%E8%89%B2%E7%AE%AD%E5%A4%B4%E5%B9%B6%E4%B8%94%E4%B8%8D%E8%83%BD%E6%89%93%E5%BC%80%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
+    <content><![CDATA[<p>Github文件夹有白色箭头并且不能打开?可能是因为你提交的Git文件中有叫做.git的文件！</p>
+<span id="more"></span>
+
+<h1 id="1-问题描述"><a href="#1-问题描述" class="headerlink" title="1.问题描述"></a>1.问题描述</h1><p>前几天在Git上向GitHub提交了自己的文件，但是在GitHub却无法打开文件夹，并且文件夹上面还多了一个白色的箭头？本着求知的精神，我上百度上找了找，发现是因为我提交的这个文件本身就已经是Git仓库了，而子文件里面还藏着Git仓库，也就是说子文件里还有.git隐藏文件。因为层层的嵌套关系，导致GitHub对文件的识别发生了错误。</p>
+<h1 id="2-解决方案"><a href="#2-解决方案" class="headerlink" title="2.解决方案"></a>2.解决方案</h1><p>把子文件的.git文件夹删掉就好了</p>
+<ol>
+<li>执行<code>git rm --cached [文件夹名]</code></li>
+<li>执行<code>git add [文件夹名]</code></li>
+<li>执行<code>git commit -m &quot;git folder report an error!&quot;</code></li>
+<li>执行<code>git push origin [branch_name] </code></li>
+</ol>
+]]></content>
+      <categories>
+        <category>git operation</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>工具操作</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>cv2报错处理</title>
     <url>/2022/11/24/cv2%E6%8A%A5%E9%94%99%E5%A4%84%E7%90%86/</url>
     <content><![CDATA[<p>cv2报错：raise TypeError(“Image data of dtype {} cannot be converted to “TypeError: Image data of dtype object cannot be converted to float</p>
@@ -154,6 +154,46 @@
       </tags>
   </entry>
   <entry>
+    <title>Last summer whisper-杏里</title>
+    <url>/2022/11/26/last-summer-whisper/</url>
+    <content><![CDATA[<p>六七十年代日本歌曲-Last Summer Whisper，有夏天的感觉，但感觉更多的是烦恼…</p>
+<span id="more"></span>
+
+<div class="video-container"><iframe src="https://www.youtube.com/embed/SNq4zqTN_DQ" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+
+<p><strong>Last Summer Whisper</strong></p>
+<p>作词：角松敏生<br>作曲：角松敏生</p>
+<hr>
+<p>夏の雨上りの街に　そっと灯りまたたきだす</p>
+<p>别れの后で电话をしたことを</p>
+<p>ゆるして欲しいけど　ねえ</p>
+<p>もう一度だけあの店で会いたい</p>
+<p>それで终りにする</p>
+<p>Baby love again　二人の爱はもどりはしないけど</p>
+<p>Baby love again　せめてあなたをにくみたくはないの</p>
+<p>好きな香りつけてきたの　夏の黄昏によく似合うわ</p>
+<p>あの日のままで　话をして欲しい</p>
+<p>海の好きなあなた　ねぇ　私はずっと頬づえつきながら</p>
+<p>闻いてるだけでいい</p>
+<p>Baby love again　やさしさだけが重すぎただけなの</p>
+<p>Baby love again　せめて笑ってこの夜终らすわ</p>
+<p>明日から二人　别々の日々でも　この街のどこかでね</p>
+<p>生きてるかぎり　会える気がするのよ</p>
+<p>その时は笑颜で</p>
+<p>Baby love again　二人の爱はもどりはしないけど</p>
+<p>Baby love again　せめてあなたをにくみたくはないの</p>
+<p>にくみたくはないの…</p>
+<hr>
+]]></content>
+      <categories>
+        <category>Things of Interest</category>
+      </categories>
+      <tags>
+        <tag>音视频</tag>
+        <tag>Youtube</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2022/11/20/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -177,41 +217,36 @@
       </categories>
   </entry>
   <entry>
-    <title>Last summer whisper-杏里</title>
-    <url>/2022/11/26/last-summer-whisper/</url>
-    <content><![CDATA[<p>六七十年代日本歌曲-Last Summer Whisper，有夏天的感觉，但感觉更多的是烦恼…</p>
+    <title>pip安装新库</title>
+    <url>/2022/11/24/pip%E5%AE%89%E8%A3%85%E6%96%B0%E5%BA%93/</url>
+    <content><![CDATA[<p>书接上回，研究一下在visual code上如何通过pip安装库函数，这次要安装的库函数是skimage</p>
 <span id="more"></span>
 
-<div class="video-container"><iframe src="https://www.youtube.com/embed/SNq4zqTN_DQ&list=RDSNq4zqTN_DQ&start_radio=1" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+<h1 id="pip安装skimage库"><a href="#pip安装skimage库" class="headerlink" title="pip安装skimage库"></a>pip安装skimage库</h1><p>书接上回，研究一下在visual code上如何通过pip安装库函数</p>
+<h1 id="找到Python的路径"><a href="#找到Python的路径" class="headerlink" title="找到Python的路径"></a>找到Python的路径</h1><p>我的是<em>“D:\Python\Scripts”</em></p>
+<p>visual code或者cmd命令台执行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd D:\Python\Scripts</span><br></pre></td></tr></table></figure>
 
-<p><strong>Last Summer Whisper</strong></p>
-<p>作词：角松敏生<br>作曲：角松敏生</p>
-<hr>
-<p>夏の雨上りの街に　そっと灯りまたたきだす</p>
-<p>别れの后で电话をしたことを</p>
-<p>ゆるして欲しいけど　ねえ</p>
-<p>もう一度だけあの店で会いたい</p>
-<p>それで终りにする</p>
-<p>Baby love again　二人の爱はもどりはしないけど</p>
-<p>Baby love again　せめてあなたをにくみたくはないの</p>
-<p>好きな香りつけてきたの　夏の黄昏によく似合うわ</p>
-<p>あの日のままで　话をして欲しい</p>
-<p>海の好きなあなた　ねぇ　私はずっと頬づえつきながら</p>
-<p>闻いてるだけでいい</p>
-<p>Baby love again　やさしさだけが重すぎただけなの</p>
-<p>Baby love again　せめて笑ってこの夜终らすわ</p>
-<p>明日から二人　别々の日々でも　この街のどこかでね</p>
-<p>生きてるかぎり　会える気がするのよ</p>
-<p>その时は笑颜で</p>
-<p>Baby love again　二人の爱はもどりはしないけど</p>
-<p>Baby love again　せめてあなたをにくみたくはないの</p>
-<h2 id="にくみたくはないの…"><a href="#にくみたくはないの…" class="headerlink" title="にくみたくはないの…"></a>にくみたくはないの…</h2>]]></content>
+<p>然后输入pip install skimage</p>
+<h1 id="pip版本要更新"><a href="#pip版本要更新" class="headerlink" title="pip版本要更新"></a>pip版本要更新</h1><figure class="highlight plaintext"><figcaption><span>[title] [lang:language] [url] [link text] [additional options]</span></figcaption><table><tr><td class="code"><pre><span class="line">D:\Python\Scripts&gt;pip install skimage</span><br><span class="line">Collecting skimage</span><br><span class="line">  Using cached skimage-0.0.tar.gz (757 bytes)</span><br><span class="line">  Preparing metadata (setup.py) ... error</span><br><span class="line">  error: subprocess-exited-with-error</span><br><span class="line"></span><br><span class="line">  × python setup.py egg_info did not run successfully.</span><br><span class="line">  │ exit code: 1</span><br><span class="line">  ╰─&gt; [3 lines of output]</span><br><span class="line"></span><br><span class="line">      *** Please install the `scikit-image` package (instead of `skimage`) ***</span><br><span class="line"></span><br><span class="line">      [end of output]</span><br><span class="line"></span><br><span class="line">  note: This error originates from a subprocess, and is likely not a problem with pip.</span><br><span class="line">error: metadata-generation-failed</span><br><span class="line"></span><br><span class="line">× Encountered error while generating package metadata.</span><br><span class="line">╰─&gt; See above for output.</span><br><span class="line"></span><br><span class="line">note: This is an issue with the package mentioned above, not pip.</span><br><span class="line">hint: See above for details.</span><br><span class="line"></span><br><span class="line">[notice] A new release of pip available: 22.1.2 -&gt; 22.3</span><br><span class="line">[notice] To update, run: python.exe -m pip install --upgrade pip</span><br></pre></td></tr></table></figure>
+
+
+<p>没办法，照着提示更新</p>
+<h1 id="更新完下载仍然报错"><a href="#更新完下载仍然报错" class="headerlink" title="更新完下载仍然报错"></a>更新完下载仍然报错</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">D:\Python\Scripts&gt;.\pip install skimage</span><br><span class="line">Collecting skimage</span><br><span class="line">  Using cached skimage-0.0.tar.gz (757 bytes)</span><br><span class="line">  Preparing metadata (setup.py) ... error</span><br><span class="line">  error: subprocess-exited-with-error</span><br><span class="line"></span><br><span class="line">  × python setup.py egg_info did not run successfully.</span><br><span class="line">  │ exit code: 1</span><br><span class="line">  ╰─&gt; [3 lines of output]</span><br><span class="line"></span><br><span class="line">      *** Please install the `scikit-image` package (instead of `skimage`) ***</span><br><span class="line"></span><br><span class="line">      [end of output]</span><br><span class="line"></span><br><span class="line">  note: This error originates from a subprocess, and is likely not a problem with pip.</span><br><span class="line">error: metadata-generation-failed</span><br><span class="line"></span><br><span class="line">× Encountered error while generating package metadata.</span><br><span class="line">╰─&gt; See above for output.</span><br><span class="line"></span><br><span class="line">note: This is an issue with the package mentioned above, not pip.</span><br><span class="line">hint: See above for details.</span><br></pre></td></tr></table></figure>
+
+<p>原来是库函数命名的问题，为什么我要的是</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">from skimage import io, data</span><br></pre></td></tr></table></figure>
+<p>但是却给了我个“scikit-image”呢？</p>
+<p>不知道，更改名字后执行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">D:\Python\Scripts&gt;pip install scikit-image</span><br></pre></td></tr></table></figure>
+<p><strong>成功！</strong></p>
+]]></content>
       <categories>
-        <category>Things of Interest</category>
+        <category>Library function</category>
       </categories>
       <tags>
-        <tag>音视频</tag>
-        <tag>Youtube</tag>
+        <tag>库函数</tag>
+        <tag>安装</tag>
       </tags>
   </entry>
   <entry>
@@ -256,6 +291,34 @@
       </categories>
   </entry>
   <entry>
+    <title>交叉验证补充</title>
+    <url>/2022/11/23/%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81%E8%A1%A5%E5%85%85/</url>
+    <content><![CDATA[<p>前面我介绍了K折交叉验证该如何划分，还有具体的使用效果。但是对于K折交叉验证该什么时候用，怎么使用还没有讲的很清楚，这里我就再学习一遍加深记忆吧！</p>
+<span id="more"></span>
+
+<h1 id="交叉验证补充"><a href="#交叉验证补充" class="headerlink" title="交叉验证补充"></a>交叉验证补充</h1><p>事情的起因是我看到了下面一段代码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">from sklearn.model_selection import KFold, train_test_split</span><br></pre></td></tr></table></figure>
+
+<p>这个KFolder怎么和train_test_split都在一起？我查了一下，发现train_test_split就是我之前所鄙夷的简单交叉验证。没有验证集，都是总集合不断打乱然后划分训练集和测试集，利用测试集的表现性能（也就是损失函数）来评估最优的模型和参数。由于是随机的将原始数据分组，所以最后验证集分类准确率的高低与原始数据的分组有很大的关系，得到的结果并不具有说服性<a href="https://blog.csdn.net/u010986753/article/details/98069124">…</a></p>
+<h1 id="对K折交叉验证的再理解"><a href="#对K折交叉验证的再理解" class="headerlink" title="对K折交叉验证的再理解"></a>对K折交叉验证的再理解</h1><p>前面我介绍了K折交叉验证该如何划分，还有具体的使用效果。但是对于K折交叉验证该什么时候用，怎么使用还没有讲的很清楚，这里我就再学习一遍加深记忆吧！</p>
+<p>K折交叉只是一种划分数据集的策略。把它和传统划分数据集（train_test_split）的方式进行比较，它可以避免固定划分数据集的局限性、特殊性，这个优势在小规模数据集上更明显。不用K折交叉验证就不能进行模型评估和模型选择了吗？当然不是。只要有测试集，就能进行模型评估；只要有验证集，就能进行模型选择。所以N折交叉验证只是在做这两件事时的一种可选的优化手段。当数据集很小时，建议用交叉验证的方法来避免过拟合。</p>
+<p>引用<a href="https://zhuanlan.zhihu.com/p/113623623">王亮博主</a>的观点，K折交叉验证可以分成两个用途：</p>
+<ol>
+<li>模型选择</li>
+<li>模型评估</li>
+</ol>
+<h2 id="1-模型选择"><a href="#1-模型选择" class="headerlink" title="1.模型选择"></a>1.模型选择</h2><p>当对训练集和验证集采取Kfolder进行划分的时候，被称为是模型选择，也就是参数选择。验证集是在训练过程中用于检验模型的训练情况，从而确定合适的超参数。而测试集完全不参与训练的数据，仅仅用来观测测试效果、测试模型的泛化能力。</p>
+<p>具体的过程是，首先在训练集和验证集上对多种模型选择（超参数选择）进行验证，选出平均误差最小的模型（超参数）。选出合适的模型（超参数）后，可以把训练集和验证集合并起来，在上面重新把模型训练一遍，得到最终模型，然后再用测试集测试其泛化能力。	</p>
+<h2 id="2-模型选择"><a href="#2-模型选择" class="headerlink" title="2.模型选择"></a>2.模型选择</h2><p>交叉验证的另一个用途，就是模型是确定的，没有多个候选模型需要选，只是用交叉验证的方法来对模型的performance进行评估。这种情况下，数据集被划分成训练集、测试集两部分，训练集和测试集的划分采用N折交叉的方式。我的理解是，找出一种训练集与测试集的划分方法，让测试集的表现最好！这一点如果在数据量小的时候还好，K个组合中的分数差距可能会比较大。但如果数据量大起来了，相比这K组的测试集表现都差不多吧？这也说明了K折只适合用于小样本的数据集上…</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>当用交叉验证进行模型选择时，可以从多种模型中选择出泛化能力最好的（即最不容易发生过拟合）的模型。从这个角度上讲，交叉验证是避免发生过拟合的手段。同样是解决过拟合的方法，交叉验证与正则化不同：交叉验证通过寻找最佳模型的方式来解决过拟合；而正则化则是通过约束参数的范数来解决过拟合。</p>
+<p>当用交叉验证进行模型评估时，交叉验证不能解决过拟合问题，只能用来评估模型的performance。</p>
+<p>如果还不熟悉的话建议拿<a href="https://blog.csdn.net/weixin_43685844/article/details/88635492">练习1</a>和<a href="https://zhuanlan.zhihu.com/p/250253050">练习2</a>练练手</p>
+]]></content>
+      <categories>
+        <category>Mathine Learning</category>
+      </categories>
+  </entry>
+  <entry>
     <title>卷积神经网络CNN学习一</title>
     <url>/2022/11/24/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9CCNN%E5%AD%A6%E4%B9%A0%E4%B8%80/</url>
     <content><![CDATA[<p>今天二十四号，学习卷积神经网络的第一天。虽然以前就对CNN有过了解，但是没有经过系统性的学习，对许多方面的知识点都是一知半解。在学习CNN之前，首先要明确的一点是：Deep Learning是全部深度学习算法的总称，而CNN是深度学习算法在图像处理领域的一个应用罢了…</p>
@@ -275,39 +338,6 @@
       <tags>
         <tag>深度学习</tag>
         <tag>CNN</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>pip安装新库</title>
-    <url>/2022/11/24/pip%E5%AE%89%E8%A3%85%E6%96%B0%E5%BA%93/</url>
-    <content><![CDATA[<p>书接上回，研究一下在visual code上如何通过pip安装库函数，这次要安装的库函数是skimage</p>
-<span id="more"></span>
-
-<h1 id="pip安装skimage库"><a href="#pip安装skimage库" class="headerlink" title="pip安装skimage库"></a>pip安装skimage库</h1><p>书接上回，研究一下在visual code上如何通过pip安装库函数</p>
-<h1 id="找到Python的路径"><a href="#找到Python的路径" class="headerlink" title="找到Python的路径"></a>找到Python的路径</h1><p>我的是<em>“D:\Python\Scripts”</em></p>
-<p>visual code或者cmd命令台执行</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd D:\Python\Scripts</span><br></pre></td></tr></table></figure>
-
-<p>然后输入pip install skimage</p>
-<h1 id="pip版本要更新"><a href="#pip版本要更新" class="headerlink" title="pip版本要更新"></a>pip版本要更新</h1><figure class="highlight plaintext"><figcaption><span>[title] [lang:language] [url] [link text] [additional options]</span></figcaption><table><tr><td class="code"><pre><span class="line">D:\Python\Scripts&gt;pip install skimage</span><br><span class="line">Collecting skimage</span><br><span class="line">  Using cached skimage-0.0.tar.gz (757 bytes)</span><br><span class="line">  Preparing metadata (setup.py) ... error</span><br><span class="line">  error: subprocess-exited-with-error</span><br><span class="line"></span><br><span class="line">  × python setup.py egg_info did not run successfully.</span><br><span class="line">  │ exit code: 1</span><br><span class="line">  ╰─&gt; [3 lines of output]</span><br><span class="line"></span><br><span class="line">      *** Please install the `scikit-image` package (instead of `skimage`) ***</span><br><span class="line"></span><br><span class="line">      [end of output]</span><br><span class="line"></span><br><span class="line">  note: This error originates from a subprocess, and is likely not a problem with pip.</span><br><span class="line">error: metadata-generation-failed</span><br><span class="line"></span><br><span class="line">× Encountered error while generating package metadata.</span><br><span class="line">╰─&gt; See above for output.</span><br><span class="line"></span><br><span class="line">note: This is an issue with the package mentioned above, not pip.</span><br><span class="line">hint: See above for details.</span><br><span class="line"></span><br><span class="line">[notice] A new release of pip available: 22.1.2 -&gt; 22.3</span><br><span class="line">[notice] To update, run: python.exe -m pip install --upgrade pip</span><br></pre></td></tr></table></figure>
-
-
-<p>没办法，照着提示更新</p>
-<h1 id="更新完下载仍然报错"><a href="#更新完下载仍然报错" class="headerlink" title="更新完下载仍然报错"></a>更新完下载仍然报错</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">D:\Python\Scripts&gt;.\pip install skimage</span><br><span class="line">Collecting skimage</span><br><span class="line">  Using cached skimage-0.0.tar.gz (757 bytes)</span><br><span class="line">  Preparing metadata (setup.py) ... error</span><br><span class="line">  error: subprocess-exited-with-error</span><br><span class="line"></span><br><span class="line">  × python setup.py egg_info did not run successfully.</span><br><span class="line">  │ exit code: 1</span><br><span class="line">  ╰─&gt; [3 lines of output]</span><br><span class="line"></span><br><span class="line">      *** Please install the `scikit-image` package (instead of `skimage`) ***</span><br><span class="line"></span><br><span class="line">      [end of output]</span><br><span class="line"></span><br><span class="line">  note: This error originates from a subprocess, and is likely not a problem with pip.</span><br><span class="line">error: metadata-generation-failed</span><br><span class="line"></span><br><span class="line">× Encountered error while generating package metadata.</span><br><span class="line">╰─&gt; See above for output.</span><br><span class="line"></span><br><span class="line">note: This is an issue with the package mentioned above, not pip.</span><br><span class="line">hint: See above for details.</span><br></pre></td></tr></table></figure>
-
-<p>原来是库函数命名的问题，为什么我要的是</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">from skimage import io, data</span><br></pre></td></tr></table></figure>
-<p>但是却给了我个“scikit-image”呢？</p>
-<p>不知道，更改名字后执行</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">D:\Python\Scripts&gt;pip install scikit-image</span><br></pre></td></tr></table></figure>
-<p><strong>成功！</strong></p>
-]]></content>
-      <categories>
-        <category>Library function</category>
-      </categories>
-      <tags>
-        <tag>库函数</tag>
-        <tag>安装</tag>
       </tags>
   </entry>
   <entry>
@@ -380,52 +410,6 @@ im.save(output)
       </categories>
   </entry>
   <entry>
-    <title>交叉验证补充</title>
-    <url>/2022/11/23/%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81%E8%A1%A5%E5%85%85/</url>
-    <content><![CDATA[<p>前面我介绍了K折交叉验证该如何划分，还有具体的使用效果。但是对于K折交叉验证该什么时候用，怎么使用还没有讲的很清楚，这里我就再学习一遍加深记忆吧！</p>
-<span id="more"></span>
-
-<h1 id="交叉验证补充"><a href="#交叉验证补充" class="headerlink" title="交叉验证补充"></a>交叉验证补充</h1><p>事情的起因是我看到了下面一段代码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">from sklearn.model_selection import KFold, train_test_split</span><br></pre></td></tr></table></figure>
-
-<p>这个KFolder怎么和train_test_split都在一起？我查了一下，发现train_test_split就是我之前所鄙夷的简单交叉验证。没有验证集，都是总集合不断打乱然后划分训练集和测试集，利用测试集的表现性能（也就是损失函数）来评估最优的模型和参数。由于是随机的将原始数据分组，所以最后验证集分类准确率的高低与原始数据的分组有很大的关系，得到的结果并不具有说服性<a href="https://blog.csdn.net/u010986753/article/details/98069124">…</a></p>
-<h1 id="对K折交叉验证的再理解"><a href="#对K折交叉验证的再理解" class="headerlink" title="对K折交叉验证的再理解"></a>对K折交叉验证的再理解</h1><p>前面我介绍了K折交叉验证该如何划分，还有具体的使用效果。但是对于K折交叉验证该什么时候用，怎么使用还没有讲的很清楚，这里我就再学习一遍加深记忆吧！</p>
-<p>K折交叉只是一种划分数据集的策略。把它和传统划分数据集（train_test_split）的方式进行比较，它可以避免固定划分数据集的局限性、特殊性，这个优势在小规模数据集上更明显。不用K折交叉验证就不能进行模型评估和模型选择了吗？当然不是。只要有测试集，就能进行模型评估；只要有验证集，就能进行模型选择。所以N折交叉验证只是在做这两件事时的一种可选的优化手段。当数据集很小时，建议用交叉验证的方法来避免过拟合。</p>
-<p>引用<a href="https://zhuanlan.zhihu.com/p/113623623">王亮博主</a>的观点，K折交叉验证可以分成两个用途：</p>
-<ol>
-<li>模型选择</li>
-<li>模型评估</li>
-</ol>
-<h2 id="1-模型选择"><a href="#1-模型选择" class="headerlink" title="1.模型选择"></a>1.模型选择</h2><p>当对训练集和验证集采取Kfolder进行划分的时候，被称为是模型选择，也就是参数选择。验证集是在训练过程中用于检验模型的训练情况，从而确定合适的超参数。而测试集完全不参与训练的数据，仅仅用来观测测试效果、测试模型的泛化能力。</p>
-<p>具体的过程是，首先在训练集和验证集上对多种模型选择（超参数选择）进行验证，选出平均误差最小的模型（超参数）。选出合适的模型（超参数）后，可以把训练集和验证集合并起来，在上面重新把模型训练一遍，得到最终模型，然后再用测试集测试其泛化能力。	</p>
-<h2 id="2-模型选择"><a href="#2-模型选择" class="headerlink" title="2.模型选择"></a>2.模型选择</h2><p>交叉验证的另一个用途，就是模型是确定的，没有多个候选模型需要选，只是用交叉验证的方法来对模型的performance进行评估。这种情况下，数据集被划分成训练集、测试集两部分，训练集和测试集的划分采用N折交叉的方式。我的理解是，找出一种训练集与测试集的划分方法，让测试集的表现最好！这一点如果在数据量小的时候还好，K个组合中的分数差距可能会比较大。但如果数据量大起来了，相比这K组的测试集表现都差不多吧？这也说明了K折只适合用于小样本的数据集上…</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>当用交叉验证进行模型选择时，可以从多种模型中选择出泛化能力最好的（即最不容易发生过拟合）的模型。从这个角度上讲，交叉验证是避免发生过拟合的手段。同样是解决过拟合的方法，交叉验证与正则化不同：交叉验证通过寻找最佳模型的方式来解决过拟合；而正则化则是通过约束参数的范数来解决过拟合。</p>
-<p>当用交叉验证进行模型评估时，交叉验证不能解决过拟合问题，只能用来评估模型的performance。</p>
-<p>如果还不熟悉的话建议拿<a href="https://blog.csdn.net/weixin_43685844/article/details/88635492">练习1</a>和<a href="https://zhuanlan.zhihu.com/p/250253050">练习2</a>练练手</p>
-]]></content>
-      <categories>
-        <category>Mathine Learning</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>插入YouTube视频</title>
-    <url>/2022/11/23/%E6%8F%92%E5%85%A5YouTube%E8%A7%86%E9%A2%91/</url>
-    <content><![CDATA[<p>尝试在文章中插入一段YouTube视频，就放我最近经常听的一首歌吧！</p>
-<span id="more"></span>
-
-<div class="video-container"><iframe src="https://www.youtube.com/embed/crIP7PuC8Bc" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
-
-]]></content>
-      <categories>
-        <category>Blog</category>
-      </categories>
-      <tags>
-        <tag>音视频</tag>
-        <tag>博客</tag>
-        <tag>YouTube</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>在hexo搭建博客遇到的问题</title>
     <url>/2022/11/23/%E5%9C%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<p>之前我用的主题感觉索然无味，于是我尝试换了一个主题，结果发现了新大陆！激动的话我就不在这里详细张开来讲了，我会放在另外一篇文章里，这里主要讲讲我在Hexo上搭建Next遇到的问题以及解决方法。</p>
@@ -471,225 +455,21 @@ im.save(output)
       </tags>
   </entry>
   <entry>
-    <title>数学建模大赛</title>
-    <url>/2022/11/23/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E5%A4%A7%E8%B5%9B/</url>
-    <content><![CDATA[<p>直到今天为止，数模比赛已经结束咯！任务完成，参赛题目也提交了，结果如何就看人品了🤗</p>
+    <title>插入YouTube视频</title>
+    <url>/2022/11/23/%E6%8F%92%E5%85%A5YouTube%E8%A7%86%E9%A2%91/</url>
+    <content><![CDATA[<p>尝试在文章中插入一段YouTube视频，就放我最近经常听的一首歌吧！</p>
 <span id="more"></span>
 
-<h1 id="1-数模比赛"><a href="#1-数模比赛" class="headerlink" title="1.数模比赛"></a>1.数模比赛</h1><p>直到今天为止，数模比赛已经结束咯！任务完成，参赛题目也提交了，结果如何就看人品了🤗<br>这是是第一次使用Markdown写短文，虽然说Markdown很容易上手，但是一些细节上的东西总是无法反应过来😵😵😵</p>
-<blockquote>
-<p>下面是我学习Markdown的一些经历，希望在写作的时候对你有些帮助！😉</p>
-<p>点击跳转Markdown  –&gt;目前这项功能还在开发中，ちょっと待っね！</p>
-</blockquote>
-<h1 id="2-比赛前"><a href="#2-比赛前" class="headerlink" title="2.比赛前"></a>2.比赛前</h1><h2 id="2-1第一次校赛"><a href="#2-1第一次校赛" class="headerlink" title="2.1第一次校赛"></a>2.1第一次校赛</h2><p>虽然说今年四月份就开始准备数模比赛了，到今天有五个多月的时间，但是我们队真正学习的时间却不多，至少对我来说。可能我真正静下心来学习数模知识的时间还不足两个星期吧！😅</p>
-<p>刚开始我的工作是负责建模的工作，在队长的敦促下，买了份价值一百五的学习视频及教程。我对于视频学习并没有多大的想法，我还是更喜欢看书学。这就是为什么iPad里的电子书都发霉发臭了，都不曾被我看过的原因吧？再一点，比起付费的资料，我更喜欢白嫖（虽然这并不好），因为在我认为在网上寻找资料是一件很享受的事情，おかしいでしょ？</p>
-<p>一个队伍的核心成员应该是建模手，作为整支队伍的leader，我带领着队伍齐头并进，最后连校三等都没有…</p>
-<p>😀😀😀但是这也是在意料之内的，因为没有什么知识储备，脑子里当时就只有层次分析法这几个简单的模型，再加上论文的阅读次数都不足双位数，能获奖就有鬼！而且为期三天的数模，我们整整搞了十天才提交上去，虽然但是有多少水分谁不不揭穿了啊！</p>
-<h2 id="2-2暑假"><a href="#2-2暑假" class="headerlink" title="2.2暑假"></a>2.2暑假</h2><p>搞完校赛，处理完期末考试，差不多就进入了暑假。由于和写作手的配合没有那么好，所以我们打算换一名成员。队长推荐了一名算法高手，很显然，我该换岗位了。</p>
-<p>在漫长的暑假，我只希望自己能够每天抽出时间读一篇，哪怕是一篇数模优秀文章也好！但是事与愿违，事…还是没做成。后面学校组织训练，我们参加并且完成了一篇19年的C题。嗯，很显然我们又是十天左右才完成。当时就想着，这么搞肯定得玩完。于是思前想后，打算用LaTeX替换现在的WPS，说不定写作工具变了，我们的工作就更有效率了呢？😲</p>
-<p>好主意！下一次训练连半成品都没有交上去…</p>
-<p>当时学习LaTeX花了不到半天时间，便清楚它的工作流程，于是迫不及待的去找了一些有数模LaTeX的tex文件。看到了一个钟意的，便敲定了，也就是现在我使用的这也数模模板。</p>
-<p>由于我没有将模板与正文分离，所以我两次写论文的时候，都是夹着别人的论文一起写的，这次数模也不例外…</p>
-<blockquote>
-<p>我将LaTeX文件放到了这里，模板和正文自己分离。懒😪😪😪</p>
-<p>这项工作也还在完善中，请稍后！</p>
-</blockquote>
-<p>然后就开学咯🎉</p>
-<h2 id="2-3开学到比赛前这段时间"><a href="#2-3开学到比赛前这段时间" class="headerlink" title="2.3开学到比赛前这段时间"></a>2.3开学到比赛前这段时间</h2><p>很显然，我什么都没有干。</p>
-<h1 id="3-比赛"><a href="#3-比赛" class="headerlink" title="3.比赛"></a>3.比赛</h1><p>据说参加国赛需要校赛经历，我们已经算是合格的国赛选手了吧？我们比赛的时间是9月15号（周四）晚上六点钟到9月18号（周日）晚上十点钟之前。又多了四个小时时间，Lucky！希望能够用这多出来的四个小时改变点什么…</p>
-<h2 id="3-1周四晚上"><a href="#3-1周四晚上" class="headerlink" title="3.1周四晚上"></a>3.1周四晚上</h2><p>出赛题的时候我们在饭堂，不是因为我们不准备坐着等题，而是我忘记打包进实验室了。当天晚上我们商量好，要确定选题，不要犹豫。今年的A题对于我们来说，简直是魔鬼程度的。两三页篇幅的说明，让我们望而祛步🙄。如果硬啃的话，肯定可以理解它想要表达什么，但是求解确实一大难事。后面看别人大佬绞尽脑汁的想，才发现这个决定无疑对我们来说是十分正确的。</p>
-<p>选题按理来说应该要由建模手和编程手决定，因为他们更清楚问题的复杂性。他们现在卡在了B题和C题之前，队长更想选C题，但是算法糕手希望能够挑战一下。他内心看起来很动摇，因为他看不出解题思路。其实我和新队员也是第一次见面，之前都是在WeChat上聊天。谢天谢地，我们俩很快就磨合了，变得更多少年的好友一般畅所欲言？！</p>
-<p>我在几何方面很敏感，但是对数学公式很感冒。当时想过选数学专业，但是哪有人只学几何不用数学公式啊？恰好B题就是与几何有关的，我用高中的知识看出了第一小问的求解思路，然后我就坚持选B题。最后没有依我，选择了C题。我当时虽然很不爽，但是我确实只想得出第一问，对于全局来说，我还是服气的。虽然题目更简单了，但是意味着更多人选。只有语文建模基础足够深厚，才有机会获得一个最小的省三。<strong>最后统计有三百八十多人选择了C题，这个人数差不多就是去年我们学校的参赛人数…</strong></p>
-<h2 id="3-2周五"><a href="#3-2周五" class="headerlink" title="3.2周五"></a>3.2周五</h2><p>周五我们搜寻资料，解决了第一小问，然后卡在了第二小问的预测上，想了差不多一天的时间都没有想出来。确实浪费了很多时间，也做了很多无用功。第一小问的论文我很快就与论文交接了，但是剩余的时间与其是在划水，倒不如说是在无用功。C题与化学有关，于是我想着会用到化学方程式，去找了很多。但是最后发现要么就是用不上，要么就是没时间用。</p>
-<h2 id="3-3周六"><a href="#3-3周六" class="headerlink" title="3.3周六"></a>3.3周六</h2><p>C题有大概六七个小问，想要查看原题的话点击这里。</p>
-<p>我们一天时间才解决了第一小问，如果再这么下去，论文很有可能写不完。虽然我们也很努力，我也是第一次尝试了这种朝八晚十二的作息规律。嗯？怎么和我平时的作息有点像？关键是放弃了宝贵的午休时间。没有午休我的精神状态就会下降，特别是写论文的时候，无法理解模型的概念与问题的解决思路，又没有文思泉涌，将会导致写出来的论文质量差。一天除了睡觉的时间都呆在实验室，看起来很努力，在我看来是在做无用功（包括我）。队长和建模手对于模型的选择有一定的困难，导致了问题的拖延。明白了这一点，今天开始我尝试着来安排工作。</p>
-<p>对于模型，需要用指标来衡量。我肯定表现好的模型，否定表现差的模型。这种斩钉截铁的工作模式很快让我和各位都进入了流水线上，开始各司其职。当然，前提是做出了跳过第二小问的决定。</p>
-<p>直到晚上，第二问第一小问、第三问和第四问的问题都得到了解决。但是跟他们一起讨论，导致我到目前为止并没有进行论文撰写，也就是说只完成了论文进度还是停留在周五。</p>
-<h2 id="3-4周日"><a href="#3-4周日" class="headerlink" title="3.4周日"></a>3.4周日</h2><p>即便如此，我早上还是睡到了差不多九点，因为我认为工作效率才是最重要的，假努力欺骗的是自己还有身边的人。但时间真的很赶！早上我留在宿舍通过大屏操作LaTeX很快就完成了第二问的论文撰写，并且我交代队友明天早上完成第三问的论文撰写以及求解出第二小问的预测结果。队友很给力，差不多两点我去实验室的时候他们已经完成了这两个任务。但我看完论文结构后猛地一惊，发现摘要和问题分析没有写！包括第四问在内，还有一些零零星星的结果没有贴到论文中，六个小时能够完成吗？真是一项挑战啊！我不禁擦了擦额头上的假汗😰😰😰</p>
-<p>我安排他们完成了问题二和问题三的问题分析，因为他们求解的他们来写这种解题思路的话简直如鱼得水。而第四问的方法是我想出来的，所以我先完成第四问先。但是做了一半，发现SPSSPro上的热力图根本无法反映出我想要的结果。于是在三点钟的时候我临时改用了其它方法，用画图代替了建立模型的繁琐。</p>
-<p>大概五点钟我们就完成了基本上的任务，但是对于XeLatex编译出来的文件，还是有很多bug。并且每一个bug都是包含致命错误的，一旦出现即无缘获奖（<em>虽然说这次的也不知道能不能够获奖😵‍💫</em>）其中解决的很多问题都是以前遇到过但是解决不出的🤔</p>
-<ul>
-<li>从使用之初一直困扰我的表格边框以及复杂表格的LaTeX代码</li>
-<li>LaTeX含特殊字符的那段文字会超出编译生成的PDF之外</li>
-<li>LaTeX中图片并列</li>
-<li>LaTeX正文会被图片和表格夹断，阅读出现障碍</li>
-<li>LaTeX模板上页眉的内容不知道在哪个文件清空</li>
-<li>LaTeX附录粘贴代码有点麻烦</li>
-</ul>
-<p><code>解决方案放到了LaTeX篇，如果有需要请点击此处跳转...</code></p>
-<p>多亏LaTeX有在源代码和PDF相互跳转到指定位置的功能，不然真的用不下去了😭😭😭</p>
-<p>我们一起改论文，改到了7点57还有很多问题，但是8点钟之前可以提交多次PDF论文和RAR压缩包，也就是说MD5码在8点钟之前是允许反复更改的。但是在8点到10点之内，就只能提交一次文件和生成指定不可变的MD5码。并且MD5码在8点后生成的，就不允许更改文件了，一旦你更改文件，或许只是打开一下PDF都有可能让MD5码发生改变，机器会判定在10点钟之后正式提交参赛作品的时候你的文件发生了改动，这个时候它是不承认你的MD5码，也就是说你无法参赛了。这是一个很严重的问题，自己辛辛苦苦做了这么久，结果却交不上去，心态多少有点崩溃。所以我们为了保险起见，先在8点钟之前提交一次。</p>
-<p>然后我们预测在9点钟之前正式将作品做最后一次的提交（10点钟之前的提交可以认为只是参赛资格的获取），但是发现bug根本改不过来。三个人忙得团团转，当时想着9点半之前提交就好了，网络不会这么拥挤的。但是忙到了9点半，bug依然有，而且严重程度会让论文直接降档。没办法，抱着试一逝的心态，我们改bug改到了9点45。虽然说还有不少bug，但都是不痛不痒的，对阅读论文没有什么大影响的小问题了。</p>
-<p>我编译出最新的PDF，通过WeChat准备发给队长时，由于轻薄本已经承担了太多软件，并且三四天都没有合过眼了。LaTeX直接卡退，屏幕被黑块笼罩着，就像我们此刻的心情一样。大概到9点50的时候，电脑缓过来了，我赶紧将PDF发给队长。压缩完我的LaTeX代码文件后突然发现我电脑里的压缩软件是360压缩，只能生成zip类型的压缩包。而我之前一直想着队长有WinRAR就够了，反正是他通过客户端提交的。下载WinRAR显然不切实际，由于多天的劳累，我们的CPU已经转不过来了。我赶紧将文件压缩成zip格式，然后发给建模手，因为此时队长在忙活着PDF名称的修改。但未承想建模手把我的文件解压放进总附件文件中，压缩后找不到找不到压缩包，遂叫我来操作。我看到他的安装路径，狂点桌面，然后点击确定。终于，我们的压缩包出现在了桌面。但他的桌面都是蓝蓝的doc和绿绿xls，一时间竟无法找出压缩包！此时时间已经来到了9点55分。一顿丝滑的操作后视野来到了队长这边，只见他颤颤巍巍地移动着鼠标，指尖高频触动着鼠标左键，但就是无法达到那最后的终点！“好了吗？”“好！冲！”伴随着呐喊声，我们点击了提交。幸运的是，软件并没有卡顿，显得如此顺理成章，此时时间是9点57分。一切都结束后，没有欢呼、没有喝彩，只留下一片鸦雀无声。紧绷着的心情还没有完全放松下来，眼前还停留着黑白的文字与代码，一切都还显得这么历历在目！</p>
-<h1 id="4-Final"><a href="#4-Final" class="headerlink" title="4.Final"></a>4.Final</h1><p>虽然过程很苦很累，甚至对一百蚊有点舍不得。但就最后两个小时的感受而言，让我觉得这钱交的值了！自打上大学以来，还是第一次切实地体会到了团队合作的重要性。以前一直都是单打独斗，现在发现自己并不是万能的，队友就是用来弥补自己的缺点的。虽然说有百分之五十的概率获奖，但是无论结果如何我都能平淡接受，因为这场比赛我已经获得了自己想要的东西！<em>（其实心里还是想着希望得个省三就好了，因为有一千块钱回血…）</em>🐤🐤🐤</p>
-]]></content>
-      <categories>
-        <category>School Life</category>
-      </categories>
-      <tags>
-        <tag>学校</tag>
-        <tag>比赛</tag>
-        <tag>生活</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>激活函数</title>
-    <url>/2022/11/23/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<p>学习一下机器学习中常见的激活函数，大部分只是了解即可，不必深究</p>
-<span id="more"></span>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/crIP7PuC8Bc" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
 
-<h1 id="常用的激活函数"><a href="#常用的激活函数" class="headerlink" title="常用的激活函数"></a>常用的激活函数</h1><h2 id="首先要知道什么是激活函数？"><a href="#首先要知道什么是激活函数？" class="headerlink" title="首先要知道什么是激活函数？"></a>首先要知道什么是激活函数？</h2><p>激活函数就是在神经网络的神经元上运行的函数，负责将神经元的输入映射到输出端。它类似于人类大脑中基于神经元的模型，激活函数最终决定了要发射给下一个神经元的内容。</p>
-<p>它的可视化过程如图所示：</p>
-<p><img src="https://ask.qcloudimg.com/http-save/8352478/mn5asmil0s.png?imageView2/2/w/1620" alt="激活函数工作过程"></p>
-<p>如果不用激励函数，每一层输出都是上层输入的线性函数，无论神经网络有多少层，输出都是输入的线性组合。神经网络中使用激活函数来加入非线性因素，提高模型的表达能力。</p>
-<h2 id="1-sigmoid激活函数"><a href="#1-sigmoid激活函数" class="headerlink" title="1. sigmoid激活函数"></a>1. sigmoid激活函数</h2><p><img src="https://ask.qcloudimg.com/http-save/8352478/nhi9swy8ln.png?imageView2/2/w/1620" alt="sigmoid函数"></p>
-<p>Sigmoid 函数的图像看起来像一个 S 形曲线。它的表达式如下：</p>
-<p>f(z) &#x3D; \frac{1}{1+e^{-z} } </p>
-<p>Sigmoid函数是传统神经网络中最常用的激活函数，一度被视为神经网络的核心所在。 </p>
-<p>从数学上来看，Sigmoid函数对中央区的信号增益较大，对两侧区的信号增益小，在信号的特征空间映射上，有很好的效果。从神经科学上来看，中央区酷似神经元的兴奋态，两侧区酷似神经元的抑制态，因而在神经网络学习方面，可以将重点特征推向中央区，将非重点特征推向两侧区。</p>
-<h3 id="1-1-在什么情况下适合使用-Sigmoid-激活函数呢？"><a href="#1-1-在什么情况下适合使用-Sigmoid-激活函数呢？" class="headerlink" title="1.1 在什么情况下适合使用 Sigmoid 激活函数呢？"></a>1.1 在什么情况下适合使用 Sigmoid 激活函数呢？</h3><ul>
-<li>Sigmoid 函数的输出范围是 0 到 1。由于输出值限定在 0 到 1，因此它对每个神经元的输出进行了归一化；</li>
-<li>用于将预测概率作为输出的模型。由于概率的取值范围是 0 到 1，因此 Sigmoid 函数非常合适；</li>
-<li>梯度平滑，避免「跳跃」的输出值；</li>
-<li>函数是可微的。这意味着可以找到任意两个点的 sigmoid 曲线的斜率；</li>
-<li>明确的预测，即非常接近 1 或 0。</li>
-<li></li>
-</ul>
-<h3 id="1-2-Sigmoid-激活函数有哪些缺点？"><a href="#1-2-Sigmoid-激活函数有哪些缺点？" class="headerlink" title="1.2 Sigmoid 激活函数有哪些缺点？"></a>1.2 Sigmoid 激活函数有哪些缺点？</h3><ul>
-<li>倾向于梯度消失；</li>
-<li>函数输出不是以 0 为中心的，这会降低权重更新的效率；</li>
-<li>Sigmoid 函数执行指数运算，计算机运行得较慢。</li>
-</ul>
-<p>现在基本上已经用不上sigmoid函数了。</p>
-<h2 id="2-TanHyperbolic（tanh）双曲正切激活函数"><a href="#2-TanHyperbolic（tanh）双曲正切激活函数" class="headerlink" title="2. TanHyperbolic（tanh）双曲正切激活函数"></a>2. TanHyperbolic（tanh）双曲正切激活函数</h2><p><img src="https://ask.qcloudimg.com/http-save/8352478/gm9p8du88z.png?imageView2/2/w/1620" alt="tanh函数"></p>
-<p>tanh 激活函数的图像也是 S 形，表达式如下：</p>
-<p>f(z) &#x3D; tanh(z) &#x3D;  \frac{e^{z} - e^{-z}  }{e^{z} + e^{-z} }  &#x3D; \frac{2}{1 + e^{-2z} }-1 </p>
-<p>tanh 是双曲正切函数。tanh 函数和 sigmoid 函数的曲线相似。但是它比 sigmoid 函数更有一些优势。</p>
-<ul>
-<li><p>sigmoid函数和tanh函数都存在一个问题：当神经网络的层数增多的时候，由于在进行反向传播的时候，链式求导，多项相乘，函数进入饱和区（导数接近于零的地方）就会逐层传递，这种现象被称为梯度消失。</p>
-</li>
-<li><p>首先要明确的一点是，当输入较大或较小时，输出几乎是平滑的并且梯度较小，这不利于权重更新。tanh 整个函数以 0 为中心，比 sigmoid 函数更好。在实际操作的时候，tanh 函数延迟了饱和期，在特征相差比较明显的时候效果会更好，并且在循环过程中也能够不断地扩大特征的效果。</p>
-</li>
-<li><p>在一般的二元分类问题中，tanh 函数用于隐藏层，而 sigmoid 函数用于输出层，但这并不是固定的，需要根据特定问题进行调整。</p>
-</li>
-</ul>
-<h2 id="3-softmax激活函数"><a href="#3-softmax激活函数" class="headerlink" title="3. softmax激活函数"></a>3. softmax激活函数</h2><p>公式表达为：</p>
-<p>f(z) &#x3D; \frac{e^{Z_j} }{\sum_{k}^{}e^{Z_k} } </p>
-<p>Sigmoid函数如果用来分类的话，只能进行二分类，而这里的softmax函数可以看做是Sigmoid函数的一般化，可以进行多分类。</p>
-<h3 id="3-0-Softmax激活函数的特点："><a href="#3-0-Softmax激活函数的特点：" class="headerlink" title="3.0 Softmax激活函数的特点："></a>3.0 Softmax激活函数的特点：</h3><ul>
-<li>在零点不可微。</li>
-<li>负输入的梯度为零，这意味着对于该区域的激活，权重不会在反向传播期间更新，因此会产生永不激活的死亡神经元。</li>
-</ul>
-<h3 id="3-1-sigmoid与softmax比较-–-gt-sigmoid"><a href="#3-1-sigmoid与softmax比较-–-gt-sigmoid" class="headerlink" title="3.1 sigmoid与softmax比较 –&gt; sigmoid"></a>3.1 sigmoid与softmax比较 –&gt; sigmoid</h3><p>二分类和多分类其实没有多少区别。用的公式仍然是y &#x3D; wx + b。 但有一个非常大的区别是他们用的激活函数是不同的。 逻辑回归用的是sigmoid，这个激活函数的除了给函数增加非线性之外还会把最后的预测值转换成在[0,1]中的数据值。也就是预测值是0&lt;y&lt;1。 我们可以把最后的这个预测值当做是一个预测为正例的概率。在进行模型应用的时候我们会设置一个阈值，当预测值大于这个阈值的时候，我们判定为正例子，反之我们判断为负例。这样我们可以很好的进行二分类问题。 </p>
-<h3 id="3-2-sigmoid与softmax比较-–-gt-softmax"><a href="#3-2-sigmoid与softmax比较-–-gt-softmax" class="headerlink" title="3.2 sigmoid与softmax比较 –&gt; softmax"></a>3.2 sigmoid与softmax比较 –&gt; softmax</h3><p>Softmax函数是用于多类分类问题的激活函数，在多类分类问题中，超过两个类标签则需要类成员关系。对于长度为K的任意实向量，Softmax函数可以将其压缩为长度为K，值在[0,1]范围内，并且向量中元素的总和为1的实向量。</p>
-<blockquote>
-<p>Softmax函数与正常的max函数不同：max函数仅输出最大值，但Softmax函数确保较小的值具有较小的概率，不会直接丢弃。我们可以认为它是arg max函数的概率版本或“soft”版本。Softmax函数的分母结合了原始输出值的所有因子，这意味着Softmax函数获得的各种概率彼此相关。</p>
-</blockquote>
-<blockquote>
-<p>利用 softmax 可以用于多分类问题，而用多个logistic回归通过叠加也同样可以实现多分类的效果，但是 softmax回归进行的多分类，类与类之间是互斥的，即一个输入只能被归为一类。多个logistic回归进行多分类，输出的类别并不是互斥的，即”苹果”这个词语既属于”水果”类也属于”3C”类别。</p>
-</blockquote>
-<h2 id="4-ReLU-激活函数"><a href="#4-ReLU-激活函数" class="headerlink" title="4. ReLU 激活函数"></a>4. ReLU 激活函数</h2><p><img src="https://ask.qcloudimg.com/http-save/8352478/ck888so4in.png?imageView2/2/w/1620" alt="ReLu激活函数"></p>
-<p>ReLu函数的全称为Rectified Linear Units–&gt;修正线性单元,表达式为</p>
-<p>f(z) &#x3D; max(0,z)</p>
-<h3 id="Sigmoid-，tanh与ReLU-比较"><a href="#Sigmoid-，tanh与ReLU-比较" class="headerlink" title="Sigmoid ，tanh与ReLU 比较"></a>Sigmoid ，tanh与ReLU 比较</h3><p>sigmoid，tanh 会出现梯度消失问题，ReLU 的导数就不存在这样的问题。</p>
-<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
-<li>从计算的角度上，Sigmoid和Tanh激活函数均需要计算指数，复杂度高，而ReLU只需要一个阈值即可得到激活值。</li>
-<li>ReLU的非饱和性有效地解决梯度消失的问题，提供相对宽的激活边界。</li>
-<li>ReLU的单侧抑制，提供了网络的稀疏表达能力</li>
-</ul>
-<p><strong>稀疏表示（Sparse Representations）的定义：用较少的基本信号的线性组合来表达大部分或者全部的原始信号。</strong></p>
-<p><em>具体稀疏性的体现是：Relu会使一部分神经元的输出为0，这样就造成了网络的稀疏性，并且减少了参数的相互依存关系，缓解了过拟合问题的发生。</em><strong>只能说有利有弊了…</strong></p>
-<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul>
-<li>Dead ReLU 问题。当输入为负时，ReLU 完全失效，在正向传播过程中，这不是问题。但是在反向传播过程中，如果输入负数，则梯度将完全为零，即在训练过程中会导致神经元死亡。sigmoid 函数和 tanh 函数也具有相同的问题。</li>
-<li>我们发现 ReLU 函数的输出为 0 或正数，这意味着 ReLU 函数不是以 0 为中心的函数。</li>
-</ul>
-<p><strong>神经元死亡会导致该神经元在之后不被任何数据激活，即流经该神经元的梯度永远为0，不对任何数据产生响应。在实际训练中，如果学习率设置较大，会导致一定比例的神经元不可逆死亡，进而参数梯度无法更新，整个训练过程失败。</strong></p>
-<h2 id="5-softplus激活函数"><a href="#5-softplus激活函数" class="headerlink" title="5. softplus激活函数"></a>5. softplus激活函数</h2><p>公式表达式为：</p>
-<p>softplus(z)&#x3D;log(1+e^z)</p>
-<p>softplus函数与ReLU函数接近,但比较平滑, 同ReLU一样是单边抑制,有宽广的接受域(0,+inf), 但是由于指数运算,对数运算计算量大的原因,而不太被人使用。</p>
-<p><img src="https://images2018.cnblogs.com/blog/1252882/201807/1252882-20180707095338849-1750990328.png" alt="softplus激活函数"></p>
-<p>可以看到，softplus可以看作是ReLu的平滑。根据神经科学家的相关研究，softplus和ReLu与脑神经元激活频率函数有神似的地方。也就是说，在生物层面上，相比于早期的激活函数，softplus和ReLu更加接近脑神经元的激活模型。其中，<strong>RELU函数的引入给神经网络增加了生物学特性，可以称为灵魂激活函数。</strong></p>
-<p>softplus的导数就是sigmoid函数，还是很巧合的。还有一点就是，据说softplus的出现要比ReLu要早，也就是说softplus可以看成是ReLu的鼻祖？</p>
-<h2 id="6-Leaky-ReLU激活函数"><a href="#6-Leaky-ReLU激活函数" class="headerlink" title="6. Leaky ReLU激活函数"></a>6. Leaky ReLU激活函数</h2><p>它是一种专门设计用于解决 Dead ReLU 问题的激活函数：</p>
-<p><img src="https://ask.qcloudimg.com/http-save/8352478/zdls8bt48h.png?imageView2/2/w/1620" alt="Leaky ReLu"></p>
-<p>当 x &lt; 0的时候， f(x) &#x3D; \alpha x,其中\alpha 非常小，这样可以避免在x &lt; 0的时候，不能够学习的情况。</p>
-<p>f(x) &#x3D; max(\alpha x,x)</p>
-<blockquote>
-<p>将\alpha 作为可学习的参数，称为Parametric Rectifier(PReLU)</p>
-<p>当\alpha 从高斯分布中随机产生时称为Random Rectifier（RReLU）</p>
-<p>当固定为\alpha &#x3D; 0.01时,称为Leaky ReLU</p>
-</blockquote>
-<h3 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h3><ul>
-<li>不会过拟合(saturate)</li>
-<li>计算简单有效</li>
-<li>比sigmoid&#x2F;tanh收敛快</li>
-</ul>
-<h2 id="7-其他常见的激活函数"><a href="#7-其他常见的激活函数" class="headerlink" title="7. 其他常见的激活函数"></a>7. 其他常见的激活函数</h2><p>其他常见的激活函数还有</p>
-<ul>
-<li>Noisy ReLU</li>
-<li>指数线性单元ELU(exponential linear unit)</li>
-<li>SELU</li>
-<li>GELU</li>
-<li>Swish</li>
-<li>…</li>
-</ul>
-<p>还有挺多的激活函数没有列举，但是我目前常见的就只有以上列举的几种，剩下的激活函数等到到时候用到的时候再来补充就好了！</p>
-<p><em>参考的网站：</em></p>
-<blockquote>
-<p><a href="https://www.cnblogs.com/makefile/p/activation-function.html">https://www.cnblogs.com/makefile/p/activation-function.html</a><br><a href="https://www.cnblogs.com/nxf-rabbit75/p/9276412.html">https://www.cnblogs.com/nxf-rabbit75/p/9276412.html</a><br><a href="https://cloud.tencent.com/developer/article/1800954">https://cloud.tencent.com/developer/article/1800954</a><br><a href="https://blog.csdn.net/hy592070616/article/details/120618490">https://blog.csdn.net/hy592070616/article/details/120618490</a><br><a href="https://blog.csdn.net/weixin_42057852/article/details/84644348?spm=1001.2101.3001.6650.11&amp;utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-11-84644348-blog-120618490.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-11-84644348-blog-120618490.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=15">https://blog.csdn.net/weixin_42057852/article/details/84644348?spm=1001.2101.3001.6650.11&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-11-84644348-blog-120618490.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-11-84644348-blog-120618490.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=15</a></p>
-<p><a href="https://www.cnblogs.com/pinard/p/6437495.html">https://www.cnblogs.com/pinard/p/6437495.html</a></p>
-</blockquote>
 ]]></content>
       <categories>
-        <category>Mathine Learning</category>
+        <category>Blog</category>
       </categories>
       <tags>
-        <tag>机器学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>特征工程</title>
-    <url>/2022/11/23/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/</url>
-    <content><![CDATA[<p>数据和特征决定了机器学习的上限，而模型和算法只是逼近这个上限而已</p>
-<span id="more"></span>
-
-<h1 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a>特征工程</h1><p><a href="https://easyai.tech/ai-definition/feature-engineering/">特征工程</a>是机器学习工作流程中重要的组成部分，它将原始数据「翻译」成模型可理解的形式。</p>
-<p>美国计算机科学家 Peter Norvig 说过两句经典名言</p>
-<ol>
-<li>基于大量数据的简单模型优于基于少量数据的复杂模型</li>
-<li>更多的数据优于聪明的算法，而好的数据优于多的数据</li>
-</ol>
-<p>足以可见数据量和特征工程的重要性，不过数据量已经给定了，我们能做的只有特征工程。如何基于原来的数据发挥出更大的数据价值就是特征工程要做的事情。</p>
-<p><em>在16年的一项调查中发现，<a href="https://whatsthebigdata.com/2016/05/01/data-scientists-spend-most-of-their-time-cleaning-data/">数据科学家</a>的工作中，有80%的时间都在获取、清洗和组织数据。构造机器学习流水线的时间不到20%…</em></p>
-<h1 id="1-特征工程一些注意事项"><a href="#1-特征工程一些注意事项" class="headerlink" title="1.特征工程一些注意事项"></a>1.特征工程一些注意事项</h1><p>e.g. 人类是需要吃加工过的食物才行，这样更安全也更美味。机器算法模型也是类似，原始数据不能直接喂给模型，也需要对数据进行清洗、组织、转换。最后才能得到模型可以消化的特征。这样你对特征工程在数据和模型之间扮演的角色已经十分了解了吧？</p>
-<h2 id="1-1-当前我对特征工程的理解"><a href="#1-1-当前我对特征工程的理解" class="headerlink" title="1.1 当前我对特征工程的理解"></a>1.1 当前我对特征工程的理解</h2><p>当前我对特征工程的理解仅仅停留在特征提取和特征选择，这样是待会会提到的内容。首先要知道，这两种方法都是降维的方法。特征选择后的字段是原数据字段的子集，也就是说删减了一些冗杂的对模型训练没有用的字段。特征提取理解成原来特征的映射，e.g.三个字段合并在一起表现的会比三个字段独立更好一些–&gt;<a href="https://blog.csdn.net/Neil_Pan/article/details/51940849">特征选择和特征提取区别</a></p>
-<p>如果想要看看，特征工程具体是包括哪些具体步骤的，还可以参考<a href="https://blog.csdn.net/tiange_xiao/article/details/79723177#:~:text=%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%20%E6%98%AF%E4%BD%BF%E7%94%A8%E4%B8%93%E4%B8%9A%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86%E5%92%8C%E6%8A%80%E5%B7%A7%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%EF%BC%8C%E4%BD%BF%E5%BE%97%20%E7%89%B9%E5%BE%81%20%E8%83%BD%E5%9C%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E4%B8%8A%E5%8F%91%E6%8C%A5%E6%9B%B4%E5%A5%BD%E7%9A%84%E4%BD%9C%E7%94%A8%E7%9A%84%E8%BF%87%E7%A8%8B%E3%80%82%20%E8%BF%87%E7%A8%8B%20%E5%8C%85%E5%90%AB%20%E4%BA%86%20%E7%89%B9%E5%BE%81,%E7%89%B9%E5%BE%81%20%E6%9E%84%E5%BB%BA%E3%80%81%20%E7%89%B9%E5%BE%81%20%E9%80%89%E6%8B%A9%E7%AD%89%E6%A8%A1%E5%9D%97%E3%80%82%20%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%20%E7%9A%84%E7%9B%AE%E7%9A%84%E6%98%AF%E7%AD%9B%E9%80%89%E5%87%BA%E6%9B%B4%E5%A5%BD%E7%9A%84%20%E7%89%B9%E5%BE%81%20%EF%BC%8C%E8%8E%B7%E5%8F%96%E6%9B%B4%E5%A5%BD%E7%9A%84%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E3%80%82">这里</a></p>
-<h2 id="1-2-更好的业务逻辑表达"><a href="#1-2-更好的业务逻辑表达" class="headerlink" title="1.2 更好的业务逻辑表达"></a>1.2 更好的业务逻辑表达</h2><p>将特征工程理解成是业务逻辑的一种数学表达。说是说业务逻辑表达，其实实质上就是指为了解决机器学习中特定的问题。因为原始数据有很多种转换为特征的方式，我们需要选择那些能够「更好的表示业务逻辑」，从而更好的解决问题，而不是那些更简单的方法。</p>
-<h2 id="1-3-提升机器学习性能"><a href="#1-3-提升机器学习性能" class="headerlink" title="1.3 提升机器学习性能"></a>1.3 提升机器学习性能</h2><p>性能意味着更短时间和更低成本，哪怕相同的模型，也会因为特征工程的不同而性能不同。所以我们需要选择那些可以发挥更好性能的特征工程</p>
-<h1 id="2-特征选择"><a href="#2-特征选择" class="headerlink" title="2. 特征选择"></a>2. 特征选择</h1><p>特征选择是特征工程里的一个重要问题，其目标是寻找最优特征子集。特征选择能剔除不相关(irrelevant)或冗余(redundant)的特征，从而达到减少特征个数，提高模型精确度，减少运行时间的目的。另一方面，<strong>选取出真正相关的特征简化模型</strong>，协助理解数据产生的过程。并且常能听到“数据和特征决定了机器学习的上限，而模型和算法只是逼近这个上限而已”，由此可见其重要性。但是它几乎很少出现于机器学习书本里面的某一章。然而在机器学习方面的成功很大程度上在于如果使用特征工程。</p>
-<p>之所以要考虑特征选择，是因为机器学习经常面临过拟合的问题。 过拟合的表现是模型参数太贴合训练集数据，模型在训练集上效果很好而在测试集上表现不好。简言之模型的泛化能力差。过拟合的原因是模型对于训练集数据来说太复杂，要解决过拟合问题，一般考虑如下方法：<a href="https://zhuanlan.zhihu.com/p/74198735#:~:text=%E4%B9%8B%E6%89%80%E4%BB%A5%E8%A6%81%E8%80%83%E8%99%91%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9%EF%BC%8C%E6%98%AF%E5%9B%A0%E4%B8%BA%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BB%8F%E5%B8%B8%E9%9D%A2%E4%B8%B4%E8%BF%87%E6%8B%9F%E5%90%88%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82%20%E8%BF%87%E6%8B%9F%E5%90%88,%E7%9A%84%E8%A1%A8%E7%8E%B0%E6%98%AF%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%20%E5%A4%AA%E8%B4%B4%E5%90%88%E8%AE%AD%E7%BB%83%E9%9B%86%E6%95%B0%E6%8D%AE%20%EF%BC%8C%E6%A8%A1%E5%9E%8B%E5%9C%A8%E8%AE%AD%E7%BB%83%E9%9B%86%E4%B8%8A%E6%95%88%E6%9E%9C%E5%BE%88%E5%A5%BD%E8%80%8C%E5%9C%A8%E6%B5%8B%E8%AF%95%E9%9B%86%E4%B8%8A%E8%A1%A8%E7%8E%B0%E4%B8%8D%E5%A5%BD%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%9C%A8%E9%AB%98%E6%96%B9%E5%B7%AE%E3%80%82">参考</a></p>
-<ol>
-<li>收集更多数据</li>
-<li>通过正则化引入对复杂度的惩罚</li>
-<li>选择更少参数的简单模型</li>
-<li>对数据降维（降维有两种方式：特征选择和特征抽取）</li>
-</ol>
-<p>其中第1条一般是很难做到的，一般主要采用第2和第4点</p>
-<h1 id="3-特征提取"><a href="#3-特征提取" class="headerlink" title="3. 特征提取"></a>3. 特征提取</h1><p>像上面所说，将特征提取理解成原来特征的映射，只是一种不同于特征选择的选取字段的方式罢了。</p>
-<h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h1><ul>
-<li><a href="https://blog.csdn.net/hren_ron/article/details/80914491">了解生成特征子集的搜索方式</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/74198735#:~:text=%E4%B9%8B%E6%89%80%E4%BB%A5%E8%A6%81%E8%80%83%E8%99%91%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9%EF%BC%8C%E6%98%AF%E5%9B%A0%E4%B8%BA%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BB%8F%E5%B8%B8%E9%9D%A2%E4%B8%B4%E8%BF%87%E6%8B%9F%E5%90%88%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82%20%E8%BF%87%E6%8B%9F%E5%90%88,%E7%9A%84%E8%A1%A8%E7%8E%B0%E6%98%AF%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%20%E5%A4%AA%E8%B4%B4%E5%90%88%E8%AE%AD%E7%BB%83%E9%9B%86%E6%95%B0%E6%8D%AE%20%EF%BC%8C%E6%A8%A1%E5%9E%8B%E5%9C%A8%E8%AE%AD%E7%BB%83%E9%9B%86%E4%B8%8A%E6%95%88%E6%9E%9C%E5%BE%88%E5%A5%BD%E8%80%8C%E5%9C%A8%E6%B5%8B%E8%AF%95%E9%9B%86%E4%B8%8A%E8%A1%A8%E7%8E%B0%E4%B8%8D%E5%A5%BD%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%9C%A8%E9%AB%98%E6%96%B9%E5%B7%AE%E3%80%82">详细地介绍了特征选择的方法</a></li>
-<li><a href="https://asialee.blog.csdn.net/article/details/84863410?spm=1001.2101.3001.6650.3&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-3-84863410-blog-79723177.pc_relevant_multi_platform_whitelistv3&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-3-84863410-blog-79723177.pc_relevant_multi_platform_whitelistv3&utm_relevant_index=6">机器学习特征工程的具体步骤</a></li>
-<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectKBest.html">sklearn.select_feature.SelectKBest官方文档</a></li>
-<li><a href="https://www.cnblogs.com/ai-ldj/p/14269023.html">SelectKBest博客园</a></li>
-<li><a href="https://blog.csdn.net/moonoon1/article/details/120074949">SelectKBest-CSDN</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Mathine Learning</category>
-      </categories>
-      <tags>
-        <tag>机器学习</tag>
+        <tag>音视频</tag>
+        <tag>博客</tag>
+        <tag>YouTube</tag>
       </tags>
   </entry>
   <entry>
@@ -757,6 +537,68 @@ im.save(output)
       </tags>
   </entry>
   <entry>
+    <title>数学建模大赛</title>
+    <url>/2022/11/23/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E5%A4%A7%E8%B5%9B/</url>
+    <content><![CDATA[<p>直到今天为止，数模比赛已经结束咯！任务完成，参赛题目也提交了，结果如何就看人品了🤗</p>
+<span id="more"></span>
+
+<h1 id="1-数模比赛"><a href="#1-数模比赛" class="headerlink" title="1.数模比赛"></a>1.数模比赛</h1><p>直到今天为止，数模比赛已经结束咯！任务完成，参赛题目也提交了，结果如何就看人品了🤗<br>这是是第一次使用Markdown写短文，虽然说Markdown很容易上手，但是一些细节上的东西总是无法反应过来😵😵😵</p>
+<blockquote>
+<p>下面是我学习Markdown的一些经历，希望在写作的时候对你有些帮助！😉</p>
+<p>点击跳转Markdown  –&gt;目前这项功能还在开发中，ちょっと待っね！</p>
+</blockquote>
+<h1 id="2-比赛前"><a href="#2-比赛前" class="headerlink" title="2.比赛前"></a>2.比赛前</h1><h2 id="2-1第一次校赛"><a href="#2-1第一次校赛" class="headerlink" title="2.1第一次校赛"></a>2.1第一次校赛</h2><p>虽然说今年四月份就开始准备数模比赛了，到今天有五个多月的时间，但是我们队真正学习的时间却不多，至少对我来说。可能我真正静下心来学习数模知识的时间还不足两个星期吧！😅</p>
+<p>刚开始我的工作是负责建模的工作，在队长的敦促下，买了份价值一百五的学习视频及教程。我对于视频学习并没有多大的想法，我还是更喜欢看书学。这就是为什么iPad里的电子书都发霉发臭了，都不曾被我看过的原因吧？再一点，比起付费的资料，我更喜欢白嫖（虽然这并不好），因为在我认为在网上寻找资料是一件很享受的事情，おかしいでしょ？</p>
+<p>一个队伍的核心成员应该是建模手，作为整支队伍的leader，我带领着队伍齐头并进，最后连校三等都没有…</p>
+<p>😀😀😀但是这也是在意料之内的，因为没有什么知识储备，脑子里当时就只有层次分析法这几个简单的模型，再加上论文的阅读次数都不足双位数，能获奖就有鬼！而且为期三天的数模，我们整整搞了十天才提交上去，虽然但是有多少水分谁不不揭穿了啊！</p>
+<h2 id="2-2暑假"><a href="#2-2暑假" class="headerlink" title="2.2暑假"></a>2.2暑假</h2><p>搞完校赛，处理完期末考试，差不多就进入了暑假。由于和写作手的配合没有那么好，所以我们打算换一名成员。队长推荐了一名算法高手，很显然，我该换岗位了。</p>
+<p>在漫长的暑假，我只希望自己能够每天抽出时间读一篇，哪怕是一篇数模优秀文章也好！但是事与愿违，事…还是没做成。后面学校组织训练，我们参加并且完成了一篇19年的C题。嗯，很显然我们又是十天左右才完成。当时就想着，这么搞肯定得玩完。于是思前想后，打算用LaTeX替换现在的WPS，说不定写作工具变了，我们的工作就更有效率了呢？😲</p>
+<p>好主意！下一次训练连半成品都没有交上去…</p>
+<p>当时学习LaTeX花了不到半天时间，便清楚它的工作流程，于是迫不及待的去找了一些有数模LaTeX的tex文件。看到了一个钟意的，便敲定了，也就是现在我使用的这也数模模板。</p>
+<p>由于我没有将模板与正文分离，所以我两次写论文的时候，都是夹着别人的论文一起写的，这次数模也不例外…</p>
+<blockquote>
+<p>我将LaTeX文件放到了这里，模板和正文自己分离。懒😪😪😪</p>
+<p>这项工作也还在完善中，请稍后！</p>
+</blockquote>
+<p>然后就开学咯🎉</p>
+<h2 id="2-3开学到比赛前这段时间"><a href="#2-3开学到比赛前这段时间" class="headerlink" title="2.3开学到比赛前这段时间"></a>2.3开学到比赛前这段时间</h2><p>很显然，我什么都没有干。</p>
+<h1 id="3-比赛"><a href="#3-比赛" class="headerlink" title="3.比赛"></a>3.比赛</h1><p>据说参加国赛需要校赛经历，我们已经算是合格的国赛选手了吧？我们比赛的时间是9月15号（周四）晚上六点钟到9月18号（周日）晚上十点钟之前。又多了四个小时时间，Lucky！希望能够用这多出来的四个小时改变点什么…</p>
+<h2 id="3-1周四晚上"><a href="#3-1周四晚上" class="headerlink" title="3.1周四晚上"></a>3.1周四晚上</h2><p>出赛题的时候我们在饭堂，不是因为我们不准备坐着等题，而是我忘记打包进实验室了。当天晚上我们商量好，要确定选题，不要犹豫。今年的A题对于我们来说，简直是魔鬼程度的。两三页篇幅的说明，让我们望而祛步🙄。如果硬啃的话，肯定可以理解它想要表达什么，但是求解确实一大难事。后面看别人大佬绞尽脑汁的想，才发现这个决定无疑对我们来说是十分正确的。</p>
+<p>选题按理来说应该要由建模手和编程手决定，因为他们更清楚问题的复杂性。他们现在卡在了B题和C题之前，队长更想选C题，但是算法糕手希望能够挑战一下。他内心看起来很动摇，因为他看不出解题思路。其实我和新队员也是第一次见面，之前都是在WeChat上聊天。谢天谢地，我们俩很快就磨合了，变得更多少年的好友一般畅所欲言？！</p>
+<p>我在几何方面很敏感，但是对数学公式很感冒。当时想过选数学专业，但是哪有人只学几何不用数学公式啊？恰好B题就是与几何有关的，我用高中的知识看出了第一小问的求解思路，然后我就坚持选B题。最后没有依我，选择了C题。我当时虽然很不爽，但是我确实只想得出第一问，对于全局来说，我还是服气的。虽然题目更简单了，但是意味着更多人选。只有语文建模基础足够深厚，才有机会获得一个最小的省三。<strong>最后统计有三百八十多人选择了C题，这个人数差不多就是去年我们学校的参赛人数…</strong></p>
+<h2 id="3-2周五"><a href="#3-2周五" class="headerlink" title="3.2周五"></a>3.2周五</h2><p>周五我们搜寻资料，解决了第一小问，然后卡在了第二小问的预测上，想了差不多一天的时间都没有想出来。确实浪费了很多时间，也做了很多无用功。第一小问的论文我很快就与论文交接了，但是剩余的时间与其是在划水，倒不如说是在无用功。C题与化学有关，于是我想着会用到化学方程式，去找了很多。但是最后发现要么就是用不上，要么就是没时间用。</p>
+<h2 id="3-3周六"><a href="#3-3周六" class="headerlink" title="3.3周六"></a>3.3周六</h2><p>C题有大概六七个小问，想要查看原题的话点击这里。</p>
+<p>我们一天时间才解决了第一小问，如果再这么下去，论文很有可能写不完。虽然我们也很努力，我也是第一次尝试了这种朝八晚十二的作息规律。嗯？怎么和我平时的作息有点像？关键是放弃了宝贵的午休时间。没有午休我的精神状态就会下降，特别是写论文的时候，无法理解模型的概念与问题的解决思路，又没有文思泉涌，将会导致写出来的论文质量差。一天除了睡觉的时间都呆在实验室，看起来很努力，在我看来是在做无用功（包括我）。队长和建模手对于模型的选择有一定的困难，导致了问题的拖延。明白了这一点，今天开始我尝试着来安排工作。</p>
+<p>对于模型，需要用指标来衡量。我肯定表现好的模型，否定表现差的模型。这种斩钉截铁的工作模式很快让我和各位都进入了流水线上，开始各司其职。当然，前提是做出了跳过第二小问的决定。</p>
+<p>直到晚上，第二问第一小问、第三问和第四问的问题都得到了解决。但是跟他们一起讨论，导致我到目前为止并没有进行论文撰写，也就是说只完成了论文进度还是停留在周五。</p>
+<h2 id="3-4周日"><a href="#3-4周日" class="headerlink" title="3.4周日"></a>3.4周日</h2><p>即便如此，我早上还是睡到了差不多九点，因为我认为工作效率才是最重要的，假努力欺骗的是自己还有身边的人。但时间真的很赶！早上我留在宿舍通过大屏操作LaTeX很快就完成了第二问的论文撰写，并且我交代队友明天早上完成第三问的论文撰写以及求解出第二小问的预测结果。队友很给力，差不多两点我去实验室的时候他们已经完成了这两个任务。但我看完论文结构后猛地一惊，发现摘要和问题分析没有写！包括第四问在内，还有一些零零星星的结果没有贴到论文中，六个小时能够完成吗？真是一项挑战啊！我不禁擦了擦额头上的假汗😰😰😰</p>
+<p>我安排他们完成了问题二和问题三的问题分析，因为他们求解的他们来写这种解题思路的话简直如鱼得水。而第四问的方法是我想出来的，所以我先完成第四问先。但是做了一半，发现SPSSPro上的热力图根本无法反映出我想要的结果。于是在三点钟的时候我临时改用了其它方法，用画图代替了建立模型的繁琐。</p>
+<p>大概五点钟我们就完成了基本上的任务，但是对于XeLatex编译出来的文件，还是有很多bug。并且每一个bug都是包含致命错误的，一旦出现即无缘获奖（<em>虽然说这次的也不知道能不能够获奖😵‍💫</em>）其中解决的很多问题都是以前遇到过但是解决不出的🤔</p>
+<ul>
+<li>从使用之初一直困扰我的表格边框以及复杂表格的LaTeX代码</li>
+<li>LaTeX含特殊字符的那段文字会超出编译生成的PDF之外</li>
+<li>LaTeX中图片并列</li>
+<li>LaTeX正文会被图片和表格夹断，阅读出现障碍</li>
+<li>LaTeX模板上页眉的内容不知道在哪个文件清空</li>
+<li>LaTeX附录粘贴代码有点麻烦</li>
+</ul>
+<p><code>解决方案放到了LaTeX篇，如果有需要请点击此处跳转...</code></p>
+<p>多亏LaTeX有在源代码和PDF相互跳转到指定位置的功能，不然真的用不下去了😭😭😭</p>
+<p>我们一起改论文，改到了7点57还有很多问题，但是8点钟之前可以提交多次PDF论文和RAR压缩包，也就是说MD5码在8点钟之前是允许反复更改的。但是在8点到10点之内，就只能提交一次文件和生成指定不可变的MD5码。并且MD5码在8点后生成的，就不允许更改文件了，一旦你更改文件，或许只是打开一下PDF都有可能让MD5码发生改变，机器会判定在10点钟之后正式提交参赛作品的时候你的文件发生了改动，这个时候它是不承认你的MD5码，也就是说你无法参赛了。这是一个很严重的问题，自己辛辛苦苦做了这么久，结果却交不上去，心态多少有点崩溃。所以我们为了保险起见，先在8点钟之前提交一次。</p>
+<p>然后我们预测在9点钟之前正式将作品做最后一次的提交（10点钟之前的提交可以认为只是参赛资格的获取），但是发现bug根本改不过来。三个人忙得团团转，当时想着9点半之前提交就好了，网络不会这么拥挤的。但是忙到了9点半，bug依然有，而且严重程度会让论文直接降档。没办法，抱着试一逝的心态，我们改bug改到了9点45。虽然说还有不少bug，但都是不痛不痒的，对阅读论文没有什么大影响的小问题了。</p>
+<p>我编译出最新的PDF，通过WeChat准备发给队长时，由于轻薄本已经承担了太多软件，并且三四天都没有合过眼了。LaTeX直接卡退，屏幕被黑块笼罩着，就像我们此刻的心情一样。大概到9点50的时候，电脑缓过来了，我赶紧将PDF发给队长。压缩完我的LaTeX代码文件后突然发现我电脑里的压缩软件是360压缩，只能生成zip类型的压缩包。而我之前一直想着队长有WinRAR就够了，反正是他通过客户端提交的。下载WinRAR显然不切实际，由于多天的劳累，我们的CPU已经转不过来了。我赶紧将文件压缩成zip格式，然后发给建模手，因为此时队长在忙活着PDF名称的修改。但未承想建模手把我的文件解压放进总附件文件中，压缩后找不到找不到压缩包，遂叫我来操作。我看到他的安装路径，狂点桌面，然后点击确定。终于，我们的压缩包出现在了桌面。但他的桌面都是蓝蓝的doc和绿绿xls，一时间竟无法找出压缩包！此时时间已经来到了9点55分。一顿丝滑的操作后视野来到了队长这边，只见他颤颤巍巍地移动着鼠标，指尖高频触动着鼠标左键，但就是无法达到那最后的终点！“好了吗？”“好！冲！”伴随着呐喊声，我们点击了提交。幸运的是，软件并没有卡顿，显得如此顺理成章，此时时间是9点57分。一切都结束后，没有欢呼、没有喝彩，只留下一片鸦雀无声。紧绷着的心情还没有完全放松下来，眼前还停留着黑白的文字与代码，一切都还显得这么历历在目！</p>
+<h1 id="4-Final"><a href="#4-Final" class="headerlink" title="4.Final"></a>4.Final</h1><p>虽然过程很苦很累，甚至对一百蚊有点舍不得。但就最后两个小时的感受而言，让我觉得这钱交的值了！自打上大学以来，还是第一次切实地体会到了团队合作的重要性。以前一直都是单打独斗，现在发现自己并不是万能的，队友就是用来弥补自己的缺点的。虽然说有百分之五十的概率获奖，但是无论结果如何我都能平淡接受，因为这场比赛我已经获得了自己想要的东西！<em>（其实心里还是想着希望得个省三就好了，因为有一千块钱回血…）</em>🐤🐤🐤</p>
+]]></content>
+      <categories>
+        <category>School Life</category>
+      </categories>
+      <tags>
+        <tag>学校</tag>
+        <tag>比赛</tag>
+        <tag>生活</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>特征缩放</title>
     <url>/2022/11/23/%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE/</url>
     <content><![CDATA[<p>将数据进行归一化和标准化可以使不同维度的特征放在一起进行比较，可以大大提高模型的准确性。</p>
@@ -785,123 +627,6 @@ im.save(output)
       <categories>
         <category>Mathine Learning</category>
       </categories>
-  </entry>
-  <entry>
-    <title>维度灾难</title>
-    <url>/2022/11/23/%E7%BB%B4%E5%BA%A6%E7%81%BE%E9%9A%BE/</url>
-    <content><![CDATA[<p>今天學習機器學習的時候，發現有<em>維度災難</em>這個東西。挺感興趣的，於是一探究竟！</p>
-<span id="more"></span>
-
-<h1 id="机器学习中的维度灾难"><a href="#机器学习中的维度灾难" class="headerlink" title="机器学习中的维度灾难"></a>机器学习中的维度灾难</h1><p>在介绍机器学习的维度灾难之前，我推荐给大家一个网站，名字虽然说是<a href="https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">计算机视觉的傻瓜书</a>，但是有关机器学习的答疑部分它做得还是蛮好的。除此之外还有<a href="https://www.kdnuggets.com/news/index.html">KDnuggest</a>，也是有关机器学习的论坛。</p>
-<p>本文是参考<a href="https://www.jianshu.com/p/867193608bbd">简书-红色石头Will</a>所得到的观点，虽然他是翻译<a href="https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">计算机视觉的傻瓜书</a>的，但是对于我理解维度灾难起着指导方向的作用。</p>
-<h2 id="1-介绍维度灾难"><a href="#1-介绍维度灾难" class="headerlink" title="1.介绍维度灾难"></a>1.介绍维度灾难</h2><p>维度灾难是在设计一个分类器的时候需要注意的问题。为了得到更好的分类效果，我们可以无限的增加特征。但是事实上，特征数量超过一定值的时候，分类器的效果反而会下降。这种由于特征数量太多导致的分类效果下降的情况，就被称作是<strong>维度灾难</strong>。</p>
-<h2 id="2-维度灾难与过拟合"><a href="#2-维度灾难与过拟合" class="headerlink" title="2.维度灾难与过拟合"></a>2.维度灾难与过拟合</h2><p>貌似特征越多，越有可能实现正确分类，但是情况并非如此。一个直观的情况时，随着特征维度的增加，训练样本在特征空间中的密度是呈指数下降的。</p>
-<blockquote>
-<p>样本数不变，但是特征空间不断地增加，那训练样本在特征空间中的密度岂不是就是呈指数下降的？</p>
-</blockquote>
-<p>如果我们继续增加特征，整个特征空间维度增加，并变得越来越稀疏。由于稀疏性，我们更加容易找到一个超平面来实现分类。这是因为随着特征数量变得无限大，训练样本在最佳超平面的错误侧的可能性将会变得无限小。然而，如果我们将高维的分类结果投影到低维空间中，将会出现一个严重的问题。</p>
-<p>比如说样本数据在3D是线性可分的，但是在2D却并非如此。事实上，增加第三个维度来获得最佳的线性分类效果，等同于在低维特征空间中使用非线性分类器。其结果是，分类器学习了训练数据的噪声和异常，而对样本外的数据拟合效果并不理想，甚至很差。这个概念称为过拟合，是维度灾难的一个直接后果。</p>
-<p><em>换句话讲，如果增加特征维度，为了覆盖同样的特征值范围，防止过拟合，需要用到的样本数就会呈指数型增长！</em></p>
-<h2 id="3-维度灾难与数据稀疏程度分布不均"><a href="#3-维度灾难与数据稀疏程度分布不均" class="headerlink" title="3.维度灾难与数据稀疏程度分布不均"></a>3.维度灾难与数据稀疏程度分布不均</h2><p>我们展示了维度灾难会引起训练数据的稀疏化。使用的特征越多，数据就会变得越稀疏，从而导致分类器的分类效果就会越差。维度灾难还会造成<strong>搜索空间的数据稀疏程度</strong>分布不均。事实上，围绕原点的数据（在超立方体的中心）比在搜索空间的角落处的数据要稀疏得多。</p>
-<p>举例2D，如果大部分的样本都落在了单位内接圆里的话，会更容易分类。但是在高维的空间中，大部分的训练数据都是分布在定义为特征空间的超立方体的角落处，导致难以分类。、</p>
-<p>对于8维的超球体，大约98%的数据集中在它256个角落处。其结果是，当特征空间的维度变得无限大时，从样本点到质心的最大、最小欧氏距离的差值与其最小欧式距离的比值趋于零。因此，距离测量在高维空间中逐渐变得无效。因为分类器是基于这些距离测量的（例如Euclidean距离、Mahalanobis距离、Manhattan距离），所以低维空间特征更少，分类更加容易。同样地，在高维空间的高斯分布会变平坦且尾巴更长。</p>
-<h2 id="4-如何避免维度灾难"><a href="#4-如何避免维度灾难" class="headerlink" title="4.如何避免维度灾难"></a>4.如何避免维度灾难</h2><p>很遗憾，在分类问题中，没有固定的规则来指定该使用多少特征。事实上，用多少特征量取决于你训练样本的数量、决策边界的复杂性和使用的是啥分类器。</p>
-<p>比如说一些非线性决策边界的分类器（e.g. 神经网络、KNN分类器、决策树等），它们的分类效果虽然好，但是泛化能力差容易发生过拟合，这个时候就需要降低点维度。如果使用泛化能力稍微好点的（e.g. 贝叶斯分类器、线性分类器），那么就可以使用稍微多一点的特征。</p>
-<h2 id="5-参考链接"><a href="#5-参考链接" class="headerlink" title="5.参考链接"></a>5.参考链接</h2><blockquote>
-<p><a href="https://www.jianshu.com/p/867193608bbd">简书</a><br><a href="https://cloud.tencent.com/developer/article/1143269">手工特征选取降维</a><br><a href="https://www.kdnuggets.com/2015/03/deep-learning-curse-dimensionality-autoencoders.html">原文</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Mathine Learning</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>猫狗大战之CNN分类</title>
-    <url>/2022/11/24/%E7%8C%AB%E7%8B%97%E5%A4%A7%E6%88%98%E4%B9%8BCNN%E5%88%86%E7%B1%BB/</url>
-    <content><![CDATA[<p>实践出真知！在kaggle上找的CNN经典案例练练手，猫狗大战属于图像分类问题。可以从此处下载所需要用到的数据<a href="https://www.kaggle.com/datasets/tongpython/cat-and-dog">Here!</a></p>
-<span id="more"></span>
-
-<h1 id="Import-required-libraries-x2F-dependencies"><a href="#Import-required-libraries-x2F-dependencies" class="headerlink" title="Import required libraries &#x2F; dependencies"></a>Import required libraries &#x2F; dependencies</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> keras</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Sequential</span><br><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> layers</span><br><span class="line"><span class="keyword">from</span> tensorflow.keras.optimizers <span class="keyword">import</span> Adam</span><br></pre></td></tr></table></figure>
-
-<p><strong>tf.keras</strong>是用于构建和训练深度学习模型的 TensorFlow 高阶 API。它和TensorFlow相比具有以下的优点：</p>
-<ol>
-<li>对错误实现精确反馈，方便用户使用</li>
-<li>将可配置的构造块组合在一起便能构建Keras模型，模块化</li>
-<li>得益于上一点，我们可以编写自定义构造块，表达新的研究创意，即易于拓展</li>
-</ol>
-<p>而对于<code>from keras.models import Sequential</code>，在Keras中有两种深度学习的模型，分别是序列模型（Sequential）和通用模型（Model），两者的差异在于它们之间允许的不同的拓扑结构。详细地可以参考<a href="https://keras.io/models/sequential/">Keras官方文档</a>，这里我就简单讲解一下。Sequential模型结构是一种简单的线性结构，是多个网络层的堆叠（这说的网络层指的是卷积层、池化层等）。而Model模型结构是非线性的，允许多输入多输出的模型。利用Model模型我们设计非常复杂、任意拓扑的神经网络，可以说用法更灵活，但难度明显更大。</p>
-<p><code>from keras import layers</code>允许我们使用各种各样的网络结构，是组成完整模型的零件。</p>
-<ul>
-<li><a href="https://blog.csdn.net/ssswill/article/details/88310812">CSDN-keras-layers:Dense,Embedding,LSTM</a></li>
-<li><a href="https://blog.csdn.net/winter_python/article/details/108612636">CSDN-keras.layers汇总</a></li>
-</ul>
-<p><code>from tensorflow.keras.optimizers import Adam</code>这是一个名叫Adam的优化器，在监督学习中我们使用梯度下降算法的时候，学习率是一个很重要的指标。Adam能够让学习率从大到小自适应，实现效率与效果的兼得。</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/I_canjnu/article/details/106035640">CSDN-机器学习之优化器keras.optimizers.Adam()详解</a></p>
-</blockquote>
-<h1 id="Generate-the-datasets-both-the-training-and-the-test-sets"><a href="#Generate-the-datasets-both-the-training-and-the-test-sets" class="headerlink" title="Generate the datasets, both the training and the test sets"></a>Generate the datasets, both the training and the test sets</h1><h2 id="define-the-paths-to-the-dataset"><a href="#define-the-paths-to-the-dataset" class="headerlink" title="define the paths to the dataset."></a>define the paths to the dataset.</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">training_path = <span class="string">&#x27;../input/cat-and-dog/training_set/training_set/&#x27;</span></span><br><span class="line">test_path = <span class="string">&#x27;../input/cat-and-dog/test_set/test_set/&#x27;</span></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="Create-dataset"><a href="#Create-dataset" class="headerlink" title="Create dataset"></a>Create dataset</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">image_size = (<span class="number">200</span>, <span class="number">200</span>)</span><br><span class="line">batch_size = <span class="number">32</span></span><br><span class="line"></span><br><span class="line">training_set = keras.preprocessing.image.image_dataset_from_directory(</span><br><span class="line">    directory=training_path,</span><br><span class="line">    class_names=[<span class="string">&#x27;cats&#x27;</span>, <span class="string">&#x27;dogs&#x27;</span>],</span><br><span class="line">    image_size=image_size,</span><br><span class="line">    batch_size=batch_size</span><br><span class="line">)</span><br><span class="line">test_set = keras.preprocessing.image.image_dataset_from_directory(</span><br><span class="line">    directory=test_path,</span><br><span class="line">    class_names=[<span class="string">&#x27;cats&#x27;</span>, <span class="string">&#x27;dogs&#x27;</span>],</span><br><span class="line">    image_size=image_size,</span><br><span class="line">    batch_size=batch_size,</span><br><span class="line">    </span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p>keras.preprocessing.image.image_dataset_from_directory可以理解成数据预处理工具包，TensorFlow的官方文档在<a href="https://tensorflow.google.cn/api_docs/python/tf/keras/utils/image_dataset_from_directory">此</a>。它能够从文件夹里对子目录猫和狗分别生成标签0和1，将数据返回到tf.data.Dateset中，并且在加载的同时还会打乱数据。</p>
-<h1 id="Visualize-some-images-from-the-training-set"><a href="#Visualize-some-images-from-the-training-set" class="headerlink" title="Visualize some images from the training set"></a>Visualize some images from the training set</h1><h2 id="visualize-the-training-set"><a href="#visualize-the-training-set" class="headerlink" title="visualize the training set"></a>visualize the training set</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="number">15</span>, <span class="number">9</span>))</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cat_or_dog</span>(<span class="params">a</span>):</span><br><span class="line">    <span class="keyword">if</span> a==<span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;Cat&#x27;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;Dog&#x27;</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">for</span> images, labels <span class="keyword">in</span> training_set.take(<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">12</span>):</span><br><span class="line">        plt.subplot(<span class="number">3</span>, <span class="number">4</span>, i+<span class="number">1</span>)</span><br><span class="line">        plt.imshow(images[i].numpy().astype(<span class="string">&#x27;uint8&#x27;</span>))</span><br><span class="line">        plt.title(<span class="string">f&#x27;<span class="subst">&#123;<span class="built_in">int</span>(labels[i])&#125;</span> (<span class="subst">&#123;cat_or_dog(<span class="built_in">int</span>(labels[i]))&#125;</span>)&#x27;</span>)</span><br><span class="line">        plt.axis(<span class="string">&#x27;off&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<h2 id="visualize-the-test-set"><a href="#visualize-the-test-set" class="headerlink" title="visualize the test set"></a>visualize the test set</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="number">15</span>, <span class="number">9</span>))</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cat_or_dog</span>(<span class="params">a</span>):</span><br><span class="line">    <span class="keyword">if</span> a==<span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;Cat&#x27;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;Dog&#x27;</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">for</span> images, labels <span class="keyword">in</span> test_set.take(<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">12</span>):</span><br><span class="line">        plt.subplot(<span class="number">3</span>, <span class="number">4</span>, i+<span class="number">1</span>)</span><br><span class="line">        plt.imshow(images[i].numpy().astype(<span class="string">&#x27;uint8&#x27;</span>))</span><br><span class="line">        plt.title(<span class="string">f&#x27;<span class="subst">&#123;<span class="built_in">int</span>(labels[i])&#125;</span> (<span class="subst">&#123;cat_or_dog(<span class="built_in">int</span>(labels[i]))&#125;</span>)&#x27;</span>)</span><br><span class="line">        plt.axis(<span class="string">&#x27;off&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>要是对<code>plt.figure(figsize = (a, b))</code>和<code>plt.subplot()</code>不懂的话，可以看看<a href="https://blog.csdn.net/weixin_43685844/article/details/88982811">这里</a>。而这里的**dataset.take(1)**指的是取构建dataset的第一组元素，看样子一组好像有12个（因为下面的circle）,并且可以返回图片image和标签label两个值。</p>
-<ul>
-<li><a href="https://blog.csdn.net/weixin_43935696/article/details/112691755">CSDN-dataset.take</a></li>
-<li><a href="https://www.jianshu.com/p/95f11648be2c">简书-dataset.take</a></li>
-</ul>
-<h1 id="Data-Augmentation"><a href="#Data-Augmentation" class="headerlink" title="Data Augmentation"></a>Data Augmentation</h1><blockquote>
-<p>augmentation &#x2F;ˌɔːɡmenˈteɪʃ(ə)n&#x2F; 增大，增多；增加物；延长，扩充</p>
-</blockquote>
-<h2 id="define-some-layers-of-data-augmentation"><a href="#define-some-layers-of-data-augmentation" class="headerlink" title="define some layers of data augmentation"></a>define some layers of data augmentation</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">augmented_data = Sequential([</span><br><span class="line">    layers.RandomFlip(<span class="string">&#x27;horizontal&#x27;</span>),</span><br><span class="line">    layers.RandomRotation(<span class="number">0.1</span>)</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
-
-<h2 id="visualize-it"><a href="#visualize-it" class="headerlink" title="visualize it"></a>visualize it</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="number">15</span>, <span class="number">9</span>))</span><br><span class="line">    </span><br><span class="line"><span class="keyword">for</span> images, labels <span class="keyword">in</span> test_set.take(<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">12</span>):</span><br><span class="line">        plt.subplot(<span class="number">3</span>, <span class="number">4</span>, i+<span class="number">1</span>)</span><br><span class="line">        augmented_image = augmented_data(images[<span class="number">0</span>])</span><br><span class="line">        plt.imshow(augmented_image.numpy().astype(<span class="string">&#x27;uint8&#x27;</span>))</span><br><span class="line">        plt.title(<span class="built_in">int</span>(labels[<span class="number">0</span>]))</span><br><span class="line">        plt.axis(<span class="string">&#x27;off&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<p><strong>tf.keras.layers.RandomFlip</strong>的作用是一个预处理层,在训练期间随机翻转图像<a href="https://runebook.dev/zh-CN/docs/tensorflow/keras/layers/randomflip">runebook</a>、<a href="https://keras.io/api/layers/preprocessing_layers/image_preprocessing/random_flip/">官方文档</a></p>
-<h1 id="Build-a-model"><a href="#Build-a-model" class="headerlink" title="Build a model"></a>Build a model</h1><h2 id="build-the-model"><a href="#build-the-model" class="headerlink" title="build the model"></a>build the model</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">model = Sequential([</span><br><span class="line">    layers.Conv2D(filters=<span class="number">128</span>, kernel_size=(<span class="number">3</span>, <span class="number">3</span>), activation=<span class="string">&#x27;relu&#x27;</span>, padding=<span class="string">&#x27;same&#x27;</span>, input_shape=(<span class="number">200</span>, <span class="number">200</span>, <span class="number">3</span>)),</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># preprocessing</span></span><br><span class="line">    layers.CenterCrop(<span class="number">180</span>, <span class="number">180</span>),</span><br><span class="line">    layers.Rescaling(scale=<span class="number">1.</span>/<span class="number">255</span>),</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="comment"># applying image data augmentation</span></span><br><span class="line">    layers.RandomFlip(<span class="string">&#x27;horizontal&#x27;</span>),</span><br><span class="line">    layers.RandomRotation(<span class="number">0.1</span>),</span><br><span class="line">    </span><br><span class="line">    layers.MaxPooling2D(pool_size=(<span class="number">2</span>, <span class="number">2</span>), strides=<span class="number">2</span>),</span><br><span class="line">    </span><br><span class="line">    layers.Conv2D(filters=<span class="number">256</span>, kernel_size=(<span class="number">3</span>, <span class="number">3</span>), activation=<span class="string">&#x27;relu&#x27;</span>, padding=<span class="string">&#x27;same&#x27;</span>),</span><br><span class="line">    layers.MaxPooling2D(pool_size=(<span class="number">2</span>, <span class="number">2</span>), strides=<span class="number">2</span>),</span><br><span class="line">    </span><br><span class="line">    layers.Conv2D(filters=<span class="number">64</span>, kernel_size=(<span class="number">3</span>, <span class="number">3</span>), activation=<span class="string">&#x27;relu&#x27;</span>, padding=<span class="string">&#x27;same&#x27;</span>),</span><br><span class="line">    layers.MaxPooling2D(pool_size=(<span class="number">2</span>, <span class="number">2</span>), strides=<span class="number">2</span>),</span><br><span class="line">    </span><br><span class="line">    layers.Conv2D(filters=<span class="number">32</span>, kernel_size=(<span class="number">3</span>, <span class="number">3</span>), activation=<span class="string">&#x27;relu&#x27;</span>, padding=<span class="string">&#x27;same&#x27;</span>),</span><br><span class="line">    layers.MaxPooling2D(pool_size=(<span class="number">2</span>, <span class="number">2</span>), strides=<span class="number">2</span>),</span><br><span class="line">    </span><br><span class="line">    layers.Flatten(),</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># output layer</span></span><br><span class="line">    layers.Dense(<span class="number">1</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>)</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
-
-<p>tf.keras.layers.Conv2D的filter为什么是128呢？这一点让我很疑惑。查阅资料发现许多都讲得模棱两可，不过大概可以解释的是这个filter指的是过滤器的深度。我没有查阅官方文档，后来发现<a href="https://zhuanlan.zhihu.com/p/498713060">知乎-tf.keras.layers.Conv2D参数详解</a>中的分析比较可取。”我几乎总是建议使用2的次方作为值”说明2的次方并不是filter的专利，并且我们需要根据数据集的复杂性和神经网络的深度来调整确切的值，也就是说filter的选择主观性强。</p>
-<ol>
-<li><a href="https://runebook.dev/zh-CN/docs/tensorflow/keras/layers/centercrop" title="runebook的Keras文档">tf.keras.layers.CenterCropCrop</a>对图片进行裁切，去两边留中心。官方解释–&gt;<em>the central portion of the images to target height and width</em></li>
-<li><a href="https://docs.w3cub.com/tensorflow~2.9/keras/layers/rescaling.html" title="W3C的Keras文档">tf.keras.layers.Rescaling</a>To rescale an input in the [0, 255] range to be in the [0, 1] range, you would pass scale&#x3D;1.&#x2F;255</li>
-<li>Dense层(全连接层）</li>
-<li>Flatten层用来将输入“压平”，即把多维的输入一维化，常用在从卷积层到全连接层的过渡。Flatten不影响batch的大小。据说Convolution卷积层之后是无法直接连接Dense全连接层的，需要把Convolution层的数据压平（Flatten），然后才可以直接加Dense层。</li>
-<li><a href="https://www.cnblogs.com/peng8098/p/keras_7.html#:~:text=%20Flatten%E5%B1%82%E7%94%A8%E6%9D%A5%E5%B0%86%E8%BE%93%E5%85%A5%E2%80%9C%E5%8E%8B%E5%B9%B3%E2%80%9D%EF%BC%8C%E5%8D%B3%E6%8A%8A%E5%A4%9A%E7%BB%B4%E7%9A%84%E8%BE%93%E5%85%A5%E4%B8%80%E7%BB%B4%E5%8C%96%EF%BC%8C%E5%B8%B8%E7%94%A8%E5%9C%A8%E4%BB%8E%E5%8D%B7%E7%A7%AF%E5%B1%82%E5%88%B0%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%B1%82%E7%9A%84%E8%BF%87%E6%B8%A1%E3%80%82%20Flatten%E4%B8%8D%E5%BD%B1%E5%93%8Dbatch%E7%9A%84%E5%A4%A7%E5%B0%8F%E3%80%82,%E8%BE%93%E5%85%A5shape%EF%BC%9A%E4%BB%BB%E6%84%8F%EF%BC%8C%E4%BD%86%E8%BE%93%E5%85%A5%E7%9A%84shape%E5%BF%85%E9%A1%BB%E5%9B%BA%E5%AE%9A%E3%80%82%20%E5%BD%93%E4%BD%BF%E7%94%A8%E8%AF%A5%E5%B1%82%E4%B8%BA%E6%A8%A1%E5%9E%8B%E9%A6%96%E5%B1%82%E6%97%B6%EF%BC%8C%E9%9C%80%E8%A6%81%E6%8C%87%E5%AE%9Ainput_shape%E5%8F%82%E6%95%B0%20Permute%E5%B1%82%E5%B0%86%E8%BE%93%E5%85%A5%E7%9A%84%E7%BB%B4%E5%BA%A6%E6%8C%89%E7%85%A7%E7%BB%99%E5%AE%9A%E6%A8%A1%E5%BC%8F%E8%BF%9B%E8%A1%8C%E9%87%8D%E6%8E%92%EF%BC%8C%E4%BE%8B%E5%A6%82%EF%BC%8C%E5%BD%93%E9%9C%80%E8%A6%81%E5%B0%86RNN%E5%92%8CCNN%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E6%97%B6%EF%BC%8C%E5%8F%AF%E8%83%BD%E4%BC%9A%E7%94%A8%E5%88%B0%E8%AF%A5%E5%B1%82%E3%80%82" title="cnblog">cnblog对Keras.layers各种层的介绍-比较准确</a></li>
-</ol>
-<h2 id="model-summary"><a href="#model-summary" class="headerlink" title="model summary"></a>model summary</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">model.summary()</span><br></pre></td></tr></table></figure>
-
-<p>使用keras构建深度学习模型，我们会通过model.summary()输出模型各层的参数状况。通过这些参数，可以看到模型各个层的组成（dense表示全连接层）。也能看到数据经过每个层后，输出的数据维度。还能看到Param，它表示每个层参数的个数，详情参考<a href="https://blog.csdn.net/ybdesire/article/details/85217688" title="CSDN">此处</a>。这一步是先将模型搭建起来，然后用summary查看相关的信息，不属于训练过程，所以运行不需要花多少时间。</p>
-<h1 id="Train-the-model"><a href="#Train-the-model" class="headerlink" title="Train the model"></a>Train the model</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">epochs = <span class="number">50</span></span><br><span class="line"><span class="comment"># callbacks (save the model at each epoch)</span></span><br><span class="line">callbacks = [</span><br><span class="line">    keras.callbacks.ModelCheckpoint(<span class="string">&quot;checkpoints/model_at_&#123;epoch&#125;.h5&quot;</span>),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<p><strong>tf.keras.callbacks.ModelCheckpoint</strong>回调函数的作用是在每个训练期（epoch）后保存模型–&gt;<a href="https://www.w3cschool.cn/tensorflow_python/tf_keras_callbacks_ModelCheckpoint.html" title="W3C">Reference</a></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># compile the model</span></span><br><span class="line">model.<span class="built_in">compile</span>(</span><br><span class="line">    optimizer=Adam(learning_rate=<span class="number">0.001</span>),</span><br><span class="line">    loss=<span class="string">&#x27;binary_crossentropy&#x27;</span>,</span><br><span class="line">    metrics=[<span class="string">&#x27;accuracy&#x27;</span>]</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p>Keras的model.compile参数介绍：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">model.<span class="built_in">compile</span>(</span><br><span class="line">   optimizer, </span><br><span class="line">   loss = <span class="literal">None</span>, </span><br><span class="line">   metrics = <span class="literal">None</span>, </span><br><span class="line">   loss_weights = <span class="literal">None</span>, </span><br><span class="line">   sample_weight_mode = <span class="literal">None</span>, </span><br><span class="line">   weighted_metrics = <span class="literal">None</span>, </span><br><span class="line">   target_tensors = <span class="literal">None</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p>常用的就下面三个参数：</p>
-<ol>
-<li>optimizer：优化器，用于控制梯度裁剪</li>
-<li>loss：损失函数（或称目标函数、优化评分函数）</li>
-<li>metrics：评价函数用于评估当前训练模型的性能。当模型编译后（compile），评价函数应该作为 metrics 的参数来输入。评价函数和损失函数相似，只不过评价函数的结果不会用于训练过程中。</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># fit the model</span></span><br><span class="line">model.fit(training_set, validation_data=test_set, epochs=epochs, callbacks=callbacks, verbose=<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-
-<p>这里的fit起到将训练集和测试集载入模型的作用。但是还有另外一个fit_generator函数，作用相似。首先Keras中的fit()函数传入的x_train和y_train是被完整的加载进内存的,当然用起来很方便，但是如果我们数据量很大，那么是不可能将所有数据载入内存的，必将导致内存泄漏，这时候我们可以用fit_generator函数来进行训练。<br><a href="https://www.w3cschool.cn/article/62757839.html#:~:text=%E9%A6%96%E5%85%88Keras%E4%B8%AD%E7%9A%84fit,%28%29%E5%87%BD%E6%95%B0%E4%BC%A0%E5%85%A5%E7%9A%84x_train%E5%92%8Cy_train%E6%98%AF%E8%A2%AB%E5%AE%8C%E6%95%B4%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%9B%E5%86%85%E5%AD%98%E7%9A%84%2C%E5%BD%93%E7%84%B6%E7%94%A8%E8%B5%B7%E6%9D%A5%E5%BE%88%E6%96%B9%E4%BE%BF%EF%BC%8C%E4%BD%86%E6%98%AF%E5%A6%82%E6%9E%9C%E6%88%91%E4%BB%AC%E6%95%B0%E6%8D%AE%E9%87%8F%E5%BE%88%E5%A4%A7%EF%BC%8C%E9%82%A3%E4%B9%88%E6%98%AF%E4%B8%8D%E5%8F%AF%E8%83%BD%E5%B0%86%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E8%BD%BD%E5%85%A5%E5%86%85%E5%AD%98%E7%9A%84%EF%BC%8C%E5%BF%85%E5%B0%86%E5%AF%BC%E8%87%B4%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%EF%BC%8C%E8%BF%99%E6%97%B6%E5%80%99%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E7%94%A8fit_generator%E5%87%BD%E6%95%B0%E6%9D%A5%E8%BF%9B%E8%A1%8C%E8%AE%AD%E7%BB%83%E3%80%82" title="W3C">参考</a>其中有一个常见的参数verbose–&gt;<em>verbose:默认值为1，是指在训练过程中日志的显示模式，取 1 时表示“进度条模式”，取2时表示“每轮一行”，取0时表示“安静模式”</em></p>
-<h1 id="Visualize-the-predicted-images"><a href="#Visualize-the-predicted-images" class="headerlink" title="Visualize the predicted images"></a>Visualize the predicted images</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># visualize the predicted data</span></span><br><span class="line">loaded_model = keras.models.load_model(<span class="string">&#x27;checkpoints/model_at_50.h5&#x27;</span>)</span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(<span class="number">15</span>, <span class="number">9</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">predict</span>(<span class="params">imgs</span>):</span><br><span class="line">    pred = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> loaded_model.predict(images.numpy().astype(<span class="string">&#x27;uint8&#x27;</span>)):</span><br><span class="line">        <span class="keyword">if</span> i[<span class="number">0</span>] &gt; <span class="number">.5</span>:</span><br><span class="line">            pred.append(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            pred.append(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> pred</span><br><span class="line">    </span><br><span class="line"><span class="keyword">for</span> images, labels <span class="keyword">in</span> test_set.take(<span class="number">1</span>):</span><br><span class="line">    pred = predict(images)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">12</span>):</span><br><span class="line">        plt.subplot(<span class="number">3</span>, <span class="number">4</span>, i+<span class="number">1</span>)</span><br><span class="line">        plt.imshow(images[i].numpy().astype(<span class="string">&#x27;uint8&#x27;</span>))</span><br><span class="line">        plt.title(<span class="string">f&#x27;True: <span class="subst">&#123;<span class="built_in">int</span>(labels[i])&#125;</span>, Predicted: <span class="subst">&#123;pred[i]&#125;</span>&#x27;</span>)</span><br><span class="line">        plt.axis(<span class="string">&#x27;off&#x27;</span>)</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Deep Learning</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-        <tag>CNN</tag>
-        <tag>比赛</tag>
-        <tag>图像分类</tag>
-      </tags>
   </entry>
   <entry>
     <title>机器学习实验二</title>
@@ -1055,6 +780,195 @@ print_result(lgb_r2_score, lgb_rmse, &#39;Lightgbm&#39;)
       </categories>
   </entry>
   <entry>
+    <title>特征工程</title>
+    <url>/2022/11/23/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/</url>
+    <content><![CDATA[<p>数据和特征决定了机器学习的上限，而模型和算法只是逼近这个上限而已</p>
+<span id="more"></span>
+
+<h1 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a>特征工程</h1><p><a href="https://easyai.tech/ai-definition/feature-engineering/">特征工程</a>是机器学习工作流程中重要的组成部分，它将原始数据「翻译」成模型可理解的形式。</p>
+<p>美国计算机科学家 Peter Norvig 说过两句经典名言</p>
+<ol>
+<li>基于大量数据的简单模型优于基于少量数据的复杂模型</li>
+<li>更多的数据优于聪明的算法，而好的数据优于多的数据</li>
+</ol>
+<p>足以可见数据量和特征工程的重要性，不过数据量已经给定了，我们能做的只有特征工程。如何基于原来的数据发挥出更大的数据价值就是特征工程要做的事情。</p>
+<p><em>在16年的一项调查中发现，<a href="https://whatsthebigdata.com/2016/05/01/data-scientists-spend-most-of-their-time-cleaning-data/">数据科学家</a>的工作中，有80%的时间都在获取、清洗和组织数据。构造机器学习流水线的时间不到20%…</em></p>
+<h1 id="1-特征工程一些注意事项"><a href="#1-特征工程一些注意事项" class="headerlink" title="1.特征工程一些注意事项"></a>1.特征工程一些注意事项</h1><p>e.g. 人类是需要吃加工过的食物才行，这样更安全也更美味。机器算法模型也是类似，原始数据不能直接喂给模型，也需要对数据进行清洗、组织、转换。最后才能得到模型可以消化的特征。这样你对特征工程在数据和模型之间扮演的角色已经十分了解了吧？</p>
+<h2 id="1-1-当前我对特征工程的理解"><a href="#1-1-当前我对特征工程的理解" class="headerlink" title="1.1 当前我对特征工程的理解"></a>1.1 当前我对特征工程的理解</h2><p>当前我对特征工程的理解仅仅停留在特征提取和特征选择，这样是待会会提到的内容。首先要知道，这两种方法都是降维的方法。特征选择后的字段是原数据字段的子集，也就是说删减了一些冗杂的对模型训练没有用的字段。特征提取理解成原来特征的映射，e.g.三个字段合并在一起表现的会比三个字段独立更好一些–&gt;<a href="https://blog.csdn.net/Neil_Pan/article/details/51940849">特征选择和特征提取区别</a></p>
+<p>如果想要看看，特征工程具体是包括哪些具体步骤的，还可以参考<a href="https://blog.csdn.net/tiange_xiao/article/details/79723177#:~:text=%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%20%E6%98%AF%E4%BD%BF%E7%94%A8%E4%B8%93%E4%B8%9A%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86%E5%92%8C%E6%8A%80%E5%B7%A7%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%EF%BC%8C%E4%BD%BF%E5%BE%97%20%E7%89%B9%E5%BE%81%20%E8%83%BD%E5%9C%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E4%B8%8A%E5%8F%91%E6%8C%A5%E6%9B%B4%E5%A5%BD%E7%9A%84%E4%BD%9C%E7%94%A8%E7%9A%84%E8%BF%87%E7%A8%8B%E3%80%82%20%E8%BF%87%E7%A8%8B%20%E5%8C%85%E5%90%AB%20%E4%BA%86%20%E7%89%B9%E5%BE%81,%E7%89%B9%E5%BE%81%20%E6%9E%84%E5%BB%BA%E3%80%81%20%E7%89%B9%E5%BE%81%20%E9%80%89%E6%8B%A9%E7%AD%89%E6%A8%A1%E5%9D%97%E3%80%82%20%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%20%E7%9A%84%E7%9B%AE%E7%9A%84%E6%98%AF%E7%AD%9B%E9%80%89%E5%87%BA%E6%9B%B4%E5%A5%BD%E7%9A%84%20%E7%89%B9%E5%BE%81%20%EF%BC%8C%E8%8E%B7%E5%8F%96%E6%9B%B4%E5%A5%BD%E7%9A%84%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E3%80%82">这里</a></p>
+<h2 id="1-2-更好的业务逻辑表达"><a href="#1-2-更好的业务逻辑表达" class="headerlink" title="1.2 更好的业务逻辑表达"></a>1.2 更好的业务逻辑表达</h2><p>将特征工程理解成是业务逻辑的一种数学表达。说是说业务逻辑表达，其实实质上就是指为了解决机器学习中特定的问题。因为原始数据有很多种转换为特征的方式，我们需要选择那些能够「更好的表示业务逻辑」，从而更好的解决问题，而不是那些更简单的方法。</p>
+<h2 id="1-3-提升机器学习性能"><a href="#1-3-提升机器学习性能" class="headerlink" title="1.3 提升机器学习性能"></a>1.3 提升机器学习性能</h2><p>性能意味着更短时间和更低成本，哪怕相同的模型，也会因为特征工程的不同而性能不同。所以我们需要选择那些可以发挥更好性能的特征工程</p>
+<h1 id="2-特征选择"><a href="#2-特征选择" class="headerlink" title="2. 特征选择"></a>2. 特征选择</h1><p>特征选择是特征工程里的一个重要问题，其目标是寻找最优特征子集。特征选择能剔除不相关(irrelevant)或冗余(redundant)的特征，从而达到减少特征个数，提高模型精确度，减少运行时间的目的。另一方面，<strong>选取出真正相关的特征简化模型</strong>，协助理解数据产生的过程。并且常能听到“数据和特征决定了机器学习的上限，而模型和算法只是逼近这个上限而已”，由此可见其重要性。但是它几乎很少出现于机器学习书本里面的某一章。然而在机器学习方面的成功很大程度上在于如果使用特征工程。</p>
+<p>之所以要考虑特征选择，是因为机器学习经常面临过拟合的问题。 过拟合的表现是模型参数太贴合训练集数据，模型在训练集上效果很好而在测试集上表现不好。简言之模型的泛化能力差。过拟合的原因是模型对于训练集数据来说太复杂，要解决过拟合问题，一般考虑如下方法：<a href="https://zhuanlan.zhihu.com/p/74198735#:~:text=%E4%B9%8B%E6%89%80%E4%BB%A5%E8%A6%81%E8%80%83%E8%99%91%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9%EF%BC%8C%E6%98%AF%E5%9B%A0%E4%B8%BA%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BB%8F%E5%B8%B8%E9%9D%A2%E4%B8%B4%E8%BF%87%E6%8B%9F%E5%90%88%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82%20%E8%BF%87%E6%8B%9F%E5%90%88,%E7%9A%84%E8%A1%A8%E7%8E%B0%E6%98%AF%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%20%E5%A4%AA%E8%B4%B4%E5%90%88%E8%AE%AD%E7%BB%83%E9%9B%86%E6%95%B0%E6%8D%AE%20%EF%BC%8C%E6%A8%A1%E5%9E%8B%E5%9C%A8%E8%AE%AD%E7%BB%83%E9%9B%86%E4%B8%8A%E6%95%88%E6%9E%9C%E5%BE%88%E5%A5%BD%E8%80%8C%E5%9C%A8%E6%B5%8B%E8%AF%95%E9%9B%86%E4%B8%8A%E8%A1%A8%E7%8E%B0%E4%B8%8D%E5%A5%BD%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%9C%A8%E9%AB%98%E6%96%B9%E5%B7%AE%E3%80%82">参考</a></p>
+<ol>
+<li>收集更多数据</li>
+<li>通过正则化引入对复杂度的惩罚</li>
+<li>选择更少参数的简单模型</li>
+<li>对数据降维（降维有两种方式：特征选择和特征抽取）</li>
+</ol>
+<p>其中第1条一般是很难做到的，一般主要采用第2和第4点</p>
+<h1 id="3-特征提取"><a href="#3-特征提取" class="headerlink" title="3. 特征提取"></a>3. 特征提取</h1><p>像上面所说，将特征提取理解成原来特征的映射，只是一种不同于特征选择的选取字段的方式罢了。</p>
+<h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h1><ul>
+<li><a href="https://blog.csdn.net/hren_ron/article/details/80914491">了解生成特征子集的搜索方式</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/74198735#:~:text=%E4%B9%8B%E6%89%80%E4%BB%A5%E8%A6%81%E8%80%83%E8%99%91%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9%EF%BC%8C%E6%98%AF%E5%9B%A0%E4%B8%BA%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BB%8F%E5%B8%B8%E9%9D%A2%E4%B8%B4%E8%BF%87%E6%8B%9F%E5%90%88%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82%20%E8%BF%87%E6%8B%9F%E5%90%88,%E7%9A%84%E8%A1%A8%E7%8E%B0%E6%98%AF%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%20%E5%A4%AA%E8%B4%B4%E5%90%88%E8%AE%AD%E7%BB%83%E9%9B%86%E6%95%B0%E6%8D%AE%20%EF%BC%8C%E6%A8%A1%E5%9E%8B%E5%9C%A8%E8%AE%AD%E7%BB%83%E9%9B%86%E4%B8%8A%E6%95%88%E6%9E%9C%E5%BE%88%E5%A5%BD%E8%80%8C%E5%9C%A8%E6%B5%8B%E8%AF%95%E9%9B%86%E4%B8%8A%E8%A1%A8%E7%8E%B0%E4%B8%8D%E5%A5%BD%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%9C%A8%E9%AB%98%E6%96%B9%E5%B7%AE%E3%80%82">详细地介绍了特征选择的方法</a></li>
+<li><a href="https://asialee.blog.csdn.net/article/details/84863410?spm=1001.2101.3001.6650.3&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-3-84863410-blog-79723177.pc_relevant_multi_platform_whitelistv3&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-3-84863410-blog-79723177.pc_relevant_multi_platform_whitelistv3&utm_relevant_index=6">机器学习特征工程的具体步骤</a></li>
+<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectKBest.html">sklearn.select_feature.SelectKBest官方文档</a></li>
+<li><a href="https://www.cnblogs.com/ai-ldj/p/14269023.html">SelectKBest博客园</a></li>
+<li><a href="https://blog.csdn.net/moonoon1/article/details/120074949">SelectKBest-CSDN</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Mathine Learning</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>维度灾难</title>
+    <url>/2022/11/23/%E7%BB%B4%E5%BA%A6%E7%81%BE%E9%9A%BE/</url>
+    <content><![CDATA[<p>今天學習機器學習的時候，發現有<em>維度災難</em>這個東西。挺感興趣的，於是一探究竟！</p>
+<span id="more"></span>
+
+<h1 id="机器学习中的维度灾难"><a href="#机器学习中的维度灾难" class="headerlink" title="机器学习中的维度灾难"></a>机器学习中的维度灾难</h1><p>在介绍机器学习的维度灾难之前，我推荐给大家一个网站，名字虽然说是<a href="https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">计算机视觉的傻瓜书</a>，但是有关机器学习的答疑部分它做得还是蛮好的。除此之外还有<a href="https://www.kdnuggets.com/news/index.html">KDnuggest</a>，也是有关机器学习的论坛。</p>
+<p>本文是参考<a href="https://www.jianshu.com/p/867193608bbd">简书-红色石头Will</a>所得到的观点，虽然他是翻译<a href="https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">计算机视觉的傻瓜书</a>的，但是对于我理解维度灾难起着指导方向的作用。</p>
+<h2 id="1-介绍维度灾难"><a href="#1-介绍维度灾难" class="headerlink" title="1.介绍维度灾难"></a>1.介绍维度灾难</h2><p>维度灾难是在设计一个分类器的时候需要注意的问题。为了得到更好的分类效果，我们可以无限的增加特征。但是事实上，特征数量超过一定值的时候，分类器的效果反而会下降。这种由于特征数量太多导致的分类效果下降的情况，就被称作是<strong>维度灾难</strong>。</p>
+<h2 id="2-维度灾难与过拟合"><a href="#2-维度灾难与过拟合" class="headerlink" title="2.维度灾难与过拟合"></a>2.维度灾难与过拟合</h2><p>貌似特征越多，越有可能实现正确分类，但是情况并非如此。一个直观的情况时，随着特征维度的增加，训练样本在特征空间中的密度是呈指数下降的。</p>
+<blockquote>
+<p>样本数不变，但是特征空间不断地增加，那训练样本在特征空间中的密度岂不是就是呈指数下降的？</p>
+</blockquote>
+<p>如果我们继续增加特征，整个特征空间维度增加，并变得越来越稀疏。由于稀疏性，我们更加容易找到一个超平面来实现分类。这是因为随着特征数量变得无限大，训练样本在最佳超平面的错误侧的可能性将会变得无限小。然而，如果我们将高维的分类结果投影到低维空间中，将会出现一个严重的问题。</p>
+<p>比如说样本数据在3D是线性可分的，但是在2D却并非如此。事实上，增加第三个维度来获得最佳的线性分类效果，等同于在低维特征空间中使用非线性分类器。其结果是，分类器学习了训练数据的噪声和异常，而对样本外的数据拟合效果并不理想，甚至很差。这个概念称为过拟合，是维度灾难的一个直接后果。</p>
+<p><em>换句话讲，如果增加特征维度，为了覆盖同样的特征值范围，防止过拟合，需要用到的样本数就会呈指数型增长！</em></p>
+<h2 id="3-维度灾难与数据稀疏程度分布不均"><a href="#3-维度灾难与数据稀疏程度分布不均" class="headerlink" title="3.维度灾难与数据稀疏程度分布不均"></a>3.维度灾难与数据稀疏程度分布不均</h2><p>我们展示了维度灾难会引起训练数据的稀疏化。使用的特征越多，数据就会变得越稀疏，从而导致分类器的分类效果就会越差。维度灾难还会造成<strong>搜索空间的数据稀疏程度</strong>分布不均。事实上，围绕原点的数据（在超立方体的中心）比在搜索空间的角落处的数据要稀疏得多。</p>
+<p>举例2D，如果大部分的样本都落在了单位内接圆里的话，会更容易分类。但是在高维的空间中，大部分的训练数据都是分布在定义为特征空间的超立方体的角落处，导致难以分类。、</p>
+<p>对于8维的超球体，大约98%的数据集中在它256个角落处。其结果是，当特征空间的维度变得无限大时，从样本点到质心的最大、最小欧氏距离的差值与其最小欧式距离的比值趋于零。因此，距离测量在高维空间中逐渐变得无效。因为分类器是基于这些距离测量的（例如Euclidean距离、Mahalanobis距离、Manhattan距离），所以低维空间特征更少，分类更加容易。同样地，在高维空间的高斯分布会变平坦且尾巴更长。</p>
+<h2 id="4-如何避免维度灾难"><a href="#4-如何避免维度灾难" class="headerlink" title="4.如何避免维度灾难"></a>4.如何避免维度灾难</h2><p>很遗憾，在分类问题中，没有固定的规则来指定该使用多少特征。事实上，用多少特征量取决于你训练样本的数量、决策边界的复杂性和使用的是啥分类器。</p>
+<p>比如说一些非线性决策边界的分类器（e.g. 神经网络、KNN分类器、决策树等），它们的分类效果虽然好，但是泛化能力差容易发生过拟合，这个时候就需要降低点维度。如果使用泛化能力稍微好点的（e.g. 贝叶斯分类器、线性分类器），那么就可以使用稍微多一点的特征。</p>
+<h2 id="5-参考链接"><a href="#5-参考链接" class="headerlink" title="5.参考链接"></a>5.参考链接</h2><blockquote>
+<p><a href="https://www.jianshu.com/p/867193608bbd">简书</a><br><a href="https://cloud.tencent.com/developer/article/1143269">手工特征选取降维</a><br><a href="https://www.kdnuggets.com/2015/03/deep-learning-curse-dimensionality-autoencoders.html">原文</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Mathine Learning</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>激活函数</title>
+    <url>/2022/11/23/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<p>学习一下机器学习中常见的激活函数，大部分只是了解即可，不必深究</p>
+<span id="more"></span>
+
+<h1 id="常用的激活函数"><a href="#常用的激活函数" class="headerlink" title="常用的激活函数"></a>常用的激活函数</h1><h2 id="首先要知道什么是激活函数？"><a href="#首先要知道什么是激活函数？" class="headerlink" title="首先要知道什么是激活函数？"></a>首先要知道什么是激活函数？</h2><p>激活函数就是在神经网络的神经元上运行的函数，负责将神经元的输入映射到输出端。它类似于人类大脑中基于神经元的模型，激活函数最终决定了要发射给下一个神经元的内容。</p>
+<p>它的可视化过程如图所示：</p>
+<p><img src="https://ask.qcloudimg.com/http-save/8352478/mn5asmil0s.png?imageView2/2/w/1620" alt="激活函数工作过程"></p>
+<p>如果不用激励函数，每一层输出都是上层输入的线性函数，无论神经网络有多少层，输出都是输入的线性组合。神经网络中使用激活函数来加入非线性因素，提高模型的表达能力。</p>
+<h2 id="1-sigmoid激活函数"><a href="#1-sigmoid激活函数" class="headerlink" title="1. sigmoid激活函数"></a>1. sigmoid激活函数</h2><p><img src="https://ask.qcloudimg.com/http-save/8352478/nhi9swy8ln.png?imageView2/2/w/1620" alt="sigmoid函数"></p>
+<p>Sigmoid 函数的图像看起来像一个 S 形曲线。它的表达式如下：</p>
+<p>f(z) &#x3D; \frac{1}{1+e^{-z} } </p>
+<p>Sigmoid函数是传统神经网络中最常用的激活函数，一度被视为神经网络的核心所在。 </p>
+<p>从数学上来看，Sigmoid函数对中央区的信号增益较大，对两侧区的信号增益小，在信号的特征空间映射上，有很好的效果。从神经科学上来看，中央区酷似神经元的兴奋态，两侧区酷似神经元的抑制态，因而在神经网络学习方面，可以将重点特征推向中央区，将非重点特征推向两侧区。</p>
+<h3 id="1-1-在什么情况下适合使用-Sigmoid-激活函数呢？"><a href="#1-1-在什么情况下适合使用-Sigmoid-激活函数呢？" class="headerlink" title="1.1 在什么情况下适合使用 Sigmoid 激活函数呢？"></a>1.1 在什么情况下适合使用 Sigmoid 激活函数呢？</h3><ul>
+<li>Sigmoid 函数的输出范围是 0 到 1。由于输出值限定在 0 到 1，因此它对每个神经元的输出进行了归一化；</li>
+<li>用于将预测概率作为输出的模型。由于概率的取值范围是 0 到 1，因此 Sigmoid 函数非常合适；</li>
+<li>梯度平滑，避免「跳跃」的输出值；</li>
+<li>函数是可微的。这意味着可以找到任意两个点的 sigmoid 曲线的斜率；</li>
+<li>明确的预测，即非常接近 1 或 0。</li>
+<li></li>
+</ul>
+<h3 id="1-2-Sigmoid-激活函数有哪些缺点？"><a href="#1-2-Sigmoid-激活函数有哪些缺点？" class="headerlink" title="1.2 Sigmoid 激活函数有哪些缺点？"></a>1.2 Sigmoid 激活函数有哪些缺点？</h3><ul>
+<li>倾向于梯度消失；</li>
+<li>函数输出不是以 0 为中心的，这会降低权重更新的效率；</li>
+<li>Sigmoid 函数执行指数运算，计算机运行得较慢。</li>
+</ul>
+<p>现在基本上已经用不上sigmoid函数了。</p>
+<h2 id="2-TanHyperbolic（tanh）双曲正切激活函数"><a href="#2-TanHyperbolic（tanh）双曲正切激活函数" class="headerlink" title="2. TanHyperbolic（tanh）双曲正切激活函数"></a>2. TanHyperbolic（tanh）双曲正切激活函数</h2><p><img src="https://ask.qcloudimg.com/http-save/8352478/gm9p8du88z.png?imageView2/2/w/1620" alt="tanh函数"></p>
+<p>tanh 激活函数的图像也是 S 形，表达式如下：</p>
+<p>f(z) &#x3D; tanh(z) &#x3D;  \frac{e^{z} - e^{-z}  }{e^{z} + e^{-z} }  &#x3D; \frac{2}{1 + e^{-2z} }-1 </p>
+<p>tanh 是双曲正切函数。tanh 函数和 sigmoid 函数的曲线相似。但是它比 sigmoid 函数更有一些优势。</p>
+<ul>
+<li><p>sigmoid函数和tanh函数都存在一个问题：当神经网络的层数增多的时候，由于在进行反向传播的时候，链式求导，多项相乘，函数进入饱和区（导数接近于零的地方）就会逐层传递，这种现象被称为梯度消失。</p>
+</li>
+<li><p>首先要明确的一点是，当输入较大或较小时，输出几乎是平滑的并且梯度较小，这不利于权重更新。tanh 整个函数以 0 为中心，比 sigmoid 函数更好。在实际操作的时候，tanh 函数延迟了饱和期，在特征相差比较明显的时候效果会更好，并且在循环过程中也能够不断地扩大特征的效果。</p>
+</li>
+<li><p>在一般的二元分类问题中，tanh 函数用于隐藏层，而 sigmoid 函数用于输出层，但这并不是固定的，需要根据特定问题进行调整。</p>
+</li>
+</ul>
+<h2 id="3-softmax激活函数"><a href="#3-softmax激活函数" class="headerlink" title="3. softmax激活函数"></a>3. softmax激活函数</h2><p>公式表达为：</p>
+<p>f(z) &#x3D; \frac{e^{Z_j} }{\sum_{k}^{}e^{Z_k} } </p>
+<p>Sigmoid函数如果用来分类的话，只能进行二分类，而这里的softmax函数可以看做是Sigmoid函数的一般化，可以进行多分类。</p>
+<h3 id="3-0-Softmax激活函数的特点："><a href="#3-0-Softmax激活函数的特点：" class="headerlink" title="3.0 Softmax激活函数的特点："></a>3.0 Softmax激活函数的特点：</h3><ul>
+<li>在零点不可微。</li>
+<li>负输入的梯度为零，这意味着对于该区域的激活，权重不会在反向传播期间更新，因此会产生永不激活的死亡神经元。</li>
+</ul>
+<h3 id="3-1-sigmoid与softmax比较-–-gt-sigmoid"><a href="#3-1-sigmoid与softmax比较-–-gt-sigmoid" class="headerlink" title="3.1 sigmoid与softmax比较 –&gt; sigmoid"></a>3.1 sigmoid与softmax比较 –&gt; sigmoid</h3><p>二分类和多分类其实没有多少区别。用的公式仍然是y &#x3D; wx + b。 但有一个非常大的区别是他们用的激活函数是不同的。 逻辑回归用的是sigmoid，这个激活函数的除了给函数增加非线性之外还会把最后的预测值转换成在[0,1]中的数据值。也就是预测值是0&lt;y&lt;1。 我们可以把最后的这个预测值当做是一个预测为正例的概率。在进行模型应用的时候我们会设置一个阈值，当预测值大于这个阈值的时候，我们判定为正例子，反之我们判断为负例。这样我们可以很好的进行二分类问题。 </p>
+<h3 id="3-2-sigmoid与softmax比较-–-gt-softmax"><a href="#3-2-sigmoid与softmax比较-–-gt-softmax" class="headerlink" title="3.2 sigmoid与softmax比较 –&gt; softmax"></a>3.2 sigmoid与softmax比较 –&gt; softmax</h3><p>Softmax函数是用于多类分类问题的激活函数，在多类分类问题中，超过两个类标签则需要类成员关系。对于长度为K的任意实向量，Softmax函数可以将其压缩为长度为K，值在[0,1]范围内，并且向量中元素的总和为1的实向量。</p>
+<blockquote>
+<p>Softmax函数与正常的max函数不同：max函数仅输出最大值，但Softmax函数确保较小的值具有较小的概率，不会直接丢弃。我们可以认为它是arg max函数的概率版本或“soft”版本。Softmax函数的分母结合了原始输出值的所有因子，这意味着Softmax函数获得的各种概率彼此相关。</p>
+</blockquote>
+<blockquote>
+<p>利用 softmax 可以用于多分类问题，而用多个logistic回归通过叠加也同样可以实现多分类的效果，但是 softmax回归进行的多分类，类与类之间是互斥的，即一个输入只能被归为一类。多个logistic回归进行多分类，输出的类别并不是互斥的，即”苹果”这个词语既属于”水果”类也属于”3C”类别。</p>
+</blockquote>
+<h2 id="4-ReLU-激活函数"><a href="#4-ReLU-激活函数" class="headerlink" title="4. ReLU 激活函数"></a>4. ReLU 激活函数</h2><p><img src="https://ask.qcloudimg.com/http-save/8352478/ck888so4in.png?imageView2/2/w/1620" alt="ReLu激活函数"></p>
+<p>ReLu函数的全称为Rectified Linear Units–&gt;修正线性单元,表达式为</p>
+<p>f(z) &#x3D; max(0,z)</p>
+<h3 id="Sigmoid-，tanh与ReLU-比较"><a href="#Sigmoid-，tanh与ReLU-比较" class="headerlink" title="Sigmoid ，tanh与ReLU 比较"></a>Sigmoid ，tanh与ReLU 比较</h3><p>sigmoid，tanh 会出现梯度消失问题，ReLU 的导数就不存在这样的问题。</p>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
+<li>从计算的角度上，Sigmoid和Tanh激活函数均需要计算指数，复杂度高，而ReLU只需要一个阈值即可得到激活值。</li>
+<li>ReLU的非饱和性有效地解决梯度消失的问题，提供相对宽的激活边界。</li>
+<li>ReLU的单侧抑制，提供了网络的稀疏表达能力</li>
+</ul>
+<p><strong>稀疏表示（Sparse Representations）的定义：用较少的基本信号的线性组合来表达大部分或者全部的原始信号。</strong></p>
+<p><em>具体稀疏性的体现是：Relu会使一部分神经元的输出为0，这样就造成了网络的稀疏性，并且减少了参数的相互依存关系，缓解了过拟合问题的发生。</em><strong>只能说有利有弊了…</strong></p>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul>
+<li>Dead ReLU 问题。当输入为负时，ReLU 完全失效，在正向传播过程中，这不是问题。但是在反向传播过程中，如果输入负数，则梯度将完全为零，即在训练过程中会导致神经元死亡。sigmoid 函数和 tanh 函数也具有相同的问题。</li>
+<li>我们发现 ReLU 函数的输出为 0 或正数，这意味着 ReLU 函数不是以 0 为中心的函数。</li>
+</ul>
+<p><strong>神经元死亡会导致该神经元在之后不被任何数据激活，即流经该神经元的梯度永远为0，不对任何数据产生响应。在实际训练中，如果学习率设置较大，会导致一定比例的神经元不可逆死亡，进而参数梯度无法更新，整个训练过程失败。</strong></p>
+<h2 id="5-softplus激活函数"><a href="#5-softplus激活函数" class="headerlink" title="5. softplus激活函数"></a>5. softplus激活函数</h2><p>公式表达式为：</p>
+<p>softplus(z)&#x3D;log(1+e^z)</p>
+<p>softplus函数与ReLU函数接近,但比较平滑, 同ReLU一样是单边抑制,有宽广的接受域(0,+inf), 但是由于指数运算,对数运算计算量大的原因,而不太被人使用。</p>
+<p><img src="https://images2018.cnblogs.com/blog/1252882/201807/1252882-20180707095338849-1750990328.png" alt="softplus激活函数"></p>
+<p>可以看到，softplus可以看作是ReLu的平滑。根据神经科学家的相关研究，softplus和ReLu与脑神经元激活频率函数有神似的地方。也就是说，在生物层面上，相比于早期的激活函数，softplus和ReLu更加接近脑神经元的激活模型。其中，<strong>RELU函数的引入给神经网络增加了生物学特性，可以称为灵魂激活函数。</strong></p>
+<p>softplus的导数就是sigmoid函数，还是很巧合的。还有一点就是，据说softplus的出现要比ReLu要早，也就是说softplus可以看成是ReLu的鼻祖？</p>
+<h2 id="6-Leaky-ReLU激活函数"><a href="#6-Leaky-ReLU激活函数" class="headerlink" title="6. Leaky ReLU激活函数"></a>6. Leaky ReLU激活函数</h2><p>它是一种专门设计用于解决 Dead ReLU 问题的激活函数：</p>
+<p><img src="https://ask.qcloudimg.com/http-save/8352478/zdls8bt48h.png?imageView2/2/w/1620" alt="Leaky ReLu"></p>
+<p>当 x &lt; 0的时候， f(x) &#x3D; \alpha x,其中\alpha 非常小，这样可以避免在x &lt; 0的时候，不能够学习的情况。</p>
+<p>f(x) &#x3D; max(\alpha x,x)</p>
+<blockquote>
+<p>将\alpha 作为可学习的参数，称为Parametric Rectifier(PReLU)</p>
+<p>当\alpha 从高斯分布中随机产生时称为Random Rectifier（RReLU）</p>
+<p>当固定为\alpha &#x3D; 0.01时,称为Leaky ReLU</p>
+</blockquote>
+<h3 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>不会过拟合(saturate)</li>
+<li>计算简单有效</li>
+<li>比sigmoid&#x2F;tanh收敛快</li>
+</ul>
+<h2 id="7-其他常见的激活函数"><a href="#7-其他常见的激活函数" class="headerlink" title="7. 其他常见的激活函数"></a>7. 其他常见的激活函数</h2><p>其他常见的激活函数还有</p>
+<ul>
+<li>Noisy ReLU</li>
+<li>指数线性单元ELU(exponential linear unit)</li>
+<li>SELU</li>
+<li>GELU</li>
+<li>Swish</li>
+<li>…</li>
+</ul>
+<p>还有挺多的激活函数没有列举，但是我目前常见的就只有以上列举的几种，剩下的激活函数等到到时候用到的时候再来补充就好了！</p>
+<p><em>参考的网站：</em></p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/makefile/p/activation-function.html">https://www.cnblogs.com/makefile/p/activation-function.html</a><br><a href="https://www.cnblogs.com/nxf-rabbit75/p/9276412.html">https://www.cnblogs.com/nxf-rabbit75/p/9276412.html</a><br><a href="https://cloud.tencent.com/developer/article/1800954">https://cloud.tencent.com/developer/article/1800954</a><br><a href="https://blog.csdn.net/hy592070616/article/details/120618490">https://blog.csdn.net/hy592070616/article/details/120618490</a><br><a href="https://blog.csdn.net/weixin_42057852/article/details/84644348?spm=1001.2101.3001.6650.11&amp;utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-11-84644348-blog-120618490.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-11-84644348-blog-120618490.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=15">https://blog.csdn.net/weixin_42057852/article/details/84644348?spm=1001.2101.3001.6650.11&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-11-84644348-blog-120618490.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-11-84644348-blog-120618490.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=15</a></p>
+<p><a href="https://www.cnblogs.com/pinard/p/6437495.html">https://www.cnblogs.com/pinard/p/6437495.html</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Mathine Learning</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>网格搜索</title>
     <url>/2022/11/24/%E7%BD%91%E6%A0%BC%E6%90%9C%E7%B4%A2/</url>
     <content><![CDATA[<p>在进行机器学习的过程中，最为核心的概念就是参数了，要得到最好的参数可以采取网格搜索策略。网格搜索是应用最广泛的超参数搜索算法，网格搜索通过查找搜索范围内的所有的点，来确定最优值。</p>
@@ -1108,6 +1022,94 @@ print_result(lgb_r2_score, lgb_rmse, &#39;Lightgbm&#39;)
       <tags>
         <tag>机器学习</tag>
         <tag>调参</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>猫狗大战之CNN分类</title>
+    <url>/2022/11/24/%E7%8C%AB%E7%8B%97%E5%A4%A7%E6%88%98%E4%B9%8BCNN%E5%88%86%E7%B1%BB/</url>
+    <content><![CDATA[<p>实践出真知！在kaggle上找的CNN经典案例练练手，猫狗大战属于图像分类问题。可以从此处下载所需要用到的数据<a href="https://www.kaggle.com/datasets/tongpython/cat-and-dog">Here!</a></p>
+<span id="more"></span>
+
+<h1 id="Import-required-libraries-x2F-dependencies"><a href="#Import-required-libraries-x2F-dependencies" class="headerlink" title="Import required libraries &#x2F; dependencies"></a>Import required libraries &#x2F; dependencies</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> keras</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Sequential</span><br><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> layers</span><br><span class="line"><span class="keyword">from</span> tensorflow.keras.optimizers <span class="keyword">import</span> Adam</span><br></pre></td></tr></table></figure>
+
+<p><strong>tf.keras</strong>是用于构建和训练深度学习模型的 TensorFlow 高阶 API。它和TensorFlow相比具有以下的优点：</p>
+<ol>
+<li>对错误实现精确反馈，方便用户使用</li>
+<li>将可配置的构造块组合在一起便能构建Keras模型，模块化</li>
+<li>得益于上一点，我们可以编写自定义构造块，表达新的研究创意，即易于拓展</li>
+</ol>
+<p>而对于<code>from keras.models import Sequential</code>，在Keras中有两种深度学习的模型，分别是序列模型（Sequential）和通用模型（Model），两者的差异在于它们之间允许的不同的拓扑结构。详细地可以参考<a href="https://keras.io/models/sequential/">Keras官方文档</a>，这里我就简单讲解一下。Sequential模型结构是一种简单的线性结构，是多个网络层的堆叠（这说的网络层指的是卷积层、池化层等）。而Model模型结构是非线性的，允许多输入多输出的模型。利用Model模型我们设计非常复杂、任意拓扑的神经网络，可以说用法更灵活，但难度明显更大。</p>
+<p><code>from keras import layers</code>允许我们使用各种各样的网络结构，是组成完整模型的零件。</p>
+<ul>
+<li><a href="https://blog.csdn.net/ssswill/article/details/88310812">CSDN-keras-layers:Dense,Embedding,LSTM</a></li>
+<li><a href="https://blog.csdn.net/winter_python/article/details/108612636">CSDN-keras.layers汇总</a></li>
+</ul>
+<p><code>from tensorflow.keras.optimizers import Adam</code>这是一个名叫Adam的优化器，在监督学习中我们使用梯度下降算法的时候，学习率是一个很重要的指标。Adam能够让学习率从大到小自适应，实现效率与效果的兼得。</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/I_canjnu/article/details/106035640">CSDN-机器学习之优化器keras.optimizers.Adam()详解</a></p>
+</blockquote>
+<h1 id="Generate-the-datasets-both-the-training-and-the-test-sets"><a href="#Generate-the-datasets-both-the-training-and-the-test-sets" class="headerlink" title="Generate the datasets, both the training and the test sets"></a>Generate the datasets, both the training and the test sets</h1><h2 id="define-the-paths-to-the-dataset"><a href="#define-the-paths-to-the-dataset" class="headerlink" title="define the paths to the dataset."></a>define the paths to the dataset.</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">training_path = <span class="string">&#x27;../input/cat-and-dog/training_set/training_set/&#x27;</span></span><br><span class="line">test_path = <span class="string">&#x27;../input/cat-and-dog/test_set/test_set/&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Create-dataset"><a href="#Create-dataset" class="headerlink" title="Create dataset"></a>Create dataset</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">image_size = (<span class="number">200</span>, <span class="number">200</span>)</span><br><span class="line">batch_size = <span class="number">32</span></span><br><span class="line"></span><br><span class="line">training_set = keras.preprocessing.image.image_dataset_from_directory(</span><br><span class="line">    directory=training_path,</span><br><span class="line">    class_names=[<span class="string">&#x27;cats&#x27;</span>, <span class="string">&#x27;dogs&#x27;</span>],</span><br><span class="line">    image_size=image_size,</span><br><span class="line">    batch_size=batch_size</span><br><span class="line">)</span><br><span class="line">test_set = keras.preprocessing.image.image_dataset_from_directory(</span><br><span class="line">    directory=test_path,</span><br><span class="line">    class_names=[<span class="string">&#x27;cats&#x27;</span>, <span class="string">&#x27;dogs&#x27;</span>],</span><br><span class="line">    image_size=image_size,</span><br><span class="line">    batch_size=batch_size,</span><br><span class="line">    </span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>keras.preprocessing.image.image_dataset_from_directory可以理解成数据预处理工具包，TensorFlow的官方文档在<a href="https://tensorflow.google.cn/api_docs/python/tf/keras/utils/image_dataset_from_directory">此</a>。它能够从文件夹里对子目录猫和狗分别生成标签0和1，将数据返回到tf.data.Dateset中，并且在加载的同时还会打乱数据。</p>
+<h1 id="Visualize-some-images-from-the-training-set"><a href="#Visualize-some-images-from-the-training-set" class="headerlink" title="Visualize some images from the training set"></a>Visualize some images from the training set</h1><h2 id="visualize-the-training-set"><a href="#visualize-the-training-set" class="headerlink" title="visualize the training set"></a>visualize the training set</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="number">15</span>, <span class="number">9</span>))</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cat_or_dog</span>(<span class="params">a</span>):</span><br><span class="line">    <span class="keyword">if</span> a==<span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;Cat&#x27;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;Dog&#x27;</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">for</span> images, labels <span class="keyword">in</span> training_set.take(<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">12</span>):</span><br><span class="line">        plt.subplot(<span class="number">3</span>, <span class="number">4</span>, i+<span class="number">1</span>)</span><br><span class="line">        plt.imshow(images[i].numpy().astype(<span class="string">&#x27;uint8&#x27;</span>))</span><br><span class="line">        plt.title(<span class="string">f&#x27;<span class="subst">&#123;<span class="built_in">int</span>(labels[i])&#125;</span> (<span class="subst">&#123;cat_or_dog(<span class="built_in">int</span>(labels[i]))&#125;</span>)&#x27;</span>)</span><br><span class="line">        plt.axis(<span class="string">&#x27;off&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="visualize-the-test-set"><a href="#visualize-the-test-set" class="headerlink" title="visualize the test set"></a>visualize the test set</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="number">15</span>, <span class="number">9</span>))</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cat_or_dog</span>(<span class="params">a</span>):</span><br><span class="line">    <span class="keyword">if</span> a==<span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;Cat&#x27;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;Dog&#x27;</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">for</span> images, labels <span class="keyword">in</span> test_set.take(<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">12</span>):</span><br><span class="line">        plt.subplot(<span class="number">3</span>, <span class="number">4</span>, i+<span class="number">1</span>)</span><br><span class="line">        plt.imshow(images[i].numpy().astype(<span class="string">&#x27;uint8&#x27;</span>))</span><br><span class="line">        plt.title(<span class="string">f&#x27;<span class="subst">&#123;<span class="built_in">int</span>(labels[i])&#125;</span> (<span class="subst">&#123;cat_or_dog(<span class="built_in">int</span>(labels[i]))&#125;</span>)&#x27;</span>)</span><br><span class="line">        plt.axis(<span class="string">&#x27;off&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>要是对<code>plt.figure(figsize = (a, b))</code>和<code>plt.subplot()</code>不懂的话，可以看看<a href="https://blog.csdn.net/weixin_43685844/article/details/88982811">这里</a>。而这里的<code>dataset.take(1)</code>指的是取构建dataset的第一组元素，看样子一组好像有12个（因为下面的circle）,并且可以返回图片image和标签label两个值。</p>
+<ul>
+<li><a href="https://blog.csdn.net/weixin_43935696/article/details/112691755">CSDN-dataset.take</a></li>
+<li><a href="https://www.jianshu.com/p/95f11648be2c">简书-dataset.take</a></li>
+</ul>
+<h1 id="Data-Augmentation"><a href="#Data-Augmentation" class="headerlink" title="Data Augmentation"></a>Data Augmentation</h1><blockquote>
+<p>augmentation &#x2F;ˌɔːɡmenˈteɪʃ(ə)n&#x2F; 增大，增多；增加物；延长，扩充</p>
+</blockquote>
+<h2 id="define-some-layers-of-data-augmentation"><a href="#define-some-layers-of-data-augmentation" class="headerlink" title="define some layers of data augmentation"></a>define some layers of data augmentation</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">augmented_data = Sequential([</span><br><span class="line">    layers.RandomFlip(<span class="string">&#x27;horizontal&#x27;</span>),</span><br><span class="line">    layers.RandomRotation(<span class="number">0.1</span>)</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+
+<h2 id="visualize-it"><a href="#visualize-it" class="headerlink" title="visualize it"></a>visualize it</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="number">15</span>, <span class="number">9</span>))</span><br><span class="line">    </span><br><span class="line"><span class="keyword">for</span> images, labels <span class="keyword">in</span> test_set.take(<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">12</span>):</span><br><span class="line">        plt.subplot(<span class="number">3</span>, <span class="number">4</span>, i+<span class="number">1</span>)</span><br><span class="line">        augmented_image = augmented_data(images[<span class="number">0</span>])</span><br><span class="line">        plt.imshow(augmented_image.numpy().astype(<span class="string">&#x27;uint8&#x27;</span>))</span><br><span class="line">        plt.title(<span class="built_in">int</span>(labels[<span class="number">0</span>]))</span><br><span class="line">        plt.axis(<span class="string">&#x27;off&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>tf.keras.layers.RandomFlip</strong>的作用是一个预处理层,在训练期间随机翻转图像<a href="https://runebook.dev/zh-CN/docs/tensorflow/keras/layers/randomflip">runebook</a>、<a href="https://keras.io/api/layers/preprocessing_layers/image_preprocessing/random_flip/">官方文档</a></p>
+<h1 id="Build-a-model"><a href="#Build-a-model" class="headerlink" title="Build a model"></a>Build a model</h1><h2 id="build-the-model"><a href="#build-the-model" class="headerlink" title="build the model"></a>build the model</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">model = Sequential([</span><br><span class="line">    layers.Conv2D(filters=<span class="number">128</span>, kernel_size=(<span class="number">3</span>, <span class="number">3</span>), activation=<span class="string">&#x27;relu&#x27;</span>, padding=<span class="string">&#x27;same&#x27;</span>, input_shape=(<span class="number">200</span>, <span class="number">200</span>, <span class="number">3</span>)),</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># preprocessing</span></span><br><span class="line">    layers.CenterCrop(<span class="number">180</span>, <span class="number">180</span>),</span><br><span class="line">    layers.Rescaling(scale=<span class="number">1.</span>/<span class="number">255</span>),</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="comment"># applying image data augmentation</span></span><br><span class="line">    layers.RandomFlip(<span class="string">&#x27;horizontal&#x27;</span>),</span><br><span class="line">    layers.RandomRotation(<span class="number">0.1</span>),</span><br><span class="line">    </span><br><span class="line">    layers.MaxPooling2D(pool_size=(<span class="number">2</span>, <span class="number">2</span>), strides=<span class="number">2</span>),</span><br><span class="line">    </span><br><span class="line">    layers.Conv2D(filters=<span class="number">256</span>, kernel_size=(<span class="number">3</span>, <span class="number">3</span>), activation=<span class="string">&#x27;relu&#x27;</span>, padding=<span class="string">&#x27;same&#x27;</span>),</span><br><span class="line">    layers.MaxPooling2D(pool_size=(<span class="number">2</span>, <span class="number">2</span>), strides=<span class="number">2</span>),</span><br><span class="line">    </span><br><span class="line">    layers.Conv2D(filters=<span class="number">64</span>, kernel_size=(<span class="number">3</span>, <span class="number">3</span>), activation=<span class="string">&#x27;relu&#x27;</span>, padding=<span class="string">&#x27;same&#x27;</span>),</span><br><span class="line">    layers.MaxPooling2D(pool_size=(<span class="number">2</span>, <span class="number">2</span>), strides=<span class="number">2</span>),</span><br><span class="line">    </span><br><span class="line">    layers.Conv2D(filters=<span class="number">32</span>, kernel_size=(<span class="number">3</span>, <span class="number">3</span>), activation=<span class="string">&#x27;relu&#x27;</span>, padding=<span class="string">&#x27;same&#x27;</span>),</span><br><span class="line">    layers.MaxPooling2D(pool_size=(<span class="number">2</span>, <span class="number">2</span>), strides=<span class="number">2</span>),</span><br><span class="line">    </span><br><span class="line">    layers.Flatten(),</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># output layer</span></span><br><span class="line">    layers.Dense(<span class="number">1</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>)</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+
+<p>tf.keras.layers.Conv2D的filter为什么是128呢？这一点让我很疑惑。查阅资料发现许多都讲得模棱两可，不过大概可以解释的是这个filter指的是过滤器的深度。我没有查阅官方文档，后来发现<a href="https://zhuanlan.zhihu.com/p/498713060">知乎-tf.keras.layers.Conv2D参数详解</a>中的分析比较可取。”我几乎总是建议使用2的次方作为值”说明2的次方并不是filter的专利，并且我们需要根据数据集的复杂性和神经网络的深度来调整确切的值，也就是说filter的选择主观性强。</p>
+<ol>
+<li><a href="https://runebook.dev/zh-CN/docs/tensorflow/keras/layers/centercrop" title="runebook的Keras文档">tf.keras.layers.CenterCropCrop</a>对图片进行裁切，去两边留中心。官方解释–&gt;<em>the central portion of the images to target height and width</em></li>
+<li><a href="https://docs.w3cub.com/tensorflow~2.9/keras/layers/rescaling.html" title="W3C的Keras文档">tf.keras.layers.Rescaling</a>To rescale an input in the [0, 255] range to be in the [0, 1] range, you would pass scale&#x3D;1.&#x2F;255</li>
+<li>Dense层(全连接层）</li>
+<li>Flatten层用来将输入“压平”，即把多维的输入一维化，常用在从卷积层到全连接层的过渡。Flatten不影响batch的大小。据说Convolution卷积层之后是无法直接连接Dense全连接层的，需要把Convolution层的数据压平（Flatten），然后才可以直接加Dense层。</li>
+<li><a href="https://www.cnblogs.com/peng8098/p/keras_7.html#:~:text=%20Flatten%E5%B1%82%E7%94%A8%E6%9D%A5%E5%B0%86%E8%BE%93%E5%85%A5%E2%80%9C%E5%8E%8B%E5%B9%B3%E2%80%9D%EF%BC%8C%E5%8D%B3%E6%8A%8A%E5%A4%9A%E7%BB%B4%E7%9A%84%E8%BE%93%E5%85%A5%E4%B8%80%E7%BB%B4%E5%8C%96%EF%BC%8C%E5%B8%B8%E7%94%A8%E5%9C%A8%E4%BB%8E%E5%8D%B7%E7%A7%AF%E5%B1%82%E5%88%B0%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%B1%82%E7%9A%84%E8%BF%87%E6%B8%A1%E3%80%82%20Flatten%E4%B8%8D%E5%BD%B1%E5%93%8Dbatch%E7%9A%84%E5%A4%A7%E5%B0%8F%E3%80%82,%E8%BE%93%E5%85%A5shape%EF%BC%9A%E4%BB%BB%E6%84%8F%EF%BC%8C%E4%BD%86%E8%BE%93%E5%85%A5%E7%9A%84shape%E5%BF%85%E9%A1%BB%E5%9B%BA%E5%AE%9A%E3%80%82%20%E5%BD%93%E4%BD%BF%E7%94%A8%E8%AF%A5%E5%B1%82%E4%B8%BA%E6%A8%A1%E5%9E%8B%E9%A6%96%E5%B1%82%E6%97%B6%EF%BC%8C%E9%9C%80%E8%A6%81%E6%8C%87%E5%AE%9Ainput_shape%E5%8F%82%E6%95%B0%20Permute%E5%B1%82%E5%B0%86%E8%BE%93%E5%85%A5%E7%9A%84%E7%BB%B4%E5%BA%A6%E6%8C%89%E7%85%A7%E7%BB%99%E5%AE%9A%E6%A8%A1%E5%BC%8F%E8%BF%9B%E8%A1%8C%E9%87%8D%E6%8E%92%EF%BC%8C%E4%BE%8B%E5%A6%82%EF%BC%8C%E5%BD%93%E9%9C%80%E8%A6%81%E5%B0%86RNN%E5%92%8CCNN%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E6%97%B6%EF%BC%8C%E5%8F%AF%E8%83%BD%E4%BC%9A%E7%94%A8%E5%88%B0%E8%AF%A5%E5%B1%82%E3%80%82" title="cnblog">cnblog对Keras.layers各种层的介绍-比较准确</a></li>
+</ol>
+<h2 id="model-summary"><a href="#model-summary" class="headerlink" title="model summary"></a>model summary</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">model.summary()</span><br></pre></td></tr></table></figure>
+
+<p>使用keras构建深度学习模型，我们会通过model.summary()输出模型各层的参数状况。通过这些参数，可以看到模型各个层的组成（dense表示全连接层）。也能看到数据经过每个层后，输出的数据维度。还能看到Param，它表示每个层参数的个数，详情参考<a href="https://blog.csdn.net/ybdesire/article/details/85217688" title="CSDN">此处</a>。这一步是先将模型搭建起来，然后用summary查看相关的信息，不属于训练过程，所以运行不需要花多少时间。</p>
+<h1 id="Train-the-model"><a href="#Train-the-model" class="headerlink" title="Train the model"></a>Train the model</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">epochs = <span class="number">50</span></span><br><span class="line"><span class="comment"># callbacks (save the model at each epoch)</span></span><br><span class="line">callbacks = [</span><br><span class="line">    keras.callbacks.ModelCheckpoint(<span class="string">&quot;checkpoints/model_at_&#123;epoch&#125;.h5&quot;</span>),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p><strong>tf.keras.callbacks.ModelCheckpoint</strong>回调函数的作用是在每个训练期（epoch）后保存模型–&gt;<a href="https://www.w3cschool.cn/tensorflow_python/tf_keras_callbacks_ModelCheckpoint.html" title="W3C">Reference</a></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># compile the model</span></span><br><span class="line">model.<span class="built_in">compile</span>(</span><br><span class="line">    optimizer=Adam(learning_rate=<span class="number">0.001</span>),</span><br><span class="line">    loss=<span class="string">&#x27;binary_crossentropy&#x27;</span>,</span><br><span class="line">    metrics=[<span class="string">&#x27;accuracy&#x27;</span>]</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>Keras的model.compile参数介绍：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">model.<span class="built_in">compile</span>(</span><br><span class="line">   optimizer, </span><br><span class="line">   loss = <span class="literal">None</span>, </span><br><span class="line">   metrics = <span class="literal">None</span>, </span><br><span class="line">   loss_weights = <span class="literal">None</span>, </span><br><span class="line">   sample_weight_mode = <span class="literal">None</span>, </span><br><span class="line">   weighted_metrics = <span class="literal">None</span>, </span><br><span class="line">   target_tensors = <span class="literal">None</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>常用的就下面三个参数：</p>
+<ol>
+<li>optimizer：优化器，用于控制梯度裁剪</li>
+<li>loss：损失函数（或称目标函数、优化评分函数）</li>
+<li>metrics：评价函数用于评估当前训练模型的性能。当模型编译后（compile），评价函数应该作为 metrics 的参数来输入。评价函数和损失函数相似，只不过评价函数的结果不会用于训练过程中。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># fit the model</span></span><br><span class="line">model.fit(training_set, validation_data=test_set, epochs=epochs, callbacks=callbacks, verbose=<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这里的fit起到将训练集和测试集载入模型的作用。但是还有另外一个fit_generator函数，作用相似。首先Keras中的fit()函数传入的x_train和y_train是被完整的加载进内存的,当然用起来很方便，但是如果我们数据量很大，那么是不可能将所有数据载入内存的，必将导致内存泄漏，这时候我们可以用fit_generator函数来进行训练。<br><a href="https://www.w3cschool.cn/article/62757839.html#:~:text=%E9%A6%96%E5%85%88Keras%E4%B8%AD%E7%9A%84fit,%28%29%E5%87%BD%E6%95%B0%E4%BC%A0%E5%85%A5%E7%9A%84x_train%E5%92%8Cy_train%E6%98%AF%E8%A2%AB%E5%AE%8C%E6%95%B4%E7%9A%84%E5%8A%A0%E8%BD%BD%E8%BF%9B%E5%86%85%E5%AD%98%E7%9A%84%2C%E5%BD%93%E7%84%B6%E7%94%A8%E8%B5%B7%E6%9D%A5%E5%BE%88%E6%96%B9%E4%BE%BF%EF%BC%8C%E4%BD%86%E6%98%AF%E5%A6%82%E6%9E%9C%E6%88%91%E4%BB%AC%E6%95%B0%E6%8D%AE%E9%87%8F%E5%BE%88%E5%A4%A7%EF%BC%8C%E9%82%A3%E4%B9%88%E6%98%AF%E4%B8%8D%E5%8F%AF%E8%83%BD%E5%B0%86%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E8%BD%BD%E5%85%A5%E5%86%85%E5%AD%98%E7%9A%84%EF%BC%8C%E5%BF%85%E5%B0%86%E5%AF%BC%E8%87%B4%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%EF%BC%8C%E8%BF%99%E6%97%B6%E5%80%99%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E7%94%A8fit_generator%E5%87%BD%E6%95%B0%E6%9D%A5%E8%BF%9B%E8%A1%8C%E8%AE%AD%E7%BB%83%E3%80%82" title="W3C">参考</a>其中有一个常见的参数verbose–&gt;<em>verbose:默认值为1，是指在训练过程中日志的显示模式，取 1 时表示“进度条模式”，取2时表示“每轮一行”，取0时表示“安静模式”</em></p>
+<h1 id="Visualize-the-predicted-images"><a href="#Visualize-the-predicted-images" class="headerlink" title="Visualize the predicted images"></a>Visualize the predicted images</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># visualize the predicted data</span></span><br><span class="line">loaded_model = keras.models.load_model(<span class="string">&#x27;checkpoints/model_at_50.h5&#x27;</span>)</span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(<span class="number">15</span>, <span class="number">9</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">predict</span>(<span class="params">imgs</span>):</span><br><span class="line">    pred = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> loaded_model.predict(images.numpy().astype(<span class="string">&#x27;uint8&#x27;</span>)):</span><br><span class="line">        <span class="keyword">if</span> i[<span class="number">0</span>] &gt; <span class="number">.5</span>:</span><br><span class="line">            pred.append(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            pred.append(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> pred</span><br><span class="line">    </span><br><span class="line"><span class="keyword">for</span> images, labels <span class="keyword">in</span> test_set.take(<span class="number">1</span>):</span><br><span class="line">    pred = predict(images)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">12</span>):</span><br><span class="line">        plt.subplot(<span class="number">3</span>, <span class="number">4</span>, i+<span class="number">1</span>)</span><br><span class="line">        plt.imshow(images[i].numpy().astype(<span class="string">&#x27;uint8&#x27;</span>))</span><br><span class="line">        plt.title(<span class="string">f&#x27;True: <span class="subst">&#123;<span class="built_in">int</span>(labels[i])&#125;</span>, Predicted: <span class="subst">&#123;pred[i]&#125;</span>&#x27;</span>)</span><br><span class="line">        plt.axis(<span class="string">&#x27;off&#x27;</span>)</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Deep Learning</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+        <tag>CNN</tag>
+        <tag>比赛</tag>
+        <tag>图像分类</tag>
       </tags>
   </entry>
 </search>
