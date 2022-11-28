@@ -1,6 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>cv2报错处理</title>
+    <url>/2022/11/24/cv2%E6%8A%A5%E9%94%99%E5%A4%84%E7%90%86/</url>
+    <content><![CDATA[<p>cv2报错：raise TypeError(“Image data of dtype {} cannot be converted to “TypeError: Image data of dtype object cannot be converted to float</p>
+<span id="more"></span>
+
+<h1 id="raise-TypeError-“Image-data-of-dtype-cannot-be-converted-to-“-TypeError-Image-data-of-dtype-object-cannot-be-converted-to-float"><a href="#raise-TypeError-“Image-data-of-dtype-cannot-be-converted-to-“-TypeError-Image-data-of-dtype-object-cannot-be-converted-to-float" class="headerlink" title="raise TypeError(“Image data of dtype {} cannot be converted to “     TypeError: Image data of dtype object cannot be converted to float"></a>raise TypeError(“Image data of dtype {} cannot be converted to “     TypeError: Image data of dtype object cannot be converted to float</h1><p>刚想要研究一下CV2内置的图像类型的不同，结果发现CSDN上找的代码跑不出来？其实也正常，天下哪有免费的午餐，拿到的代码还不是得修修改改？</p>
+<h1 id="报错如下"><a href="#报错如下" class="headerlink" title="报错如下"></a>报错如下</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">raise TypeError(&quot;Image data of dtype &#123;&#125; cannot be converted to &quot;     TypeError: Image data of dtype object cannot be converted to float</span><br></pre></td></tr></table></figure>
+
+<p>至于解决方案众说纷坛，有说要看看数据类型是不是不对应，还有的人说路径里面有中文。其实我的文件夹真的有中文，但是更改之后，报错依旧。</p>
+<p>网上都说是引入图片路径的问题，但是我这句代码应该也没有错吧？因为下载的visual code插件可以成功显示出图片在代码的左边，左思右想决定还是更改路径试试。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># cv2.imread()接口读图像，读进来直接是BGR 格式数据格式在 0~255，通道格式为(W,H,C)</span><br><span class="line">img_BGR = cv2.imread(&#x27;sea.jpg&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>更改成visual code直接复制图片的相对路径</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">img_BGR = cv2.imread(&#x27;web\sea.jpg&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>后面发现真的成功运行。这次运行的代码文件和图片文件在同一个文件夹里，但是却要加个前缀，可能与我IDE打开的工作区有关吧？</p>
+<p>总之就是路径的问题。</p>
+<h1 id="不存在skimage库"><a href="#不存在skimage库" class="headerlink" title="不存在skimage库"></a>不存在skimage库</h1><p>Python库函数的下载放到了另外一篇文章…</p>
+]]></content>
+      <categories>
+        <category>Library function</category>
+      </categories>
+      <tags>
+        <tag>report an error</tag>
+        <tag>库函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>L1和L2正则化</title>
+    <url>/2022/11/23/L1%E5%92%8CL2%E6%AD%A3%E5%88%99%E5%8C%96/</url>
+    <content><![CDATA[<p>了解什么是L1正则化和L2正则化，以及什么是正则化？</p>
+<span id="more"></span>
+
+<h1 id="L1正则化和L2正则化"><a href="#L1正则化和L2正则化" class="headerlink" title="L1正则化和L2正则化"></a>L1正则化和L2正则化</h1><h2 id="1-正则化"><a href="#1-正则化" class="headerlink" title="1. 正则化"></a>1. 正则化</h2><h3 id="1-1-什么是正则化？"><a href="#1-1-什么是正则化？" class="headerlink" title="1.1 什么是正则化？"></a>1.1 什么是正则化？</h3><p>Regularization，中文翻译过来可以称为正则化，或者叫做规范化。什么是规则？闭卷考试中不能查书，这就是规则，一个限制。同理，在这里，规则化（正则化）就是说给损失函数加上一些限制，通过这种规则去规范他们再接下来的循环迭代中，不要自我膨胀。</p>
+<h3 id="1-2-正则化有什么用？"><a href="#1-2-正则化有什么用？" class="headerlink" title="1.2 正则化有什么用？"></a>1.2 正则化有什么用？</h3><p><img src="https://img-blog.csdnimg.cn/2020031610373195.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTk2MDg5MA==,size_16,color_FFFFFF,t_70" alt="回归模型的拟合程度"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200316112556508.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTk2MDg5MA==,size_16,color_FFFFFF,t_70" alt="分类模型的拟合程度"></p>
+<p>可以看出，两张图的最后一个模型，都存在着过拟合的现象。</p>
+<blockquote>
+<p>解决过拟合的方案有：<br>清洗数据<br>减少模型参数，降低模型复杂度<br>增加惩罚因子（正则化），保留所有的特征，但是减少参数的大小（magnitude）</p>
+</blockquote>
+<p>可见，正则化就是解决模型过拟合的其中一个方法。</p>
+<h3 id="1-3-正则化怎么用？"><a href="#1-3-正则化怎么用？" class="headerlink" title="1.3 正则化怎么用？"></a>1.3 正则化怎么用？</h3><p>机器学习中几乎都可以看到损失函数后面会添加一个额外项，常用的额外项一般有两种，一般英文称作 ℓ1 \ell_1ℓ 1-norm 和 ℓ2 \ell_2ℓ2​-norm，中文称作 L1正则化 和 L2正则化，或者 L1范数 和 L2范数。</p>
+<p>L1正则化和L2正则化可以看做是损失函数的惩罚项。所谓『惩罚』是指对损失函数中的某些参数做一些限制。<strong>对于线性回归模型，使用L1正则化的模型建叫做Lasso回归，使用L2正则化的模型叫做Ridge回归（岭回归）</strong>。下图是Python中Lasso回归的损失函数，式中加号后面一项α ∣ ∣ w ∣ ∣ 1 \alpha||w||_1α∣∣w∣∣ 1即为L1正则化项。</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTYwOTA0MTg0MjI4MTU4?x-oss-process=image/format,png#pic_center" alt="Lasso回归损失函数"></p>
+<p>下图是Python中Ridge回归的损失函数，式中加号后面一项α ∣ ∣ w ∣ ∣ 2 2 \alpha||w||_2^2α∣∣w∣∣22即为L2正则化项。</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTYwOTA0MTg0MzE0MzMz?x-oss-process=image/format,png#pic_center" alt="岭回归损失函数"></p>
+<p>一般回归分析中w表示特征的系数，从上式可以看到正则化项是对系数做了处理（限制）。L1正则化和L2正则化的说明如下：</p>
+<ul>
+<li>L1正则化是指权值向量w中各个元素的绝对值之和，通常表示为∣ ∣ w ∣ ∣ 1 ||w||_1∣∣w∣∣ 1<br>​- L2正则化是指权值向量w中各个元素的平方和然后再求平方根（可以看到Ridge回归的L2正则化项有平方符号），通常表示为∣ ∣ w ∣ ∣ 2 ||w||_2∣∣w∣∣ 2​</li>
+</ul>
+<p>一般都会在正则化项之前添加一个系数，Python的机器学习包sklearn中用α表示，一些文章也用λ表示。这个系数需要用户指定。</p>
+<ul>
+<li>L1正则化可以产生稀疏权值矩阵，即产生一个稀疏模型，可以用于特征选择</li>
+<li>L2正则化可以防止模型过拟合（overfitting）；一定程度上，L1也可以防止过拟合</li>
+</ul>
+<h2 id="2-稀疏模型与特征选择的关系"><a href="#2-稀疏模型与特征选择的关系" class="headerlink" title="2. 稀疏模型与特征选择的关系"></a>2. 稀疏模型与特征选择的关系</h2><blockquote>
+<p>上面提到L1正则化有助于生成一个稀疏权值矩阵，进而可以用于特征选择。为什么要生成一个稀疏矩阵？</p>
+</blockquote>
+<p>稀疏矩阵指的是很多元素为0，只有少数元素是非零值的矩阵，即得到的线性回归模型的大部分系数都是0. 通常机器学习中特征数量很多，例如文本处理时，如果将一个词组（term）作为一个特征，那么特征数量会达到上万个（bigram）。在预测或分类时，那么多特征显然难以选择，但是如果代入这些特征得到的模型是一个稀疏模型，表示只有少数特征对这个模型有贡献，绝大部分特征是没有贡献的，或者贡献微小（因为它们前面的系数是0或者是很小的值，即使去掉对模型也没有什么影响），此时我们就可以只关注系数是非零值的特征。这就是稀疏模型与特征选择的关系。</p>
+<h2 id="3-L1正则化"><a href="#3-L1正则化" class="headerlink" title="3. L1正则化"></a>3. L1正则化</h2><p>为什么L1正则化可以产生稀疏模型（L1是怎么让系数等于零的）？</p>
+<h3 id="正则化和特征选择的关系"><a href="#正则化和特征选择的关系" class="headerlink" title="正则化和特征选择的关系"></a>正则化和特征选择的关系</h3><p>假设有如下带L1正则化的损失函数：<br>J &#x3D; J 0 + α ∑ w ∣ w ∣ (1) J &#x3D; J_0 + \alpha \sum_w{|w|} \tag{1}J&#x3D;J0​+α w∑∣w∣(1)</p>
+<p>其中J 0 J_0J 0是原始的损失函数，加号后面的一项是L1正则化项，α \alphaα是正则化系数。注意到L1正则化是权值的绝对值之和，J JJ是带有绝对值符号的函数，因此J JJ是不完全可微的。机器学习的任务就是要通过一些方法（比如梯度下降）求出损失函数的最小值。当我们在原始损失函数J 0 J_0J 0​<br> 后添加L1正则化项时，相当于对J 0 J_0J<br>0​<br> 做了一个约束。令L &#x3D; α ∑ w ∣ w ∣ L &#x3D; \alpha \sum_w{|w|}L&#x3D;α∑<br>w​<br> ∣w∣，则J &#x3D; J 0 + L J &#x3D; J_0 + LJ&#x3D;J<br>0​<br> +L，此时我们的任务变成在L LL约束下求出J 0 J_0J<br>0​<br> 取最小值的解。考虑二维的情况，即只有两个权值w 1 w^1w<br>1<br> 和w 2 w^2w<br>2<br> ，此时L &#x3D; ∣ w 1 ∣ + ∣ w 2 ∣ L &#x3D; |w^1|+|w^2|L&#x3D;∣w<br>1<br> ∣+∣w<br>2<br> ∣。对于梯度下降法，求解J 0 J_0J<br>0​<br> 的过程可以画出等值线，同时L1正则化的函数L LL也可以在w 1 w 2 w^1w^2w<br>1<br> w<br>2的二维平面上画出来。如下图：</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTYwOTA0MTg0NDI4NDU5?x-oss-process=image/format,png#pic_center" alt="L1正则化"></p>
+<p>图中等值线是J 0 J_0J 0​<br> 的等值线，黑色方形是L LL函数的图形。L &#x3D; ∣ w 1 ∣ + ∣ w 2 ∣ L &#x3D; |w^1|+|w^2|L&#x3D;∣w<br>1<br> ∣+∣w<br>2<br> ∣，这个函数画出来就是一个方框（可以自己动手画一下）。<br>在图中，当J 0 J_0J<br>0​<br> 等值线与L LL图形首次相交的地方就是最优解。上图中J 0 J_0J<br>0​<br> 与L LL在L LL的一个顶点处相交，这个顶点就是最优解。注意到这个顶点的值是( w 1 , w 2 ) &#x3D; ( 0 , w ) (w^1, w^2) &#x3D; (0, w)(w<br>1<br> ,w<br>2<br> )&#x3D;(0,w)。可以直观想象，因为L LL函数有很多『突出的角』（二维情况下四个，多维情况下更多），J 0 J_0J<br>0​<br> 与这些角接触的机率会远大于与L LL其它部位接触的机率（这是很直觉的想象，突出的角比直线的边离等值线更近写），而在这些角上，会有很多权值等于0（因为角就在坐标轴上），这就是为什么L1正则化可以产生稀疏模型，进而可以用于特征选择。</p>
+<p>而正则化前面的系数α \alphaα，可以控制L LL图形的大小。α \alphaα越小，L LL的图形越大（上图中的黑色方框）；α \alphaα越大，L LL的图形就越小，可以小到黑色方框只超出原点范围一点点，这是最优点的值( w 1 , w 2 ) &#x3D; ( 0 , w ) (w1,w2)&#x3D;(0,w)(w1,w2)&#x3D;(0,w)中的w ww可以取到很小的值。</p>
+<p>我觉得下面的博主讲的挺易懂的：<br><a href="https://blog.csdn.net/u011426016/article/details/119836598">https://blog.csdn.net/u011426016/article/details/119836598</a></p>
+<h2 id="4-L2正则化"><a href="#4-L2正则化" class="headerlink" title="4. L2正则化"></a>4. L2正则化</h2><p>假设有如下带L2正则化的损失函数：</p>
+<p>J &#x3D; J 0 + α ∑ w w 2 (2) J &#x3D; J_0 + \alpha \sum_w{w^2} \tag{2}<br>J&#x3D;J<br>0​<br> +α<br>w<br>∑​<br> w<br>2<br> (2)</p>
+<p>同样可以画出他们在二维平面上的图形，如下：</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTYwOTA0MTg0NjQ2OTYz?x-oss-process=image/format,png#pic_center" alt="L2正则化"></p>
+<p>二维平面下L2正则化的函数图形是个圆（绝对值的平方和，是个圆），与方形相比，被磨去了棱角。因此J 0 J_0J<br>0​<br> 与L LL相交时使得w 1 w^1w<br>1<br> 或w 2 w^2w<br>2<br> 等于零的机率小了许多（这个也是一个很直观的想象），这就是为什么L2正则化不具有稀疏性的原因，因为不太可能出现多数w ww都为0的情况。</p>
+<h3 id="为什么梯度下降的等值线与正则化函数第一次交点是最优解？"><a href="#为什么梯度下降的等值线与正则化函数第一次交点是最优解？" class="headerlink" title="为什么梯度下降的等值线与正则化函数第一次交点是最优解？"></a>为什么梯度下降的等值线与正则化函数第一次交点是最优解？</h3><p>评论中有人问到过这个问题，这是带约束的最优化问题。这应该是在大一的高等数学就学到知识点，因为这里要用到拉格朗日乘子。如果有这样的问题，就需要复习一下高等数学了。这里有一个比较详细的数学讲解，可以参考：带约束的最优化问题。</p>
+<p>如果还不清楚的话，可以参考博客：<br><a href="https://blog.csdn.net/jinping_shi/article/details/52433975">https://blog.csdn.net/jinping_shi/article/details/52433975</a></p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://www.cnblogs.com/zingp/p/10375691.html">https://www.cnblogs.com/zingp/p/10375691.html</a></p>
+<p><a href="https://www.cnblogs.com/skyfsm/p/8456968.html">https://www.cnblogs.com/skyfsm/p/8456968.html</a></p>
+<p><a href="https://blog.csdn.net/u012162613/article/details/44261657?spm=1001.2101.3001.6650.3&amp;utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-3-44261657-blog-104891561.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-3-44261657-blog-104891561.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=6">https://blog.csdn.net/u012162613/article/details/44261657?spm=1001.2101.3001.6650.3&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-3-44261657-blog-104891561.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-3-44261657-blog-104891561.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=6</a></p>
+<p><a href="https://songjian.blog.csdn.net/article/details/104891561?spm=1001.2101.3001.6650.1&amp;utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-1-104891561-blog-79425831.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-1-104891561-blog-79425831.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=2">https://songjian.blog.csdn.net/article/details/104891561?spm=1001.2101.3001.6650.1&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-104891561-blog-79425831.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-104891561-blog-79425831.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=2</a></p>
+<p><a href="https://blog.csdn.net/haima1998/article/details/79425831">https://blog.csdn.net/haima1998/article/details/79425831</a></p>
+]]></content>
+      <categories>
+        <category>Mathine Learning</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/11/20/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+      <categories>
+        <category>blog            //文章分类</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Jupyter Notebook</title>
     <url>/2022/11/23/Jupyter-Notebook/</url>
     <content><![CDATA[<p>Jupyter Notebook的常见操作-需要熟记！</p>
@@ -70,62 +177,6 @@
       </tags>
   </entry>
   <entry>
-    <title>L1和L2正则化</title>
-    <url>/2022/11/23/L1%E5%92%8CL2%E6%AD%A3%E5%88%99%E5%8C%96/</url>
-    <content><![CDATA[<p>了解什么是L1正则化和L2正则化，以及什么是正则化？</p>
-<span id="more"></span>
-
-<h1 id="L1正则化和L2正则化"><a href="#L1正则化和L2正则化" class="headerlink" title="L1正则化和L2正则化"></a>L1正则化和L2正则化</h1><h2 id="1-正则化"><a href="#1-正则化" class="headerlink" title="1. 正则化"></a>1. 正则化</h2><h3 id="1-1-什么是正则化？"><a href="#1-1-什么是正则化？" class="headerlink" title="1.1 什么是正则化？"></a>1.1 什么是正则化？</h3><p>Regularization，中文翻译过来可以称为正则化，或者叫做规范化。什么是规则？闭卷考试中不能查书，这就是规则，一个限制。同理，在这里，规则化（正则化）就是说给损失函数加上一些限制，通过这种规则去规范他们再接下来的循环迭代中，不要自我膨胀。</p>
-<h3 id="1-2-正则化有什么用？"><a href="#1-2-正则化有什么用？" class="headerlink" title="1.2 正则化有什么用？"></a>1.2 正则化有什么用？</h3><p><img src="https://img-blog.csdnimg.cn/2020031610373195.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTk2MDg5MA==,size_16,color_FFFFFF,t_70" alt="回归模型的拟合程度"></p>
-<p><img src="https://img-blog.csdnimg.cn/20200316112556508.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MTk2MDg5MA==,size_16,color_FFFFFF,t_70" alt="分类模型的拟合程度"></p>
-<p>可以看出，两张图的最后一个模型，都存在着过拟合的现象。</p>
-<blockquote>
-<p>解决过拟合的方案有：<br>清洗数据<br>减少模型参数，降低模型复杂度<br>增加惩罚因子（正则化），保留所有的特征，但是减少参数的大小（magnitude）</p>
-</blockquote>
-<p>可见，正则化就是解决模型过拟合的其中一个方法。</p>
-<h3 id="1-3-正则化怎么用？"><a href="#1-3-正则化怎么用？" class="headerlink" title="1.3 正则化怎么用？"></a>1.3 正则化怎么用？</h3><p>机器学习中几乎都可以看到损失函数后面会添加一个额外项，常用的额外项一般有两种，一般英文称作 ℓ1 \ell_1ℓ 1-norm 和 ℓ2 \ell_2ℓ2​-norm，中文称作 L1正则化 和 L2正则化，或者 L1范数 和 L2范数。</p>
-<p>L1正则化和L2正则化可以看做是损失函数的惩罚项。所谓『惩罚』是指对损失函数中的某些参数做一些限制。<strong>对于线性回归模型，使用L1正则化的模型建叫做Lasso回归，使用L2正则化的模型叫做Ridge回归（岭回归）</strong>。下图是Python中Lasso回归的损失函数，式中加号后面一项α ∣ ∣ w ∣ ∣ 1 \alpha||w||_1α∣∣w∣∣ 1即为L1正则化项。</p>
-<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTYwOTA0MTg0MjI4MTU4?x-oss-process=image/format,png#pic_center" alt="Lasso回归损失函数"></p>
-<p>下图是Python中Ridge回归的损失函数，式中加号后面一项α ∣ ∣ w ∣ ∣ 2 2 \alpha||w||_2^2α∣∣w∣∣22即为L2正则化项。</p>
-<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTYwOTA0MTg0MzE0MzMz?x-oss-process=image/format,png#pic_center" alt="岭回归损失函数"></p>
-<p>一般回归分析中w表示特征的系数，从上式可以看到正则化项是对系数做了处理（限制）。L1正则化和L2正则化的说明如下：</p>
-<ul>
-<li>L1正则化是指权值向量w中各个元素的绝对值之和，通常表示为∣ ∣ w ∣ ∣ 1 ||w||_1∣∣w∣∣ 1<br>​- L2正则化是指权值向量w中各个元素的平方和然后再求平方根（可以看到Ridge回归的L2正则化项有平方符号），通常表示为∣ ∣ w ∣ ∣ 2 ||w||_2∣∣w∣∣ 2​</li>
-</ul>
-<p>一般都会在正则化项之前添加一个系数，Python的机器学习包sklearn中用α表示，一些文章也用λ表示。这个系数需要用户指定。</p>
-<ul>
-<li>L1正则化可以产生稀疏权值矩阵，即产生一个稀疏模型，可以用于特征选择</li>
-<li>L2正则化可以防止模型过拟合（overfitting）；一定程度上，L1也可以防止过拟合</li>
-</ul>
-<h2 id="2-稀疏模型与特征选择的关系"><a href="#2-稀疏模型与特征选择的关系" class="headerlink" title="2. 稀疏模型与特征选择的关系"></a>2. 稀疏模型与特征选择的关系</h2><blockquote>
-<p>上面提到L1正则化有助于生成一个稀疏权值矩阵，进而可以用于特征选择。为什么要生成一个稀疏矩阵？</p>
-</blockquote>
-<p>稀疏矩阵指的是很多元素为0，只有少数元素是非零值的矩阵，即得到的线性回归模型的大部分系数都是0. 通常机器学习中特征数量很多，例如文本处理时，如果将一个词组（term）作为一个特征，那么特征数量会达到上万个（bigram）。在预测或分类时，那么多特征显然难以选择，但是如果代入这些特征得到的模型是一个稀疏模型，表示只有少数特征对这个模型有贡献，绝大部分特征是没有贡献的，或者贡献微小（因为它们前面的系数是0或者是很小的值，即使去掉对模型也没有什么影响），此时我们就可以只关注系数是非零值的特征。这就是稀疏模型与特征选择的关系。</p>
-<h2 id="3-L1正则化"><a href="#3-L1正则化" class="headerlink" title="3. L1正则化"></a>3. L1正则化</h2><p>为什么L1正则化可以产生稀疏模型（L1是怎么让系数等于零的）？</p>
-<h3 id="正则化和特征选择的关系"><a href="#正则化和特征选择的关系" class="headerlink" title="正则化和特征选择的关系"></a>正则化和特征选择的关系</h3><p>假设有如下带L1正则化的损失函数：<br>J &#x3D; J 0 + α ∑ w ∣ w ∣ (1) J &#x3D; J_0 + \alpha \sum_w{|w|} \tag{1}J&#x3D;J0​+α w∑∣w∣(1)</p>
-<p>其中J 0 J_0J 0是原始的损失函数，加号后面的一项是L1正则化项，α \alphaα是正则化系数。注意到L1正则化是权值的绝对值之和，J JJ是带有绝对值符号的函数，因此J JJ是不完全可微的。机器学习的任务就是要通过一些方法（比如梯度下降）求出损失函数的最小值。当我们在原始损失函数J 0 J_0J 0​<br> 后添加L1正则化项时，相当于对J 0 J_0J<br>0​<br> 做了一个约束。令L &#x3D; α ∑ w ∣ w ∣ L &#x3D; \alpha \sum_w{|w|}L&#x3D;α∑<br>w​<br> ∣w∣，则J &#x3D; J 0 + L J &#x3D; J_0 + LJ&#x3D;J<br>0​<br> +L，此时我们的任务变成在L LL约束下求出J 0 J_0J<br>0​<br> 取最小值的解。考虑二维的情况，即只有两个权值w 1 w^1w<br>1<br> 和w 2 w^2w<br>2<br> ，此时L &#x3D; ∣ w 1 ∣ + ∣ w 2 ∣ L &#x3D; |w^1|+|w^2|L&#x3D;∣w<br>1<br> ∣+∣w<br>2<br> ∣。对于梯度下降法，求解J 0 J_0J<br>0​<br> 的过程可以画出等值线，同时L1正则化的函数L LL也可以在w 1 w 2 w^1w^2w<br>1<br> w<br>2的二维平面上画出来。如下图：</p>
-<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTYwOTA0MTg0NDI4NDU5?x-oss-process=image/format,png#pic_center" alt="L1正则化"></p>
-<p>图中等值线是J 0 J_0J 0​<br> 的等值线，黑色方形是L LL函数的图形。L &#x3D; ∣ w 1 ∣ + ∣ w 2 ∣ L &#x3D; |w^1|+|w^2|L&#x3D;∣w<br>1<br> ∣+∣w<br>2<br> ∣，这个函数画出来就是一个方框（可以自己动手画一下）。<br>在图中，当J 0 J_0J<br>0​<br> 等值线与L LL图形首次相交的地方就是最优解。上图中J 0 J_0J<br>0​<br> 与L LL在L LL的一个顶点处相交，这个顶点就是最优解。注意到这个顶点的值是( w 1 , w 2 ) &#x3D; ( 0 , w ) (w^1, w^2) &#x3D; (0, w)(w<br>1<br> ,w<br>2<br> )&#x3D;(0,w)。可以直观想象，因为L LL函数有很多『突出的角』（二维情况下四个，多维情况下更多），J 0 J_0J<br>0​<br> 与这些角接触的机率会远大于与L LL其它部位接触的机率（这是很直觉的想象，突出的角比直线的边离等值线更近写），而在这些角上，会有很多权值等于0（因为角就在坐标轴上），这就是为什么L1正则化可以产生稀疏模型，进而可以用于特征选择。</p>
-<p>而正则化前面的系数α \alphaα，可以控制L LL图形的大小。α \alphaα越小，L LL的图形越大（上图中的黑色方框）；α \alphaα越大，L LL的图形就越小，可以小到黑色方框只超出原点范围一点点，这是最优点的值( w 1 , w 2 ) &#x3D; ( 0 , w ) (w1,w2)&#x3D;(0,w)(w1,w2)&#x3D;(0,w)中的w ww可以取到很小的值。</p>
-<p>我觉得下面的博主讲的挺易懂的：<br><a href="https://blog.csdn.net/u011426016/article/details/119836598">https://blog.csdn.net/u011426016/article/details/119836598</a></p>
-<h2 id="4-L2正则化"><a href="#4-L2正则化" class="headerlink" title="4. L2正则化"></a>4. L2正则化</h2><p>假设有如下带L2正则化的损失函数：</p>
-<p>J &#x3D; J 0 + α ∑ w w 2 (2) J &#x3D; J_0 + \alpha \sum_w{w^2} \tag{2}<br>J&#x3D;J<br>0​<br> +α<br>w<br>∑​<br> w<br>2<br> (2)</p>
-<p>同样可以画出他们在二维平面上的图形，如下：</p>
-<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTYwOTA0MTg0NjQ2OTYz?x-oss-process=image/format,png#pic_center" alt="L2正则化"></p>
-<p>二维平面下L2正则化的函数图形是个圆（绝对值的平方和，是个圆），与方形相比，被磨去了棱角。因此J 0 J_0J<br>0​<br> 与L LL相交时使得w 1 w^1w<br>1<br> 或w 2 w^2w<br>2<br> 等于零的机率小了许多（这个也是一个很直观的想象），这就是为什么L2正则化不具有稀疏性的原因，因为不太可能出现多数w ww都为0的情况。</p>
-<h3 id="为什么梯度下降的等值线与正则化函数第一次交点是最优解？"><a href="#为什么梯度下降的等值线与正则化函数第一次交点是最优解？" class="headerlink" title="为什么梯度下降的等值线与正则化函数第一次交点是最优解？"></a>为什么梯度下降的等值线与正则化函数第一次交点是最优解？</h3><p>评论中有人问到过这个问题，这是带约束的最优化问题。这应该是在大一的高等数学就学到知识点，因为这里要用到拉格朗日乘子。如果有这样的问题，就需要复习一下高等数学了。这里有一个比较详细的数学讲解，可以参考：带约束的最优化问题。</p>
-<p>如果还不清楚的话，可以参考博客：<br><a href="https://blog.csdn.net/jinping_shi/article/details/52433975">https://blog.csdn.net/jinping_shi/article/details/52433975</a></p>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://www.cnblogs.com/zingp/p/10375691.html">https://www.cnblogs.com/zingp/p/10375691.html</a></p>
-<p><a href="https://www.cnblogs.com/skyfsm/p/8456968.html">https://www.cnblogs.com/skyfsm/p/8456968.html</a></p>
-<p><a href="https://blog.csdn.net/u012162613/article/details/44261657?spm=1001.2101.3001.6650.3&amp;utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-3-44261657-blog-104891561.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-3-44261657-blog-104891561.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=6">https://blog.csdn.net/u012162613/article/details/44261657?spm=1001.2101.3001.6650.3&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-3-44261657-blog-104891561.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-3-44261657-blog-104891561.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=6</a></p>
-<p><a href="https://songjian.blog.csdn.net/article/details/104891561?spm=1001.2101.3001.6650.1&amp;utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-1-104891561-blog-79425831.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-1-104891561-blog-79425831.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=2">https://songjian.blog.csdn.net/article/details/104891561?spm=1001.2101.3001.6650.1&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-104891561-blog-79425831.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-104891561-blog-79425831.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=2</a></p>
-<p><a href="https://blog.csdn.net/haima1998/article/details/79425831">https://blog.csdn.net/haima1998/article/details/79425831</a></p>
-]]></content>
-      <categories>
-        <category>Mathine Learning</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Last summer whisper-杏里</title>
     <url>/2022/11/26/last-summer-whisper/</url>
     <content><![CDATA[<p>六七十年代日本歌曲-Last Summer Whisper，有夏天的感觉，但感觉更多的是烦恼…</p>
@@ -166,69 +217,19 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2022/11/20/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-      <categories>
-        <category>blog            //文章分类</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>cv2报错处理</title>
-    <url>/2022/11/24/cv2%E6%8A%A5%E9%94%99%E5%A4%84%E7%90%86/</url>
-    <content><![CDATA[<p>cv2报错：raise TypeError(“Image data of dtype {} cannot be converted to “TypeError: Image data of dtype object cannot be converted to float</p>
-<span id="more"></span>
-
-<h1 id="raise-TypeError-“Image-data-of-dtype-cannot-be-converted-to-“-TypeError-Image-data-of-dtype-object-cannot-be-converted-to-float"><a href="#raise-TypeError-“Image-data-of-dtype-cannot-be-converted-to-“-TypeError-Image-data-of-dtype-object-cannot-be-converted-to-float" class="headerlink" title="raise TypeError(“Image data of dtype {} cannot be converted to “     TypeError: Image data of dtype object cannot be converted to float"></a>raise TypeError(“Image data of dtype {} cannot be converted to “     TypeError: Image data of dtype object cannot be converted to float</h1><p>刚想要研究一下CV2内置的图像类型的不同，结果发现CSDN上找的代码跑不出来？其实也正常，天下哪有免费的午餐，拿到的代码还不是得修修改改？</p>
-<h1 id="报错如下"><a href="#报错如下" class="headerlink" title="报错如下"></a>报错如下</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">raise TypeError(&quot;Image data of dtype &#123;&#125; cannot be converted to &quot;     TypeError: Image data of dtype object cannot be converted to float</span><br></pre></td></tr></table></figure>
-
-<p>至于解决方案众说纷坛，有说要看看数据类型是不是不对应，还有的人说路径里面有中文。其实我的文件夹真的有中文，但是更改之后，报错依旧。</p>
-<p>网上都说是引入图片路径的问题，但是我这句代码应该也没有错吧？因为下载的visual code插件可以成功显示出图片在代码的左边，左思右想决定还是更改路径试试。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># cv2.imread()接口读图像，读进来直接是BGR 格式数据格式在 0~255，通道格式为(W,H,C)</span><br><span class="line">img_BGR = cv2.imread(&#x27;sea.jpg&#x27;)</span><br></pre></td></tr></table></figure>
-
-<p>更改成visual code直接复制图片的相对路径</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">img_BGR = cv2.imread(&#x27;web\sea.jpg&#x27;)</span><br></pre></td></tr></table></figure>
-
-<p>后面发现真的成功运行。这次运行的代码文件和图片文件在同一个文件夹里，但是却要加个前缀，可能与我IDE打开的工作区有关吧？</p>
-<p>总之就是路径的问题。</p>
-<h1 id="不存在skimage库"><a href="#不存在skimage库" class="headerlink" title="不存在skimage库"></a>不存在skimage库</h1><p>Python库函数的下载放到了另外一篇文章…</p>
-]]></content>
-      <categories>
-        <category>Library function</category>
-      </categories>
-      <tags>
-        <tag>report an error</tag>
-        <tag>库函数</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>pip安装新库</title>
     <url>/2022/11/24/pip%E5%AE%89%E8%A3%85%E6%96%B0%E5%BA%93/</url>
     <content><![CDATA[<p>书接上回，研究一下在visual code上如何通过pip安装库函数，这次要安装的库函数是skimage</p>
 <span id="more"></span>
 
-<h1 id="pip安装skimage库"><a href="#pip安装skimage库" class="headerlink" title="pip安装skimage库"></a>pip安装skimage库</h1><p>书接上回，研究一下在visual code上如何通过pip安装库函数</p>
+<h1 id="pip安装skimage库"><a href="#pip安装skimage库" class="headerlink" title="pip安装skimage库"></a>pip安装skimage库</h1><p>研究如何在visual code上如何通过pip安装库函数</p>
 <h1 id="找到Python的路径"><a href="#找到Python的路径" class="headerlink" title="找到Python的路径"></a>找到Python的路径</h1><p>我的是<em>“D:\Python\Scripts”</em></p>
 <p>visual code或者cmd命令台执行</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd D:\Python\Scripts</span><br></pre></td></tr></table></figure>
 
+<p><em>新发现，我的Python是全局的，所以直接打开cmd便可以执行pip指令，这样就免去了切换到指定目录下的过程</em></p>
 <p>然后输入pip install skimage</p>
-<h1 id="pip版本要更新"><a href="#pip版本要更新" class="headerlink" title="pip版本要更新"></a>pip版本要更新</h1><figure class="highlight plaintext"><figcaption><span>[title] [lang:language] [url] [link text] [additional options]</span></figcaption><table><tr><td class="code"><pre><span class="line">D:\Python\Scripts&gt;pip install skimage</span><br><span class="line">Collecting skimage</span><br><span class="line">  Using cached skimage-0.0.tar.gz (757 bytes)</span><br><span class="line">  Preparing metadata (setup.py) ... error</span><br><span class="line">  error: subprocess-exited-with-error</span><br><span class="line"></span><br><span class="line">  × python setup.py egg_info did not run successfully.</span><br><span class="line">  │ exit code: 1</span><br><span class="line">  ╰─&gt; [3 lines of output]</span><br><span class="line"></span><br><span class="line">      *** Please install the `scikit-image` package (instead of `skimage`) ***</span><br><span class="line"></span><br><span class="line">      [end of output]</span><br><span class="line"></span><br><span class="line">  note: This error originates from a subprocess, and is likely not a problem with pip.</span><br><span class="line">error: metadata-generation-failed</span><br><span class="line"></span><br><span class="line">× Encountered error while generating package metadata.</span><br><span class="line">╰─&gt; See above for output.</span><br><span class="line"></span><br><span class="line">note: This is an issue with the package mentioned above, not pip.</span><br><span class="line">hint: See above for details.</span><br><span class="line"></span><br><span class="line">[notice] A new release of pip available: 22.1.2 -&gt; 22.3</span><br><span class="line">[notice] To update, run: python.exe -m pip install --upgrade pip</span><br></pre></td></tr></table></figure>
+<h1 id="pip版本要更新"><a href="#pip版本要更新" class="headerlink" title="pip版本要更新"></a>pip版本要更新</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">D:\Python\Scripts&gt;pip install skimage</span><br><span class="line">Collecting skimage</span><br><span class="line">  Using cached skimage-<span class="number">0.0</span>.tar.gz (<span class="number">757</span> <span class="built_in">bytes</span>)</span><br><span class="line">  Preparing metadata (setup.py) ... error</span><br><span class="line">  error: subprocess-exited-<span class="keyword">with</span>-error</span><br><span class="line"></span><br><span class="line">  × python setup.py egg_info did <span class="keyword">not</span> run successfully.</span><br><span class="line">  │ exit code: <span class="number">1</span></span><br><span class="line">  ╰─&gt; [<span class="number">3</span> lines of output]</span><br><span class="line"></span><br><span class="line">      *** Please install the `scikit-image` package (instead of `skimage`) ***</span><br><span class="line"></span><br><span class="line">      [end of output]</span><br><span class="line"></span><br><span class="line">  note: This error originates <span class="keyword">from</span> a subprocess, <span class="keyword">and</span> <span class="keyword">is</span> likely <span class="keyword">not</span> a problem <span class="keyword">with</span> pip.</span><br><span class="line">error: metadata-generation-failed</span><br><span class="line"></span><br><span class="line">× Encountered error <span class="keyword">while</span> generating package metadata.</span><br><span class="line">╰─&gt; See above <span class="keyword">for</span> output.</span><br><span class="line"></span><br><span class="line">note: This <span class="keyword">is</span> an issue <span class="keyword">with</span> the package mentioned above, <span class="keyword">not</span> pip.</span><br><span class="line">hint: See above <span class="keyword">for</span> details.</span><br><span class="line"></span><br><span class="line">[notice] A new release of pip available: <span class="number">22.1</span><span class="number">.2</span> -&gt; <span class="number">22.3</span></span><br><span class="line">[notice] To update, run: python.exe -m pip install --upgrade pip</span><br></pre></td></tr></table></figure>
 
 
 <p>没办法，照着提示更新</p>
@@ -240,7 +241,7 @@
 <p>不知道，更改名字后执行</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">D:\Python\Scripts&gt;pip install scikit-image</span><br></pre></td></tr></table></figure>
 <p><strong>成功！</strong></p>
-]]></content>
+<h1 id="pip下载切换清华源-in-common-use"><a href="#pip下载切换清华源-in-common-use" class="headerlink" title="pip下载切换清华源(in common use)"></a>pip下载切换清华源(in common use)</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip install imutils -i https://pypi.tuna.tsinghua.edu.cn/simple/</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Library function</category>
       </categories>
@@ -276,28 +277,6 @@
       <categories>
         <category>Mathine Learning</category>
       </categories>
-  </entry>
-  <entry>
-    <title>卷积神经网络CNN学习一</title>
-    <url>/2022/11/24/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9CCNN%E5%AD%A6%E4%B9%A0%E4%B8%80/</url>
-    <content><![CDATA[<p>今天二十四号，学习卷积神经网络的第一天。虽然以前就对CNN有过了解，但是没有经过系统性的学习，对许多方面的知识点都是一知半解。在学习CNN之前，首先要明确的一点是：Deep Learning是全部深度学习算法的总称，而CNN是深度学习算法在图像处理领域的一个应用罢了…</p>
-<span id="more"></span>
-
-<h1 id="为什么不使用全连接神经网络处理呢？"><a href="#为什么不使用全连接神经网络处理呢？" class="headerlink" title="为什么不使用全连接神经网络处理呢？"></a>为什么不使用全连接神经网络处理呢？</h1><p>如果使用全连接神经网络处理大尺寸的图像时，会有三个明显的缺点：</p>
-<ol>
-<li>将图像展开为向量会丢失空间信息</li>
-<li>参数过多。效率低、训练难</li>
-<li>大量的参数很快导致网络过拟合</li>
-</ol>
-<p>而卷积神经网络可以很好的解决以上问题。</p>
-]]></content>
-      <categories>
-        <category>Deep Learning</category>
-      </categories>
-      <tags>
-        <tag>深度学习</tag>
-        <tag>CNN</tag>
-      </tags>
   </entry>
   <entry>
     <title>交叉验证</title>
@@ -339,6 +318,28 @@
       <categories>
         <category>Mathine Learning</category>
       </categories>
+  </entry>
+  <entry>
+    <title>卷积神经网络CNN学习一</title>
+    <url>/2022/11/24/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9CCNN%E5%AD%A6%E4%B9%A0%E4%B8%80/</url>
+    <content><![CDATA[<p>今天二十四号，学习卷积神经网络的第一天。虽然以前就对CNN有过了解，但是没有经过系统性的学习，对许多方面的知识点都是一知半解。在学习CNN之前，首先要明确的一点是：Deep Learning是全部深度学习算法的总称，而CNN是深度学习算法在图像处理领域的一个应用罢了…</p>
+<span id="more"></span>
+
+<h1 id="为什么不使用全连接神经网络处理呢？"><a href="#为什么不使用全连接神经网络处理呢？" class="headerlink" title="为什么不使用全连接神经网络处理呢？"></a>为什么不使用全连接神经网络处理呢？</h1><p>如果使用全连接神经网络处理大尺寸的图像时，会有三个明显的缺点：</p>
+<ol>
+<li>将图像展开为向量会丢失空间信息</li>
+<li>参数过多。效率低、训练难</li>
+<li>大量的参数很快导致网络过拟合</li>
+</ol>
+<p>而卷积神经网络可以很好的解决以上问题。</p>
+]]></content>
+      <categories>
+        <category>Deep Learning</category>
+      </categories>
+      <tags>
+        <tag>深度学习</tag>
+        <tag>CNN</tag>
+      </tags>
   </entry>
   <entry>
     <title>图像处理之扇形与矩形图像之间的相互转换</title>
@@ -410,50 +411,6 @@ im.save(output)
       </categories>
   </entry>
   <entry>
-    <title>感觉夏天来了!</title>
-    <url>/2022/11/28/%E6%84%9F%E8%A7%89%E5%A4%8F%E5%A4%A9%E6%9D%A5%E4%BA%86/</url>
-    <content><![CDATA[<p>今天十一月二十八日，连续一周的降雨让我整个人都感觉湿漉漉的。烦恼的不仅仅是衣物没法干鞋子该换着穿这种零碎的琐事，更多的是来自生活的压力…</p>
-<span id="more"></span>
-
-<p>今天十一月二十八日，连续一周的降雨让我整个人都感觉湿漉漉的。烦恼的不仅仅是衣物没法干鞋子该换着穿这种零碎的琐事，更多的是来自生活的压力。压力什么的不想谈，谈了也没多大意思。</p>
-<p>今天突然想写日记也并不是偶然，之前也想写，但是由于自己拖拉的性格，让我把这些想做的事情都堆在了心绪的箱底，一直都没法去做。这种坏习惯自打我上大学便沾染上了，很多时候都想改正，但是却无能为力，反而想用摆脱拖拉是否有意义这种问题来试图宽慰自己。我很清楚这一点，但我还是置之不管，任由其发展。像这种大步子的改变生活习惯的做法，我是一点计划都没有，这点消极态度感觉与齐宣王的有事钟无艳，无事夏迎春颇有几分相似呢！</p>
-<p>我觉得疫情受困对于我来说并不是很大影响，因为我现在倒是过得自由自在的(不过要没有疫情我也可能过得更自由自在)。虽然宅在宿舍不错，但人总是要出去面对世界的嘛！现在有一点感觉困惑的就是，疫情可以说没有困住我，却把外面的世界给封住了，让我寸步难行。想要去附近走走还得查查目的地是否是风险地区这样的操作已经让我很心烦了，什么时候能够真正解放好像遥遥无期，不过像我这样做不了啥的升斗小市民还是做好自己分内的事吧！</p>
-<p>刚才还想夸今天的风很有夏天的感觉，但走到阳台看到天空被蓝天和乌云像是被分成了泾渭两河，心里五味杂陈很不是滋味，感觉一些不好的事情正在酝酿。庆幸的是自己是在蓝天之下，这一点倒是让我宽慰了许多。我还记得前几天才过了小雪，今天的天气倒是光着膀子到处溜也没问题，广州的天气还真是很奇怪！</p>
-<p>什么暴风雨过后的彩虹、照进我心底的一束久违的阳光这样肉麻的话我就不想说了，不过今天能够看到蓝天和太阳确实让自己的心情快活了许多。说实在，这几天下雨我也没有多盼望晴天能够到来，像是被阴雨天麻痹了一样。倒是今天看到了太阳，却吐槽太阳为什么不早点出来。看着天上的云，就像是夏天暴风雨前夕的那种云，浓墨重彩，什么阴影和线条被狠狠地勾勒出来，想说的就只有罗辑面对面壁者计划那句纯粹的卧槽！</p>
-<p>风打到脸上，我很肯定这就是夏天的风！</p>
-<img src="/uploads/dormitory.jpg" class="post-image">
-里面是生活，外面是我的世界啊！
-
-<hr>
-<div class="video-container"><iframe src="https://www.youtube.com/embed/YAXTn0E-Zgo" frameborder="0" loading="lazy" allowfullscreen></iframe></div>]]></content>
-      <categories>
-        <category>School Life</category>
-      </categories>
-      <tags>
-        <tag>音视频</tag>
-        <tag>生活</tag>
-        <tag>YouTube</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>插入YouTube视频</title>
-    <url>/2022/11/23/%E6%8F%92%E5%85%A5YouTube%E8%A7%86%E9%A2%91/</url>
-    <content><![CDATA[<p>尝试在文章中插入一段YouTube视频，就放我最近经常听的一首歌吧！</p>
-<span id="more"></span>
-
-<div class="video-container"><iframe src="https://www.youtube.com/embed/crIP7PuC8Bc" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
-
-]]></content>
-      <categories>
-        <category>Blog</category>
-      </categories>
-      <tags>
-        <tag>音视频</tag>
-        <tag>YouTube</tag>
-        <tag>博客</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>在hexo搭建博客遇到的问题</title>
     <url>/2022/11/23/%E5%9C%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<p>之前我用的主题感觉索然无味，于是我尝试换了一个主题，结果发现了新大陆！激动的话我就不在这里详细张开来讲了，我会放在另外一篇文章里，这里主要讲讲我在Hexo上搭建Next遇到的问题以及解决方法。</p>
@@ -496,6 +453,50 @@ im.save(output)
         <tag>博客</tag>
         <tag>hexo</tag>
         <tag>Next</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>感觉夏天来了!</title>
+    <url>/2022/11/28/%E6%84%9F%E8%A7%89%E5%A4%8F%E5%A4%A9%E6%9D%A5%E4%BA%86/</url>
+    <content><![CDATA[<p>今天十一月二十八日，连续一周的降雨让我整个人都感觉湿漉漉的。烦恼的不仅仅是衣物没法干鞋子该换着穿这种零碎的琐事，更多的是来自生活的压力…</p>
+<span id="more"></span>
+
+<p>今天十一月二十八日，连续一周的降雨让我整个人都感觉湿漉漉的。烦恼的不仅仅是衣物没法干鞋子该换着穿这种零碎的琐事，更多的是来自生活的压力。压力什么的不想谈，谈了也没多大意思。</p>
+<p>今天突然想写日记也并不是偶然，之前也想写，但是由于自己拖拉的性格，让我把这些想做的事情都堆在了心绪的箱底，一直都没法去做。这种坏习惯自打我上大学便沾染上了，很多时候都想改正，但是却无能为力，反而想用摆脱拖拉是否有意义这种问题来试图宽慰自己。我很清楚这一点，但我还是置之不管，任由其发展。像这种大步子的改变生活习惯的做法，我是一点计划都没有，这点消极态度感觉与齐宣王的有事钟无艳，无事夏迎春颇有几分相似呢！</p>
+<p>我觉得疫情受困对于我来说并不是很大影响，因为我现在倒是过得自由自在的(不过要没有疫情我也可能过得更自由自在)。虽然宅在宿舍不错，但人总是要出去面对世界的嘛！现在有一点感觉困惑的就是，疫情可以说没有困住我，却把外面的世界给封住了，让我寸步难行。想要去附近走走还得查查目的地是否是风险地区这样的操作已经让我很心烦了，什么时候能够真正解放好像遥遥无期，不过像我这样做不了啥的升斗小市民还是做好自己分内的事吧！</p>
+<p>刚才还想夸今天的风很有夏天的感觉，但走到阳台看到天空被蓝天和乌云像是被分成了泾渭两河，心里五味杂陈很不是滋味，感觉一些不好的事情正在酝酿。庆幸的是自己是在蓝天之下，这一点倒是让我宽慰了许多。我还记得前几天才过了小雪，今天的天气倒是光着膀子到处溜也没问题，广州的天气还真是很奇怪！</p>
+<p>什么暴风雨过后的彩虹、照进我心底的一束久违的阳光这样肉麻的话我就不想说了，不过今天能够看到蓝天和太阳确实让自己的心情快活了许多。说实在，这几天下雨我也没有多盼望晴天能够到来，像是被阴雨天麻痹了一样。倒是今天看到了太阳，却吐槽太阳为什么不早点出来。看着天上的云，就像是夏天暴风雨前夕的那种云，浓墨重彩，什么阴影和线条被狠狠地勾勒出来，想说的就只有罗辑面对面壁者计划那句纯粹的卧槽！</p>
+<p>风打到脸上，我很肯定这就是夏天的风！</p>
+<img src="/uploads/dormitory.jpg" class="post-image">
+**里面是生活，外面是我的世界啊！**
+
+<hr>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/YAXTn0E-Zgo" frameborder="0" loading="lazy" allowfullscreen></iframe></div>]]></content>
+      <categories>
+        <category>School Life</category>
+      </categories>
+      <tags>
+        <tag>音视频</tag>
+        <tag>生活</tag>
+        <tag>YouTube</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>插入YouTube视频</title>
+    <url>/2022/11/23/%E6%8F%92%E5%85%A5YouTube%E8%A7%86%E9%A2%91/</url>
+    <content><![CDATA[<p>尝试在文章中插入一段YouTube视频，就放我最近经常听的一首歌吧！</p>
+<span id="more"></span>
+
+<div class="video-container"><iframe src="https://www.youtube.com/embed/crIP7PuC8Bc" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+
+]]></content>
+      <categories>
+        <category>Blog</category>
+      </categories>
+      <tags>
+        <tag>音视频</tag>
+        <tag>博客</tag>
+        <tag>YouTube</tag>
       </tags>
   </entry>
   <entry>
@@ -559,6 +560,157 @@ im.save(output)
         <tag>学校</tag>
         <tag>比赛</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>机器学习实验二</title>
+    <url>/2022/11/23/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9E%E9%AA%8C%E4%BA%8C/</url>
+    <content><![CDATA[<p>这是机器学习课程上的一个小项目作业，具体是通过多种回归模型预测房价…</p>
+<span id="more"></span>
+
+<h1 id="机器学习实验二，使用多种回归模型预测房价"><a href="#机器学习实验二，使用多种回归模型预测房价" class="headerlink" title="机器学习实验二，使用多种回归模型预测房价"></a>机器学习实验二，使用多种回归模型预测房价</h1><blockquote>
+<p>这次实验基于上一次对房价数据的预处理，使用多种回归模型对处理的数据进行预测任务。建立的回归模型主要有Lasso回归、弹性网络回归、岭回归、梯度加强回归、随机森林回归、XGBoost回归以及LightGBM回归七种模型。建立完回归模型完成任务，还需要对各个模型的性能进行评估与选择。并且考虑用网格搜索方法对表现最好的模型进行进一步的优化。</p>
+</blockquote>
+<h1 id="实验说明"><a href="#实验说明" class="headerlink" title="实验说明"></a>实验说明</h1><p>预测房价实验对1460条房价数据、80个房屋的属性进行分析，建立回归模型，然后预测1459条新房屋数据的价格。 </p>
+<p>本实验是预测房价实验的第二部分，使用上个实验处理好的数据建立机器学习模型，并且对模型性能进行评估。</p>
+<h1 id="实验准备"><a href="#实验准备" class="headerlink" title="实验准备"></a>实验准备</h1><h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><p><em>在桌面上新建一个目录，名字叫house_price。本实验中所有的数据集和代码都放在该目录下</em></p>
+<p><strong>Spyder</strong></p>
+<h2 id="准备数据集"><a href="#准备数据集" class="headerlink" title="准备数据集"></a>准备数据集</h2><p>本实验需要2个数据集，数据集的名字叫train.csv和test.csv，分别是房价的训练数据和测试数据。将train.csv和test.csv复制到刚刚创建的house_price目录下。</p>
+<h1 id="建立回归模型"><a href="#建立回归模型" class="headerlink" title="建立回归模型"></a>建立回归模型</h1><h2 id="Lasso回归"><a href="#Lasso回归" class="headerlink" title="Lasso回归"></a>Lasso回归</h2><pre><code>#Lasso Regression
+from sklearn.linear_model import Lasso
+lasso = Lasso(alpha = 0.0005, random_state = 1)
+</code></pre>
+<blockquote>
+<p>lasso [læˈsuː] (捕马、套牛等用的)套索; 用套索套捕(动物)</p>
+</blockquote>
+<h2 id="弹性网络回归"><a href="#弹性网络回归" class="headerlink" title="弹性网络回归"></a>弹性网络回归</h2><pre><code># Elastic Net Regerssion
+from sklearn.linear_model import ElasticNet
+enet = ElasticNet(alpla = 0.0005, l1_ratio = .9, random_state = 3)
+</code></pre>
+<blockquote>
+<p>elastic [ɪˈlæstɪk]  有弹力的灵活的,可改变的,可伸缩的; 橡皮圈</p>
+<p>ratio [ˈreɪʃiəʊ] 比率,比例</p>
+</blockquote>
+<h2 id="岭回归"><a href="#岭回归" class="headerlink" title="岭回归"></a>岭回归</h2><pre><code># Kernel Ridge Regression
+from sklearn.kernel_ridge import KernelRidger
+krr = KernelRidge(alpha = 0.6, kernel = &quot;polynomial&quot;, degree = 2, coef0 = 2.5)
+</code></pre>
+<blockquote>
+<p>ridge [rɪdʒ] 山脊; 使隆起,使形成脊状</p>
+<p>polynomial [ˌpɒli’nəʊmiəl] [ˌpɑli’noʊmiəl]  多项式的; 多项式</p>
+<p>elapsed [ɪˈlæpst] (时间)消逝, 流逝 <strong>-&gt;</strong> elapse的过去分词和过去式</p>
+</blockquote>
+<hr>
+<p>Lasso回归有时也叫做线性回归的L1正则化，和Ridge回归的主要区别就是在正则化项，Ridge回归用的是L2正则化，而Lasso回归用的是L1正则化。而弹性回归是岭回归和套索回归的混合技术，它同时使用 L2 和 L1 正则化。当有多个相关的特征时，弹性网络是有用的。套索回归很可能随机选择其中一个，而弹性回归很可能都会选择。<em>套索回归和核岭回归说到底就是在损失函数上加了两个不同的正则化项罢了，而弹性网络就是两个正则化项都加上去。但是引入核岭回归却不是直接从linear_model直接引入，而是单独出sklearn.kernel_ridge进行引入，真是奇怪？？？</em></p>
+<p>Lasso回归使得一些系数变小，甚至还是一些绝对值较小的系数直接变为0，因此特别适用于参数数目缩减与参数的选择，因而用来估计稀疏参数的线性模型。</p>
+<p>个人观点：但是Lasso回归有一个很大的问题，导致我们需要把它单独拎出来讲，就是它的损失函数不是连续可导的。由于L1范数用的是绝对值之和，导致损失函数有不可导的点。也就是说，我们的最小二乘法，梯度下降法，牛顿法与拟牛顿法对它统统失效了。🙄🙄🙄</p>
+<h2 id="梯度加强回归"><a href="#梯度加强回归" class="headerlink" title="梯度加强回归"></a>梯度加强回归</h2><pre><code># Gradient Boosting Regression
+from sklearn.ensemble import GradientBoostingRegressor
+gboost = GradientBoostingRegressor(n_estimators = 3000, learning_rate = 0.05, max_depth = 4,max_features = &quot;sqrt&quot;, min_samples_leaf = 15, min_samples_split = 10,loss=&quot;huber&quot;,random_state = 5)
+</code></pre>
+<blockquote>
+<p>ensemble [ɒnˈsɒmbl] n.乐团,全体,成套的东西; adv.一起</p>
+<p>sklearn.ensemble我理解成Gradient Boosting Regression用得比较广泛，导致它放在了sklearn的全体kit里面</p>
+</blockquote>
+<p>我尝试搜寻梯度加强回归，但是只能搜索到梯度提升回归树，看来它是一种树模型。<em>它是一种决策树的集成方法，通过合并多个决策树来构建一个更为强大的模型。</em>虽然他的名字中有回归两个字，但是这种模型既可以用在回归上，也可以用在分类上。</p>
+<p>与随机森林不同的是，梯度提升采用连续的方式构造树，每一棵树都试图纠正前一棵树的错误。默认情况下，梯度提升回归树中没有随机化，而是用到了强预剪枝。</p>
+<p>梯度提升决策树是监督学习中最强大也是最常用的模型之一，缺点是需要仔细调参，而且训练的时间要很长。和其他基于树的模型类似，这个算法不需要对数据进行缩放就可以表现的很好，并且它也适用于二元特征与连续特征同时存在的数据集。同样，它的不足之处与其它基于树的模型也类似，它不适合处理高维稀疏数据。</p>
+<blockquote>
+<p>所谓<a href="https://www.cnblogs.com/JetpropelledSnake/p/14438484.html">特征缩放</a>、<a href="https://blog.csdn.net/qq_51228515/article/details/122431951">数据缩放</a>包含了归一化和标准化等。特征缩放的原因是，为消除各评价指标间量纲和数量级的差异、保证结果的可靠性，就需要对各指标的原始数据进行特征缩放。</p>
+</blockquote>
+<blockquote>
+<p>个人观点：<em>对于稀疏数据，当前的研究方向是对稀疏数据进行聚类与降维。因为稀疏数据不同于一般数据，它的维度常常非常巨大，由于大量存在缺失值，导致数据信息极其不完整。常见的一些降维方法比如说主成分分析和因子分子方法都无法对稀疏数据进行应用</em></p>
+</blockquote>
+<h2 id="随机森林回归"><a href="#随机森林回归" class="headerlink" title="随机森林回归"></a>随机森林回归</h2><pre><code># random forest
+from sklearn.ensemble import RandomForestRegressor
+rf = RandomForestRegressor(n_estimators = 500, random_state = 0)
+</code></pre>
+<p>随机森林属于<a href="https://blog.csdn.net/siyuangulu/article/details/122508931?spm=1001.2101.3001.6650.8&utm_medium=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-8-122508931-blog-82016442.pc_relevant_recovery_v2&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-8-122508931-blog-82016442.pc_relevant_recovery_v2&utm_relevant_index=11">集成学习</a>中的Bagging算法，即引导聚合类算法，详情可以点击上面链接进行访问。🪐</p>
+<p>首先要明确的是，当前集成学习分成两大类，一类是Bagging装袋法，第二类是Boosting提升法。</p>
+<ul>
+<li>Bagging（装袋法）: 如随机森林，每一个模型相互独立，互相平行</li>
+<li>Boosting（提升法）: 模型循序渐进，依次增强，基评估器相互关联</li>
+</ul>
+<p>我们都知道随机森林就是通过集成学习的思想将多棵树集成的一种算法，它的基本单元是决策树。直观的说，每一棵决策树都是一个分类器（假设现在讨论的是分类问题），那么对于一个输入样本，N棵树有N个分类结果。而随机森林做的就是集成了所有的分类投票结果，将投票次数最多的类别指定为最终的输出，这就是一种最简单的Bagging思想。</p>
+<p>在该模型中，有三个重要的参数分别为: &amp;nbsp <a href="https://blog.csdn.net/weixin_43479947/article/details/126813033">参考</a></p>
+<ul>
+<li>n_estimators(子树数量)</li>
+<li>learning_rate(学习率)</li>
+<li>max_depth(最大深度)</li>
+</ul>
+<p>想要进一步了解随机森林，可以通过以下链接进行学习：</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/siyuangulu/article/details/122508931?spm=1001.2101.3001.6650.8&utm_medium=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-8-122508931-blog-82016442.pc_relevant_recovery_v2&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-8-122508931-blog-82016442.pc_relevant_recovery_v2&utm_relevant_index=11">CSDN</a></p>
+<p><a href="https://easyai.tech/ai-definition/random-forest/">EasyAi</a></p>
+<p><a href="https://www.cnblogs.com/maybe2030/p/4585705.html">博客园</a></p>
+<p><a href="https://www.cnblogs.com/fionacai/p/5894142.html">博客园</a></p>
+</blockquote>
+<h2 id="XGBoost回归"><a href="#XGBoost回归" class="headerlink" title="XGBoost回归"></a>XGBoost回归</h2><pre><code># XGBoost
+# if xgboost packet doesnt exist, please install with command:conda install py-xgboost
+import xgboost as xbg
+xgb = xgb.XGBRegressor(colsample_bytree = 0.4603, gamma = 0.0468,learning_rate = 0.05, max_depth = 3, min_child_weight = 1.7817, n_estimators = 2200, reg_alpha = 0.4640, reg_lambda = 0.8571,subsample = 0.5213, silent = 1, random_state = 7, nthread = -1)
+</code></pre>
+<p>首先要知道的是，XGBoost算法是梯度提升树GBDT的高效实现。这里所提到的GBDT可能和上面所提到的梯度提升回归树有着异曲同工之处。作为梯度提升回归树的高效实现，XGBoost是一个上限非常高的算法。在竞赛题中，不考虑深度学习，XGBoost算法算是比赛中最热门的算法，它将GBDT的优化走向了一个极致。但是它的训练耗时长，内存占用比较大。</p>
+<p>后续，微软推出了LightGBM，在内存占用和运行速度上做了不少的优化，但是<a href="https://www.cnblogs.com/pinard/p/10979808.html">刘建平pinard大哥</a>认为当前还是优先选择XGBoost，因为调优经验比较多一点，可以参考的资料也更多一些。如果使用XGBoost遇到的内存占用或者运行速度问题，这个时候再尝试LightGBM也不错。</p>
+<h2 id="LightGBM回归"><a href="#LightGBM回归" class="headerlink" title="LightGBM回归"></a>LightGBM回归</h2><pre><code># LightGBM
+import lightgbm as lgb
+lgb = lgb.LGBMRegressor(objective = &quot;regression&quot;, num_leaves = 5, learning_rate = 0.05, n_estimators = 720, max_bin = 55, bagging_fraction = 0.8, bagging_freq = 5, feature_fraction = 0.2319, feature_fraction_seed = 9, bagging_seed = 9, min_data_in_leaf = 6,min_sum_hessian_in_leaf = 11)
+</code></pre>
+<blockquote>
+<p>fraction [ˈfrækʃn] n.小部分,分数,小数</p>
+</blockquote>
+<p>LightGBM是快速的，分布式的，高性能的基于决策树算法的梯度提升框架。可以用于排序、分类、回归以及其他机器学习任务中。它是XGBoost的改进版，XGboost又是GBDT梯度提升回归树的高效实现，所以我理解成LightGBM与GBDT师出同门。</p>
+<p>2017年的时候微软在GitHub上开源了一个新的算法<strong>LightGBM</strong>，根据某CSDN机翻文章称，它能够在不降低准确率的前提下，能够提升十倍左右的速度，并且占用内存下降三倍左右。虽然它和XGboost都是基于决策树算法的，但是LightGBM采用的分裂叶子结点策略貌似与XGBoost算法不同，并且极大地优于XGBoost，导致它的速度非常之快…</p>
+<p><strong>到目前为止，七个回归模型的初始化都已经完成！</strong></p>
+<h1 id="模型性能评估与选择"><a href="#模型性能评估与选择" class="headerlink" title="模型性能评估与选择"></a>模型性能评估与选择</h1><p>业界一般使用k-fold 交叉验证（k-fold cross validation）的方法评估模型性能。在这里k&#x3D;10。评估指标有2个，一个是 r^2（ r squared）, 另一个是mse（mean squared error）。为了加快执行速度，n_jobs &#x3D; 2表示使用2个CPU（我的电脑是2核CPU）。训练数据集有1458条数据，272列，模型执行起来可能相对较慢，请耐心等待。verbose &#x3D; 1表示执行过程中不断打印出信息，以帮助判断执行了多少了。</p>
+<p><strong>提示</strong>：同学们可能疑惑为什么没有在验证集上检验模型性能，这可能会产生过拟合现象。k-fold 交叉验证的存在可以在不需要验证集的情况下，也能发现过拟合现象😅。</p>
+<pre><code># k-fold cross validation function
+from sklearn.model_selection import cross_val_score
+def evaluation_model(model):
+    rmse = np.sqrt(-cross_val_score(estimator = model, X = X_train, y = y_train, scoring = &#39;neg_mean_squared_error&#39;, cv = 10, n_jobs = 2, verbose = 1))
+    r2_score = cross_val_score(estimator = model, X = X_train, y = y_train, scoring = &#39;r2&#39;, cv = 10, n_jobs = 2, verbose = 1)
+    return (r2_score, rmse)
+# print result function
+def print_result(r2_score, rmse, model_name):
+    print(&#39;%s evaluation: r2=%.4f (std=%.4f), rmse=%.4f (std=%.4f)&#39; %(model_name, r2_score.mean(), r2_score.std(), 
+  rmse.mean(), rmse.std()))
+</code></pre>
+<p>定义好了函数，现在可以对每一模型执行。</p>
+<pre><code># model score and rmse
+lasso_r2_score, lasso_rmse = evaluation_model(lasso)
+enet_r2_score, enet_rmse = evaluation_model(enet)
+krr_r2_score, krr_rmse = evaluation_model(krr)
+gboost_r2_score, gboost_rmse = evaluation_model(gboost)
+rf_r2_score, rf_rmse = evaluation_model(rf)
+xgb_r2_score, xgb_rmse = evaluation_model(xgb)
+lgb_r2_score, lgb_rmse = evaluation_model(lgb)
+# print result
+print_result(lasso_r2_score, lasso_rmse, &#39;Lasso&#39;)
+print_result(enet_r2_score, enet_rmse, &#39;Elastic Net&#39;)
+print_result(krr_r2_score, krr_rmse, &#39;Kernel Ridge&#39;)
+print_result(gboost_r2_score, gboost_rmse, &#39;Gradient Boost&#39;)
+print_result(rf_r2_score, rf_rmse, &#39;Random Forest&#39;)
+print_result(xgb_r2_score, xgb_rmse, &#39;XG Boost&#39;)
+print_result(lgb_r2_score, lgb_rmse, &#39;Lightgbm&#39;)
+</code></pre>
+<p>模型性能的评估尤其是用sklearn进行模型评估貌似篇幅有点小长，我改天再写吧！现在可以看看别人对模型评估方法进行的一些<a href="https://www.cnblogs.com/jiaxin359/p/8627530.html">总结</a>，以及<a href="https://blog.csdn.net/weixin_35757704/article/details/118406255">运用</a>。</p>
+<h1 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h1><p>结果发现XGBoost的性能最好:r2&#x3D;0.9227 (std&#x3D;0.0149), rmse&#x3D;0.2734 (std&#x3D;0.0340)，因为RMSE平均数最小，方差最小，并且R2&gt;0.9，模型性能比较好。值得注意的是，如果你们选择的是模型默认的超参数，那么执行的结果和我的就不一样啦，因为不同的超参数决定了模型的准确率的不同。这里给出了一个通用的原则：</p>
+<blockquote>
+<p><strong>选择r2&gt;0.9，且mse和std最小的那个模型</strong></p>
+</blockquote>
+<h1 id="使用GridSearchCV方法对XGBoost模型进行优化"><a href="#使用GridSearchCV方法对XGBoost模型进行优化" class="headerlink" title="使用GridSearchCV方法对XGBoost模型进行优化"></a>使用GridSearchCV方法对XGBoost模型进行优化</h1><p>在机器学习模型中，需要人工选择的参数称为超参数。比如随机森林中决策树的个数，人工神经网络模型中隐藏层层数和每层的节点个数，正则项中常数大小等等，他们都需要事先指定。超参数选择不恰当，就会出现欠拟合或者过拟合的问题。而在选择超参数的时候，有两个途径，一个是凭经验微调，另一个就是选择不同大小的参数，带入模型中，挑选表现最好的参数。</p>
+<p>微调的一种方法是手工调制超参数，直到找到一个好的超参数组合，这么做的话会非常冗长，你也可能没有时间探索多种组合，所以可以使用Scikit-Learn的GridSearchCV来做这项搜索工作。</p>
+<p>这里可以将Grid Search暂时理解为是一种调参手段，并且是非常耗时的穷举搜索。<em>至于进一步深究，我们暂时放到下一步。因为今天的篇幅有点长，担心如果我再展开讲下去的话会增加各位读者包括我的阅读负担。所以我打算把网格搜索放到了下一篇（也可能是下下篇）</em>你可以先看看<a href="https://blog.csdn.net/guoyc439/article/details/123381908">这里</a>🍉🍉🍉</p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><blockquote>
+<p><a href="https://blog.csdn.net/huacha__/article/details/81057150">https://blog.csdn.net/huacha__/article/details/81057150</a></p>
+<p><a href="https://blog.csdn.net/fenghuibian/article/details/91353348">https://blog.csdn.net/fenghuibian/article/details/91353348</a></p>
+<p><a href="https://www.jianshu.com/p/17368988d6d9">监督学习(八)——决策树集成：梯度提升回归树</a></p>
+<p><a href="https://blog.csdn.net/weixin_43479947/article/details/126813033">也是梯度提升回归树</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Mathine Learning</category>
+        <category>Homework</category>
+      </categories>
   </entry>
   <entry>
     <title>机器学习派系</title>
@@ -740,157 +892,6 @@ im.save(output)
       </tags>
   </entry>
   <entry>
-    <title>机器学习实验二</title>
-    <url>/2022/11/23/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9E%E9%AA%8C%E4%BA%8C/</url>
-    <content><![CDATA[<p>这是机器学习课程上的一个小项目作业，具体是通过多种回归模型预测房价…</p>
-<span id="more"></span>
-
-<h1 id="机器学习实验二，使用多种回归模型预测房价"><a href="#机器学习实验二，使用多种回归模型预测房价" class="headerlink" title="机器学习实验二，使用多种回归模型预测房价"></a>机器学习实验二，使用多种回归模型预测房价</h1><blockquote>
-<p>这次实验基于上一次对房价数据的预处理，使用多种回归模型对处理的数据进行预测任务。建立的回归模型主要有Lasso回归、弹性网络回归、岭回归、梯度加强回归、随机森林回归、XGBoost回归以及LightGBM回归七种模型。建立完回归模型完成任务，还需要对各个模型的性能进行评估与选择。并且考虑用网格搜索方法对表现最好的模型进行进一步的优化。</p>
-</blockquote>
-<h1 id="实验说明"><a href="#实验说明" class="headerlink" title="实验说明"></a>实验说明</h1><p>预测房价实验对1460条房价数据、80个房屋的属性进行分析，建立回归模型，然后预测1459条新房屋数据的价格。 </p>
-<p>本实验是预测房价实验的第二部分，使用上个实验处理好的数据建立机器学习模型，并且对模型性能进行评估。</p>
-<h1 id="实验准备"><a href="#实验准备" class="headerlink" title="实验准备"></a>实验准备</h1><h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><p><em>在桌面上新建一个目录，名字叫house_price。本实验中所有的数据集和代码都放在该目录下</em></p>
-<p><strong>Spyder</strong></p>
-<h2 id="准备数据集"><a href="#准备数据集" class="headerlink" title="准备数据集"></a>准备数据集</h2><p>本实验需要2个数据集，数据集的名字叫train.csv和test.csv，分别是房价的训练数据和测试数据。将train.csv和test.csv复制到刚刚创建的house_price目录下。</p>
-<h1 id="建立回归模型"><a href="#建立回归模型" class="headerlink" title="建立回归模型"></a>建立回归模型</h1><h2 id="Lasso回归"><a href="#Lasso回归" class="headerlink" title="Lasso回归"></a>Lasso回归</h2><pre><code>#Lasso Regression
-from sklearn.linear_model import Lasso
-lasso = Lasso(alpha = 0.0005, random_state = 1)
-</code></pre>
-<blockquote>
-<p>lasso [læˈsuː] (捕马、套牛等用的)套索; 用套索套捕(动物)</p>
-</blockquote>
-<h2 id="弹性网络回归"><a href="#弹性网络回归" class="headerlink" title="弹性网络回归"></a>弹性网络回归</h2><pre><code># Elastic Net Regerssion
-from sklearn.linear_model import ElasticNet
-enet = ElasticNet(alpla = 0.0005, l1_ratio = .9, random_state = 3)
-</code></pre>
-<blockquote>
-<p>elastic [ɪˈlæstɪk]  有弹力的灵活的,可改变的,可伸缩的; 橡皮圈</p>
-<p>ratio [ˈreɪʃiəʊ] 比率,比例</p>
-</blockquote>
-<h2 id="岭回归"><a href="#岭回归" class="headerlink" title="岭回归"></a>岭回归</h2><pre><code># Kernel Ridge Regression
-from sklearn.kernel_ridge import KernelRidger
-krr = KernelRidge(alpha = 0.6, kernel = &quot;polynomial&quot;, degree = 2, coef0 = 2.5)
-</code></pre>
-<blockquote>
-<p>ridge [rɪdʒ] 山脊; 使隆起,使形成脊状</p>
-<p>polynomial [ˌpɒli’nəʊmiəl] [ˌpɑli’noʊmiəl]  多项式的; 多项式</p>
-<p>elapsed [ɪˈlæpst] (时间)消逝, 流逝 <strong>-&gt;</strong> elapse的过去分词和过去式</p>
-</blockquote>
-<hr>
-<p>Lasso回归有时也叫做线性回归的L1正则化，和Ridge回归的主要区别就是在正则化项，Ridge回归用的是L2正则化，而Lasso回归用的是L1正则化。而弹性回归是岭回归和套索回归的混合技术，它同时使用 L2 和 L1 正则化。当有多个相关的特征时，弹性网络是有用的。套索回归很可能随机选择其中一个，而弹性回归很可能都会选择。<em>套索回归和核岭回归说到底就是在损失函数上加了两个不同的正则化项罢了，而弹性网络就是两个正则化项都加上去。但是引入核岭回归却不是直接从linear_model直接引入，而是单独出sklearn.kernel_ridge进行引入，真是奇怪？？？</em></p>
-<p>Lasso回归使得一些系数变小，甚至还是一些绝对值较小的系数直接变为0，因此特别适用于参数数目缩减与参数的选择，因而用来估计稀疏参数的线性模型。</p>
-<p>个人观点：但是Lasso回归有一个很大的问题，导致我们需要把它单独拎出来讲，就是它的损失函数不是连续可导的。由于L1范数用的是绝对值之和，导致损失函数有不可导的点。也就是说，我们的最小二乘法，梯度下降法，牛顿法与拟牛顿法对它统统失效了。🙄🙄🙄</p>
-<h2 id="梯度加强回归"><a href="#梯度加强回归" class="headerlink" title="梯度加强回归"></a>梯度加强回归</h2><pre><code># Gradient Boosting Regression
-from sklearn.ensemble import GradientBoostingRegressor
-gboost = GradientBoostingRegressor(n_estimators = 3000, learning_rate = 0.05, max_depth = 4,max_features = &quot;sqrt&quot;, min_samples_leaf = 15, min_samples_split = 10,loss=&quot;huber&quot;,random_state = 5)
-</code></pre>
-<blockquote>
-<p>ensemble [ɒnˈsɒmbl] n.乐团,全体,成套的东西; adv.一起</p>
-<p>sklearn.ensemble我理解成Gradient Boosting Regression用得比较广泛，导致它放在了sklearn的全体kit里面</p>
-</blockquote>
-<p>我尝试搜寻梯度加强回归，但是只能搜索到梯度提升回归树，看来它是一种树模型。<em>它是一种决策树的集成方法，通过合并多个决策树来构建一个更为强大的模型。</em>虽然他的名字中有回归两个字，但是这种模型既可以用在回归上，也可以用在分类上。</p>
-<p>与随机森林不同的是，梯度提升采用连续的方式构造树，每一棵树都试图纠正前一棵树的错误。默认情况下，梯度提升回归树中没有随机化，而是用到了强预剪枝。</p>
-<p>梯度提升决策树是监督学习中最强大也是最常用的模型之一，缺点是需要仔细调参，而且训练的时间要很长。和其他基于树的模型类似，这个算法不需要对数据进行缩放就可以表现的很好，并且它也适用于二元特征与连续特征同时存在的数据集。同样，它的不足之处与其它基于树的模型也类似，它不适合处理高维稀疏数据。</p>
-<blockquote>
-<p>所谓<a href="https://www.cnblogs.com/JetpropelledSnake/p/14438484.html">特征缩放</a>、<a href="https://blog.csdn.net/qq_51228515/article/details/122431951">数据缩放</a>包含了归一化和标准化等。特征缩放的原因是，为消除各评价指标间量纲和数量级的差异、保证结果的可靠性，就需要对各指标的原始数据进行特征缩放。</p>
-</blockquote>
-<blockquote>
-<p>个人观点：<em>对于稀疏数据，当前的研究方向是对稀疏数据进行聚类与降维。因为稀疏数据不同于一般数据，它的维度常常非常巨大，由于大量存在缺失值，导致数据信息极其不完整。常见的一些降维方法比如说主成分分析和因子分子方法都无法对稀疏数据进行应用</em></p>
-</blockquote>
-<h2 id="随机森林回归"><a href="#随机森林回归" class="headerlink" title="随机森林回归"></a>随机森林回归</h2><pre><code># random forest
-from sklearn.ensemble import RandomForestRegressor
-rf = RandomForestRegressor(n_estimators = 500, random_state = 0)
-</code></pre>
-<p>随机森林属于<a href="https://blog.csdn.net/siyuangulu/article/details/122508931?spm=1001.2101.3001.6650.8&utm_medium=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-8-122508931-blog-82016442.pc_relevant_recovery_v2&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-8-122508931-blog-82016442.pc_relevant_recovery_v2&utm_relevant_index=11">集成学习</a>中的Bagging算法，即引导聚合类算法，详情可以点击上面链接进行访问。🪐</p>
-<p>首先要明确的是，当前集成学习分成两大类，一类是Bagging装袋法，第二类是Boosting提升法。</p>
-<ul>
-<li>Bagging（装袋法）: 如随机森林，每一个模型相互独立，互相平行</li>
-<li>Boosting（提升法）: 模型循序渐进，依次增强，基评估器相互关联</li>
-</ul>
-<p>我们都知道随机森林就是通过集成学习的思想将多棵树集成的一种算法，它的基本单元是决策树。直观的说，每一棵决策树都是一个分类器（假设现在讨论的是分类问题），那么对于一个输入样本，N棵树有N个分类结果。而随机森林做的就是集成了所有的分类投票结果，将投票次数最多的类别指定为最终的输出，这就是一种最简单的Bagging思想。</p>
-<p>在该模型中，有三个重要的参数分别为: &amp;nbsp <a href="https://blog.csdn.net/weixin_43479947/article/details/126813033">参考</a></p>
-<ul>
-<li>n_estimators(子树数量)</li>
-<li>learning_rate(学习率)</li>
-<li>max_depth(最大深度)</li>
-</ul>
-<p>想要进一步了解随机森林，可以通过以下链接进行学习：</p>
-<blockquote>
-<p><a href="https://blog.csdn.net/siyuangulu/article/details/122508931?spm=1001.2101.3001.6650.8&utm_medium=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-8-122508931-blog-82016442.pc_relevant_recovery_v2&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-8-122508931-blog-82016442.pc_relevant_recovery_v2&utm_relevant_index=11">CSDN</a></p>
-<p><a href="https://easyai.tech/ai-definition/random-forest/">EasyAi</a></p>
-<p><a href="https://www.cnblogs.com/maybe2030/p/4585705.html">博客园</a></p>
-<p><a href="https://www.cnblogs.com/fionacai/p/5894142.html">博客园</a></p>
-</blockquote>
-<h2 id="XGBoost回归"><a href="#XGBoost回归" class="headerlink" title="XGBoost回归"></a>XGBoost回归</h2><pre><code># XGBoost
-# if xgboost packet doesnt exist, please install with command:conda install py-xgboost
-import xgboost as xbg
-xgb = xgb.XGBRegressor(colsample_bytree = 0.4603, gamma = 0.0468,learning_rate = 0.05, max_depth = 3, min_child_weight = 1.7817, n_estimators = 2200, reg_alpha = 0.4640, reg_lambda = 0.8571,subsample = 0.5213, silent = 1, random_state = 7, nthread = -1)
-</code></pre>
-<p>首先要知道的是，XGBoost算法是梯度提升树GBDT的高效实现。这里所提到的GBDT可能和上面所提到的梯度提升回归树有着异曲同工之处。作为梯度提升回归树的高效实现，XGBoost是一个上限非常高的算法。在竞赛题中，不考虑深度学习，XGBoost算法算是比赛中最热门的算法，它将GBDT的优化走向了一个极致。但是它的训练耗时长，内存占用比较大。</p>
-<p>后续，微软推出了LightGBM，在内存占用和运行速度上做了不少的优化，但是<a href="https://www.cnblogs.com/pinard/p/10979808.html">刘建平pinard大哥</a>认为当前还是优先选择XGBoost，因为调优经验比较多一点，可以参考的资料也更多一些。如果使用XGBoost遇到的内存占用或者运行速度问题，这个时候再尝试LightGBM也不错。</p>
-<h2 id="LightGBM回归"><a href="#LightGBM回归" class="headerlink" title="LightGBM回归"></a>LightGBM回归</h2><pre><code># LightGBM
-import lightgbm as lgb
-lgb = lgb.LGBMRegressor(objective = &quot;regression&quot;, num_leaves = 5, learning_rate = 0.05, n_estimators = 720, max_bin = 55, bagging_fraction = 0.8, bagging_freq = 5, feature_fraction = 0.2319, feature_fraction_seed = 9, bagging_seed = 9, min_data_in_leaf = 6,min_sum_hessian_in_leaf = 11)
-</code></pre>
-<blockquote>
-<p>fraction [ˈfrækʃn] n.小部分,分数,小数</p>
-</blockquote>
-<p>LightGBM是快速的，分布式的，高性能的基于决策树算法的梯度提升框架。可以用于排序、分类、回归以及其他机器学习任务中。它是XGBoost的改进版，XGboost又是GBDT梯度提升回归树的高效实现，所以我理解成LightGBM与GBDT师出同门。</p>
-<p>2017年的时候微软在GitHub上开源了一个新的算法<strong>LightGBM</strong>，根据某CSDN机翻文章称，它能够在不降低准确率的前提下，能够提升十倍左右的速度，并且占用内存下降三倍左右。虽然它和XGboost都是基于决策树算法的，但是LightGBM采用的分裂叶子结点策略貌似与XGBoost算法不同，并且极大地优于XGBoost，导致它的速度非常之快…</p>
-<p><strong>到目前为止，七个回归模型的初始化都已经完成！</strong></p>
-<h1 id="模型性能评估与选择"><a href="#模型性能评估与选择" class="headerlink" title="模型性能评估与选择"></a>模型性能评估与选择</h1><p>业界一般使用k-fold 交叉验证（k-fold cross validation）的方法评估模型性能。在这里k&#x3D;10。评估指标有2个，一个是 r^2（ r squared）, 另一个是mse（mean squared error）。为了加快执行速度，n_jobs &#x3D; 2表示使用2个CPU（我的电脑是2核CPU）。训练数据集有1458条数据，272列，模型执行起来可能相对较慢，请耐心等待。verbose &#x3D; 1表示执行过程中不断打印出信息，以帮助判断执行了多少了。</p>
-<p><strong>提示</strong>：同学们可能疑惑为什么没有在验证集上检验模型性能，这可能会产生过拟合现象。k-fold 交叉验证的存在可以在不需要验证集的情况下，也能发现过拟合现象😅。</p>
-<pre><code># k-fold cross validation function
-from sklearn.model_selection import cross_val_score
-def evaluation_model(model):
-    rmse = np.sqrt(-cross_val_score(estimator = model, X = X_train, y = y_train, scoring = &#39;neg_mean_squared_error&#39;, cv = 10, n_jobs = 2, verbose = 1))
-    r2_score = cross_val_score(estimator = model, X = X_train, y = y_train, scoring = &#39;r2&#39;, cv = 10, n_jobs = 2, verbose = 1)
-    return (r2_score, rmse)
-# print result function
-def print_result(r2_score, rmse, model_name):
-    print(&#39;%s evaluation: r2=%.4f (std=%.4f), rmse=%.4f (std=%.4f)&#39; %(model_name, r2_score.mean(), r2_score.std(), 
-  rmse.mean(), rmse.std()))
-</code></pre>
-<p>定义好了函数，现在可以对每一模型执行。</p>
-<pre><code># model score and rmse
-lasso_r2_score, lasso_rmse = evaluation_model(lasso)
-enet_r2_score, enet_rmse = evaluation_model(enet)
-krr_r2_score, krr_rmse = evaluation_model(krr)
-gboost_r2_score, gboost_rmse = evaluation_model(gboost)
-rf_r2_score, rf_rmse = evaluation_model(rf)
-xgb_r2_score, xgb_rmse = evaluation_model(xgb)
-lgb_r2_score, lgb_rmse = evaluation_model(lgb)
-# print result
-print_result(lasso_r2_score, lasso_rmse, &#39;Lasso&#39;)
-print_result(enet_r2_score, enet_rmse, &#39;Elastic Net&#39;)
-print_result(krr_r2_score, krr_rmse, &#39;Kernel Ridge&#39;)
-print_result(gboost_r2_score, gboost_rmse, &#39;Gradient Boost&#39;)
-print_result(rf_r2_score, rf_rmse, &#39;Random Forest&#39;)
-print_result(xgb_r2_score, xgb_rmse, &#39;XG Boost&#39;)
-print_result(lgb_r2_score, lgb_rmse, &#39;Lightgbm&#39;)
-</code></pre>
-<p>模型性能的评估尤其是用sklearn进行模型评估貌似篇幅有点小长，我改天再写吧！现在可以看看别人对模型评估方法进行的一些<a href="https://www.cnblogs.com/jiaxin359/p/8627530.html">总结</a>，以及<a href="https://blog.csdn.net/weixin_35757704/article/details/118406255">运用</a>。</p>
-<h1 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h1><p>结果发现XGBoost的性能最好:r2&#x3D;0.9227 (std&#x3D;0.0149), rmse&#x3D;0.2734 (std&#x3D;0.0340)，因为RMSE平均数最小，方差最小，并且R2&gt;0.9，模型性能比较好。值得注意的是，如果你们选择的是模型默认的超参数，那么执行的结果和我的就不一样啦，因为不同的超参数决定了模型的准确率的不同。这里给出了一个通用的原则：</p>
-<blockquote>
-<p><strong>选择r2&gt;0.9，且mse和std最小的那个模型</strong></p>
-</blockquote>
-<h1 id="使用GridSearchCV方法对XGBoost模型进行优化"><a href="#使用GridSearchCV方法对XGBoost模型进行优化" class="headerlink" title="使用GridSearchCV方法对XGBoost模型进行优化"></a>使用GridSearchCV方法对XGBoost模型进行优化</h1><p>在机器学习模型中，需要人工选择的参数称为超参数。比如随机森林中决策树的个数，人工神经网络模型中隐藏层层数和每层的节点个数，正则项中常数大小等等，他们都需要事先指定。超参数选择不恰当，就会出现欠拟合或者过拟合的问题。而在选择超参数的时候，有两个途径，一个是凭经验微调，另一个就是选择不同大小的参数，带入模型中，挑选表现最好的参数。</p>
-<p>微调的一种方法是手工调制超参数，直到找到一个好的超参数组合，这么做的话会非常冗长，你也可能没有时间探索多种组合，所以可以使用Scikit-Learn的GridSearchCV来做这项搜索工作。</p>
-<p>这里可以将Grid Search暂时理解为是一种调参手段，并且是非常耗时的穷举搜索。<em>至于进一步深究，我们暂时放到下一步。因为今天的篇幅有点长，担心如果我再展开讲下去的话会增加各位读者包括我的阅读负担。所以我打算把网格搜索放到了下一篇（也可能是下下篇）</em>你可以先看看<a href="https://blog.csdn.net/guoyc439/article/details/123381908">这里</a>🍉🍉🍉</p>
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><blockquote>
-<p><a href="https://blog.csdn.net/huacha__/article/details/81057150">https://blog.csdn.net/huacha__/article/details/81057150</a></p>
-<p><a href="https://blog.csdn.net/fenghuibian/article/details/91353348">https://blog.csdn.net/fenghuibian/article/details/91353348</a></p>
-<p><a href="https://www.jianshu.com/p/17368988d6d9">监督学习(八)——决策树集成：梯度提升回归树</a></p>
-<p><a href="https://blog.csdn.net/weixin_43479947/article/details/126813033">也是梯度提升回归树</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Mathine Learning</category>
-        <category>Homework</category>
-      </categories>
-  </entry>
-  <entry>
     <title>特征工程</title>
     <url>/2022/11/23/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/</url>
     <content><![CDATA[<p>数据和特征决定了机器学习的上限，而模型和算法只是逼近这个上限而已</p>
@@ -936,35 +937,6 @@ print_result(lgb_r2_score, lgb_rmse, &#39;Lightgbm&#39;)
       </tags>
   </entry>
   <entry>
-    <title>维度灾难</title>
-    <url>/2022/11/23/%E7%BB%B4%E5%BA%A6%E7%81%BE%E9%9A%BE/</url>
-    <content><![CDATA[<p>今天學習機器學習的時候，發現有<em>維度災難</em>這個東西。挺感興趣的，於是一探究竟！</p>
-<span id="more"></span>
-
-<h1 id="机器学习中的维度灾难"><a href="#机器学习中的维度灾难" class="headerlink" title="机器学习中的维度灾难"></a>机器学习中的维度灾难</h1><p>在介绍机器学习的维度灾难之前，我推荐给大家一个网站，名字虽然说是<a href="https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">计算机视觉的傻瓜书</a>，但是有关机器学习的答疑部分它做得还是蛮好的。除此之外还有<a href="https://www.kdnuggets.com/news/index.html">KDnuggest</a>，也是有关机器学习的论坛。</p>
-<p>本文是参考<a href="https://www.jianshu.com/p/867193608bbd">简书-红色石头Will</a>所得到的观点，虽然他是翻译<a href="https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">计算机视觉的傻瓜书</a>的，但是对于我理解维度灾难起着指导方向的作用。</p>
-<h2 id="1-介绍维度灾难"><a href="#1-介绍维度灾难" class="headerlink" title="1.介绍维度灾难"></a>1.介绍维度灾难</h2><p>维度灾难是在设计一个分类器的时候需要注意的问题。为了得到更好的分类效果，我们可以无限的增加特征。但是事实上，特征数量超过一定值的时候，分类器的效果反而会下降。这种由于特征数量太多导致的分类效果下降的情况，就被称作是<strong>维度灾难</strong>。</p>
-<h2 id="2-维度灾难与过拟合"><a href="#2-维度灾难与过拟合" class="headerlink" title="2.维度灾难与过拟合"></a>2.维度灾难与过拟合</h2><p>貌似特征越多，越有可能实现正确分类，但是情况并非如此。一个直观的情况时，随着特征维度的增加，训练样本在特征空间中的密度是呈指数下降的。</p>
-<blockquote>
-<p>样本数不变，但是特征空间不断地增加，那训练样本在特征空间中的密度岂不是就是呈指数下降的？</p>
-</blockquote>
-<p>如果我们继续增加特征，整个特征空间维度增加，并变得越来越稀疏。由于稀疏性，我们更加容易找到一个超平面来实现分类。这是因为随着特征数量变得无限大，训练样本在最佳超平面的错误侧的可能性将会变得无限小。然而，如果我们将高维的分类结果投影到低维空间中，将会出现一个严重的问题。</p>
-<p>比如说样本数据在3D是线性可分的，但是在2D却并非如此。事实上，增加第三个维度来获得最佳的线性分类效果，等同于在低维特征空间中使用非线性分类器。其结果是，分类器学习了训练数据的噪声和异常，而对样本外的数据拟合效果并不理想，甚至很差。这个概念称为过拟合，是维度灾难的一个直接后果。</p>
-<p><em>换句话讲，如果增加特征维度，为了覆盖同样的特征值范围，防止过拟合，需要用到的样本数就会呈指数型增长！</em></p>
-<h2 id="3-维度灾难与数据稀疏程度分布不均"><a href="#3-维度灾难与数据稀疏程度分布不均" class="headerlink" title="3.维度灾难与数据稀疏程度分布不均"></a>3.维度灾难与数据稀疏程度分布不均</h2><p>我们展示了维度灾难会引起训练数据的稀疏化。使用的特征越多，数据就会变得越稀疏，从而导致分类器的分类效果就会越差。维度灾难还会造成<strong>搜索空间的数据稀疏程度</strong>分布不均。事实上，围绕原点的数据（在超立方体的中心）比在搜索空间的角落处的数据要稀疏得多。</p>
-<p>举例2D，如果大部分的样本都落在了单位内接圆里的话，会更容易分类。但是在高维的空间中，大部分的训练数据都是分布在定义为特征空间的超立方体的角落处，导致难以分类。、</p>
-<p>对于8维的超球体，大约98%的数据集中在它256个角落处。其结果是，当特征空间的维度变得无限大时，从样本点到质心的最大、最小欧氏距离的差值与其最小欧式距离的比值趋于零。因此，距离测量在高维空间中逐渐变得无效。因为分类器是基于这些距离测量的（例如Euclidean距离、Mahalanobis距离、Manhattan距离），所以低维空间特征更少，分类更加容易。同样地，在高维空间的高斯分布会变平坦且尾巴更长。</p>
-<h2 id="4-如何避免维度灾难"><a href="#4-如何避免维度灾难" class="headerlink" title="4.如何避免维度灾难"></a>4.如何避免维度灾难</h2><p>很遗憾，在分类问题中，没有固定的规则来指定该使用多少特征。事实上，用多少特征量取决于你训练样本的数量、决策边界的复杂性和使用的是啥分类器。</p>
-<p>比如说一些非线性决策边界的分类器（e.g. 神经网络、KNN分类器、决策树等），它们的分类效果虽然好，但是泛化能力差容易发生过拟合，这个时候就需要降低点维度。如果使用泛化能力稍微好点的（e.g. 贝叶斯分类器、线性分类器），那么就可以使用稍微多一点的特征。</p>
-<h2 id="5-参考链接"><a href="#5-参考链接" class="headerlink" title="5.参考链接"></a>5.参考链接</h2><blockquote>
-<p><a href="https://www.jianshu.com/p/867193608bbd">简书</a><br><a href="https://cloud.tencent.com/developer/article/1143269">手工特征选取降维</a><br><a href="https://www.kdnuggets.com/2015/03/deep-learning-curse-dimensionality-autoencoders.html">原文</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Mathine Learning</category>
-      </categories>
-  </entry>
-  <entry>
     <title>特征缩放</title>
     <url>/2022/11/23/%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE/</url>
     <content><![CDATA[<p>将数据进行归一化和标准化可以使不同维度的特征放在一起进行比较，可以大大提高模型的准确性。</p>
@@ -993,62 +965,6 @@ print_result(lgb_r2_score, lgb_rmse, &#39;Lightgbm&#39;)
       <categories>
         <category>Mathine Learning</category>
       </categories>
-  </entry>
-  <entry>
-    <title>网格搜索</title>
-    <url>/2022/11/24/%E7%BD%91%E6%A0%BC%E6%90%9C%E7%B4%A2/</url>
-    <content><![CDATA[<p>在进行机器学习的过程中，最为核心的概念就是参数了，要得到最好的参数可以采取网格搜索策略。网格搜索是应用最广泛的超参数搜索算法，网格搜索通过查找搜索范围内的所有的点，来确定最优值。</p>
-<span id="more"></span>
-
-<h1 id="调节超参数的方法-GridSearchCV网格搜索"><a href="#调节超参数的方法-GridSearchCV网格搜索" class="headerlink" title="调节超参数的方法-GridSearchCV网格搜索"></a>调节超参数的方法-GridSearchCV网格搜索</h1><p><em>在进行机器学习的过程中，最为核心的概念就是参数了，而参数又可以分为模型参数和超参数。模型参数指的是我们使用的模型根据训练数据的分布学习到的参数，这一部分是不需要我们人为的先验知识。而超参数是在开始学习之前需要设置的一组参数，而不是通过训练得到的参数数据。通常情况下，需要对超参数进行优化，给模型选择一组最优的超参数，以提高学习的性能与效果。</em></p>
-<p>这里简单介绍一下常用的超参数调参方法:除了网格搜索，还有随机搜索、贝叶斯优化和自动超参搜索（遗传算法GA）</p>
-<h2 id="网格搜索"><a href="#网格搜索" class="headerlink" title="网格搜索"></a>网格搜索</h2><p>网格搜索是应用最广泛的超参数搜索算法，网格搜索通过查找搜索范围内的所有的点，来确定最优值。一般通过给出较大的搜索范围以及较小的步长，网格搜索是一定可以找到全局最大值或最小值的。但是，网格搜索一个比较大的问题是，它<strong>十分消耗计算资源</strong>，特别是需要调优的超参数比较多的时候。在比赛中，需要调参的模型数量与对应的超参数比较多，而涉及的数据量又比较大，因此相当的耗费时间。<em>此外，由于给出的超参数组合比较多，因此一般都会固定多数参数，分步对1~2个超参数进行调解，这样能够减少时间但是缺难以自动化进行，而且由于目标参数一般是非凸的，因此容易陷入局部最小值。</em></p>
-<p><a href="https://www.jianshu.com/p/5378ef009cae">原作者</a>是用网格搜索来寻找LightGBM的最优超参数，这里我尝试用它来寻找XGBoost的最优超参数。一方面当做学习，另一方面是当做完成上一次机器学习的拓展作业。</p>
-<h2 id="简单介绍需要向GridSearchCV内传什么东西？"><a href="#简单介绍需要向GridSearchCV内传什么东西？" class="headerlink" title="简单介绍需要向GridSearchCV内传什么东西？"></a>简单介绍需要向GridSearchCV内传什么东西？</h2><p>要实现网格搜索，肯定得暴力遍历超参数。查找GridSearchCV函数的参数，其中有一项是含有待优化超参的字典。<a href="https://github.com/scikit-learn/scikit-learn/blob/0fb307bf3/sklearn/model_selection/_search.py#L867">官方</a>给的参数如下：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sklearn.model_selection.GridSearchCV(estimator, param_grid, *, scoring=<span class="literal">None</span>, n_jobs=<span class="literal">None</span>, iid=<span class="string">&#x27;deprecated&#x27;</span>, refit=<span class="literal">True</span>, cv=<span class="literal">None</span>, verbose=<span class="number">0</span>, pre_dispatch=<span class="string">&#x27;2*n_jobs&#x27;</span>, error_score=nan, return_train_score=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
-<p>其中重要的参数说明如下：</p>
-<ol>
-<li>estimator：表示选择使用的分类器，并且需要传入除了需要确定最佳的参数之外的其他参数。<em>（还有什么参数？不是很清楚）</em>每一个分类器都需要一个scoring参数，或者说是score方法，例子如下：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">estimator = RandomForestClassifier(min_sample_split=100,min_samples_leaf = 20,max_depth = 8,max_features = &#x27;sqrt&#x27; , random_state =10)</span><br></pre></td></tr></table></figure></li>
-<li>param_grid：需要最优化的参数的取值，值为字典或者列表，例如：</li>
-</ol>
-<p><code>param_grid = param_test1, param_test1 = &#123;&#39;n_estimators&#39; : range(10,71,10)&#125;</code><br>或者另外一种表达形式：<br><code>param_grid = [&#123;&#39;n_estimators&#39;: [3, 10, 30],&#39;max_features&#39;: [2, 4, 6, 8]&#125;,&#123;&#39;bootstrap&#39;: [False],&#39;n_estimators&#39;: [3, 10],&#39;max_features&#39;: [2, 3, 4]&#125;,</code><br>3. scoring &#x3D; None ：模型评价标准，默认为None，这时需要使用score函数；或者如scoring &#x3D; ‘roc_auc’，根据所选模型不同，评价准则不同，字符串（函数名），或是可调用对象，需要其函数签名，形如：scorer(estimator，X，y）；如果是None，则使用estimator的误差估计函数。<br>4. n_jobs &#x3D; 1 ： n_jobs：并行数，默认为1，当n_jobs &#x3D; -1：表示使用所有处理器（建议）<br>5. refit &#x3D; True ：默认为True，程序将会以交叉验证训练集得到的最佳参数，重新对所有可能的训练集与开发集进行，作为最终用于性能评估的最佳模型参数。即在搜索参数结束后，用最佳参数结果再次fit一遍全部数据集（不用管即可）<br>6. cv &#x3D; None：交叉验证参数，默认None，使用五折交叉验证。指定fold数量，默认为5(之前版本为3)，也可以是yield训练&#x2F;测试数据的生成器</p>
-<h1 id="寻找XGBoost的参数及一般定义范围"><a href="#寻找XGBoost的参数及一般定义范围" class="headerlink" title="寻找XGBoost的参数及一般定义范围"></a>寻找XGBoost的参数及一般定义范围</h1><p>首先要知道xgb.XGBRegressor的<a href="https://xgboost.readthedocs.io/en/latest/parameter.html#general-parameters">参数分布</a>,这一点可以靠查询官方文档，或者寻找<a href="https://www.codeleading.com/article/77024318818/">相关的资料</a>进行补充。由于代码格式我想参照<a href="https://www.jianshu.com/p/5378ef009cae">简书某博主</a>的写法，所以需要找到xgboost的参数并且规定遍历的范围。</p>
-<p>找到机器学习实验二的XGBoost部分代码，然后根据参数规范范围。因为现在对参数并不熟悉，我打算对参数的范围规定的大一点，以便可以找到全局最优解。</p>
-<h1 id="装库跑代码"><a href="#装库跑代码" class="headerlink" title="装库跑代码"></a>装库跑代码</h1><p>在Anaconda上执行命令<strong>conda install py-xgboost</strong>，下载到所需要用到的xgboost库（另外还有<strong>from sklearn.model_selection import GridSearchCV</strong>）。我发现上面下载xgboost库的conda指令慢的离谱（其实<strong>pip install xgboost</strong>也很慢），于是换清华源<strong>pip install xgboost -i <a href="https://pypi.tuna.tsinghua.edu.cn/simple">https://pypi.tuna.tsinghua.edu.cn/simple</a></strong>，速度嘎嘎起飞。虽然也是在Anaconda上执行的pip指令，但是pip用起来真就是比conda舒服。</p>
-<p>在<a href="https://www.jianshu.com/p/5378ef009cae">参考代码</a>处我们发现了有一段代码很奇怪,<code>regr = lgb.LGBMRegressor(**params)</code>这里的 **号是什么意思呢？这里的 **params其实指的是，你在上面代码所输入的字典形式的变量。如果你想研究更多有关*和**的实例，可以参考以下这篇<a href="https://blog.csdn.net/zkk9527/article/details/88675129">博文</a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">from sklearn.model_selection import GridSearchCV</span><br><span class="line">import numpy as np</span><br><span class="line">import xgboost as xgb</span><br><span class="line">import pandas as pd</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def GridSearch(clf, params, X, y):</span><br><span class="line">    cscv = GridSearchCV(</span><br><span class="line">        clf, params, scoring=&quot;neg_mean_squared_error&quot;, n_jobs=1, cv=5)</span><br><span class="line">    cscv.fit(X, y)</span><br><span class="line">    print(cscv.cv_results_)</span><br><span class="line">    print(cscv.best_params_)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def Dataprocessing(trainPath):</span><br><span class="line">    training_set = pd.read_csv(trainPath)</span><br><span class="line">    training_set.drop(&quot;Id&quot;, axis=1, inplace=True)</span><br><span class="line">    training_set = training_set.drop(training_set[(</span><br><span class="line">        training_set[&#x27;GrLivArea&#x27;] &gt; 4000) &amp; (training_set[&#x27;SalePrice&#x27;] &lt; 300000)].index)</span><br><span class="line">    train_y = training_set.SalePrice.values</span><br><span class="line">    train_x = training_set.drop(&quot;SalePrice&quot;, axis=1, inplace=True)</span><br><span class="line">    return train_x, train_y</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    train_x, train_y = Dataprocessing(&#x27;train.csv&#x27;)</span><br><span class="line"></span><br><span class="line">    params = &#123;</span><br><span class="line">        &#x27;colsample_bytree&#x27;: 0.4603,</span><br><span class="line">        &#x27;gamma&#x27;: 0.0468,</span><br><span class="line">        &#x27;learning_rate&#x27;: 0.05,</span><br><span class="line">        &#x27;max_depth&#x27;: 3,</span><br><span class="line">        &#x27;min_child_weight&#x27;: 1.7817,</span><br><span class="line">        &#x27;n_estimators&#x27;: 2200,</span><br><span class="line">        &#x27;reg_alpha&#x27;: 0.4640,</span><br><span class="line">        &#x27;reg_lambda&#x27;: 0.8571,</span><br><span class="line">        &#x27;subsample&#x27;: 0.5213,</span><br><span class="line">        &#x27;silent&#x27;: 1,</span><br><span class="line">        &#x27;random_state&#x27;: 7,</span><br><span class="line">        &#x27;nthread&#x27;: -1</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    regr = xgb.XGBRegressor(**params)</span><br><span class="line"></span><br><span class="line">    adj_params = &#123;</span><br><span class="line">        &#x27;colsample_bytree&#x27;: np.arange(0.1, 1, 0.1),</span><br><span class="line">        &#x27;gamma&#x27;: [0.01, 0.1, 1],</span><br><span class="line">        &#x27;learning_rate&#x27;: [0.01, 0.1, 1],</span><br><span class="line">        &#x27;max_depth&#x27;: range(1, 11),</span><br><span class="line">        &#x27;min_child_weight&#x27;: np.arange(0.1, 2, 0.1),</span><br><span class="line">        &#x27;n_estimators&#x27;: range(300, 1000, 100),</span><br><span class="line">        &#x27;reg_alpha&#x27;: [0.01, 0.1, 1],</span><br><span class="line">        &#x27;reg_lambda&#x27;: [0.01, 0.1, 1],</span><br><span class="line">        &#x27;subsample&#x27;: [0.01, 0.1, 1],</span><br><span class="line">        # &#x27;silent&#x27;:1,</span><br><span class="line">        &#x27;random_state&#x27;: range(1, 11),</span><br><span class="line">        # &#x27;nthread&#x27;:-1</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    GridSearch(regr, adj_params, train_x, train_y)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>代码实在是跑不动，估计是参数有些缺了的问题，具体操作方法先贴在这里，等到下次有项目的时候再继续研究吧！</p>
-<h2 id="随机搜索"><a href="#随机搜索" class="headerlink" title="随机搜索"></a>随机搜索</h2><p>与网格搜索相比，随机搜索并没有尝试所有给定的参数值，而是从指定的分布中采样固定数量的参数设置。它的理论依据是，如果随即样本点集足够大，那么也可以找到全局的最大或最小值，或它们的近似值。通过对搜索范围的随机取样，随机搜索一般会比网格搜索要快一些。但是和网格搜索的快速版（非自动版）相似，结果也是没法保证的。</p>
-<p>随机搜索的过程如下，使用方法与网格搜索完全一致：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import lightgbm as lgb</span><br><span class="line">from sklearn.model_selection import  RandomizedSearchCV</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def RandomSearch(clf, params, X, y):</span><br><span class="line">    rscv = RandomizedSearchCV(clf, params, scoring=&#x27;neg_mean_squared_error&#x27;, n_jobs=1, cv=5)</span><br><span class="line">    rscv.fit(X, y)</span><br><span class="line"></span><br><span class="line">    print(rscv.cv_results_)</span><br><span class="line">    print(rscv.best_params_)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    train_X, train_y = get_data()</span><br><span class="line"></span><br><span class="line">    param = &#123;</span><br><span class="line">        &#x27;objective&#x27;: &#x27;regression&#x27;,</span><br><span class="line">        &#x27;n_estimators&#x27;: 275,</span><br><span class="line">        &#x27;max_depth&#x27;: 6,</span><br><span class="line">        &#x27;min_child_samples&#x27;: 20,</span><br><span class="line">        &#x27;reg_lambd&#x27;: 0.1,</span><br><span class="line">        &#x27;reg_alpha&#x27;: 0.1,</span><br><span class="line">        &#x27;metric&#x27;: &#x27;rmse&#x27;,</span><br><span class="line">        &#x27;colsample_bytree&#x27;: 1,</span><br><span class="line">        &#x27;subsample&#x27;: 0.8,</span><br><span class="line">        &#x27;num_leaves&#x27; : 40,</span><br><span class="line">        &#x27;random_state&#x27;: 2018</span><br><span class="line">        &#125;</span><br><span class="line">    regr = lgb.LGBMRegressor(**param)</span><br><span class="line"></span><br><span class="line">    adj_params = &#123;&#x27;n_estimators&#x27;: range(100, 400, 10),</span><br><span class="line">                 &#x27;min_child_weight&#x27;: range(3, 20, 2),</span><br><span class="line">                 &#x27;colsample_bytree&#x27;: np.arange(0.4, 1.0),</span><br><span class="line">                 &#x27;max_depth&#x27;: range(5, 15, 2),</span><br><span class="line">                 &#x27;subsample&#x27;: np.arange(0.5, 1.0, 0.1),</span><br><span class="line">                 &#x27;reg_lambda&#x27;: np.arange(0.1, 1.0, 0.2),</span><br><span class="line">                 &#x27;reg_alpha&#x27;: np.arange(0.1, 1.0, 0.2),</span><br><span class="line">                 &#x27;min_child_samples&#x27;: range(10, 30)&#125;</span><br><span class="line"></span><br><span class="line">    RandomSearch(regr , adj_params , train_X, train_y)</span><br></pre></td></tr></table></figure>
-
-<h2 id="贝叶斯优化"><a href="#贝叶斯优化" class="headerlink" title="贝叶斯优化"></a>贝叶斯优化</h2><p>贝叶斯优化用于机器学习调参由J. Snoek(2012)提出，主要思想是，给定优化的目标函数(广义的函数，只需指定输入和输出即可，无需知道内部结构以及数学性质)，通过不断地添加样本点来更新目标函数的后验分布(高斯过程,直到后验分布基本贴合于真实分布。简单的说，就是考虑了上一次参数的信息，从而更好的调整当前的参数。</p>
-<p><em>贝叶斯优化与常规的网格搜索或者随机搜索的区别是：</em></p>
-<ol>
-<li>贝叶斯调参采用高斯过程，考虑之前的参数信息，不断地更新先验；网格搜索未考虑之前的参数信息</li>
-<li>贝叶斯调参迭代次数少，速度快；网格搜索速度慢,参数多时易导致<strong>维度爆炸</strong></li>
-<li>贝叶斯调参针对非凸问题依然稳健；网格搜索针对非凸问题易得到局部优最</li>
-</ol>
-<p>如果想要深究贝叶斯优化，可以参考<a href="https://www.sohu.com/a/165565029_465975">这里</a></p>
-<h2 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h2><p>其他常见的超参数优化方法还有比如自动超参搜索（遗传算法）等等，方法总比问题多，对不同的问题总需要根据情况使用不同的方法来解决。</p>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ol>
-<li><a href="https://www.sohu.com/a/165565029_465975">搜狐新闻-贝叶斯优化细究</a></li>
-<li><a href="https://www.jianshu.com/p/d240dbd62d45">简书-炼丹美学</a></li>
-<li><a href="https://www.cnblogs.com/dalege/p/14175192.html">博客园-具体使用GridSearchCV</a></li>
-<li><a href="https://www.codeleading.com/article/77024318818/">代码先锋网-具体调试LightGBM</a><em>让我清楚了，调参也是得按顺序来的，没有说一口气调完全部</em></li>
-<li><a href="https://blog.csdn.net/csiao_Bing/article/details/84978725">CSDN-XGBoost参数详解</a></li>
-<li><a href="https://blog.csdn.net/Ling_Ze/article/details/126045472">CSDN-XGBoost参数详解</a></li>
-<li><a href="https://www.jianshu.com/p/5378ef009cae">简书-超参调节之我主要参考!</a></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Mathine Learning</category>
-      </categories>
-      <tags>
-        <tag>机器学习</tag>
-        <tag>调参</tag>
-      </tags>
   </entry>
   <entry>
     <title>猫狗大战之CNN分类</title>
@@ -1136,6 +1052,91 @@ print_result(lgb_r2_score, lgb_rmse, &#39;Lightgbm&#39;)
         <tag>CNN</tag>
         <tag>比赛</tag>
         <tag>图像分类</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>维度灾难</title>
+    <url>/2022/11/23/%E7%BB%B4%E5%BA%A6%E7%81%BE%E9%9A%BE/</url>
+    <content><![CDATA[<p>今天學習機器學習的時候，發現有<em>維度災難</em>這個東西。挺感興趣的，於是一探究竟！</p>
+<span id="more"></span>
+
+<h1 id="机器学习中的维度灾难"><a href="#机器学习中的维度灾难" class="headerlink" title="机器学习中的维度灾难"></a>机器学习中的维度灾难</h1><p>在介绍机器学习的维度灾难之前，我推荐给大家一个网站，名字虽然说是<a href="https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">计算机视觉的傻瓜书</a>，但是有关机器学习的答疑部分它做得还是蛮好的。除此之外还有<a href="https://www.kdnuggets.com/news/index.html">KDnuggest</a>，也是有关机器学习的论坛。</p>
+<p>本文是参考<a href="https://www.jianshu.com/p/867193608bbd">简书-红色石头Will</a>所得到的观点，虽然他是翻译<a href="https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">计算机视觉的傻瓜书</a>的，但是对于我理解维度灾难起着指导方向的作用。</p>
+<h2 id="1-介绍维度灾难"><a href="#1-介绍维度灾难" class="headerlink" title="1.介绍维度灾难"></a>1.介绍维度灾难</h2><p>维度灾难是在设计一个分类器的时候需要注意的问题。为了得到更好的分类效果，我们可以无限的增加特征。但是事实上，特征数量超过一定值的时候，分类器的效果反而会下降。这种由于特征数量太多导致的分类效果下降的情况，就被称作是<strong>维度灾难</strong>。</p>
+<h2 id="2-维度灾难与过拟合"><a href="#2-维度灾难与过拟合" class="headerlink" title="2.维度灾难与过拟合"></a>2.维度灾难与过拟合</h2><p>貌似特征越多，越有可能实现正确分类，但是情况并非如此。一个直观的情况时，随着特征维度的增加，训练样本在特征空间中的密度是呈指数下降的。</p>
+<blockquote>
+<p>样本数不变，但是特征空间不断地增加，那训练样本在特征空间中的密度岂不是就是呈指数下降的？</p>
+</blockquote>
+<p>如果我们继续增加特征，整个特征空间维度增加，并变得越来越稀疏。由于稀疏性，我们更加容易找到一个超平面来实现分类。这是因为随着特征数量变得无限大，训练样本在最佳超平面的错误侧的可能性将会变得无限小。然而，如果我们将高维的分类结果投影到低维空间中，将会出现一个严重的问题。</p>
+<p>比如说样本数据在3D是线性可分的，但是在2D却并非如此。事实上，增加第三个维度来获得最佳的线性分类效果，等同于在低维特征空间中使用非线性分类器。其结果是，分类器学习了训练数据的噪声和异常，而对样本外的数据拟合效果并不理想，甚至很差。这个概念称为过拟合，是维度灾难的一个直接后果。</p>
+<p><em>换句话讲，如果增加特征维度，为了覆盖同样的特征值范围，防止过拟合，需要用到的样本数就会呈指数型增长！</em></p>
+<h2 id="3-维度灾难与数据稀疏程度分布不均"><a href="#3-维度灾难与数据稀疏程度分布不均" class="headerlink" title="3.维度灾难与数据稀疏程度分布不均"></a>3.维度灾难与数据稀疏程度分布不均</h2><p>我们展示了维度灾难会引起训练数据的稀疏化。使用的特征越多，数据就会变得越稀疏，从而导致分类器的分类效果就会越差。维度灾难还会造成<strong>搜索空间的数据稀疏程度</strong>分布不均。事实上，围绕原点的数据（在超立方体的中心）比在搜索空间的角落处的数据要稀疏得多。</p>
+<p>举例2D，如果大部分的样本都落在了单位内接圆里的话，会更容易分类。但是在高维的空间中，大部分的训练数据都是分布在定义为特征空间的超立方体的角落处，导致难以分类。、</p>
+<p>对于8维的超球体，大约98%的数据集中在它256个角落处。其结果是，当特征空间的维度变得无限大时，从样本点到质心的最大、最小欧氏距离的差值与其最小欧式距离的比值趋于零。因此，距离测量在高维空间中逐渐变得无效。因为分类器是基于这些距离测量的（例如Euclidean距离、Mahalanobis距离、Manhattan距离），所以低维空间特征更少，分类更加容易。同样地，在高维空间的高斯分布会变平坦且尾巴更长。</p>
+<h2 id="4-如何避免维度灾难"><a href="#4-如何避免维度灾难" class="headerlink" title="4.如何避免维度灾难"></a>4.如何避免维度灾难</h2><p>很遗憾，在分类问题中，没有固定的规则来指定该使用多少特征。事实上，用多少特征量取决于你训练样本的数量、决策边界的复杂性和使用的是啥分类器。</p>
+<p>比如说一些非线性决策边界的分类器（e.g. 神经网络、KNN分类器、决策树等），它们的分类效果虽然好，但是泛化能力差容易发生过拟合，这个时候就需要降低点维度。如果使用泛化能力稍微好点的（e.g. 贝叶斯分类器、线性分类器），那么就可以使用稍微多一点的特征。</p>
+<h2 id="5-参考链接"><a href="#5-参考链接" class="headerlink" title="5.参考链接"></a>5.参考链接</h2><blockquote>
+<p><a href="https://www.jianshu.com/p/867193608bbd">简书</a><br><a href="https://cloud.tencent.com/developer/article/1143269">手工特征选取降维</a><br><a href="https://www.kdnuggets.com/2015/03/deep-learning-curse-dimensionality-autoencoders.html">原文</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Mathine Learning</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>网格搜索</title>
+    <url>/2022/11/24/%E7%BD%91%E6%A0%BC%E6%90%9C%E7%B4%A2/</url>
+    <content><![CDATA[<p>在进行机器学习的过程中，最为核心的概念就是参数了，要得到最好的参数可以采取网格搜索策略。网格搜索是应用最广泛的超参数搜索算法，网格搜索通过查找搜索范围内的所有的点，来确定最优值。</p>
+<span id="more"></span>
+
+<h1 id="调节超参数的方法-GridSearchCV网格搜索"><a href="#调节超参数的方法-GridSearchCV网格搜索" class="headerlink" title="调节超参数的方法-GridSearchCV网格搜索"></a>调节超参数的方法-GridSearchCV网格搜索</h1><p><em>在进行机器学习的过程中，最为核心的概念就是参数了，而参数又可以分为模型参数和超参数。模型参数指的是我们使用的模型根据训练数据的分布学习到的参数，这一部分是不需要我们人为的先验知识。而超参数是在开始学习之前需要设置的一组参数，而不是通过训练得到的参数数据。通常情况下，需要对超参数进行优化，给模型选择一组最优的超参数，以提高学习的性能与效果。</em></p>
+<p>这里简单介绍一下常用的超参数调参方法:除了网格搜索，还有随机搜索、贝叶斯优化和自动超参搜索（遗传算法GA）</p>
+<h2 id="网格搜索"><a href="#网格搜索" class="headerlink" title="网格搜索"></a>网格搜索</h2><p>网格搜索是应用最广泛的超参数搜索算法，网格搜索通过查找搜索范围内的所有的点，来确定最优值。一般通过给出较大的搜索范围以及较小的步长，网格搜索是一定可以找到全局最大值或最小值的。但是，网格搜索一个比较大的问题是，它<strong>十分消耗计算资源</strong>，特别是需要调优的超参数比较多的时候。在比赛中，需要调参的模型数量与对应的超参数比较多，而涉及的数据量又比较大，因此相当的耗费时间。<em>此外，由于给出的超参数组合比较多，因此一般都会固定多数参数，分步对1~2个超参数进行调解，这样能够减少时间但是缺难以自动化进行，而且由于目标参数一般是非凸的，因此容易陷入局部最小值。</em></p>
+<p><a href="https://www.jianshu.com/p/5378ef009cae">原作者</a>是用网格搜索来寻找LightGBM的最优超参数，这里我尝试用它来寻找XGBoost的最优超参数。一方面当做学习，另一方面是当做完成上一次机器学习的拓展作业。</p>
+<h2 id="简单介绍需要向GridSearchCV内传什么东西？"><a href="#简单介绍需要向GridSearchCV内传什么东西？" class="headerlink" title="简单介绍需要向GridSearchCV内传什么东西？"></a>简单介绍需要向GridSearchCV内传什么东西？</h2><p>要实现网格搜索，肯定得暴力遍历超参数。查找GridSearchCV函数的参数，其中有一项是含有待优化超参的字典。<a href="https://github.com/scikit-learn/scikit-learn/blob/0fb307bf3/sklearn/model_selection/_search.py#L867">官方</a>给的参数如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sklearn.model_selection.GridSearchCV(estimator, param_grid, *, scoring=<span class="literal">None</span>, n_jobs=<span class="literal">None</span>, iid=<span class="string">&#x27;deprecated&#x27;</span>, refit=<span class="literal">True</span>, cv=<span class="literal">None</span>, verbose=<span class="number">0</span>, pre_dispatch=<span class="string">&#x27;2*n_jobs&#x27;</span>, error_score=nan, return_train_score=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p>其中重要的参数说明如下：</p>
+<ol>
+<li>estimator：表示选择使用的分类器，并且需要传入除了需要确定最佳的参数之外的其他参数。<em>（还有什么参数？不是很清楚）</em>每一个分类器都需要一个scoring参数，或者说是score方法，例子如下：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">estimator = RandomForestClassifier(min_sample_split=100,min_samples_leaf = 20,max_depth = 8,max_features = &#x27;sqrt&#x27; , random_state =10)</span><br></pre></td></tr></table></figure></li>
+<li>param_grid：需要最优化的参数的取值，值为字典或者列表，例如：</li>
+</ol>
+<p><code>param_grid = param_test1, param_test1 = &#123;&#39;n_estimators&#39; : range(10,71,10)&#125;</code><br>或者另外一种表达形式：<br><code>param_grid = [&#123;&#39;n_estimators&#39;: [3, 10, 30],&#39;max_features&#39;: [2, 4, 6, 8]&#125;,&#123;&#39;bootstrap&#39;: [False],&#39;n_estimators&#39;: [3, 10],&#39;max_features&#39;: [2, 3, 4]&#125;,</code><br>3. scoring &#x3D; None ：模型评价标准，默认为None，这时需要使用score函数；或者如scoring &#x3D; ‘roc_auc’，根据所选模型不同，评价准则不同，字符串（函数名），或是可调用对象，需要其函数签名，形如：scorer(estimator，X，y）；如果是None，则使用estimator的误差估计函数。<br>4. n_jobs &#x3D; 1 ： n_jobs：并行数，默认为1，当n_jobs &#x3D; -1：表示使用所有处理器（建议）<br>5. refit &#x3D; True ：默认为True，程序将会以交叉验证训练集得到的最佳参数，重新对所有可能的训练集与开发集进行，作为最终用于性能评估的最佳模型参数。即在搜索参数结束后，用最佳参数结果再次fit一遍全部数据集（不用管即可）<br>6. cv &#x3D; None：交叉验证参数，默认None，使用五折交叉验证。指定fold数量，默认为5(之前版本为3)，也可以是yield训练&#x2F;测试数据的生成器</p>
+<h1 id="寻找XGBoost的参数及一般定义范围"><a href="#寻找XGBoost的参数及一般定义范围" class="headerlink" title="寻找XGBoost的参数及一般定义范围"></a>寻找XGBoost的参数及一般定义范围</h1><p>首先要知道xgb.XGBRegressor的<a href="https://xgboost.readthedocs.io/en/latest/parameter.html#general-parameters">参数分布</a>,这一点可以靠查询官方文档，或者寻找<a href="https://www.codeleading.com/article/77024318818/">相关的资料</a>进行补充。由于代码格式我想参照<a href="https://www.jianshu.com/p/5378ef009cae">简书某博主</a>的写法，所以需要找到xgboost的参数并且规定遍历的范围。</p>
+<p>找到机器学习实验二的XGBoost部分代码，然后根据参数规范范围。因为现在对参数并不熟悉，我打算对参数的范围规定的大一点，以便可以找到全局最优解。</p>
+<h1 id="装库跑代码"><a href="#装库跑代码" class="headerlink" title="装库跑代码"></a>装库跑代码</h1><p>在Anaconda上执行命令<strong>conda install py-xgboost</strong>，下载到所需要用到的xgboost库（另外还有<strong>from sklearn.model_selection import GridSearchCV</strong>）。我发现上面下载xgboost库的conda指令慢的离谱（其实<strong>pip install xgboost</strong>也很慢），于是换清华源<strong>pip install xgboost -i <a href="https://pypi.tuna.tsinghua.edu.cn/simple">https://pypi.tuna.tsinghua.edu.cn/simple</a></strong>，速度嘎嘎起飞。虽然也是在Anaconda上执行的pip指令，但是pip用起来真就是比conda舒服。</p>
+<p>在<a href="https://www.jianshu.com/p/5378ef009cae">参考代码</a>处我们发现了有一段代码很奇怪,<code>regr = lgb.LGBMRegressor(**params)</code>这里的 **号是什么意思呢？这里的 **params其实指的是，你在上面代码所输入的字典形式的变量。如果你想研究更多有关*和**的实例，可以参考以下这篇<a href="https://blog.csdn.net/zkk9527/article/details/88675129">博文</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">from sklearn.model_selection import GridSearchCV</span><br><span class="line">import numpy as np</span><br><span class="line">import xgboost as xgb</span><br><span class="line">import pandas as pd</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def GridSearch(clf, params, X, y):</span><br><span class="line">    cscv = GridSearchCV(</span><br><span class="line">        clf, params, scoring=&quot;neg_mean_squared_error&quot;, n_jobs=1, cv=5)</span><br><span class="line">    cscv.fit(X, y)</span><br><span class="line">    print(cscv.cv_results_)</span><br><span class="line">    print(cscv.best_params_)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def Dataprocessing(trainPath):</span><br><span class="line">    training_set = pd.read_csv(trainPath)</span><br><span class="line">    training_set.drop(&quot;Id&quot;, axis=1, inplace=True)</span><br><span class="line">    training_set = training_set.drop(training_set[(</span><br><span class="line">        training_set[&#x27;GrLivArea&#x27;] &gt; 4000) &amp; (training_set[&#x27;SalePrice&#x27;] &lt; 300000)].index)</span><br><span class="line">    train_y = training_set.SalePrice.values</span><br><span class="line">    train_x = training_set.drop(&quot;SalePrice&quot;, axis=1, inplace=True)</span><br><span class="line">    return train_x, train_y</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    train_x, train_y = Dataprocessing(&#x27;train.csv&#x27;)</span><br><span class="line"></span><br><span class="line">    params = &#123;</span><br><span class="line">        &#x27;colsample_bytree&#x27;: 0.4603,</span><br><span class="line">        &#x27;gamma&#x27;: 0.0468,</span><br><span class="line">        &#x27;learning_rate&#x27;: 0.05,</span><br><span class="line">        &#x27;max_depth&#x27;: 3,</span><br><span class="line">        &#x27;min_child_weight&#x27;: 1.7817,</span><br><span class="line">        &#x27;n_estimators&#x27;: 2200,</span><br><span class="line">        &#x27;reg_alpha&#x27;: 0.4640,</span><br><span class="line">        &#x27;reg_lambda&#x27;: 0.8571,</span><br><span class="line">        &#x27;subsample&#x27;: 0.5213,</span><br><span class="line">        &#x27;silent&#x27;: 1,</span><br><span class="line">        &#x27;random_state&#x27;: 7,</span><br><span class="line">        &#x27;nthread&#x27;: -1</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    regr = xgb.XGBRegressor(**params)</span><br><span class="line"></span><br><span class="line">    adj_params = &#123;</span><br><span class="line">        &#x27;colsample_bytree&#x27;: np.arange(0.1, 1, 0.1),</span><br><span class="line">        &#x27;gamma&#x27;: [0.01, 0.1, 1],</span><br><span class="line">        &#x27;learning_rate&#x27;: [0.01, 0.1, 1],</span><br><span class="line">        &#x27;max_depth&#x27;: range(1, 11),</span><br><span class="line">        &#x27;min_child_weight&#x27;: np.arange(0.1, 2, 0.1),</span><br><span class="line">        &#x27;n_estimators&#x27;: range(300, 1000, 100),</span><br><span class="line">        &#x27;reg_alpha&#x27;: [0.01, 0.1, 1],</span><br><span class="line">        &#x27;reg_lambda&#x27;: [0.01, 0.1, 1],</span><br><span class="line">        &#x27;subsample&#x27;: [0.01, 0.1, 1],</span><br><span class="line">        # &#x27;silent&#x27;:1,</span><br><span class="line">        &#x27;random_state&#x27;: range(1, 11),</span><br><span class="line">        # &#x27;nthread&#x27;:-1</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    GridSearch(regr, adj_params, train_x, train_y)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>代码实在是跑不动，估计是参数有些缺了的问题，具体操作方法先贴在这里，等到下次有项目的时候再继续研究吧！</p>
+<h2 id="随机搜索"><a href="#随机搜索" class="headerlink" title="随机搜索"></a>随机搜索</h2><p>与网格搜索相比，随机搜索并没有尝试所有给定的参数值，而是从指定的分布中采样固定数量的参数设置。它的理论依据是，如果随即样本点集足够大，那么也可以找到全局的最大或最小值，或它们的近似值。通过对搜索范围的随机取样，随机搜索一般会比网格搜索要快一些。但是和网格搜索的快速版（非自动版）相似，结果也是没法保证的。</p>
+<p>随机搜索的过程如下，使用方法与网格搜索完全一致：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import lightgbm as lgb</span><br><span class="line">from sklearn.model_selection import  RandomizedSearchCV</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def RandomSearch(clf, params, X, y):</span><br><span class="line">    rscv = RandomizedSearchCV(clf, params, scoring=&#x27;neg_mean_squared_error&#x27;, n_jobs=1, cv=5)</span><br><span class="line">    rscv.fit(X, y)</span><br><span class="line"></span><br><span class="line">    print(rscv.cv_results_)</span><br><span class="line">    print(rscv.best_params_)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    train_X, train_y = get_data()</span><br><span class="line"></span><br><span class="line">    param = &#123;</span><br><span class="line">        &#x27;objective&#x27;: &#x27;regression&#x27;,</span><br><span class="line">        &#x27;n_estimators&#x27;: 275,</span><br><span class="line">        &#x27;max_depth&#x27;: 6,</span><br><span class="line">        &#x27;min_child_samples&#x27;: 20,</span><br><span class="line">        &#x27;reg_lambd&#x27;: 0.1,</span><br><span class="line">        &#x27;reg_alpha&#x27;: 0.1,</span><br><span class="line">        &#x27;metric&#x27;: &#x27;rmse&#x27;,</span><br><span class="line">        &#x27;colsample_bytree&#x27;: 1,</span><br><span class="line">        &#x27;subsample&#x27;: 0.8,</span><br><span class="line">        &#x27;num_leaves&#x27; : 40,</span><br><span class="line">        &#x27;random_state&#x27;: 2018</span><br><span class="line">        &#125;</span><br><span class="line">    regr = lgb.LGBMRegressor(**param)</span><br><span class="line"></span><br><span class="line">    adj_params = &#123;&#x27;n_estimators&#x27;: range(100, 400, 10),</span><br><span class="line">                 &#x27;min_child_weight&#x27;: range(3, 20, 2),</span><br><span class="line">                 &#x27;colsample_bytree&#x27;: np.arange(0.4, 1.0),</span><br><span class="line">                 &#x27;max_depth&#x27;: range(5, 15, 2),</span><br><span class="line">                 &#x27;subsample&#x27;: np.arange(0.5, 1.0, 0.1),</span><br><span class="line">                 &#x27;reg_lambda&#x27;: np.arange(0.1, 1.0, 0.2),</span><br><span class="line">                 &#x27;reg_alpha&#x27;: np.arange(0.1, 1.0, 0.2),</span><br><span class="line">                 &#x27;min_child_samples&#x27;: range(10, 30)&#125;</span><br><span class="line"></span><br><span class="line">    RandomSearch(regr , adj_params , train_X, train_y)</span><br></pre></td></tr></table></figure>
+
+<h2 id="贝叶斯优化"><a href="#贝叶斯优化" class="headerlink" title="贝叶斯优化"></a>贝叶斯优化</h2><p>贝叶斯优化用于机器学习调参由J. Snoek(2012)提出，主要思想是，给定优化的目标函数(广义的函数，只需指定输入和输出即可，无需知道内部结构以及数学性质)，通过不断地添加样本点来更新目标函数的后验分布(高斯过程,直到后验分布基本贴合于真实分布。简单的说，就是考虑了上一次参数的信息，从而更好的调整当前的参数。</p>
+<p><em>贝叶斯优化与常规的网格搜索或者随机搜索的区别是：</em></p>
+<ol>
+<li>贝叶斯调参采用高斯过程，考虑之前的参数信息，不断地更新先验；网格搜索未考虑之前的参数信息</li>
+<li>贝叶斯调参迭代次数少，速度快；网格搜索速度慢,参数多时易导致<strong>维度爆炸</strong></li>
+<li>贝叶斯调参针对非凸问题依然稳健；网格搜索针对非凸问题易得到局部优最</li>
+</ol>
+<p>如果想要深究贝叶斯优化，可以参考<a href="https://www.sohu.com/a/165565029_465975">这里</a></p>
+<h2 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h2><p>其他常见的超参数优化方法还有比如自动超参搜索（遗传算法）等等，方法总比问题多，对不同的问题总需要根据情况使用不同的方法来解决。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ol>
+<li><a href="https://www.sohu.com/a/165565029_465975">搜狐新闻-贝叶斯优化细究</a></li>
+<li><a href="https://www.jianshu.com/p/d240dbd62d45">简书-炼丹美学</a></li>
+<li><a href="https://www.cnblogs.com/dalege/p/14175192.html">博客园-具体使用GridSearchCV</a></li>
+<li><a href="https://www.codeleading.com/article/77024318818/">代码先锋网-具体调试LightGBM</a><em>让我清楚了，调参也是得按顺序来的，没有说一口气调完全部</em></li>
+<li><a href="https://blog.csdn.net/csiao_Bing/article/details/84978725">CSDN-XGBoost参数详解</a></li>
+<li><a href="https://blog.csdn.net/Ling_Ze/article/details/126045472">CSDN-XGBoost参数详解</a></li>
+<li><a href="https://www.jianshu.com/p/5378ef009cae">简书-超参调节之我主要参考!</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Mathine Learning</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+        <tag>调参</tag>
       </tags>
   </entry>
 </search>
