@@ -1,32 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>cv2报错处理</title>
-    <url>/2022/11/24/cv2%E6%8A%A5%E9%94%99%E5%A4%84%E7%90%86/</url>
-    <content><![CDATA[<p>cv2报错：raise TypeError(“Image data of dtype {} cannot be converted to “TypeError: Image data of dtype object cannot be converted to float</p>
+    <title>Jupyter Notebook</title>
+    <url>/2022/11/23/Jupyter-Notebook/</url>
+    <content><![CDATA[<p>Jupyter Notebook的常见操作-需要熟记！</p>
 <span id="more"></span>
 
-<h1 id="raise-TypeError-“Image-data-of-dtype-cannot-be-converted-to-“-TypeError-Image-data-of-dtype-object-cannot-be-converted-to-float"><a href="#raise-TypeError-“Image-data-of-dtype-cannot-be-converted-to-“-TypeError-Image-data-of-dtype-object-cannot-be-converted-to-float" class="headerlink" title="raise TypeError(“Image data of dtype {} cannot be converted to “     TypeError: Image data of dtype object cannot be converted to float"></a>raise TypeError(“Image data of dtype {} cannot be converted to “     TypeError: Image data of dtype object cannot be converted to float</h1><p>刚想要研究一下CV2内置的图像类型的不同，结果发现CSDN上找的代码跑不出来？其实也正常，天下哪有免费的午餐，拿到的代码还不是得修修改改？</p>
-<h1 id="报错如下"><a href="#报错如下" class="headerlink" title="报错如下"></a>报错如下</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">raise TypeError(&quot;Image data of dtype &#123;&#125; cannot be converted to &quot;     TypeError: Image data of dtype object cannot be converted to float</span><br></pre></td></tr></table></figure>
-
-<p>至于解决方案众说纷坛，有说要看看数据类型是不是不对应，还有的人说路径里面有中文。其实我的文件夹真的有中文，但是更改之后，报错依旧。</p>
-<p>网上都说是引入图片路径的问题，但是我这句代码应该也没有错吧？因为下载的visual code插件可以成功显示出图片在代码的左边，左思右想决定还是更改路径试试。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># cv2.imread()接口读图像，读进来直接是BGR 格式数据格式在 0~255，通道格式为(W,H,C)</span><br><span class="line">img_BGR = cv2.imread(&#x27;sea.jpg&#x27;)</span><br></pre></td></tr></table></figure>
-
-<p>更改成visual code直接复制图片的相对路径</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">img_BGR = cv2.imread(&#x27;web\sea.jpg&#x27;)</span><br></pre></td></tr></table></figure>
-
-<p>后面发现真的成功运行。这次运行的代码文件和图片文件在同一个文件夹里，但是却要加个前缀，可能与我IDE打开的工作区有关吧？</p>
-<p>总之就是路径的问题。</p>
-<h1 id="不存在skimage库"><a href="#不存在skimage库" class="headerlink" title="不存在skimage库"></a>不存在skimage库</h1><p>Python库函数的下载放到了另外一篇文章…</p>
+<h1 id="Jupyter-Notebook常见快捷键操作"><a href="#Jupyter-Notebook常见快捷键操作" class="headerlink" title="Jupyter Notebook常见快捷键操作"></a>Jupyter Notebook常见快捷键操作</h1><blockquote>
+<p>首先要知道Jupyter有三种cell类型</p>
+</blockquote>
+<ol>
+<li><strong>Code</strong></li>
+<li><strong>Markdown</strong></li>
+<li><strong>Raw NBConvert</strong>（普通文本，运行不会输出结果）</li>
+</ol>
+<blockquote>
+<p>两种模式</p>
+</blockquote>
+<ol>
+<li><strong>编辑模式（Enter）</strong></li>
+<li><strong>命令模式（Esc）</strong></li>
+</ol>
+<h2 id="1-两种模式都可以使用的快捷键"><a href="#1-两种模式都可以使用的快捷键" class="headerlink" title="1.两种模式都可以使用的快捷键"></a>1.两种模式都可以使用的快捷键</h2><ul>
+<li><strong>Shift+Enter</strong>执行本单元代码，并且跳转到下一单元</li>
+<li><strong>Ctrl+Enter</strong>执行本单元代码，留在本单元</li>
+</ul>
+<h2 id="2-命令模式"><a href="#2-命令模式" class="headerlink" title="2.命令模式"></a>2.命令模式</h2><ul>
+<li><strong>Y</strong>：cell切换到Code模式</li>
+<li><strong>M</strong>：cell切换到Markdown模式</li>
+<li><strong>A</strong>：在当前cell的上面添加cell</li>
+<li><strong>B</strong>：在当前cell的下面添加cell</li>
+<li><strong>双击D</strong>：删除当前cell</li>
+<li><strong>Z</strong>：回退</li>
+<li><strong>Ctrl+Shift+减号</strong>：分隔cell，在光标处</li>
+<li><strong>L</strong>：为当前cell加上行号</li>
+</ul>
+<h2 id="3-编辑模式：按Enter或鼠标单击代码块内部进入"><a href="#3-编辑模式：按Enter或鼠标单击代码块内部进入" class="headerlink" title="3.编辑模式：按Enter或鼠标单击代码块内部进入"></a>3.编辑模式：按Enter或鼠标单击代码块内部进入</h2><ul>
+<li><strong>Ctrl+鼠标单击</strong>：多光标操作</li>
+<li><strong>Ctrl+Z</strong>：回退</li>
+<li><strong>Tab键</strong>：代码补全</li>
+<li><strong>Ctrl</strong>：注释多行代码</li>
+</ul>
 ]]></content>
       <categories>
-        <category>Library function</category>
+        <category>notebook operation</category>
       </categories>
-      <tags>
-        <tag>report an error</tag>
-        <tag>库函数</tag>
-      </tags>
   </entry>
   <entry>
     <title>L1和L2正则化</title>
@@ -85,75 +103,6 @@
       </categories>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2022/11/20/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-      <categories>
-        <category>blog            //文章分类</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Jupyter Notebook</title>
-    <url>/2022/11/23/Jupyter-Notebook/</url>
-    <content><![CDATA[<p>Jupyter Notebook的常见操作-需要熟记！</p>
-<span id="more"></span>
-
-<h1 id="Jupyter-Notebook常见快捷键操作"><a href="#Jupyter-Notebook常见快捷键操作" class="headerlink" title="Jupyter Notebook常见快捷键操作"></a>Jupyter Notebook常见快捷键操作</h1><blockquote>
-<p>首先要知道Jupyter有三种cell类型</p>
-</blockquote>
-<ol>
-<li><strong>Code</strong></li>
-<li><strong>Markdown</strong></li>
-<li><strong>Raw NBConvert</strong>（普通文本，运行不会输出结果）</li>
-</ol>
-<blockquote>
-<p>两种模式</p>
-</blockquote>
-<ol>
-<li><strong>编辑模式（Enter）</strong></li>
-<li><strong>命令模式（Esc）</strong></li>
-</ol>
-<h2 id="1-两种模式都可以使用的快捷键"><a href="#1-两种模式都可以使用的快捷键" class="headerlink" title="1.两种模式都可以使用的快捷键"></a>1.两种模式都可以使用的快捷键</h2><ul>
-<li><strong>Shift+Enter</strong>执行本单元代码，并且跳转到下一单元</li>
-<li><strong>Ctrl+Enter</strong>执行本单元代码，留在本单元</li>
-</ul>
-<h2 id="2-命令模式"><a href="#2-命令模式" class="headerlink" title="2.命令模式"></a>2.命令模式</h2><ul>
-<li><strong>Y</strong>：cell切换到Code模式</li>
-<li><strong>M</strong>：cell切换到Markdown模式</li>
-<li><strong>A</strong>：在当前cell的上面添加cell</li>
-<li><strong>B</strong>：在当前cell的下面添加cell</li>
-<li><strong>双击D</strong>：删除当前cell</li>
-<li><strong>Z</strong>：回退</li>
-<li><strong>Ctrl+Shift+减号</strong>：分隔cell，在光标处</li>
-<li><strong>L</strong>：为当前cell加上行号</li>
-</ul>
-<h2 id="3-编辑模式：按Enter或鼠标单击代码块内部进入"><a href="#3-编辑模式：按Enter或鼠标单击代码块内部进入" class="headerlink" title="3.编辑模式：按Enter或鼠标单击代码块内部进入"></a>3.编辑模式：按Enter或鼠标单击代码块内部进入</h2><ul>
-<li><strong>Ctrl+鼠标单击</strong>：多光标操作</li>
-<li><strong>Ctrl+Z</strong>：回退</li>
-<li><strong>Tab键</strong>：代码补全</li>
-<li><strong>Ctrl</strong>：注释多行代码</li>
-</ul>
-]]></content>
-      <categories>
-        <category>notebook operation</category>
-      </categories>
-  </entry>
-  <entry>
     <title>github文件夹有白色箭头并且不能打开的解决办法</title>
     <url>/2022/11/20/github%E6%96%87%E4%BB%B6%E5%A4%B9%E6%9C%89%E7%99%BD%E8%89%B2%E7%AE%AD%E5%A4%B4%E5%B9%B6%E4%B8%94%E4%B8%8D%E8%83%BD%E6%89%93%E5%BC%80%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
     <content><![CDATA[<p>Github文件夹有白色箭头并且不能打开?可能是因为你提交的Git文件中有叫做.git的文件！</p>
@@ -177,44 +126,55 @@
       </tags>
   </entry>
   <entry>
-    <title>Last summer whisper-杏里</title>
-    <url>/2022/11/26/last-summer-whisper/</url>
-    <content><![CDATA[<p>六七十年代日本歌曲-Last Summer Whisper，有夏天的感觉，但感觉更多的是烦恼…</p>
+    <title>cv2报错处理</title>
+    <url>/2022/11/24/cv2%E6%8A%A5%E9%94%99%E5%A4%84%E7%90%86/</url>
+    <content><![CDATA[<p>cv2报错：raise TypeError(“Image data of dtype {} cannot be converted to “TypeError: Image data of dtype object cannot be converted to float</p>
 <span id="more"></span>
 
-<div class="video-container"><iframe src="https://www.youtube.com/embed/SNq4zqTN_DQ" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+<h1 id="raise-TypeError-“Image-data-of-dtype-cannot-be-converted-to-“-TypeError-Image-data-of-dtype-object-cannot-be-converted-to-float"><a href="#raise-TypeError-“Image-data-of-dtype-cannot-be-converted-to-“-TypeError-Image-data-of-dtype-object-cannot-be-converted-to-float" class="headerlink" title="raise TypeError(“Image data of dtype {} cannot be converted to “     TypeError: Image data of dtype object cannot be converted to float"></a>raise TypeError(“Image data of dtype {} cannot be converted to “     TypeError: Image data of dtype object cannot be converted to float</h1><p>刚想要研究一下CV2内置的图像类型的不同，结果发现CSDN上找的代码跑不出来？其实也正常，天下哪有免费的午餐，拿到的代码还不是得修修改改？</p>
+<h1 id="报错如下"><a href="#报错如下" class="headerlink" title="报错如下"></a>报错如下</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">raise TypeError(&quot;Image data of dtype &#123;&#125; cannot be converted to &quot;     TypeError: Image data of dtype object cannot be converted to float</span><br></pre></td></tr></table></figure>
 
-<p><strong>Last Summer Whisper</strong></p>
-<p>作词：角松敏生<br>作曲：角松敏生</p>
-<hr>
-<p>夏の雨上りの街に　そっと灯りまたたきだす</p>
-<p>别れの后で电话をしたことを</p>
-<p>ゆるして欲しいけど　ねえ</p>
-<p>もう一度だけあの店で会いたい</p>
-<p>それで终りにする</p>
-<p>Baby love again　二人の爱はもどりはしないけど</p>
-<p>Baby love again　せめてあなたをにくみたくはないの</p>
-<p>好きな香りつけてきたの　夏の黄昏によく似合うわ</p>
-<p>あの日のままで　话をして欲しい</p>
-<p>海の好きなあなた　ねぇ　私はずっと頬づえつきながら</p>
-<p>闻いてるだけでいい</p>
-<p>Baby love again　やさしさだけが重すぎただけなの</p>
-<p>Baby love again　せめて笑ってこの夜终らすわ</p>
-<p>明日から二人　别々の日々でも　この街のどこかでね</p>
-<p>生きてるかぎり　会える気がするのよ</p>
-<p>その时は笑颜で</p>
-<p>Baby love again　二人の爱はもどりはしないけど</p>
-<p>Baby love again　せめてあなたをにくみたくはないの</p>
-<p>にくみたくはないの…</p>
-<hr>
+<p>至于解决方案众说纷坛，有说要看看数据类型是不是不对应，还有的人说路径里面有中文。其实我的文件夹真的有中文，但是更改之后，报错依旧。</p>
+<p>网上都说是引入图片路径的问题，但是我这句代码应该也没有错吧？因为下载的visual code插件可以成功显示出图片在代码的左边，左思右想决定还是更改路径试试。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># cv2.imread()接口读图像，读进来直接是BGR 格式数据格式在 0~255，通道格式为(W,H,C)</span><br><span class="line">img_BGR = cv2.imread(&#x27;sea.jpg&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>更改成visual code直接复制图片的相对路径</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">img_BGR = cv2.imread(&#x27;web\sea.jpg&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>后面发现真的成功运行。这次运行的代码文件和图片文件在同一个文件夹里，但是却要加个前缀，可能与我IDE打开的工作区有关吧？</p>
+<p>总之就是路径的问题。</p>
+<h1 id="不存在skimage库"><a href="#不存在skimage库" class="headerlink" title="不存在skimage库"></a>不存在skimage库</h1><p>Python库函数的下载放到了另外一篇文章…</p>
 ]]></content>
       <categories>
-        <category>Things of Interest</category>
+        <category>Library function</category>
       </categories>
       <tags>
-        <tag>音视频</tag>
-        <tag>Youtube</tag>
+        <tag>report an error</tag>
+        <tag>库函数</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/11/20/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+      <categories>
+        <category>blog            //文章分类</category>
+      </categories>
   </entry>
   <entry>
     <title>pip安装新库</title>
@@ -249,34 +209,6 @@
         <tag>库函数</tag>
         <tag>安装</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>交叉验证补充</title>
-    <url>/2022/11/23/%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81%E8%A1%A5%E5%85%85/</url>
-    <content><![CDATA[<p>前面我介绍了K折交叉验证该如何划分，还有具体的使用效果。但是对于K折交叉验证该什么时候用，怎么使用还没有讲的很清楚，这里我就再学习一遍加深记忆吧！</p>
-<span id="more"></span>
-
-<h1 id="交叉验证补充"><a href="#交叉验证补充" class="headerlink" title="交叉验证补充"></a>交叉验证补充</h1><p>事情的起因是我看到了下面一段代码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">from sklearn.model_selection import KFold, train_test_split</span><br></pre></td></tr></table></figure>
-
-<p>这个KFolder怎么和train_test_split都在一起？我查了一下，发现train_test_split就是我之前所鄙夷的简单交叉验证。没有验证集，都是总集合不断打乱然后划分训练集和测试集，利用测试集的表现性能（也就是损失函数）来评估最优的模型和参数。由于是随机的将原始数据分组，所以最后验证集分类准确率的高低与原始数据的分组有很大的关系，得到的结果并不具有说服性<a href="https://blog.csdn.net/u010986753/article/details/98069124">…</a></p>
-<h1 id="对K折交叉验证的再理解"><a href="#对K折交叉验证的再理解" class="headerlink" title="对K折交叉验证的再理解"></a>对K折交叉验证的再理解</h1><p>前面我介绍了K折交叉验证该如何划分，还有具体的使用效果。但是对于K折交叉验证该什么时候用，怎么使用还没有讲的很清楚，这里我就再学习一遍加深记忆吧！</p>
-<p>K折交叉只是一种划分数据集的策略。把它和传统划分数据集（train_test_split）的方式进行比较，它可以避免固定划分数据集的局限性、特殊性，这个优势在小规模数据集上更明显。不用K折交叉验证就不能进行模型评估和模型选择了吗？当然不是。只要有测试集，就能进行模型评估；只要有验证集，就能进行模型选择。所以N折交叉验证只是在做这两件事时的一种可选的优化手段。当数据集很小时，建议用交叉验证的方法来避免过拟合。</p>
-<p>引用<a href="https://zhuanlan.zhihu.com/p/113623623">王亮博主</a>的观点，K折交叉验证可以分成两个用途：</p>
-<ol>
-<li>模型选择</li>
-<li>模型评估</li>
-</ol>
-<h2 id="1-模型选择"><a href="#1-模型选择" class="headerlink" title="1.模型选择"></a>1.模型选择</h2><p>当对训练集和验证集采取Kfolder进行划分的时候，被称为是模型选择，也就是参数选择。验证集是在训练过程中用于检验模型的训练情况，从而确定合适的超参数。而测试集完全不参与训练的数据，仅仅用来观测测试效果、测试模型的泛化能力。</p>
-<p>具体的过程是，首先在训练集和验证集上对多种模型选择（超参数选择）进行验证，选出平均误差最小的模型（超参数）。选出合适的模型（超参数）后，可以把训练集和验证集合并起来，在上面重新把模型训练一遍，得到最终模型，然后再用测试集测试其泛化能力。	</p>
-<h2 id="2-模型选择"><a href="#2-模型选择" class="headerlink" title="2.模型选择"></a>2.模型选择</h2><p>交叉验证的另一个用途，就是模型是确定的，没有多个候选模型需要选，只是用交叉验证的方法来对模型的performance进行评估。这种情况下，数据集被划分成训练集、测试集两部分，训练集和测试集的划分采用N折交叉的方式。我的理解是，找出一种训练集与测试集的划分方法，让测试集的表现最好！这一点如果在数据量小的时候还好，K个组合中的分数差距可能会比较大。但如果数据量大起来了，相比这K组的测试集表现都差不多吧？这也说明了K折只适合用于小样本的数据集上…</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>当用交叉验证进行模型选择时，可以从多种模型中选择出泛化能力最好的（即最不容易发生过拟合）的模型。从这个角度上讲，交叉验证是避免发生过拟合的手段。同样是解决过拟合的方法，交叉验证与正则化不同：交叉验证通过寻找最佳模型的方式来解决过拟合；而正则化则是通过约束参数的范数来解决过拟合。</p>
-<p>当用交叉验证进行模型评估时，交叉验证不能解决过拟合问题，只能用来评估模型的performance。</p>
-<p>如果还不熟悉的话建议拿<a href="https://blog.csdn.net/weixin_43685844/article/details/88635492">练习1</a>和<a href="https://zhuanlan.zhihu.com/p/250253050">练习2</a>练练手</p>
-]]></content>
-      <categories>
-        <category>Mathine Learning</category>
-      </categories>
   </entry>
   <entry>
     <title>交叉验证</title>
@@ -320,6 +252,74 @@
       </categories>
   </entry>
   <entry>
+    <title>交叉验证补充</title>
+    <url>/2022/11/23/%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81%E8%A1%A5%E5%85%85/</url>
+    <content><![CDATA[<p>前面我介绍了K折交叉验证该如何划分，还有具体的使用效果。但是对于K折交叉验证该什么时候用，怎么使用还没有讲的很清楚，这里我就再学习一遍加深记忆吧！</p>
+<span id="more"></span>
+
+<h1 id="交叉验证补充"><a href="#交叉验证补充" class="headerlink" title="交叉验证补充"></a>交叉验证补充</h1><p>事情的起因是我看到了下面一段代码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">from sklearn.model_selection import KFold, train_test_split</span><br></pre></td></tr></table></figure>
+
+<p>这个KFolder怎么和train_test_split都在一起？我查了一下，发现train_test_split就是我之前所鄙夷的简单交叉验证。没有验证集，都是总集合不断打乱然后划分训练集和测试集，利用测试集的表现性能（也就是损失函数）来评估最优的模型和参数。由于是随机的将原始数据分组，所以最后验证集分类准确率的高低与原始数据的分组有很大的关系，得到的结果并不具有说服性<a href="https://blog.csdn.net/u010986753/article/details/98069124">…</a></p>
+<h1 id="对K折交叉验证的再理解"><a href="#对K折交叉验证的再理解" class="headerlink" title="对K折交叉验证的再理解"></a>对K折交叉验证的再理解</h1><p>前面我介绍了K折交叉验证该如何划分，还有具体的使用效果。但是对于K折交叉验证该什么时候用，怎么使用还没有讲的很清楚，这里我就再学习一遍加深记忆吧！</p>
+<p>K折交叉只是一种划分数据集的策略。把它和传统划分数据集（train_test_split）的方式进行比较，它可以避免固定划分数据集的局限性、特殊性，这个优势在小规模数据集上更明显。不用K折交叉验证就不能进行模型评估和模型选择了吗？当然不是。只要有测试集，就能进行模型评估；只要有验证集，就能进行模型选择。所以N折交叉验证只是在做这两件事时的一种可选的优化手段。当数据集很小时，建议用交叉验证的方法来避免过拟合。</p>
+<p>引用<a href="https://zhuanlan.zhihu.com/p/113623623">王亮博主</a>的观点，K折交叉验证可以分成两个用途：</p>
+<ol>
+<li>模型选择</li>
+<li>模型评估</li>
+</ol>
+<h2 id="1-模型选择"><a href="#1-模型选择" class="headerlink" title="1.模型选择"></a>1.模型选择</h2><p>当对训练集和验证集采取Kfolder进行划分的时候，被称为是模型选择，也就是参数选择。验证集是在训练过程中用于检验模型的训练情况，从而确定合适的超参数。而测试集完全不参与训练的数据，仅仅用来观测测试效果、测试模型的泛化能力。</p>
+<p>具体的过程是，首先在训练集和验证集上对多种模型选择（超参数选择）进行验证，选出平均误差最小的模型（超参数）。选出合适的模型（超参数）后，可以把训练集和验证集合并起来，在上面重新把模型训练一遍，得到最终模型，然后再用测试集测试其泛化能力。	</p>
+<h2 id="2-模型选择"><a href="#2-模型选择" class="headerlink" title="2.模型选择"></a>2.模型选择</h2><p>交叉验证的另一个用途，就是模型是确定的，没有多个候选模型需要选，只是用交叉验证的方法来对模型的performance进行评估。这种情况下，数据集被划分成训练集、测试集两部分，训练集和测试集的划分采用N折交叉的方式。我的理解是，找出一种训练集与测试集的划分方法，让测试集的表现最好！这一点如果在数据量小的时候还好，K个组合中的分数差距可能会比较大。但如果数据量大起来了，相比这K组的测试集表现都差不多吧？这也说明了K折只适合用于小样本的数据集上…</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>当用交叉验证进行模型选择时，可以从多种模型中选择出泛化能力最好的（即最不容易发生过拟合）的模型。从这个角度上讲，交叉验证是避免发生过拟合的手段。同样是解决过拟合的方法，交叉验证与正则化不同：交叉验证通过寻找最佳模型的方式来解决过拟合；而正则化则是通过约束参数的范数来解决过拟合。</p>
+<p>当用交叉验证进行模型评估时，交叉验证不能解决过拟合问题，只能用来评估模型的performance。</p>
+<p>如果还不熟悉的话建议拿<a href="https://blog.csdn.net/weixin_43685844/article/details/88635492">练习1</a>和<a href="https://zhuanlan.zhihu.com/p/250253050">练习2</a>练练手</p>
+]]></content>
+      <categories>
+        <category>Mathine Learning</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Last summer whisper-杏里</title>
+    <url>/2022/11/26/last-summer-whisper/</url>
+    <content><![CDATA[<p>六七十年代日本歌曲-Last Summer Whisper，有夏天的感觉，但感觉更多的是烦恼…</p>
+<span id="more"></span>
+
+<div class="video-container"><iframe src="https://www.youtube.com/embed/SNq4zqTN_DQ" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+
+<p><strong>Last Summer Whisper</strong></p>
+<p>作词：角松敏生<br>作曲：角松敏生</p>
+<hr>
+<p>夏の雨上りの街に　そっと灯りまたたきだす</p>
+<p>别れの后で电话をしたことを</p>
+<p>ゆるして欲しいけど　ねえ</p>
+<p>もう一度だけあの店で会いたい</p>
+<p>それで终りにする</p>
+<p>Baby love again　二人の爱はもどりはしないけど</p>
+<p>Baby love again　せめてあなたをにくみたくはないの</p>
+<p>好きな香りつけてきたの　夏の黄昏によく似合うわ</p>
+<p>あの日のままで　话をして欲しい</p>
+<p>海の好きなあなた　ねぇ　私はずっと頬づえつきながら</p>
+<p>闻いてるだけでいい</p>
+<p>Baby love again　やさしさだけが重すぎただけなの</p>
+<p>Baby love again　せめて笑ってこの夜终らすわ</p>
+<p>明日から二人　别々の日々でも　この街のどこかでね</p>
+<p>生きてるかぎり　会える気がするのよ</p>
+<p>その时は笑颜で</p>
+<p>Baby love again　二人の爱はもどりはしないけど</p>
+<p>Baby love again　せめてあなたをにくみたくはないの</p>
+<p>にくみたくはないの…</p>
+<hr>
+]]></content>
+      <categories>
+        <category>Things of Interest</category>
+      </categories>
+      <tags>
+        <tag>音视频</tag>
+        <tag>Youtube</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>卷积神经网络CNN学习一</title>
     <url>/2022/11/24/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9CCNN%E5%AD%A6%E4%B9%A0%E4%B8%80/</url>
     <content><![CDATA[<p>今天二十四号，学习卷积神经网络的第一天。虽然以前就对CNN有过了解，但是没有经过系统性的学习，对许多方面的知识点都是一知半解。在学习CNN之前，首先要明确的一点是：Deep Learning是全部深度学习算法的总称，而CNN是深度学习算法在图像处理领域的一个应用罢了…</p>
@@ -339,6 +339,51 @@
       <tags>
         <tag>深度学习</tag>
         <tag>CNN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在hexo搭建博客遇到的问题</title>
+    <url>/2022/11/23/%E5%9C%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>之前我用的主题感觉索然无味，于是我尝试换了一个主题，结果发现了新大陆！激动的话我就不在这里详细张开来讲了，我会放在另外一篇文章里，这里主要讲讲我在Hexo上搭建Next遇到的问题以及解决方法。</p>
+<span id="more"></span>
+
+<h1 id="Hexo搭建了博客显示不出Categories和Tags"><a href="#Hexo搭建了博客显示不出Categories和Tags" class="headerlink" title="Hexo搭建了博客显示不出Categories和Tags"></a>Hexo搭建了博客显示不出Categories和Tags</h1><h2 id="在主题配置文件中取消注释Categories和Tags"><a href="#在主题配置文件中取消注释Categories和Tags" class="headerlink" title="在主题配置文件中取消注释Categories和Tags"></a>在主题配置文件中取消注释Categories和Tags</h2><p>博客文件中一共有两类配置文件，一类是Hexo的配置文件、另一类是主题配置文件。首先要做的事是将主题配置文件打开，找到Menu Settings并且把Categories和Tags取消注释。</p>
+<h2 id="新建页面"><a href="#新建页面" class="headerlink" title="新建页面"></a>新建页面</h2><p>在你的source文件夹中新建文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new page categories</span><br><span class="line">hexo new page tags</span><br><span class="line">hexo new page about</span><br><span class="line">hexo new page schedule</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改index-md"><a href="#修改index-md" class="headerlink" title="修改index.md"></a>修改index.md</h2><p>上面除了categories和tags我还写入了关于和日程表页面，只要你有需求就可以在主题配置文件中将他们打开。它们的处理方式都是类似的，所以我将它们放在一起讨论。</p>
+<p>打开source文件夹下的index.md文件后，开头只有title和data，我们要做就是在后面加上一句<code>type: categories</code>，其它也是同理。注意冒号后面有空格。</p>
+<p>之前有人说用<code>layout: categories</code>的方式也可以，我尝试了一下，发现已经失效了。原因可能是因为当前的hexo已经不支持layout这种格式了。</p>
+<h1 id="hexo建立同级categories"><a href="#hexo建立同级categories" class="headerlink" title="hexo建立同级categories"></a>hexo建立同级categories</h1><p>之前我对categories还没有分级和同级的概念，直到我对一篇文章想要运用多个categories的时候才初现端倪。网上的人都说hexo已经不支持同级分类了（但是我确实实现同级分类了）</p>
+<p>如果我们在outline如何命名：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">categories: </span><br><span class="line">- ML</span><br><span class="line">- Homework</span><br></pre></td></tr></table></figure>
+
+<p>或者说是这样</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">categories: [ML, Homework]</span><br></pre></td></tr></table></figure>
+
+<p>上面两种方法效果一样，Homework都是ML下的子类，你要是有<code>categories: [Homework]</code>这个目录，你会发现它们并不是相同的！因为一个是Homework一个是ML下的Homework。</p>
+<p>要是真想ML和Homework有同样的级别，可以尝试一下以下方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">categories:</span><br><span class="line">- [ML]</span><br><span class="line">- [Homework]</span><br></pre></td></tr></table></figure>
+
+<h1 id="hexo主页不显示全文"><a href="#hexo主页不显示全文" class="headerlink" title="hexo主页不显示全文"></a>hexo主页不显示全文</h1><p>在outline下面，你需要加入一段简介，作为这篇文章的介绍，随后再加入<code>&lt;!-- more --&gt;</code>，那么下面的内容便可以被隐藏。若是不加简介的话，<code>&lt;!-- more --&gt;</code>隐藏下面的功能便会失效。</p>
+<h1 id="hexo配置Next教程链接"><a href="#hexo配置Next教程链接" class="headerlink" title="hexo配置Next教程链接"></a>hexo配置Next教程链接</h1><ul>
+<li><a href="https://zhuanlan.zhihu.com/p/351031589">知乎详细配置</a></li>
+<li><a href="https://blog.csdn.net/nightmare_dimple/article/details/86661502?spm=1001.2101.3001.6650.2&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-2-86661502-blog-100138838.pc_relevant_3mothn_strategy_and_data_recovery&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-2-86661502-blog-100138838.pc_relevant_3mothn_strategy_and_data_recovery&utm_relevant_index=3">CSDN-主题优化1</a></li>
+<li><a href="https://blog.csdn.net/as480133937/article/details/100138838">CSDN-主题优化2-more extended functions!</a></li>
+<li><a href="http://home.ustc.edu.cn/~liujunyan/blog/hexo-next-theme-config/#hexo-%E9%85%8D%E7%BD%AE">Next页面配置</a></li>
+<li><a href="http://theme-next.iissnan.com/getting-started.html">Next官方文档</a></li>
+</ul>
+<h1 id="hexo常用命令"><a href="#hexo常用命令" class="headerlink" title="hexo常用命令"></a>hexo常用命令</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo n &quot;name&quot;       # 新建文章</span><br><span class="line">hexo new page &quot;name&quot;  # 新建页面</span><br><span class="line">hexo g                # 生成页面</span><br><span class="line">hexo d                # 部署</span><br><span class="line">hexo g -d             # 生成页面并部署</span><br><span class="line">hexo s                # 本地预览</span><br><span class="line">hexo clean            # 清除缓存和已生成的静态文件</span><br><span class="line">hexo help             # 帮助</span><br></pre></td></tr></table></figure>
+
+<p>但是我通常都是使用<code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code>,因为其他的很少用到！</p>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+      <tags>
+        <tag>博客</tag>
+        <tag>hexo</tag>
+        <tag>Next</tag>
       </tags>
   </entry>
   <entry>
@@ -411,77 +456,6 @@ im.save(output)
       </categories>
   </entry>
   <entry>
-    <title>在hexo搭建博客遇到的问题</title>
-    <url>/2022/11/23/%E5%9C%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>之前我用的主题感觉索然无味，于是我尝试换了一个主题，结果发现了新大陆！激动的话我就不在这里详细张开来讲了，我会放在另外一篇文章里，这里主要讲讲我在Hexo上搭建Next遇到的问题以及解决方法。</p>
-<span id="more"></span>
-
-<h1 id="Hexo搭建了博客显示不出Categories和Tags"><a href="#Hexo搭建了博客显示不出Categories和Tags" class="headerlink" title="Hexo搭建了博客显示不出Categories和Tags"></a>Hexo搭建了博客显示不出Categories和Tags</h1><h2 id="在主题配置文件中取消注释Categories和Tags"><a href="#在主题配置文件中取消注释Categories和Tags" class="headerlink" title="在主题配置文件中取消注释Categories和Tags"></a>在主题配置文件中取消注释Categories和Tags</h2><p>博客文件中一共有两类配置文件，一类是Hexo的配置文件、另一类是主题配置文件。首先要做的事是将主题配置文件打开，找到Menu Settings并且把Categories和Tags取消注释。</p>
-<h2 id="新建页面"><a href="#新建页面" class="headerlink" title="新建页面"></a>新建页面</h2><p>在你的source文件夹中新建文件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new page categories</span><br><span class="line">hexo new page tags</span><br><span class="line">hexo new page about</span><br><span class="line">hexo new page schedule</span><br></pre></td></tr></table></figure>
-
-<h2 id="修改index-md"><a href="#修改index-md" class="headerlink" title="修改index.md"></a>修改index.md</h2><p>上面除了categories和tags我还写入了关于和日程表页面，只要你有需求就可以在主题配置文件中将他们打开。它们的处理方式都是类似的，所以我将它们放在一起讨论。</p>
-<p>打开source文件夹下的index.md文件后，开头只有title和data，我们要做就是在后面加上一句<code>type: categories</code>，其它也是同理。注意冒号后面有空格。</p>
-<p>之前有人说用<code>layout: categories</code>的方式也可以，我尝试了一下，发现已经失效了。原因可能是因为当前的hexo已经不支持layout这种格式了。</p>
-<h1 id="hexo建立同级categories"><a href="#hexo建立同级categories" class="headerlink" title="hexo建立同级categories"></a>hexo建立同级categories</h1><p>之前我对categories还没有分级和同级的概念，直到我对一篇文章想要运用多个categories的时候才初现端倪。网上的人都说hexo已经不支持同级分类了（但是我确实实现同级分类了）</p>
-<p>如果我们在outline如何命名：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">categories: </span><br><span class="line">- ML</span><br><span class="line">- Homework</span><br></pre></td></tr></table></figure>
-
-<p>或者说是这样</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">categories: [ML, Homework]</span><br></pre></td></tr></table></figure>
-
-<p>上面两种方法效果一样，Homework都是ML下的子类，你要是有<code>categories: [Homework]</code>这个目录，你会发现它们并不是相同的！因为一个是Homework一个是ML下的Homework。</p>
-<p>要是真想ML和Homework有同样的级别，可以尝试一下以下方法：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">categories:</span><br><span class="line">- [ML]</span><br><span class="line">- [Homework]</span><br></pre></td></tr></table></figure>
-
-<h1 id="hexo主页不显示全文"><a href="#hexo主页不显示全文" class="headerlink" title="hexo主页不显示全文"></a>hexo主页不显示全文</h1><p>在outline下面，你需要加入一段简介，作为这篇文章的介绍，随后再加入<code>&lt;!-- more --&gt;</code>，那么下面的内容便可以被隐藏。若是不加简介的话，<code>&lt;!-- more --&gt;</code>隐藏下面的功能便会失效。</p>
-<h1 id="hexo配置Next教程链接"><a href="#hexo配置Next教程链接" class="headerlink" title="hexo配置Next教程链接"></a>hexo配置Next教程链接</h1><ul>
-<li><a href="https://zhuanlan.zhihu.com/p/351031589">知乎详细配置</a></li>
-<li><a href="https://blog.csdn.net/nightmare_dimple/article/details/86661502?spm=1001.2101.3001.6650.2&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-2-86661502-blog-100138838.pc_relevant_3mothn_strategy_and_data_recovery&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-2-86661502-blog-100138838.pc_relevant_3mothn_strategy_and_data_recovery&utm_relevant_index=3">CSDN-主题优化1</a></li>
-<li><a href="https://blog.csdn.net/as480133937/article/details/100138838">CSDN-主题优化2-more extended functions!</a></li>
-<li><a href="http://home.ustc.edu.cn/~liujunyan/blog/hexo-next-theme-config/#hexo-%E9%85%8D%E7%BD%AE">Next页面配置</a></li>
-<li><a href="http://theme-next.iissnan.com/getting-started.html">Next官方文档</a></li>
-</ul>
-<h1 id="hexo常用命令"><a href="#hexo常用命令" class="headerlink" title="hexo常用命令"></a>hexo常用命令</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo n &quot;name&quot;       # 新建文章</span><br><span class="line">hexo new page &quot;name&quot;  # 新建页面</span><br><span class="line">hexo g                # 生成页面</span><br><span class="line">hexo d                # 部署</span><br><span class="line">hexo g -d             # 生成页面并部署</span><br><span class="line">hexo s                # 本地预览</span><br><span class="line">hexo clean            # 清除缓存和已生成的静态文件</span><br><span class="line">hexo help             # 帮助</span><br></pre></td></tr></table></figure>
-
-<p>但是我通常都是使用<code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code>,因为其他的很少用到！</p>
-]]></content>
-      <categories>
-        <category>blog</category>
-      </categories>
-      <tags>
-        <tag>博客</tag>
-        <tag>hexo</tag>
-        <tag>Next</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>感觉夏天来了!</title>
-    <url>/2022/11/28/%E6%84%9F%E8%A7%89%E5%A4%8F%E5%A4%A9%E6%9D%A5%E4%BA%86/</url>
-    <content><![CDATA[<p>今天十一月二十八日，连续一周的降雨让我整个人都感觉湿漉漉的。烦恼的不仅仅是衣物没法干鞋子该换着穿这种零碎的琐事，更多的是来自生活的压力…</p>
-<span id="more"></span>
-
-<p>今天十一月二十八日，连续一周的降雨让我整个人都感觉湿漉漉的。烦恼的不仅仅是衣物没法干鞋子该换着穿这种零碎的琐事，更多的是来自生活的压力。压力什么的不想谈，谈了也没多大意思。</p>
-<p>今天突然想写日记也并不是偶然，之前也想写，但是由于自己拖拉的性格，让我把这些想做的事情都堆在了心绪的箱底，一直都没法去做。这种坏习惯自打我上大学便沾染上了，很多时候都想改正，但是却无能为力，反而想用摆脱拖拉是否有意义这种问题来试图宽慰自己。我很清楚这一点，但我还是置之不管，任由其发展。像这种大步子的改变生活习惯的做法，我是一点计划都没有，这点消极态度感觉与齐宣王的有事钟无艳，无事夏迎春颇有几分相似呢！</p>
-<p>我觉得疫情受困对于我来说并不是很大影响，因为我现在倒是过得自由自在的(不过要没有疫情我也可能过得更自由自在)。虽然宅在宿舍不错，但人总是要出去面对世界的嘛！现在有一点感觉困惑的就是，疫情可以说没有困住我，却把外面的世界给封住了，让我寸步难行。想要去附近走走还得查查目的地是否是风险地区这样的操作已经让我很心烦了，什么时候能够真正解放好像遥遥无期，不过像我这样做不了啥的升斗小市民还是做好自己分内的事吧！</p>
-<p>刚才还想夸今天的风很有夏天的感觉，但走到阳台看到天空被蓝天和乌云像是被分成了泾渭两河，心里五味杂陈很不是滋味，感觉一些不好的事情正在酝酿。庆幸的是自己是在蓝天之下，这一点倒是让我宽慰了许多。我还记得前几天才过了小雪，今天的天气倒是光着膀子到处溜也没问题，广州的天气还真是很奇怪！</p>
-<p>什么暴风雨过后的彩虹、照进我心底的一束久违的阳光这样肉麻的话我就不想说了，不过今天能够看到蓝天和太阳确实让自己的心情快活了许多。说实在，这几天下雨我也没有多盼望晴天能够到来，像是被阴雨天麻痹了一样。倒是今天看到了太阳，却吐槽太阳为什么不早点出来。看着天上的云，就像是夏天暴风雨前夕的那种云，浓墨重彩，什么阴影和线条被狠狠地勾勒出来，想说的就只有罗辑面对面壁者计划那句纯粹的卧槽！</p>
-<p>风打到脸上，我很肯定这就是夏天的风！</p>
-<img src="/uploads/dormitory.jpg" class="post-image">
-**里面是生活，外面是我的世界啊！**
-
-<hr>
-<div class="video-container"><iframe src="https://www.youtube.com/embed/YAXTn0E-Zgo" frameborder="0" loading="lazy" allowfullscreen></iframe></div>]]></content>
-      <categories>
-        <category>School Life</category>
-      </categories>
-      <tags>
-        <tag>音视频</tag>
-        <tag>生活</tag>
-        <tag>YouTube</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>插入YouTube视频</title>
     <url>/2022/11/23/%E6%8F%92%E5%85%A5YouTube%E8%A7%86%E9%A2%91/</url>
     <content><![CDATA[<p>尝试在文章中插入一段YouTube视频，就放我最近经常听的一首歌吧！</p>
@@ -497,6 +471,32 @@ im.save(output)
         <tag>音视频</tag>
         <tag>博客</tag>
         <tag>YouTube</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>感觉夏天来了!</title>
+    <url>/2022/11/28/%E6%84%9F%E8%A7%89%E5%A4%8F%E5%A4%A9%E6%9D%A5%E4%BA%86/</url>
+    <content><![CDATA[<p>今天十一月二十八日，连续一周的降雨让我整个人都感觉湿漉漉的。烦恼的不仅仅是衣物没法干鞋子该换着穿这种零碎的琐事，更多的是来自生活的压力…</p>
+<span id="more"></span>
+
+<p>今天十一月二十八日，连续一周的降雨让我整个人都感觉湿漉漉的。烦恼的不仅仅是衣物没法干鞋子该换着穿这种零碎的琐事，更多的是来自生活的压力。压力什么的不想谈，谈了也没多大意思。</p>
+<p>今天突然想写日记也并不是偶然，之前也想写，但是由于自己拖拉的性格，让我把这些想做的事情都堆在了心绪的箱底，一直都没法去做。这种坏习惯自打我上大学便沾染上了，很多时候都想改正，但是却无能为力，反而想用摆脱拖拉是否有意义这种问题来试图宽慰自己。我很清楚这一点，但我还是置之不管，任由其发展。像这种大步子的改变生活习惯的做法，我是一点计划都没有，这点消极态度感觉与齐宣王的有事钟无艳，无事夏迎春颇有几分相似呢！</p>
+<p>我觉得疫情受困对于我来说并不是很大影响，因为我现在倒是过得自由自在的(不过要没有疫情我也可能过得更自由自在)。虽然宅在宿舍不错，但人总是要出去面对世界的嘛！现在有一点感觉困惑的就是，疫情可以说没有困住我，却把外面的世界给封住了，让我寸步难行。想要去附近走走还得查查目的地是否是风险地区这样的操作已经让我很心烦了，什么时候能够真正解放好像遥遥无期，不过像我这样做不了啥的升斗小市民还是做好自己分内的事吧！</p>
+<p>刚才还想夸今天的风很有夏天的感觉，但走到阳台看到天空被蓝天和乌云像是被分成了泾渭两河，心里五味杂陈很不是滋味，感觉一些不好的事情正在酝酿。庆幸的是自己是在蓝天之下，这一点倒是让我宽慰了许多。我还记得前几天才过了小雪，今天的天气倒是光着膀子到处溜也没问题，广州的天气还真是很奇怪！</p>
+<p>什么暴风雨过后的彩虹、照进我心底的一束久违的阳光这样肉麻的话我就不想说了，不过今天能够看到蓝天和太阳确实让自己的心情快活了许多。说实在，这几天下雨我也没有多盼望晴天能够到来，像是被阴雨天麻痹了一样。倒是今天看到了太阳，却吐槽太阳为什么不早点出来。看着天上的云，就像是夏天暴风雨前夕的那种云，浓墨重彩，什么阴影和线条被狠狠地勾勒出来，想说的就只有罗辑面对面壁者计划那句纯粹的卧槽！</p>
+<p>风打到脸上，我很肯定这就是夏天的风！</p>
+<img src="/uploads/dormitory.jpg" class="post-image">
+<strong>里面是生活，外面是我的世界啊！</strong>
+
+<hr>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/YAXTn0E-Zgo" frameborder="0" loading="lazy" allowfullscreen></iframe></div>]]></content>
+      <categories>
+        <category>School Life</category>
+      </categories>
+      <tags>
+        <tag>音视频</tag>
+        <tag>YouTube</tag>
+        <tag>生活</tag>
       </tags>
   </entry>
   <entry>
@@ -559,6 +559,70 @@ im.save(output)
         <tag>生活</tag>
         <tag>学校</tag>
         <tag>比赛</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>机器学习派系</title>
+    <url>/2022/11/24/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%B4%BE%E7%B3%BB/</url>
+    <content><![CDATA[<p>机器学习有不同的学派，每个学派从不同的角度看问题。这也是偶然了解到，感觉对日后的理解和学习有帮助，于是便记录下来…</p>
+<span id="more"></span>
+
+<h1 id="机器学习5大学派！"><a href="#机器学习5大学派！" class="headerlink" title="机器学习5大学派！"></a>机器学习5大学派！</h1><p>机器学习有不同的学派，每个学派从不同的角度看问题。</p>
+<ol>
+<li><p>符号学派（symbolists） 更多关注哲学，逻辑学和心理学， 并将学习视为逆向演绎 。使用符号、规则和逻辑来表征知识和进行逻辑推理主要是基于规则的，算法如 ：决策树。</p>
+</li>
+<li><p>联结学派（connectionists）专注物理学和神经科学，并相信大脑的逆向工程。使用概率矩阵和加权神经元来动态地识别和归纳模式，算法如 ：神经网络 。</p>
+</li>
+<li><p>进化学派，在遗传学和进化生物学的基础上得出结论。生成变化，然后为特定目标获取其中最优的， 算法如 ：遗传算法 。</p>
+</li>
+</ol>
+<p>4. 贝叶斯学派（Bayesians）注重统计学和概率推理。 获取发生的可能性来进行概率推理，算法如 ：朴素贝叶斯，马尔可夫。</p>
+<p>5. 类推学派（analogizers）更多是关注心理学和数学优化来推断相似性判断。 根据约束条件来优化函数，算法如：支持向量机SVM。</p>
+<h1 id="演化的阶段"><a href="#演化的阶段" class="headerlink" title="演化的阶段"></a>演化的阶段</h1><blockquote>
+<p>1980 年代             主导流派：符号主义</p>
+<p>1990 年代到 2000 年    主导流派：贝叶斯</p>
+<p>2010 年代早期到中期   主导流派：联结主义</p>
+<p>2010 年代末期    主导流派：联结主义+符号主义</p>
+<p>2020 年代+         主导流派：联结主义+符号主义+贝叶斯+……</p>
+<p>2040 年代+         主导流派：算法融合 </p>
+</blockquote>
+<h1 id="联结学派（The-connectionists）"><a href="#联结学派（The-connectionists）" class="headerlink" title="联结学派（The connectionists）"></a>联结学派（The connectionists）</h1><p>联结学派的主要思想是通过神经元之间的连接来推导知识。联结学派聚焦于物理学和神经科学，并相信大脑的逆向工程（reverse engineering）。他们相信用反向传播算法或“向后传播错误”的算法来训练人工神经网络以获取结果。</p>
+<p>多伦多大学的 Geoff Hinton 是机器学习领域的顶尖研究者之一。Hinton 积极与谷歌合作，也是推动“深度学习”模式的人物。深度学习在许多不同领域彻底变革了 AI，如语音识别，图像描述及生成有意义的句子。</p>
+<p>几乎所有大科技公司，包括 Facebook，微软，谷歌等，都正在使用这种模式来改进它们的系统。Navdeep Jaitly 是谷歌大脑团队的研究科学家，他在 Hinton 门下进行研究，使用深度学习模型超越了 Android 系统中已经“精细调好”（fine-tuned）的语音识别算法。</p>
+<p>Facebook AI Research（FAIR）的主管 Yann LeCun 是这个研究领域的另一位大牛。Yann 也是在 Hinton 门下读博士学位，并致力于深度学习领域。</p>
+<p>作为蒙特利尔学习算法研究所的负责人，Yoshua Bengio 是另一个值得注意的名字，是联结学派方法的领军人物。Bengio 致力于组织不同的 AI 相关活动和会议，包括学习研讨会。Bengio 和他的学生 Ian Goodfellow（现在是 OpenAI 的研究员）以及 Aaron Courville 一起合著了著名的深度学习教材Deep Learning。</p>
+<p>机器学习领域的许多研究者，特别是联结学派者，认为深度学习模型是 AI 的所有问题的答案，并认为它是一个主算法。</p>
+<h1 id="符号学派（The-symbolists）"><a href="#符号学派（The-symbolists）" class="headerlink" title="符号学派（The symbolists）"></a>符号学派（The symbolists）</h1><p>符号学派的方法基于对问题的“高阶”（high-level）解释。符号主义者更侧重哲学，逻辑学和心理学，并把学习视为逆向演绎（inverse of deduction）。John Haugeland 在他的著作 Artificial Intelligence: The Very Idea中称之为“Good Old-Fashioned Artificial Intelligence” (GOFAI)。符号学派解决问题的方法是使用预先存在的知识来填补空白。大多数专家系统使用符号学派的方法，以 If-Then 的方式解决问题。</p>
+<p>卡内基梅隆大学的 Tom Mitchell 是符号学派的领军人物之一。Udacity 联合创始人，斯坦福大学教授，前谷歌副总裁 Sebastian Thrun，以及艾伦人工智能研究所 CEO Oren Etzioni 都是 Tom Mitchell 的学生。</p>
+<p>伦敦帝国理工学院教授，Inductive Acquisition of Expert Knowledge的作者 Stephen Muggleton，以及 RuleRequest 的创始人 Ross Quinlan 均是推崇符号学派机器学习方法的著名研究者。</p>
+<h1 id="进化学派（The-evolutionaries）"><a href="#进化学派（The-evolutionaries）" class="headerlink" title="进化学派（The evolutionaries）"></a>进化学派（The evolutionaries）</h1><p>第三个学派，是进化学派，他们在遗传学和进化生物学的基础上得出结论。2015年去世的 John Holland 曾在密歇根大学任教，他在将达尔文的进化理论引入计算机科学方面发挥了非常重要的作用。Holland 是遗传算法（genetics algorithms）的先驱，他提出的“遗传算法的基本定理”被认为是这个领域的基础。</p>
+<p>机器人学，3D打印和生物信息学领域的许多工作是哥伦比亚大学创意力学实验室主任 Hod Lipson 等进化论者进行的。John Koza 是前斯坦福大学教授，Scientific Games 公司的创始人，也是遗传算法的另一名先驱人物。另外，Serafim 实验室的创始人，斯坦福大学计算机科学教授 Serafim Batzoglou 也是计算机基因组领域的著名研究者。</p>
+<h1 id="贝叶斯学派（The-Bayesian-school-of-thought）"><a href="#贝叶斯学派（The-Bayesian-school-of-thought）" class="headerlink" title="贝叶斯学派（The Bayesian school of thought）"></a>贝叶斯学派（The Bayesian school of thought）</h1><p>如果你使用电子邮件超过10年，应该能感觉到垃圾邮件过滤系统的改进。这是机器学习中的贝叶斯学派的功劳。贝叶斯学派专注于研究概率推理和用贝叶斯定理解决问题。贝叶斯学派从一个信念开始，他们称之为“先验”（prior）。然后，他们收集一些数据，并基于该数据更新先验；得到的结果他们称之为“后验”（posterior）。然后，他们用更多的数据来处理后验，并使之变成先验。这个过程不断循环往复，知道得到最终的答案。大多数垃圾邮件过滤系统是在这种基础上起作用。</p>
+<p>加州大学洛杉矶分校计算机科学系的 Judea Pearl 是贝叶斯方法的著名研究者之一。微软 Genomics Group 的负责人 David Heckerman 也是著名的贝叶斯方法研究者，他帮助微软在 Outlook 和 Hotmail 邮件系统中开发了不同的数据挖掘工具和垃圾邮件过滤工具。</p>
+<p>加州大学伯克利分校的 Michael Jordan 也是这一领域的主要研究者。</p>
+<h1 id="类推学派（The-analogizers）"><a href="#类推学派（The-analogizers）" class="headerlink" title="类推学派（The analogizers）"></a>类推学派（The analogizers）</h1><p>机器学习的第五个分支学派是类推学派（Analogizers），他们更多地关注心理学和数学最优化，通过外推来进行相似性判断。类推学派遵循“最近邻”原理进行研究。各种电子商务网站上的产品推荐（例如亚马逊或 Netflix的电影评级）是类推方法最常见的示例。</p>
+<p>印第安纳大学的 Douglas Hofstadter（侯世达）是认知科学中最有名的科学家。同一领域的另一位知名科学家是 Vladimir Vapnik，他也是“支持向量机”的共同发明者和 Vapnik-Chervonenkis 理论的主要开发者。Facebook 最近聘请 Vapnik 与其他几位知名研究人员一起加入 Facebook AI 实验室。此外，理光创新（Ricoh Innovations）创始人 Peter Hart 也是遵循类推方法的著名学者，Hart 与人合著了《模式分类》一书。</p>
+<h1 id="危机与问题"><a href="#危机与问题" class="headerlink" title="危机与问题"></a>危机与问题</h1><p>所有上述学派解决不同的问题，提出了不同的解决方案。而真正的挑战是设计一个算法，解决这些方法尝试要解决的所有不同的问题——单一的一个“终极算法”。</p>
+<p>我们仍然处在机器学习和 AI 的早期，还有很多事情要做。我们不知道什么时候，哪里会出现问题，而这将会减缓整个发展进程，带来下一个“AI冬天”。又或者，将来会出现一个新的突破，彻底改变目前的情况。</p>
+<p>机器学习的进步更像是一场演化。正如微生物的发展速度远比人类更快，机器学习的发展也比人类快，但会到达一个阶段，在这个阶段上这些学习算法会变得太过复杂而不能快速演化。</p>
+<p>也存在其他的危机。一个“理想的”终极算法将了解有关我们的一切。虽然机器学习需要人类的输入作为启动，但它最终会达到一个点，它会超越人类。那么接下来会发生什么呢？只要它们的目标和我们的目标稍有分歧，可能就足以消灭人类。</p>
+<p>这只是一种情况。假设我们成功建立了一个能够控制这些超级智能的机制，就类似于蚂蚁创造了一个能够控制我们人类的机制。但是，国家，人们和团体之间存在的利益冲突，可能会引发类似“天网”（终结者）的战争。</p>
+<h1 id="机器学习如何改变世界？"><a href="#机器学习如何改变世界？" class="headerlink" title="机器学习如何改变世界？"></a>机器学习如何改变世界？</h1><p>有许多初创公司专注于机器学习及其为生活中的不同问题带来的解决方案；而且，更重要的是，有大型科技公司支持他们。例如，谷歌收购的 DeepMind 专注于医疗保健，利用机器学习研究癌症的治疗；Facebook 的 Chan Zuckerberg Initiative 宣布计划在未来十年投资30亿美元，以帮助治疗、预防和管控疾病。</p>
+<p>另外，世界上最大的一些科技公司，包括亚马逊，Facebook，谷歌，微软等形成了联盟“Partnership on AI”，以共享他们的大型数据库进行研究，推广好的实践。</p>
+<p>AI 是否将技术的发展引向了一条危险的路径？我们将要成为机器的奴隶，又或 AI 是将人类引向终极的进步的入口？</p>
+<p>任何希望了解 AI 和机器学习的人士都应该阅读一下 Pedro Domingos 的《终极算法》一书。最后，让我们借用此书序言里的一句话作为本文的结语：围绕大数据以及机器学习的讨论充满争议，如果你对此感到好奇，且怀疑有比论文上看到的更为深层次的东西，那么这本书就是你进行革命的指南。</p>
+<h1 id="出处"><a href="#出处" class="headerlink" title="出处"></a>出处</h1><p><em>今天在学习机器学习的时候，发现机器学习惊竟然还分派系，略感兴趣，遂转于此！</em></p>
+<ol>
+<li><a href="https://www.jianshu.com/p/55ccb15747b5">简书-转载</a></li>
+<li><a href="https://techcrunch.com/2017/01/30/is-a-master-algorithm-the-solution-to-our-machine-learning-problems/">Yahoo原文</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Mathine Learning</category>
+        <category>Things of Interest</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
       </tags>
   </entry>
   <entry>
@@ -711,70 +775,6 @@ print_result(lgb_r2_score, lgb_rmse, &#39;Lightgbm&#39;)
         <category>Mathine Learning</category>
         <category>Homework</category>
       </categories>
-  </entry>
-  <entry>
-    <title>机器学习派系</title>
-    <url>/2022/11/24/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%B4%BE%E7%B3%BB/</url>
-    <content><![CDATA[<p>机器学习有不同的学派，每个学派从不同的角度看问题。这也是偶然了解到，感觉对日后的理解和学习有帮助，于是便记录下来…</p>
-<span id="more"></span>
-
-<h1 id="机器学习5大学派！"><a href="#机器学习5大学派！" class="headerlink" title="机器学习5大学派！"></a>机器学习5大学派！</h1><p>机器学习有不同的学派，每个学派从不同的角度看问题。</p>
-<ol>
-<li><p>符号学派（symbolists） 更多关注哲学，逻辑学和心理学， 并将学习视为逆向演绎 。使用符号、规则和逻辑来表征知识和进行逻辑推理主要是基于规则的，算法如 ：决策树。</p>
-</li>
-<li><p>联结学派（connectionists）专注物理学和神经科学，并相信大脑的逆向工程。使用概率矩阵和加权神经元来动态地识别和归纳模式，算法如 ：神经网络 。</p>
-</li>
-<li><p>进化学派，在遗传学和进化生物学的基础上得出结论。生成变化，然后为特定目标获取其中最优的， 算法如 ：遗传算法 。</p>
-</li>
-</ol>
-<p>4. 贝叶斯学派（Bayesians）注重统计学和概率推理。 获取发生的可能性来进行概率推理，算法如 ：朴素贝叶斯，马尔可夫。</p>
-<p>5. 类推学派（analogizers）更多是关注心理学和数学优化来推断相似性判断。 根据约束条件来优化函数，算法如：支持向量机SVM。</p>
-<h1 id="演化的阶段"><a href="#演化的阶段" class="headerlink" title="演化的阶段"></a>演化的阶段</h1><blockquote>
-<p>1980 年代             主导流派：符号主义</p>
-<p>1990 年代到 2000 年    主导流派：贝叶斯</p>
-<p>2010 年代早期到中期   主导流派：联结主义</p>
-<p>2010 年代末期    主导流派：联结主义+符号主义</p>
-<p>2020 年代+         主导流派：联结主义+符号主义+贝叶斯+……</p>
-<p>2040 年代+         主导流派：算法融合 </p>
-</blockquote>
-<h1 id="联结学派（The-connectionists）"><a href="#联结学派（The-connectionists）" class="headerlink" title="联结学派（The connectionists）"></a>联结学派（The connectionists）</h1><p>联结学派的主要思想是通过神经元之间的连接来推导知识。联结学派聚焦于物理学和神经科学，并相信大脑的逆向工程（reverse engineering）。他们相信用反向传播算法或“向后传播错误”的算法来训练人工神经网络以获取结果。</p>
-<p>多伦多大学的 Geoff Hinton 是机器学习领域的顶尖研究者之一。Hinton 积极与谷歌合作，也是推动“深度学习”模式的人物。深度学习在许多不同领域彻底变革了 AI，如语音识别，图像描述及生成有意义的句子。</p>
-<p>几乎所有大科技公司，包括 Facebook，微软，谷歌等，都正在使用这种模式来改进它们的系统。Navdeep Jaitly 是谷歌大脑团队的研究科学家，他在 Hinton 门下进行研究，使用深度学习模型超越了 Android 系统中已经“精细调好”（fine-tuned）的语音识别算法。</p>
-<p>Facebook AI Research（FAIR）的主管 Yann LeCun 是这个研究领域的另一位大牛。Yann 也是在 Hinton 门下读博士学位，并致力于深度学习领域。</p>
-<p>作为蒙特利尔学习算法研究所的负责人，Yoshua Bengio 是另一个值得注意的名字，是联结学派方法的领军人物。Bengio 致力于组织不同的 AI 相关活动和会议，包括学习研讨会。Bengio 和他的学生 Ian Goodfellow（现在是 OpenAI 的研究员）以及 Aaron Courville 一起合著了著名的深度学习教材Deep Learning。</p>
-<p>机器学习领域的许多研究者，特别是联结学派者，认为深度学习模型是 AI 的所有问题的答案，并认为它是一个主算法。</p>
-<h1 id="符号学派（The-symbolists）"><a href="#符号学派（The-symbolists）" class="headerlink" title="符号学派（The symbolists）"></a>符号学派（The symbolists）</h1><p>符号学派的方法基于对问题的“高阶”（high-level）解释。符号主义者更侧重哲学，逻辑学和心理学，并把学习视为逆向演绎（inverse of deduction）。John Haugeland 在他的著作 Artificial Intelligence: The Very Idea中称之为“Good Old-Fashioned Artificial Intelligence” (GOFAI)。符号学派解决问题的方法是使用预先存在的知识来填补空白。大多数专家系统使用符号学派的方法，以 If-Then 的方式解决问题。</p>
-<p>卡内基梅隆大学的 Tom Mitchell 是符号学派的领军人物之一。Udacity 联合创始人，斯坦福大学教授，前谷歌副总裁 Sebastian Thrun，以及艾伦人工智能研究所 CEO Oren Etzioni 都是 Tom Mitchell 的学生。</p>
-<p>伦敦帝国理工学院教授，Inductive Acquisition of Expert Knowledge的作者 Stephen Muggleton，以及 RuleRequest 的创始人 Ross Quinlan 均是推崇符号学派机器学习方法的著名研究者。</p>
-<h1 id="进化学派（The-evolutionaries）"><a href="#进化学派（The-evolutionaries）" class="headerlink" title="进化学派（The evolutionaries）"></a>进化学派（The evolutionaries）</h1><p>第三个学派，是进化学派，他们在遗传学和进化生物学的基础上得出结论。2015年去世的 John Holland 曾在密歇根大学任教，他在将达尔文的进化理论引入计算机科学方面发挥了非常重要的作用。Holland 是遗传算法（genetics algorithms）的先驱，他提出的“遗传算法的基本定理”被认为是这个领域的基础。</p>
-<p>机器人学，3D打印和生物信息学领域的许多工作是哥伦比亚大学创意力学实验室主任 Hod Lipson 等进化论者进行的。John Koza 是前斯坦福大学教授，Scientific Games 公司的创始人，也是遗传算法的另一名先驱人物。另外，Serafim 实验室的创始人，斯坦福大学计算机科学教授 Serafim Batzoglou 也是计算机基因组领域的著名研究者。</p>
-<h1 id="贝叶斯学派（The-Bayesian-school-of-thought）"><a href="#贝叶斯学派（The-Bayesian-school-of-thought）" class="headerlink" title="贝叶斯学派（The Bayesian school of thought）"></a>贝叶斯学派（The Bayesian school of thought）</h1><p>如果你使用电子邮件超过10年，应该能感觉到垃圾邮件过滤系统的改进。这是机器学习中的贝叶斯学派的功劳。贝叶斯学派专注于研究概率推理和用贝叶斯定理解决问题。贝叶斯学派从一个信念开始，他们称之为“先验”（prior）。然后，他们收集一些数据，并基于该数据更新先验；得到的结果他们称之为“后验”（posterior）。然后，他们用更多的数据来处理后验，并使之变成先验。这个过程不断循环往复，知道得到最终的答案。大多数垃圾邮件过滤系统是在这种基础上起作用。</p>
-<p>加州大学洛杉矶分校计算机科学系的 Judea Pearl 是贝叶斯方法的著名研究者之一。微软 Genomics Group 的负责人 David Heckerman 也是著名的贝叶斯方法研究者，他帮助微软在 Outlook 和 Hotmail 邮件系统中开发了不同的数据挖掘工具和垃圾邮件过滤工具。</p>
-<p>加州大学伯克利分校的 Michael Jordan 也是这一领域的主要研究者。</p>
-<h1 id="类推学派（The-analogizers）"><a href="#类推学派（The-analogizers）" class="headerlink" title="类推学派（The analogizers）"></a>类推学派（The analogizers）</h1><p>机器学习的第五个分支学派是类推学派（Analogizers），他们更多地关注心理学和数学最优化，通过外推来进行相似性判断。类推学派遵循“最近邻”原理进行研究。各种电子商务网站上的产品推荐（例如亚马逊或 Netflix的电影评级）是类推方法最常见的示例。</p>
-<p>印第安纳大学的 Douglas Hofstadter（侯世达）是认知科学中最有名的科学家。同一领域的另一位知名科学家是 Vladimir Vapnik，他也是“支持向量机”的共同发明者和 Vapnik-Chervonenkis 理论的主要开发者。Facebook 最近聘请 Vapnik 与其他几位知名研究人员一起加入 Facebook AI 实验室。此外，理光创新（Ricoh Innovations）创始人 Peter Hart 也是遵循类推方法的著名学者，Hart 与人合著了《模式分类》一书。</p>
-<h1 id="危机与问题"><a href="#危机与问题" class="headerlink" title="危机与问题"></a>危机与问题</h1><p>所有上述学派解决不同的问题，提出了不同的解决方案。而真正的挑战是设计一个算法，解决这些方法尝试要解决的所有不同的问题——单一的一个“终极算法”。</p>
-<p>我们仍然处在机器学习和 AI 的早期，还有很多事情要做。我们不知道什么时候，哪里会出现问题，而这将会减缓整个发展进程，带来下一个“AI冬天”。又或者，将来会出现一个新的突破，彻底改变目前的情况。</p>
-<p>机器学习的进步更像是一场演化。正如微生物的发展速度远比人类更快，机器学习的发展也比人类快，但会到达一个阶段，在这个阶段上这些学习算法会变得太过复杂而不能快速演化。</p>
-<p>也存在其他的危机。一个“理想的”终极算法将了解有关我们的一切。虽然机器学习需要人类的输入作为启动，但它最终会达到一个点，它会超越人类。那么接下来会发生什么呢？只要它们的目标和我们的目标稍有分歧，可能就足以消灭人类。</p>
-<p>这只是一种情况。假设我们成功建立了一个能够控制这些超级智能的机制，就类似于蚂蚁创造了一个能够控制我们人类的机制。但是，国家，人们和团体之间存在的利益冲突，可能会引发类似“天网”（终结者）的战争。</p>
-<h1 id="机器学习如何改变世界？"><a href="#机器学习如何改变世界？" class="headerlink" title="机器学习如何改变世界？"></a>机器学习如何改变世界？</h1><p>有许多初创公司专注于机器学习及其为生活中的不同问题带来的解决方案；而且，更重要的是，有大型科技公司支持他们。例如，谷歌收购的 DeepMind 专注于医疗保健，利用机器学习研究癌症的治疗；Facebook 的 Chan Zuckerberg Initiative 宣布计划在未来十年投资30亿美元，以帮助治疗、预防和管控疾病。</p>
-<p>另外，世界上最大的一些科技公司，包括亚马逊，Facebook，谷歌，微软等形成了联盟“Partnership on AI”，以共享他们的大型数据库进行研究，推广好的实践。</p>
-<p>AI 是否将技术的发展引向了一条危险的路径？我们将要成为机器的奴隶，又或 AI 是将人类引向终极的进步的入口？</p>
-<p>任何希望了解 AI 和机器学习的人士都应该阅读一下 Pedro Domingos 的《终极算法》一书。最后，让我们借用此书序言里的一句话作为本文的结语：围绕大数据以及机器学习的讨论充满争议，如果你对此感到好奇，且怀疑有比论文上看到的更为深层次的东西，那么这本书就是你进行革命的指南。</p>
-<h1 id="出处"><a href="#出处" class="headerlink" title="出处"></a>出处</h1><p><em>今天在学习机器学习的时候，发现机器学习惊竟然还分派系，略感兴趣，遂转于此！</em></p>
-<ol>
-<li><a href="https://www.jianshu.com/p/55ccb15747b5">简书-转载</a></li>
-<li><a href="https://techcrunch.com/2017/01/30/is-a-master-algorithm-the-solution-to-our-machine-learning-problems/">Yahoo原文</a></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Mathine Learning</category>
-        <category>Things of Interest</category>
-      </categories>
-      <tags>
-        <tag>机器学习</tag>
-      </tags>
   </entry>
   <entry>
     <title>激活函数</title>
@@ -967,6 +967,35 @@ print_result(lgb_r2_score, lgb_rmse, &#39;Lightgbm&#39;)
       </categories>
   </entry>
   <entry>
+    <title>维度灾难</title>
+    <url>/2022/11/23/%E7%BB%B4%E5%BA%A6%E7%81%BE%E9%9A%BE/</url>
+    <content><![CDATA[<p>今天學習機器學習的時候，發現有<em>維度災難</em>這個東西。挺感興趣的，於是一探究竟！</p>
+<span id="more"></span>
+
+<h1 id="机器学习中的维度灾难"><a href="#机器学习中的维度灾难" class="headerlink" title="机器学习中的维度灾难"></a>机器学习中的维度灾难</h1><p>在介绍机器学习的维度灾难之前，我推荐给大家一个网站，名字虽然说是<a href="https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">计算机视觉的傻瓜书</a>，但是有关机器学习的答疑部分它做得还是蛮好的。除此之外还有<a href="https://www.kdnuggets.com/news/index.html">KDnuggest</a>，也是有关机器学习的论坛。</p>
+<p>本文是参考<a href="https://www.jianshu.com/p/867193608bbd">简书-红色石头Will</a>所得到的观点，虽然他是翻译<a href="https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">计算机视觉的傻瓜书</a>的，但是对于我理解维度灾难起着指导方向的作用。</p>
+<h2 id="1-介绍维度灾难"><a href="#1-介绍维度灾难" class="headerlink" title="1.介绍维度灾难"></a>1.介绍维度灾难</h2><p>维度灾难是在设计一个分类器的时候需要注意的问题。为了得到更好的分类效果，我们可以无限的增加特征。但是事实上，特征数量超过一定值的时候，分类器的效果反而会下降。这种由于特征数量太多导致的分类效果下降的情况，就被称作是<strong>维度灾难</strong>。</p>
+<h2 id="2-维度灾难与过拟合"><a href="#2-维度灾难与过拟合" class="headerlink" title="2.维度灾难与过拟合"></a>2.维度灾难与过拟合</h2><p>貌似特征越多，越有可能实现正确分类，但是情况并非如此。一个直观的情况时，随着特征维度的增加，训练样本在特征空间中的密度是呈指数下降的。</p>
+<blockquote>
+<p>样本数不变，但是特征空间不断地增加，那训练样本在特征空间中的密度岂不是就是呈指数下降的？</p>
+</blockquote>
+<p>如果我们继续增加特征，整个特征空间维度增加，并变得越来越稀疏。由于稀疏性，我们更加容易找到一个超平面来实现分类。这是因为随着特征数量变得无限大，训练样本在最佳超平面的错误侧的可能性将会变得无限小。然而，如果我们将高维的分类结果投影到低维空间中，将会出现一个严重的问题。</p>
+<p>比如说样本数据在3D是线性可分的，但是在2D却并非如此。事实上，增加第三个维度来获得最佳的线性分类效果，等同于在低维特征空间中使用非线性分类器。其结果是，分类器学习了训练数据的噪声和异常，而对样本外的数据拟合效果并不理想，甚至很差。这个概念称为过拟合，是维度灾难的一个直接后果。</p>
+<p><em>换句话讲，如果增加特征维度，为了覆盖同样的特征值范围，防止过拟合，需要用到的样本数就会呈指数型增长！</em></p>
+<h2 id="3-维度灾难与数据稀疏程度分布不均"><a href="#3-维度灾难与数据稀疏程度分布不均" class="headerlink" title="3.维度灾难与数据稀疏程度分布不均"></a>3.维度灾难与数据稀疏程度分布不均</h2><p>我们展示了维度灾难会引起训练数据的稀疏化。使用的特征越多，数据就会变得越稀疏，从而导致分类器的分类效果就会越差。维度灾难还会造成<strong>搜索空间的数据稀疏程度</strong>分布不均。事实上，围绕原点的数据（在超立方体的中心）比在搜索空间的角落处的数据要稀疏得多。</p>
+<p>举例2D，如果大部分的样本都落在了单位内接圆里的话，会更容易分类。但是在高维的空间中，大部分的训练数据都是分布在定义为特征空间的超立方体的角落处，导致难以分类。、</p>
+<p>对于8维的超球体，大约98%的数据集中在它256个角落处。其结果是，当特征空间的维度变得无限大时，从样本点到质心的最大、最小欧氏距离的差值与其最小欧式距离的比值趋于零。因此，距离测量在高维空间中逐渐变得无效。因为分类器是基于这些距离测量的（例如Euclidean距离、Mahalanobis距离、Manhattan距离），所以低维空间特征更少，分类更加容易。同样地，在高维空间的高斯分布会变平坦且尾巴更长。</p>
+<h2 id="4-如何避免维度灾难"><a href="#4-如何避免维度灾难" class="headerlink" title="4.如何避免维度灾难"></a>4.如何避免维度灾难</h2><p>很遗憾，在分类问题中，没有固定的规则来指定该使用多少特征。事实上，用多少特征量取决于你训练样本的数量、决策边界的复杂性和使用的是啥分类器。</p>
+<p>比如说一些非线性决策边界的分类器（e.g. 神经网络、KNN分类器、决策树等），它们的分类效果虽然好，但是泛化能力差容易发生过拟合，这个时候就需要降低点维度。如果使用泛化能力稍微好点的（e.g. 贝叶斯分类器、线性分类器），那么就可以使用稍微多一点的特征。</p>
+<h2 id="5-参考链接"><a href="#5-参考链接" class="headerlink" title="5.参考链接"></a>5.参考链接</h2><blockquote>
+<p><a href="https://www.jianshu.com/p/867193608bbd">简书</a><br><a href="https://cloud.tencent.com/developer/article/1143269">手工特征选取降维</a><br><a href="https://www.kdnuggets.com/2015/03/deep-learning-curse-dimensionality-autoencoders.html">原文</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Mathine Learning</category>
+      </categories>
+  </entry>
+  <entry>
     <title>猫狗大战之CNN分类</title>
     <url>/2022/11/24/%E7%8C%AB%E7%8B%97%E5%A4%A7%E6%88%98%E4%B9%8BCNN%E5%88%86%E7%B1%BB/</url>
     <content><![CDATA[<p>实践出真知！在kaggle上找的CNN经典案例练练手，猫狗大战属于图像分类问题。可以从此处下载所需要用到的数据<a href="https://www.kaggle.com/datasets/tongpython/cat-and-dog">Here!</a></p>
@@ -1053,35 +1082,6 @@ print_result(lgb_r2_score, lgb_rmse, &#39;Lightgbm&#39;)
         <tag>比赛</tag>
         <tag>图像分类</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>维度灾难</title>
-    <url>/2022/11/23/%E7%BB%B4%E5%BA%A6%E7%81%BE%E9%9A%BE/</url>
-    <content><![CDATA[<p>今天學習機器學習的時候，發現有<em>維度災難</em>這個東西。挺感興趣的，於是一探究竟！</p>
-<span id="more"></span>
-
-<h1 id="机器学习中的维度灾难"><a href="#机器学习中的维度灾难" class="headerlink" title="机器学习中的维度灾难"></a>机器学习中的维度灾难</h1><p>在介绍机器学习的维度灾难之前，我推荐给大家一个网站，名字虽然说是<a href="https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">计算机视觉的傻瓜书</a>，但是有关机器学习的答疑部分它做得还是蛮好的。除此之外还有<a href="https://www.kdnuggets.com/news/index.html">KDnuggest</a>，也是有关机器学习的论坛。</p>
-<p>本文是参考<a href="https://www.jianshu.com/p/867193608bbd">简书-红色石头Will</a>所得到的观点，虽然他是翻译<a href="https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">计算机视觉的傻瓜书</a>的，但是对于我理解维度灾难起着指导方向的作用。</p>
-<h2 id="1-介绍维度灾难"><a href="#1-介绍维度灾难" class="headerlink" title="1.介绍维度灾难"></a>1.介绍维度灾难</h2><p>维度灾难是在设计一个分类器的时候需要注意的问题。为了得到更好的分类效果，我们可以无限的增加特征。但是事实上，特征数量超过一定值的时候，分类器的效果反而会下降。这种由于特征数量太多导致的分类效果下降的情况，就被称作是<strong>维度灾难</strong>。</p>
-<h2 id="2-维度灾难与过拟合"><a href="#2-维度灾难与过拟合" class="headerlink" title="2.维度灾难与过拟合"></a>2.维度灾难与过拟合</h2><p>貌似特征越多，越有可能实现正确分类，但是情况并非如此。一个直观的情况时，随着特征维度的增加，训练样本在特征空间中的密度是呈指数下降的。</p>
-<blockquote>
-<p>样本数不变，但是特征空间不断地增加，那训练样本在特征空间中的密度岂不是就是呈指数下降的？</p>
-</blockquote>
-<p>如果我们继续增加特征，整个特征空间维度增加，并变得越来越稀疏。由于稀疏性，我们更加容易找到一个超平面来实现分类。这是因为随着特征数量变得无限大，训练样本在最佳超平面的错误侧的可能性将会变得无限小。然而，如果我们将高维的分类结果投影到低维空间中，将会出现一个严重的问题。</p>
-<p>比如说样本数据在3D是线性可分的，但是在2D却并非如此。事实上，增加第三个维度来获得最佳的线性分类效果，等同于在低维特征空间中使用非线性分类器。其结果是，分类器学习了训练数据的噪声和异常，而对样本外的数据拟合效果并不理想，甚至很差。这个概念称为过拟合，是维度灾难的一个直接后果。</p>
-<p><em>换句话讲，如果增加特征维度，为了覆盖同样的特征值范围，防止过拟合，需要用到的样本数就会呈指数型增长！</em></p>
-<h2 id="3-维度灾难与数据稀疏程度分布不均"><a href="#3-维度灾难与数据稀疏程度分布不均" class="headerlink" title="3.维度灾难与数据稀疏程度分布不均"></a>3.维度灾难与数据稀疏程度分布不均</h2><p>我们展示了维度灾难会引起训练数据的稀疏化。使用的特征越多，数据就会变得越稀疏，从而导致分类器的分类效果就会越差。维度灾难还会造成<strong>搜索空间的数据稀疏程度</strong>分布不均。事实上，围绕原点的数据（在超立方体的中心）比在搜索空间的角落处的数据要稀疏得多。</p>
-<p>举例2D，如果大部分的样本都落在了单位内接圆里的话，会更容易分类。但是在高维的空间中，大部分的训练数据都是分布在定义为特征空间的超立方体的角落处，导致难以分类。、</p>
-<p>对于8维的超球体，大约98%的数据集中在它256个角落处。其结果是，当特征空间的维度变得无限大时，从样本点到质心的最大、最小欧氏距离的差值与其最小欧式距离的比值趋于零。因此，距离测量在高维空间中逐渐变得无效。因为分类器是基于这些距离测量的（例如Euclidean距离、Mahalanobis距离、Manhattan距离），所以低维空间特征更少，分类更加容易。同样地，在高维空间的高斯分布会变平坦且尾巴更长。</p>
-<h2 id="4-如何避免维度灾难"><a href="#4-如何避免维度灾难" class="headerlink" title="4.如何避免维度灾难"></a>4.如何避免维度灾难</h2><p>很遗憾，在分类问题中，没有固定的规则来指定该使用多少特征。事实上，用多少特征量取决于你训练样本的数量、决策边界的复杂性和使用的是啥分类器。</p>
-<p>比如说一些非线性决策边界的分类器（e.g. 神经网络、KNN分类器、决策树等），它们的分类效果虽然好，但是泛化能力差容易发生过拟合，这个时候就需要降低点维度。如果使用泛化能力稍微好点的（e.g. 贝叶斯分类器、线性分类器），那么就可以使用稍微多一点的特征。</p>
-<h2 id="5-参考链接"><a href="#5-参考链接" class="headerlink" title="5.参考链接"></a>5.参考链接</h2><blockquote>
-<p><a href="https://www.jianshu.com/p/867193608bbd">简书</a><br><a href="https://cloud.tencent.com/developer/article/1143269">手工特征选取降维</a><br><a href="https://www.kdnuggets.com/2015/03/deep-learning-curse-dimensionality-autoencoders.html">原文</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Mathine Learning</category>
-      </categories>
   </entry>
   <entry>
     <title>网格搜索</title>
