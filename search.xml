@@ -47,6 +47,34 @@
       </categories>
   </entry>
   <entry>
+    <title>cv2报错处理</title>
+    <url>/2022/11/24/cv2%E6%8A%A5%E9%94%99%E5%A4%84%E7%90%86/</url>
+    <content><![CDATA[<p>cv2报错：raise TypeError(“Image data of dtype {} cannot be converted to “TypeError: Image data of dtype object cannot be converted to float</p>
+<span id="more"></span>
+
+<h1 id="raise-TypeError-“Image-data-of-dtype-cannot-be-converted-to-“-TypeError-Image-data-of-dtype-object-cannot-be-converted-to-float"><a href="#raise-TypeError-“Image-data-of-dtype-cannot-be-converted-to-“-TypeError-Image-data-of-dtype-object-cannot-be-converted-to-float" class="headerlink" title="raise TypeError(“Image data of dtype {} cannot be converted to “     TypeError: Image data of dtype object cannot be converted to float"></a>raise TypeError(“Image data of dtype {} cannot be converted to “     TypeError: Image data of dtype object cannot be converted to float</h1><p>刚想要研究一下CV2内置的图像类型的不同，结果发现CSDN上找的代码跑不出来？其实也正常，天下哪有免费的午餐，拿到的代码还不是得修修改改？</p>
+<h1 id="报错如下"><a href="#报错如下" class="headerlink" title="报错如下"></a>报错如下</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">raise TypeError(&quot;Image data of dtype &#123;&#125; cannot be converted to &quot;     TypeError: Image data of dtype object cannot be converted to float</span><br></pre></td></tr></table></figure>
+
+<p>至于解决方案众说纷坛，有说要看看数据类型是不是不对应，还有的人说路径里面有中文。其实我的文件夹真的有中文，但是更改之后，报错依旧。</p>
+<p>网上都说是引入图片路径的问题，但是我这句代码应该也没有错吧？因为下载的visual code插件可以成功显示出图片在代码的左边，左思右想决定还是更改路径试试。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># cv2.imread()接口读图像，读进来直接是BGR 格式数据格式在 0~255，通道格式为(W,H,C)</span><br><span class="line">img_BGR = cv2.imread(&#x27;sea.jpg&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>更改成visual code直接复制图片的相对路径</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">img_BGR = cv2.imread(&#x27;web\sea.jpg&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>后面发现真的成功运行。这次运行的代码文件和图片文件在同一个文件夹里，但是却要加个前缀，可能与我IDE打开的工作区有关吧？</p>
+<p>总之就是路径的问题。</p>
+<h1 id="不存在skimage库"><a href="#不存在skimage库" class="headerlink" title="不存在skimage库"></a>不存在skimage库</h1><p>Python库函数的下载放到了另外一篇文章…</p>
+]]></content>
+      <categories>
+        <category>Library function</category>
+      </categories>
+      <tags>
+        <tag>report an error</tag>
+        <tag>库函数</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>L1和L2正则化</title>
     <url>/2022/11/23/L1%E5%92%8CL2%E6%AD%A3%E5%88%99%E5%8C%96/</url>
     <content><![CDATA[<p>了解什么是L1正则化和L2正则化，以及什么是正则化？</p>
@@ -123,34 +151,6 @@
       <tags>
         <tag>git</tag>
         <tag>工具操作</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>cv2报错处理</title>
-    <url>/2022/11/24/cv2%E6%8A%A5%E9%94%99%E5%A4%84%E7%90%86/</url>
-    <content><![CDATA[<p>cv2报错：raise TypeError(“Image data of dtype {} cannot be converted to “TypeError: Image data of dtype object cannot be converted to float</p>
-<span id="more"></span>
-
-<h1 id="raise-TypeError-“Image-data-of-dtype-cannot-be-converted-to-“-TypeError-Image-data-of-dtype-object-cannot-be-converted-to-float"><a href="#raise-TypeError-“Image-data-of-dtype-cannot-be-converted-to-“-TypeError-Image-data-of-dtype-object-cannot-be-converted-to-float" class="headerlink" title="raise TypeError(“Image data of dtype {} cannot be converted to “     TypeError: Image data of dtype object cannot be converted to float"></a>raise TypeError(“Image data of dtype {} cannot be converted to “     TypeError: Image data of dtype object cannot be converted to float</h1><p>刚想要研究一下CV2内置的图像类型的不同，结果发现CSDN上找的代码跑不出来？其实也正常，天下哪有免费的午餐，拿到的代码还不是得修修改改？</p>
-<h1 id="报错如下"><a href="#报错如下" class="headerlink" title="报错如下"></a>报错如下</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">raise TypeError(&quot;Image data of dtype &#123;&#125; cannot be converted to &quot;     TypeError: Image data of dtype object cannot be converted to float</span><br></pre></td></tr></table></figure>
-
-<p>至于解决方案众说纷坛，有说要看看数据类型是不是不对应，还有的人说路径里面有中文。其实我的文件夹真的有中文，但是更改之后，报错依旧。</p>
-<p>网上都说是引入图片路径的问题，但是我这句代码应该也没有错吧？因为下载的visual code插件可以成功显示出图片在代码的左边，左思右想决定还是更改路径试试。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># cv2.imread()接口读图像，读进来直接是BGR 格式数据格式在 0~255，通道格式为(W,H,C)</span><br><span class="line">img_BGR = cv2.imread(&#x27;sea.jpg&#x27;)</span><br></pre></td></tr></table></figure>
-
-<p>更改成visual code直接复制图片的相对路径</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">img_BGR = cv2.imread(&#x27;web\sea.jpg&#x27;)</span><br></pre></td></tr></table></figure>
-
-<p>后面发现真的成功运行。这次运行的代码文件和图片文件在同一个文件夹里，但是却要加个前缀，可能与我IDE打开的工作区有关吧？</p>
-<p>总之就是路径的问题。</p>
-<h1 id="不存在skimage库"><a href="#不存在skimage库" class="headerlink" title="不存在skimage库"></a>不存在skimage库</h1><p>Python库函数的下载放到了另外一篇文章…</p>
-]]></content>
-      <categories>
-        <category>Library function</category>
-      </categories>
-      <tags>
-        <tag>report an error</tag>
-        <tag>库函数</tag>
       </tags>
   </entry>
   <entry>
@@ -455,21 +455,91 @@ im.save(output)
       </tags>
   </entry>
   <entry>
-    <title>插入YouTube视频</title>
-    <url>/2022/11/23/%E6%8F%92%E5%85%A5YouTube%E8%A7%86%E9%A2%91/</url>
-    <content><![CDATA[<p>尝试在文章中插入一段YouTube视频，就放我最近经常听的一首歌吧！</p>
+    <title>感觉夏天来了!</title>
+    <url>/2022/11/28/%E6%84%9F%E8%A7%89%E5%A4%8F%E5%A4%A9%E6%9D%A5%E4%BA%86/</url>
+    <content><![CDATA[<p>今天十一月二十八日，连续一周的降雨让我整个人都感觉湿漉漉的。烦恼的不仅仅是衣物没法干鞋子该换着穿这种零碎的琐事，更多的是来自生活的压力…</p>
 <span id="more"></span>
 
-<div class="video-container"><iframe src="https://www.youtube.com/embed/crIP7PuC8Bc" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+<p>今天十一月二十八日，连续一周的降雨让我整个人都感觉湿漉漉的。烦恼的不仅仅是衣物没法干鞋子该换着穿这种零碎的琐事，更多的是来自生活的压力。压力什么的不想谈，谈了也没多大意思。</p>
+<p>今天突然想写日记也并不是偶然，之前也想写，但是由于自己拖拉的性格，让我把这些想做的事情都堆在了心绪的箱底，一直都没法去做。这种坏习惯自打我上大学便沾染上了，很多时候都想改正，但是却无能为力，反而想用摆脱拖拉是否有意义这种问题来试图宽慰自己。我很清楚这一点，但我还是置之不管，任由其发展。像这种大步子的改变生活习惯的做法，我是一点计划都没有，这点消极态度感觉与齐宣王的有事钟无艳，无事夏迎春颇有几分相似呢！</p>
+<p>我觉得疫情受困对于我来说并不是很大影响，因为我现在倒是过得自由自在的(不过要没有疫情我也可能过得更自由自在)。虽然宅在宿舍不错，但人总是要出去面对世界的嘛！现在有一点感觉困惑的就是，疫情可以说没有困住我，却把外面的世界给封住了，让我寸步难行。想要去附近走走还得查查目的地是否是风险地区这样的操作已经让我很心烦了，什么时候能够真正解放好像遥遥无期，不过像我这样做不了啥的升斗小市民还是做好自己分内的事吧！</p>
+<p>刚才还想夸今天的风很有夏天的感觉，但走到阳台看到天空被蓝天和乌云像是被分成了泾渭两河，心里五味杂陈很不是滋味，感觉一些不好的事情正在酝酿。庆幸的是自己是在蓝天之下，这一点倒是让我宽慰了许多。我还记得前几天才过了小雪，今天的天气倒是光着膀子到处溜也没问题，广州的天气还真是很奇怪！</p>
+<p>什么暴风雨过后的彩虹、照进我心底的一束久违的阳光这样肉麻的话我就不想说了，不过今天能够看到蓝天和太阳确实让自己的心情快活了许多。说实在，这几天下雨我也没有多盼望晴天能够到来，像是被阴雨天麻痹了一样。倒是今天看到了太阳，却吐槽太阳为什么不早点出来。看着天上的云，就像是夏天暴风雨前夕的那种云，浓墨重彩，什么阴影和线条被狠狠地勾勒出来，想说的就只有罗辑面对面壁者计划那句纯粹的卧槽！</p>
+<p>风打到脸上，我很肯定这就是夏天的风！</p>
+<img src="/uploads/dormitory.jpg" class="post-image">
+里面是生活，外面是我的世界啊！
+---
 
-]]></content>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/YAXTn0E-Zgo" frameborder="0" loading="lazy" allowfullscreen></iframe></div>]]></content>
       <categories>
-        <category>Blog</category>
+        <category>School Life</category>
       </categories>
       <tags>
         <tag>音视频</tag>
-        <tag>博客</tag>
+        <tag>生活</tag>
         <tag>YouTube</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数学建模大赛</title>
+    <url>/2022/11/23/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E5%A4%A7%E8%B5%9B/</url>
+    <content><![CDATA[<p>直到今天为止，数模比赛已经结束咯！任务完成，参赛题目也提交了，结果如何就看人品了🤗</p>
+<span id="more"></span>
+
+<h1 id="1-数模比赛"><a href="#1-数模比赛" class="headerlink" title="1.数模比赛"></a>1.数模比赛</h1><p>直到今天为止，数模比赛已经结束咯！任务完成，参赛题目也提交了，结果如何就看人品了🤗<br>这是是第一次使用Markdown写短文，虽然说Markdown很容易上手，但是一些细节上的东西总是无法反应过来😵😵😵</p>
+<blockquote>
+<p>下面是我学习Markdown的一些经历，希望在写作的时候对你有些帮助！😉</p>
+<p>点击跳转Markdown  –&gt;目前这项功能还在开发中，ちょっと待っね！</p>
+</blockquote>
+<h1 id="2-比赛前"><a href="#2-比赛前" class="headerlink" title="2.比赛前"></a>2.比赛前</h1><h2 id="2-1第一次校赛"><a href="#2-1第一次校赛" class="headerlink" title="2.1第一次校赛"></a>2.1第一次校赛</h2><p>虽然说今年四月份就开始准备数模比赛了，到今天有五个多月的时间，但是我们队真正学习的时间却不多，至少对我来说。可能我真正静下心来学习数模知识的时间还不足两个星期吧！😅</p>
+<p>刚开始我的工作是负责建模的工作，在队长的敦促下，买了份价值一百五的学习视频及教程。我对于视频学习并没有多大的想法，我还是更喜欢看书学。这就是为什么iPad里的电子书都发霉发臭了，都不曾被我看过的原因吧？再一点，比起付费的资料，我更喜欢白嫖（虽然这并不好），因为在我认为在网上寻找资料是一件很享受的事情，おかしいでしょ？</p>
+<p>一个队伍的核心成员应该是建模手，作为整支队伍的leader，我带领着队伍齐头并进，最后连校三等都没有…</p>
+<p>😀😀😀但是这也是在意料之内的，因为没有什么知识储备，脑子里当时就只有层次分析法这几个简单的模型，再加上论文的阅读次数都不足双位数，能获奖就有鬼！而且为期三天的数模，我们整整搞了十天才提交上去，虽然但是有多少水分谁不不揭穿了啊！</p>
+<h2 id="2-2暑假"><a href="#2-2暑假" class="headerlink" title="2.2暑假"></a>2.2暑假</h2><p>搞完校赛，处理完期末考试，差不多就进入了暑假。由于和写作手的配合没有那么好，所以我们打算换一名成员。队长推荐了一名算法高手，很显然，我该换岗位了。</p>
+<p>在漫长的暑假，我只希望自己能够每天抽出时间读一篇，哪怕是一篇数模优秀文章也好！但是事与愿违，事…还是没做成。后面学校组织训练，我们参加并且完成了一篇19年的C题。嗯，很显然我们又是十天左右才完成。当时就想着，这么搞肯定得玩完。于是思前想后，打算用LaTeX替换现在的WPS，说不定写作工具变了，我们的工作就更有效率了呢？😲</p>
+<p>好主意！下一次训练连半成品都没有交上去…</p>
+<p>当时学习LaTeX花了不到半天时间，便清楚它的工作流程，于是迫不及待的去找了一些有数模LaTeX的tex文件。看到了一个钟意的，便敲定了，也就是现在我使用的这也数模模板。</p>
+<p>由于我没有将模板与正文分离，所以我两次写论文的时候，都是夹着别人的论文一起写的，这次数模也不例外…</p>
+<blockquote>
+<p>我将LaTeX文件放到了这里，模板和正文自己分离。懒😪😪😪</p>
+<p>这项工作也还在完善中，请稍后！</p>
+</blockquote>
+<p>然后就开学咯🎉</p>
+<h2 id="2-3开学到比赛前这段时间"><a href="#2-3开学到比赛前这段时间" class="headerlink" title="2.3开学到比赛前这段时间"></a>2.3开学到比赛前这段时间</h2><p>很显然，我什么都没有干。</p>
+<h1 id="3-比赛"><a href="#3-比赛" class="headerlink" title="3.比赛"></a>3.比赛</h1><p>据说参加国赛需要校赛经历，我们已经算是合格的国赛选手了吧？我们比赛的时间是9月15号（周四）晚上六点钟到9月18号（周日）晚上十点钟之前。又多了四个小时时间，Lucky！希望能够用这多出来的四个小时改变点什么…</p>
+<h2 id="3-1周四晚上"><a href="#3-1周四晚上" class="headerlink" title="3.1周四晚上"></a>3.1周四晚上</h2><p>出赛题的时候我们在饭堂，不是因为我们不准备坐着等题，而是我忘记打包进实验室了。当天晚上我们商量好，要确定选题，不要犹豫。今年的A题对于我们来说，简直是魔鬼程度的。两三页篇幅的说明，让我们望而祛步🙄。如果硬啃的话，肯定可以理解它想要表达什么，但是求解确实一大难事。后面看别人大佬绞尽脑汁的想，才发现这个决定无疑对我们来说是十分正确的。</p>
+<p>选题按理来说应该要由建模手和编程手决定，因为他们更清楚问题的复杂性。他们现在卡在了B题和C题之前，队长更想选C题，但是算法糕手希望能够挑战一下。他内心看起来很动摇，因为他看不出解题思路。其实我和新队员也是第一次见面，之前都是在WeChat上聊天。谢天谢地，我们俩很快就磨合了，变得更多少年的好友一般畅所欲言？！</p>
+<p>我在几何方面很敏感，但是对数学公式很感冒。当时想过选数学专业，但是哪有人只学几何不用数学公式啊？恰好B题就是与几何有关的，我用高中的知识看出了第一小问的求解思路，然后我就坚持选B题。最后没有依我，选择了C题。我当时虽然很不爽，但是我确实只想得出第一问，对于全局来说，我还是服气的。虽然题目更简单了，但是意味着更多人选。只有语文建模基础足够深厚，才有机会获得一个最小的省三。<strong>最后统计有三百八十多人选择了C题，这个人数差不多就是去年我们学校的参赛人数…</strong></p>
+<h2 id="3-2周五"><a href="#3-2周五" class="headerlink" title="3.2周五"></a>3.2周五</h2><p>周五我们搜寻资料，解决了第一小问，然后卡在了第二小问的预测上，想了差不多一天的时间都没有想出来。确实浪费了很多时间，也做了很多无用功。第一小问的论文我很快就与论文交接了，但是剩余的时间与其是在划水，倒不如说是在无用功。C题与化学有关，于是我想着会用到化学方程式，去找了很多。但是最后发现要么就是用不上，要么就是没时间用。</p>
+<h2 id="3-3周六"><a href="#3-3周六" class="headerlink" title="3.3周六"></a>3.3周六</h2><p>C题有大概六七个小问，想要查看原题的话点击这里。</p>
+<p>我们一天时间才解决了第一小问，如果再这么下去，论文很有可能写不完。虽然我们也很努力，我也是第一次尝试了这种朝八晚十二的作息规律。嗯？怎么和我平时的作息有点像？关键是放弃了宝贵的午休时间。没有午休我的精神状态就会下降，特别是写论文的时候，无法理解模型的概念与问题的解决思路，又没有文思泉涌，将会导致写出来的论文质量差。一天除了睡觉的时间都呆在实验室，看起来很努力，在我看来是在做无用功（包括我）。队长和建模手对于模型的选择有一定的困难，导致了问题的拖延。明白了这一点，今天开始我尝试着来安排工作。</p>
+<p>对于模型，需要用指标来衡量。我肯定表现好的模型，否定表现差的模型。这种斩钉截铁的工作模式很快让我和各位都进入了流水线上，开始各司其职。当然，前提是做出了跳过第二小问的决定。</p>
+<p>直到晚上，第二问第一小问、第三问和第四问的问题都得到了解决。但是跟他们一起讨论，导致我到目前为止并没有进行论文撰写，也就是说只完成了论文进度还是停留在周五。</p>
+<h2 id="3-4周日"><a href="#3-4周日" class="headerlink" title="3.4周日"></a>3.4周日</h2><p>即便如此，我早上还是睡到了差不多九点，因为我认为工作效率才是最重要的，假努力欺骗的是自己还有身边的人。但时间真的很赶！早上我留在宿舍通过大屏操作LaTeX很快就完成了第二问的论文撰写，并且我交代队友明天早上完成第三问的论文撰写以及求解出第二小问的预测结果。队友很给力，差不多两点我去实验室的时候他们已经完成了这两个任务。但我看完论文结构后猛地一惊，发现摘要和问题分析没有写！包括第四问在内，还有一些零零星星的结果没有贴到论文中，六个小时能够完成吗？真是一项挑战啊！我不禁擦了擦额头上的假汗😰😰😰</p>
+<p>我安排他们完成了问题二和问题三的问题分析，因为他们求解的他们来写这种解题思路的话简直如鱼得水。而第四问的方法是我想出来的，所以我先完成第四问先。但是做了一半，发现SPSSPro上的热力图根本无法反映出我想要的结果。于是在三点钟的时候我临时改用了其它方法，用画图代替了建立模型的繁琐。</p>
+<p>大概五点钟我们就完成了基本上的任务，但是对于XeLatex编译出来的文件，还是有很多bug。并且每一个bug都是包含致命错误的，一旦出现即无缘获奖（<em>虽然说这次的也不知道能不能够获奖😵‍💫</em>）其中解决的很多问题都是以前遇到过但是解决不出的🤔</p>
+<ul>
+<li>从使用之初一直困扰我的表格边框以及复杂表格的LaTeX代码</li>
+<li>LaTeX含特殊字符的那段文字会超出编译生成的PDF之外</li>
+<li>LaTeX中图片并列</li>
+<li>LaTeX正文会被图片和表格夹断，阅读出现障碍</li>
+<li>LaTeX模板上页眉的内容不知道在哪个文件清空</li>
+<li>LaTeX附录粘贴代码有点麻烦</li>
+</ul>
+<p><code>解决方案放到了LaTeX篇，如果有需要请点击此处跳转...</code></p>
+<p>多亏LaTeX有在源代码和PDF相互跳转到指定位置的功能，不然真的用不下去了😭😭😭</p>
+<p>我们一起改论文，改到了7点57还有很多问题，但是8点钟之前可以提交多次PDF论文和RAR压缩包，也就是说MD5码在8点钟之前是允许反复更改的。但是在8点到10点之内，就只能提交一次文件和生成指定不可变的MD5码。并且MD5码在8点后生成的，就不允许更改文件了，一旦你更改文件，或许只是打开一下PDF都有可能让MD5码发生改变，机器会判定在10点钟之后正式提交参赛作品的时候你的文件发生了改动，这个时候它是不承认你的MD5码，也就是说你无法参赛了。这是一个很严重的问题，自己辛辛苦苦做了这么久，结果却交不上去，心态多少有点崩溃。所以我们为了保险起见，先在8点钟之前提交一次。</p>
+<p>然后我们预测在9点钟之前正式将作品做最后一次的提交（10点钟之前的提交可以认为只是参赛资格的获取），但是发现bug根本改不过来。三个人忙得团团转，当时想着9点半之前提交就好了，网络不会这么拥挤的。但是忙到了9点半，bug依然有，而且严重程度会让论文直接降档。没办法，抱着试一逝的心态，我们改bug改到了9点45。虽然说还有不少bug，但都是不痛不痒的，对阅读论文没有什么大影响的小问题了。</p>
+<p>我编译出最新的PDF，通过WeChat准备发给队长时，由于轻薄本已经承担了太多软件，并且三四天都没有合过眼了。LaTeX直接卡退，屏幕被黑块笼罩着，就像我们此刻的心情一样。大概到9点50的时候，电脑缓过来了，我赶紧将PDF发给队长。压缩完我的LaTeX代码文件后突然发现我电脑里的压缩软件是360压缩，只能生成zip类型的压缩包。而我之前一直想着队长有WinRAR就够了，反正是他通过客户端提交的。下载WinRAR显然不切实际，由于多天的劳累，我们的CPU已经转不过来了。我赶紧将文件压缩成zip格式，然后发给建模手，因为此时队长在忙活着PDF名称的修改。但未承想建模手把我的文件解压放进总附件文件中，压缩后找不到找不到压缩包，遂叫我来操作。我看到他的安装路径，狂点桌面，然后点击确定。终于，我们的压缩包出现在了桌面。但他的桌面都是蓝蓝的doc和绿绿xls，一时间竟无法找出压缩包！此时时间已经来到了9点55分。一顿丝滑的操作后视野来到了队长这边，只见他颤颤巍巍地移动着鼠标，指尖高频触动着鼠标左键，但就是无法达到那最后的终点！“好了吗？”“好！冲！”伴随着呐喊声，我们点击了提交。幸运的是，软件并没有卡顿，显得如此顺理成章，此时时间是9点57分。一切都结束后，没有欢呼、没有喝彩，只留下一片鸦雀无声。紧绷着的心情还没有完全放松下来，眼前还停留着黑白的文字与代码，一切都还显得这么历历在目！</p>
+<h1 id="4-Final"><a href="#4-Final" class="headerlink" title="4.Final"></a>4.Final</h1><p>虽然过程很苦很累，甚至对一百蚊有点舍不得。但就最后两个小时的感受而言，让我觉得这钱交的值了！自打上大学以来，还是第一次切实地体会到了团队合作的重要性。以前一直都是单打独斗，现在发现自己并不是万能的，队友就是用来弥补自己的缺点的。虽然说有百分之五十的概率获奖，但是无论结果如何我都能平淡接受，因为这场比赛我已经获得了自己想要的东西！<em>（其实心里还是想着希望得个省三就好了，因为有一千块钱回血…）</em>🐤🐤🐤</p>
+]]></content>
+      <categories>
+        <category>School Life</category>
+      </categories>
+      <tags>
+        <tag>生活</tag>
+        <tag>学校</tag>
+        <tag>比赛</tag>
       </tags>
   </entry>
   <entry>
@@ -535,98 +605,6 @@ im.save(output)
       <tags>
         <tag>机器学习</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>数学建模大赛</title>
-    <url>/2022/11/23/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E5%A4%A7%E8%B5%9B/</url>
-    <content><![CDATA[<p>直到今天为止，数模比赛已经结束咯！任务完成，参赛题目也提交了，结果如何就看人品了🤗</p>
-<span id="more"></span>
-
-<h1 id="1-数模比赛"><a href="#1-数模比赛" class="headerlink" title="1.数模比赛"></a>1.数模比赛</h1><p>直到今天为止，数模比赛已经结束咯！任务完成，参赛题目也提交了，结果如何就看人品了🤗<br>这是是第一次使用Markdown写短文，虽然说Markdown很容易上手，但是一些细节上的东西总是无法反应过来😵😵😵</p>
-<blockquote>
-<p>下面是我学习Markdown的一些经历，希望在写作的时候对你有些帮助！😉</p>
-<p>点击跳转Markdown  –&gt;目前这项功能还在开发中，ちょっと待っね！</p>
-</blockquote>
-<h1 id="2-比赛前"><a href="#2-比赛前" class="headerlink" title="2.比赛前"></a>2.比赛前</h1><h2 id="2-1第一次校赛"><a href="#2-1第一次校赛" class="headerlink" title="2.1第一次校赛"></a>2.1第一次校赛</h2><p>虽然说今年四月份就开始准备数模比赛了，到今天有五个多月的时间，但是我们队真正学习的时间却不多，至少对我来说。可能我真正静下心来学习数模知识的时间还不足两个星期吧！😅</p>
-<p>刚开始我的工作是负责建模的工作，在队长的敦促下，买了份价值一百五的学习视频及教程。我对于视频学习并没有多大的想法，我还是更喜欢看书学。这就是为什么iPad里的电子书都发霉发臭了，都不曾被我看过的原因吧？再一点，比起付费的资料，我更喜欢白嫖（虽然这并不好），因为在我认为在网上寻找资料是一件很享受的事情，おかしいでしょ？</p>
-<p>一个队伍的核心成员应该是建模手，作为整支队伍的leader，我带领着队伍齐头并进，最后连校三等都没有…</p>
-<p>😀😀😀但是这也是在意料之内的，因为没有什么知识储备，脑子里当时就只有层次分析法这几个简单的模型，再加上论文的阅读次数都不足双位数，能获奖就有鬼！而且为期三天的数模，我们整整搞了十天才提交上去，虽然但是有多少水分谁不不揭穿了啊！</p>
-<h2 id="2-2暑假"><a href="#2-2暑假" class="headerlink" title="2.2暑假"></a>2.2暑假</h2><p>搞完校赛，处理完期末考试，差不多就进入了暑假。由于和写作手的配合没有那么好，所以我们打算换一名成员。队长推荐了一名算法高手，很显然，我该换岗位了。</p>
-<p>在漫长的暑假，我只希望自己能够每天抽出时间读一篇，哪怕是一篇数模优秀文章也好！但是事与愿违，事…还是没做成。后面学校组织训练，我们参加并且完成了一篇19年的C题。嗯，很显然我们又是十天左右才完成。当时就想着，这么搞肯定得玩完。于是思前想后，打算用LaTeX替换现在的WPS，说不定写作工具变了，我们的工作就更有效率了呢？😲</p>
-<p>好主意！下一次训练连半成品都没有交上去…</p>
-<p>当时学习LaTeX花了不到半天时间，便清楚它的工作流程，于是迫不及待的去找了一些有数模LaTeX的tex文件。看到了一个钟意的，便敲定了，也就是现在我使用的这也数模模板。</p>
-<p>由于我没有将模板与正文分离，所以我两次写论文的时候，都是夹着别人的论文一起写的，这次数模也不例外…</p>
-<blockquote>
-<p>我将LaTeX文件放到了这里，模板和正文自己分离。懒😪😪😪</p>
-<p>这项工作也还在完善中，请稍后！</p>
-</blockquote>
-<p>然后就开学咯🎉</p>
-<h2 id="2-3开学到比赛前这段时间"><a href="#2-3开学到比赛前这段时间" class="headerlink" title="2.3开学到比赛前这段时间"></a>2.3开学到比赛前这段时间</h2><p>很显然，我什么都没有干。</p>
-<h1 id="3-比赛"><a href="#3-比赛" class="headerlink" title="3.比赛"></a>3.比赛</h1><p>据说参加国赛需要校赛经历，我们已经算是合格的国赛选手了吧？我们比赛的时间是9月15号（周四）晚上六点钟到9月18号（周日）晚上十点钟之前。又多了四个小时时间，Lucky！希望能够用这多出来的四个小时改变点什么…</p>
-<h2 id="3-1周四晚上"><a href="#3-1周四晚上" class="headerlink" title="3.1周四晚上"></a>3.1周四晚上</h2><p>出赛题的时候我们在饭堂，不是因为我们不准备坐着等题，而是我忘记打包进实验室了。当天晚上我们商量好，要确定选题，不要犹豫。今年的A题对于我们来说，简直是魔鬼程度的。两三页篇幅的说明，让我们望而祛步🙄。如果硬啃的话，肯定可以理解它想要表达什么，但是求解确实一大难事。后面看别人大佬绞尽脑汁的想，才发现这个决定无疑对我们来说是十分正确的。</p>
-<p>选题按理来说应该要由建模手和编程手决定，因为他们更清楚问题的复杂性。他们现在卡在了B题和C题之前，队长更想选C题，但是算法糕手希望能够挑战一下。他内心看起来很动摇，因为他看不出解题思路。其实我和新队员也是第一次见面，之前都是在WeChat上聊天。谢天谢地，我们俩很快就磨合了，变得更多少年的好友一般畅所欲言？！</p>
-<p>我在几何方面很敏感，但是对数学公式很感冒。当时想过选数学专业，但是哪有人只学几何不用数学公式啊？恰好B题就是与几何有关的，我用高中的知识看出了第一小问的求解思路，然后我就坚持选B题。最后没有依我，选择了C题。我当时虽然很不爽，但是我确实只想得出第一问，对于全局来说，我还是服气的。虽然题目更简单了，但是意味着更多人选。只有语文建模基础足够深厚，才有机会获得一个最小的省三。<strong>最后统计有三百八十多人选择了C题，这个人数差不多就是去年我们学校的参赛人数…</strong></p>
-<h2 id="3-2周五"><a href="#3-2周五" class="headerlink" title="3.2周五"></a>3.2周五</h2><p>周五我们搜寻资料，解决了第一小问，然后卡在了第二小问的预测上，想了差不多一天的时间都没有想出来。确实浪费了很多时间，也做了很多无用功。第一小问的论文我很快就与论文交接了，但是剩余的时间与其是在划水，倒不如说是在无用功。C题与化学有关，于是我想着会用到化学方程式，去找了很多。但是最后发现要么就是用不上，要么就是没时间用。</p>
-<h2 id="3-3周六"><a href="#3-3周六" class="headerlink" title="3.3周六"></a>3.3周六</h2><p>C题有大概六七个小问，想要查看原题的话点击这里。</p>
-<p>我们一天时间才解决了第一小问，如果再这么下去，论文很有可能写不完。虽然我们也很努力，我也是第一次尝试了这种朝八晚十二的作息规律。嗯？怎么和我平时的作息有点像？关键是放弃了宝贵的午休时间。没有午休我的精神状态就会下降，特别是写论文的时候，无法理解模型的概念与问题的解决思路，又没有文思泉涌，将会导致写出来的论文质量差。一天除了睡觉的时间都呆在实验室，看起来很努力，在我看来是在做无用功（包括我）。队长和建模手对于模型的选择有一定的困难，导致了问题的拖延。明白了这一点，今天开始我尝试着来安排工作。</p>
-<p>对于模型，需要用指标来衡量。我肯定表现好的模型，否定表现差的模型。这种斩钉截铁的工作模式很快让我和各位都进入了流水线上，开始各司其职。当然，前提是做出了跳过第二小问的决定。</p>
-<p>直到晚上，第二问第一小问、第三问和第四问的问题都得到了解决。但是跟他们一起讨论，导致我到目前为止并没有进行论文撰写，也就是说只完成了论文进度还是停留在周五。</p>
-<h2 id="3-4周日"><a href="#3-4周日" class="headerlink" title="3.4周日"></a>3.4周日</h2><p>即便如此，我早上还是睡到了差不多九点，因为我认为工作效率才是最重要的，假努力欺骗的是自己还有身边的人。但时间真的很赶！早上我留在宿舍通过大屏操作LaTeX很快就完成了第二问的论文撰写，并且我交代队友明天早上完成第三问的论文撰写以及求解出第二小问的预测结果。队友很给力，差不多两点我去实验室的时候他们已经完成了这两个任务。但我看完论文结构后猛地一惊，发现摘要和问题分析没有写！包括第四问在内，还有一些零零星星的结果没有贴到论文中，六个小时能够完成吗？真是一项挑战啊！我不禁擦了擦额头上的假汗😰😰😰</p>
-<p>我安排他们完成了问题二和问题三的问题分析，因为他们求解的他们来写这种解题思路的话简直如鱼得水。而第四问的方法是我想出来的，所以我先完成第四问先。但是做了一半，发现SPSSPro上的热力图根本无法反映出我想要的结果。于是在三点钟的时候我临时改用了其它方法，用画图代替了建立模型的繁琐。</p>
-<p>大概五点钟我们就完成了基本上的任务，但是对于XeLatex编译出来的文件，还是有很多bug。并且每一个bug都是包含致命错误的，一旦出现即无缘获奖（<em>虽然说这次的也不知道能不能够获奖😵‍💫</em>）其中解决的很多问题都是以前遇到过但是解决不出的🤔</p>
-<ul>
-<li>从使用之初一直困扰我的表格边框以及复杂表格的LaTeX代码</li>
-<li>LaTeX含特殊字符的那段文字会超出编译生成的PDF之外</li>
-<li>LaTeX中图片并列</li>
-<li>LaTeX正文会被图片和表格夹断，阅读出现障碍</li>
-<li>LaTeX模板上页眉的内容不知道在哪个文件清空</li>
-<li>LaTeX附录粘贴代码有点麻烦</li>
-</ul>
-<p><code>解决方案放到了LaTeX篇，如果有需要请点击此处跳转...</code></p>
-<p>多亏LaTeX有在源代码和PDF相互跳转到指定位置的功能，不然真的用不下去了😭😭😭</p>
-<p>我们一起改论文，改到了7点57还有很多问题，但是8点钟之前可以提交多次PDF论文和RAR压缩包，也就是说MD5码在8点钟之前是允许反复更改的。但是在8点到10点之内，就只能提交一次文件和生成指定不可变的MD5码。并且MD5码在8点后生成的，就不允许更改文件了，一旦你更改文件，或许只是打开一下PDF都有可能让MD5码发生改变，机器会判定在10点钟之后正式提交参赛作品的时候你的文件发生了改动，这个时候它是不承认你的MD5码，也就是说你无法参赛了。这是一个很严重的问题，自己辛辛苦苦做了这么久，结果却交不上去，心态多少有点崩溃。所以我们为了保险起见，先在8点钟之前提交一次。</p>
-<p>然后我们预测在9点钟之前正式将作品做最后一次的提交（10点钟之前的提交可以认为只是参赛资格的获取），但是发现bug根本改不过来。三个人忙得团团转，当时想着9点半之前提交就好了，网络不会这么拥挤的。但是忙到了9点半，bug依然有，而且严重程度会让论文直接降档。没办法，抱着试一逝的心态，我们改bug改到了9点45。虽然说还有不少bug，但都是不痛不痒的，对阅读论文没有什么大影响的小问题了。</p>
-<p>我编译出最新的PDF，通过WeChat准备发给队长时，由于轻薄本已经承担了太多软件，并且三四天都没有合过眼了。LaTeX直接卡退，屏幕被黑块笼罩着，就像我们此刻的心情一样。大概到9点50的时候，电脑缓过来了，我赶紧将PDF发给队长。压缩完我的LaTeX代码文件后突然发现我电脑里的压缩软件是360压缩，只能生成zip类型的压缩包。而我之前一直想着队长有WinRAR就够了，反正是他通过客户端提交的。下载WinRAR显然不切实际，由于多天的劳累，我们的CPU已经转不过来了。我赶紧将文件压缩成zip格式，然后发给建模手，因为此时队长在忙活着PDF名称的修改。但未承想建模手把我的文件解压放进总附件文件中，压缩后找不到找不到压缩包，遂叫我来操作。我看到他的安装路径，狂点桌面，然后点击确定。终于，我们的压缩包出现在了桌面。但他的桌面都是蓝蓝的doc和绿绿xls，一时间竟无法找出压缩包！此时时间已经来到了9点55分。一顿丝滑的操作后视野来到了队长这边，只见他颤颤巍巍地移动着鼠标，指尖高频触动着鼠标左键，但就是无法达到那最后的终点！“好了吗？”“好！冲！”伴随着呐喊声，我们点击了提交。幸运的是，软件并没有卡顿，显得如此顺理成章，此时时间是9点57分。一切都结束后，没有欢呼、没有喝彩，只留下一片鸦雀无声。紧绷着的心情还没有完全放松下来，眼前还停留着黑白的文字与代码，一切都还显得这么历历在目！</p>
-<h1 id="4-Final"><a href="#4-Final" class="headerlink" title="4.Final"></a>4.Final</h1><p>虽然过程很苦很累，甚至对一百蚊有点舍不得。但就最后两个小时的感受而言，让我觉得这钱交的值了！自打上大学以来，还是第一次切实地体会到了团队合作的重要性。以前一直都是单打独斗，现在发现自己并不是万能的，队友就是用来弥补自己的缺点的。虽然说有百分之五十的概率获奖，但是无论结果如何我都能平淡接受，因为这场比赛我已经获得了自己想要的东西！<em>（其实心里还是想着希望得个省三就好了，因为有一千块钱回血…）</em>🐤🐤🐤</p>
-]]></content>
-      <categories>
-        <category>School Life</category>
-      </categories>
-      <tags>
-        <tag>学校</tag>
-        <tag>比赛</tag>
-        <tag>生活</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>特征缩放</title>
-    <url>/2022/11/23/%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE/</url>
-    <content><![CDATA[<p>将数据进行归一化和标准化可以使不同维度的特征放在一起进行比较，可以大大提高模型的准确性。</p>
-<span id="more"></span>
-
-<h1 id="特征缩放"><a href="#特征缩放" class="headerlink" title="特征缩放"></a>特征缩放</h1><h2 id="1-为什么要进行特征缩放"><a href="#1-为什么要进行特征缩放" class="headerlink" title="1. 为什么要进行特征缩放"></a>1. 为什么要进行特征缩放</h2><h3 id="1-1-统一特征的权重和提升模型准确性"><a href="#1-1-统一特征的权重和提升模型准确性" class="headerlink" title="1.1 统一特征的权重和提升模型准确性"></a>1.1 统一特征的权重和提升模型准确性</h3><p>如果某个特征的取值范围比其他特征大很多，那么数值计算（比如说计算欧式距离）就受该特征的主要影响。但实际上并不一定是这个特征最重要，通常需要把每个特征看成同等重要。归一化和标准化数据可以使不同维度的特征放在一起进行比较，可以大大提高模型的准确性。</p>
-<h3 id="1-2-提升梯度下降法的收敛速度"><a href="#1-2-提升梯度下降法的收敛速度" class="headerlink" title="1.2 提升梯度下降法的收敛速度"></a>1.2 提升梯度下降法的收敛速度</h3><p><img src="https://img-blog.csdnimg.cn/20191113192133110.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzAwODgwNA==,size_16,color_FFFFFF,t_70" alt="左边是未归一化数据的梯度下降过程"></p>
-<h2 id="2-特征缩放的方法有哪些？"><a href="#2-特征缩放的方法有哪些？" class="headerlink" title="2. 特征缩放的方法有哪些？"></a>2. 特征缩放的方法有哪些？</h2><h3 id="2-1-最大最小值归一化（min-max-normalization）：将数值范围缩放到-0-1-区间里"><a href="#2-1-最大最小值归一化（min-max-normalization）：将数值范围缩放到-0-1-区间里" class="headerlink" title="2.1 最大最小值归一化（min-max normalization）：将数值范围缩放到 [0, 1] 区间里"></a>2.1 最大最小值归一化（min-max normalization）：将数值范围缩放到 [0, 1] 区间里</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190103162752557-711062993.png"></p>
-<h3 id="2-2-均值归一化（mean-normalization）：将数值范围缩放到-1-1-区间里，且数据的均值变为0"><a href="#2-2-均值归一化（mean-normalization）：将数值范围缩放到-1-1-区间里，且数据的均值变为0" class="headerlink" title="2.2 均值归一化（mean normalization）：将数值范围缩放到 [-1, 1] 区间里，且数据的均值变为0"></a>2.2 均值归一化（mean normalization）：将数值范围缩放到 [-1, 1] 区间里，且数据的均值变为0</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190103162807303-1305019357.png"></p>
-<h3 id="2-3-标准化-Z-值归一化（standardization-x2F-z-score-normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行-中心化-mean-centering-处理，再除以标准差进行缩放）"><a href="#2-3-标准化-Z-值归一化（standardization-x2F-z-score-normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行-中心化-mean-centering-处理，再除以标准差进行缩放）" class="headerlink" title="2.3 标准化 ,Z 值归一化（standardization &#x2F; z-score normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行 中心化 mean centering 处理，再除以标准差进行缩放）"></a>2.3 标准化 ,Z 值归一化（standardization &#x2F; z-score normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行 中心化 mean centering 处理，再除以标准差进行缩放）</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190103162903434-1406801774.png"></p>
-<h3 id="2-4-最大绝对值归一化（max-abs-normalization-）：也就是将数值变为单位长度（scaling-to-unit-length），将数值范围缩放到-1-1-区间里"><a href="#2-4-最大绝对值归一化（max-abs-normalization-）：也就是将数值变为单位长度（scaling-to-unit-length），将数值范围缩放到-1-1-区间里" class="headerlink" title="2.4 最大绝对值归一化（max abs normalization ）：也就是将数值变为单位长度（scaling to unit length），将数值范围缩放到 [-1, 1] 区间里"></a>2.4 最大绝对值归一化（max abs normalization ）：也就是将数值变为单位长度（scaling to unit length），将数值范围缩放到 [-1, 1] 区间里</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190112114759202-190163995.png"> </p>
-<h3 id="2-5-稳键标准化（robust-standardization）：先减去中位数，再除以四分位间距（interquartile-range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健"><a href="#2-5-稳键标准化（robust-standardization）：先减去中位数，再除以四分位间距（interquartile-range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健" class="headerlink" title="2.5 稳键标准化（robust standardization）：先减去中位数，再除以四分位间距（interquartile range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健"></a>2.5 稳键标准化（robust standardization）：先减去中位数，再除以四分位间距（interquartile range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201908/1247570-20190811172514046-446486849.png"></p>
-<blockquote>
-<p><em>有一些时候，只对数据进行中心化和缩放是不够的，还需对数据进行白化（whitening）处理来消除特征间的线性相关性</em></p>
-</blockquote>
-<h2 id="3-标准化和归一化的区别是什么？"><a href="#3-标准化和归一化的区别是什么？" class="headerlink" title="3. 标准化和归一化的区别是什么？"></a>3. 标准化和归一化的区别是什么？</h2><h3 id="3-1-归一化-NormalizationNormalization-：将一列数据变化到某个固定区间-范围-中，通常，这个区间是-0-1-，广义的讲，可以是各种区间，比如映射到-0，1-一样可以继续映射到其他范围，图像中可能会映射到-0-255-，其他情况可能映射到-1-1"><a href="#3-1-归一化-NormalizationNormalization-：将一列数据变化到某个固定区间-范围-中，通常，这个区间是-0-1-，广义的讲，可以是各种区间，比如映射到-0，1-一样可以继续映射到其他范围，图像中可能会映射到-0-255-，其他情况可能映射到-1-1" class="headerlink" title="3.1 归一化(NormalizationNormalization)：将一列数据变化到某个固定区间(范围)中，通常，这个区间是[0, 1]，广义的讲，可以是各种区间，比如映射到[0，1]一样可以继续映射到其他范围，图像中可能会映射到[0,255]，其他情况可能映射到[-1,1]"></a>3.1 归一化(NormalizationNormalization)：将一列数据变化到某个固定区间(范围)中，通常，这个区间是[0, 1]，广义的讲，可以是各种区间，比如映射到[0，1]一样可以继续映射到其他范围，图像中可能会映射到[0,255]，其他情况可能映射到[-1,1]</h3><h3 id="3-2-标准化-StandardizationStandardization-：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的"><a href="#3-2-标准化-StandardizationStandardization-：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的" class="headerlink" title="3.2 标准化(StandardizationStandardization)：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的"></a>3.2 标准化(StandardizationStandardization)：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的</h3><p><img src="https://img-blog.csdnimg.cn/20191021220509274.png#pic_center"></p>
-<h3 id="3-3-中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值"><a href="#3-3-中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值" class="headerlink" title="3.3 中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值"></a>3.3 中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值</h3><p><img src="https://img-blog.csdnimg.cn/20191021220535129.png#pic_center"></p>
-<h2 id="4-什么时候用标准化，什么时候用归一化？"><a href="#4-什么时候用标准化，什么时候用归一化？" class="headerlink" title="4. 什么时候用标准化，什么时候用归一化？"></a>4. 什么时候用标准化，什么时候用归一化？</h2><p>某博主理解：如果你对处理后的数据范围有严格要求，那肯定是归一化，个人经验，标准化是机器学习中更通用的手段，如果你无从下手，可以直接使用标准化。如果数据不为稳定，存在极端的最大最小值，不要用归一化。</p>
-<p>在分类、聚类算法中，需要使用距离来度量相似性的时候、或者使用PCA技术进行降维的时候，标准化表现更好；在不涉及距离度量、协方差计算的时候，可以使用归一化方法。</p>
-<p><strong>在需要使用距离来度量相似性的算法中，或者使用PCA技术进行降维的时候，通常使用标准化（standardization）或均值归一化（mean normalization）比较好，但如果数据分布不是正态分布或者标准差非常小，以及需要把数据固定在 [0, 1] 范围内，那么使用最大最小值归一化（min-max normalization）比较好（min-max 常用于归一化图像的灰度值）。但是min-max比较容易受异常值的影响，如果数据集包含较多的异常值，可以考虑使用稳键归一化（robust normalization）。对于已经中心化的数据或稀疏数据的缩放，比较推荐使用最大绝对值归一化（max abs normalization ），因为它会保住数据中的０元素，不会破坏数据的稀疏性（sparsity）。</strong></p>
-<h2 id="5-什么机器学习模型需要用到特征缩放？"><a href="#5-什么机器学习模型需要用到特征缩放？" class="headerlink" title="5. 什么机器学习模型需要用到特征缩放？"></a>5. 什么机器学习模型需要用到特征缩放？</h2><h3 id="5-1-通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear-Regression）、逻辑回归（Logistic-Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural-Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。"><a href="#5-1-通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear-Regression）、逻辑回归（Logistic-Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural-Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。" class="headerlink" title="5.1 通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear Regression）、逻辑回归（Logistic Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。"></a>5.1 通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear Regression）、逻辑回归（Logistic Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。</h3><h3 id="5-2-决策树（Decision-Tree），随机森林（Random-Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。"><a href="#5-2-决策树（Decision-Tree），随机森林（Random-Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。" class="headerlink" title="5.2 决策树（Decision Tree），随机森林（Random Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。"></a>5.2 决策树（Decision Tree），随机森林（Random Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。</h3><h2 id="6-在进行特征缩放的时候需要注意的地方？"><a href="#6-在进行特征缩放的时候需要注意的地方？" class="headerlink" title="6. 在进行特征缩放的时候需要注意的地方？"></a>6. 在进行特征缩放的时候需要注意的地方？</h2><p><em>需要先把数据先拆分成训练集与验证集，在训练集上计算出需要的数值（如均值和标准值），对训练集数据做标准化&#x2F;归一化处理，然后再用之前计算出的数据（如均值和标准值）对验证集数据做相同的标准化&#x2F;归一化处理。不要在整个数据集上直接做标准化&#x2F;归一化处理，因为这样会将验证集的信息带入到训练集中，这是一个非常容易犯的错误</em></p>
-<h2 id="7-参考链接"><a href="#7-参考链接" class="headerlink" title="7. 参考链接"></a>7. 参考链接</h2><p><a href="https://www.cnblogs.com/HuZihu/p/9761161.html">https://www.cnblogs.com/HuZihu/p/9761161.html</a></p>
-<p><a href="https://blog.csdn.net/weixin_43008804/article/details/103087447">https://blog.csdn.net/weixin_43008804/article/details/103087447</a></p>
-<p><a href="https://blog.csdn.net/weixin_36604953/article/details/102652160">https://blog.csdn.net/weixin_36604953/article/details/102652160</a></p>
-]]></content>
-      <categories>
-        <category>Mathine Learning</category>
-      </categories>
   </entry>
   <entry>
     <title>机器学习实验二</title>
@@ -780,78 +758,22 @@ print_result(lgb_r2_score, lgb_rmse, &#39;Lightgbm&#39;)
       </categories>
   </entry>
   <entry>
-    <title>特征工程</title>
-    <url>/2022/11/23/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/</url>
-    <content><![CDATA[<p>数据和特征决定了机器学习的上限，而模型和算法只是逼近这个上限而已</p>
+    <title>插入YouTube视频</title>
+    <url>/2022/11/23/%E6%8F%92%E5%85%A5YouTube%E8%A7%86%E9%A2%91/</url>
+    <content><![CDATA[<p>尝试在文章中插入一段YouTube视频，就放我最近经常听的一首歌吧！</p>
 <span id="more"></span>
 
-<h1 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a>特征工程</h1><p><a href="https://easyai.tech/ai-definition/feature-engineering/">特征工程</a>是机器学习工作流程中重要的组成部分，它将原始数据「翻译」成模型可理解的形式。</p>
-<p>美国计算机科学家 Peter Norvig 说过两句经典名言</p>
-<ol>
-<li>基于大量数据的简单模型优于基于少量数据的复杂模型</li>
-<li>更多的数据优于聪明的算法，而好的数据优于多的数据</li>
-</ol>
-<p>足以可见数据量和特征工程的重要性，不过数据量已经给定了，我们能做的只有特征工程。如何基于原来的数据发挥出更大的数据价值就是特征工程要做的事情。</p>
-<p><em>在16年的一项调查中发现，<a href="https://whatsthebigdata.com/2016/05/01/data-scientists-spend-most-of-their-time-cleaning-data/">数据科学家</a>的工作中，有80%的时间都在获取、清洗和组织数据。构造机器学习流水线的时间不到20%…</em></p>
-<h1 id="1-特征工程一些注意事项"><a href="#1-特征工程一些注意事项" class="headerlink" title="1.特征工程一些注意事项"></a>1.特征工程一些注意事项</h1><p>e.g. 人类是需要吃加工过的食物才行，这样更安全也更美味。机器算法模型也是类似，原始数据不能直接喂给模型，也需要对数据进行清洗、组织、转换。最后才能得到模型可以消化的特征。这样你对特征工程在数据和模型之间扮演的角色已经十分了解了吧？</p>
-<h2 id="1-1-当前我对特征工程的理解"><a href="#1-1-当前我对特征工程的理解" class="headerlink" title="1.1 当前我对特征工程的理解"></a>1.1 当前我对特征工程的理解</h2><p>当前我对特征工程的理解仅仅停留在特征提取和特征选择，这样是待会会提到的内容。首先要知道，这两种方法都是降维的方法。特征选择后的字段是原数据字段的子集，也就是说删减了一些冗杂的对模型训练没有用的字段。特征提取理解成原来特征的映射，e.g.三个字段合并在一起表现的会比三个字段独立更好一些–&gt;<a href="https://blog.csdn.net/Neil_Pan/article/details/51940849">特征选择和特征提取区别</a></p>
-<p>如果想要看看，特征工程具体是包括哪些具体步骤的，还可以参考<a href="https://blog.csdn.net/tiange_xiao/article/details/79723177#:~:text=%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%20%E6%98%AF%E4%BD%BF%E7%94%A8%E4%B8%93%E4%B8%9A%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86%E5%92%8C%E6%8A%80%E5%B7%A7%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%EF%BC%8C%E4%BD%BF%E5%BE%97%20%E7%89%B9%E5%BE%81%20%E8%83%BD%E5%9C%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E4%B8%8A%E5%8F%91%E6%8C%A5%E6%9B%B4%E5%A5%BD%E7%9A%84%E4%BD%9C%E7%94%A8%E7%9A%84%E8%BF%87%E7%A8%8B%E3%80%82%20%E8%BF%87%E7%A8%8B%20%E5%8C%85%E5%90%AB%20%E4%BA%86%20%E7%89%B9%E5%BE%81,%E7%89%B9%E5%BE%81%20%E6%9E%84%E5%BB%BA%E3%80%81%20%E7%89%B9%E5%BE%81%20%E9%80%89%E6%8B%A9%E7%AD%89%E6%A8%A1%E5%9D%97%E3%80%82%20%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%20%E7%9A%84%E7%9B%AE%E7%9A%84%E6%98%AF%E7%AD%9B%E9%80%89%E5%87%BA%E6%9B%B4%E5%A5%BD%E7%9A%84%20%E7%89%B9%E5%BE%81%20%EF%BC%8C%E8%8E%B7%E5%8F%96%E6%9B%B4%E5%A5%BD%E7%9A%84%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E3%80%82">这里</a></p>
-<h2 id="1-2-更好的业务逻辑表达"><a href="#1-2-更好的业务逻辑表达" class="headerlink" title="1.2 更好的业务逻辑表达"></a>1.2 更好的业务逻辑表达</h2><p>将特征工程理解成是业务逻辑的一种数学表达。说是说业务逻辑表达，其实实质上就是指为了解决机器学习中特定的问题。因为原始数据有很多种转换为特征的方式，我们需要选择那些能够「更好的表示业务逻辑」，从而更好的解决问题，而不是那些更简单的方法。</p>
-<h2 id="1-3-提升机器学习性能"><a href="#1-3-提升机器学习性能" class="headerlink" title="1.3 提升机器学习性能"></a>1.3 提升机器学习性能</h2><p>性能意味着更短时间和更低成本，哪怕相同的模型，也会因为特征工程的不同而性能不同。所以我们需要选择那些可以发挥更好性能的特征工程</p>
-<h1 id="2-特征选择"><a href="#2-特征选择" class="headerlink" title="2. 特征选择"></a>2. 特征选择</h1><p>特征选择是特征工程里的一个重要问题，其目标是寻找最优特征子集。特征选择能剔除不相关(irrelevant)或冗余(redundant)的特征，从而达到减少特征个数，提高模型精确度，减少运行时间的目的。另一方面，<strong>选取出真正相关的特征简化模型</strong>，协助理解数据产生的过程。并且常能听到“数据和特征决定了机器学习的上限，而模型和算法只是逼近这个上限而已”，由此可见其重要性。但是它几乎很少出现于机器学习书本里面的某一章。然而在机器学习方面的成功很大程度上在于如果使用特征工程。</p>
-<p>之所以要考虑特征选择，是因为机器学习经常面临过拟合的问题。 过拟合的表现是模型参数太贴合训练集数据，模型在训练集上效果很好而在测试集上表现不好。简言之模型的泛化能力差。过拟合的原因是模型对于训练集数据来说太复杂，要解决过拟合问题，一般考虑如下方法：<a href="https://zhuanlan.zhihu.com/p/74198735#:~:text=%E4%B9%8B%E6%89%80%E4%BB%A5%E8%A6%81%E8%80%83%E8%99%91%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9%EF%BC%8C%E6%98%AF%E5%9B%A0%E4%B8%BA%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BB%8F%E5%B8%B8%E9%9D%A2%E4%B8%B4%E8%BF%87%E6%8B%9F%E5%90%88%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82%20%E8%BF%87%E6%8B%9F%E5%90%88,%E7%9A%84%E8%A1%A8%E7%8E%B0%E6%98%AF%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%20%E5%A4%AA%E8%B4%B4%E5%90%88%E8%AE%AD%E7%BB%83%E9%9B%86%E6%95%B0%E6%8D%AE%20%EF%BC%8C%E6%A8%A1%E5%9E%8B%E5%9C%A8%E8%AE%AD%E7%BB%83%E9%9B%86%E4%B8%8A%E6%95%88%E6%9E%9C%E5%BE%88%E5%A5%BD%E8%80%8C%E5%9C%A8%E6%B5%8B%E8%AF%95%E9%9B%86%E4%B8%8A%E8%A1%A8%E7%8E%B0%E4%B8%8D%E5%A5%BD%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%9C%A8%E9%AB%98%E6%96%B9%E5%B7%AE%E3%80%82">参考</a></p>
-<ol>
-<li>收集更多数据</li>
-<li>通过正则化引入对复杂度的惩罚</li>
-<li>选择更少参数的简单模型</li>
-<li>对数据降维（降维有两种方式：特征选择和特征抽取）</li>
-</ol>
-<p>其中第1条一般是很难做到的，一般主要采用第2和第4点</p>
-<h1 id="3-特征提取"><a href="#3-特征提取" class="headerlink" title="3. 特征提取"></a>3. 特征提取</h1><p>像上面所说，将特征提取理解成原来特征的映射，只是一种不同于特征选择的选取字段的方式罢了。</p>
-<h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h1><ul>
-<li><a href="https://blog.csdn.net/hren_ron/article/details/80914491">了解生成特征子集的搜索方式</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/74198735#:~:text=%E4%B9%8B%E6%89%80%E4%BB%A5%E8%A6%81%E8%80%83%E8%99%91%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9%EF%BC%8C%E6%98%AF%E5%9B%A0%E4%B8%BA%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BB%8F%E5%B8%B8%E9%9D%A2%E4%B8%B4%E8%BF%87%E6%8B%9F%E5%90%88%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82%20%E8%BF%87%E6%8B%9F%E5%90%88,%E7%9A%84%E8%A1%A8%E7%8E%B0%E6%98%AF%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%20%E5%A4%AA%E8%B4%B4%E5%90%88%E8%AE%AD%E7%BB%83%E9%9B%86%E6%95%B0%E6%8D%AE%20%EF%BC%8C%E6%A8%A1%E5%9E%8B%E5%9C%A8%E8%AE%AD%E7%BB%83%E9%9B%86%E4%B8%8A%E6%95%88%E6%9E%9C%E5%BE%88%E5%A5%BD%E8%80%8C%E5%9C%A8%E6%B5%8B%E8%AF%95%E9%9B%86%E4%B8%8A%E8%A1%A8%E7%8E%B0%E4%B8%8D%E5%A5%BD%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%9C%A8%E9%AB%98%E6%96%B9%E5%B7%AE%E3%80%82">详细地介绍了特征选择的方法</a></li>
-<li><a href="https://asialee.blog.csdn.net/article/details/84863410?spm=1001.2101.3001.6650.3&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-3-84863410-blog-79723177.pc_relevant_multi_platform_whitelistv3&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-3-84863410-blog-79723177.pc_relevant_multi_platform_whitelistv3&utm_relevant_index=6">机器学习特征工程的具体步骤</a></li>
-<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectKBest.html">sklearn.select_feature.SelectKBest官方文档</a></li>
-<li><a href="https://www.cnblogs.com/ai-ldj/p/14269023.html">SelectKBest博客园</a></li>
-<li><a href="https://blog.csdn.net/moonoon1/article/details/120074949">SelectKBest-CSDN</a></li>
-</ul>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/crIP7PuC8Bc" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+
 ]]></content>
       <categories>
-        <category>Mathine Learning</category>
+        <category>Blog</category>
       </categories>
       <tags>
-        <tag>机器学习</tag>
+        <tag>音视频</tag>
+        <tag>博客</tag>
+        <tag>YouTube</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>维度灾难</title>
-    <url>/2022/11/23/%E7%BB%B4%E5%BA%A6%E7%81%BE%E9%9A%BE/</url>
-    <content><![CDATA[<p>今天學習機器學習的時候，發現有<em>維度災難</em>這個東西。挺感興趣的，於是一探究竟！</p>
-<span id="more"></span>
-
-<h1 id="机器学习中的维度灾难"><a href="#机器学习中的维度灾难" class="headerlink" title="机器学习中的维度灾难"></a>机器学习中的维度灾难</h1><p>在介绍机器学习的维度灾难之前，我推荐给大家一个网站，名字虽然说是<a href="https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">计算机视觉的傻瓜书</a>，但是有关机器学习的答疑部分它做得还是蛮好的。除此之外还有<a href="https://www.kdnuggets.com/news/index.html">KDnuggest</a>，也是有关机器学习的论坛。</p>
-<p>本文是参考<a href="https://www.jianshu.com/p/867193608bbd">简书-红色石头Will</a>所得到的观点，虽然他是翻译<a href="https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">计算机视觉的傻瓜书</a>的，但是对于我理解维度灾难起着指导方向的作用。</p>
-<h2 id="1-介绍维度灾难"><a href="#1-介绍维度灾难" class="headerlink" title="1.介绍维度灾难"></a>1.介绍维度灾难</h2><p>维度灾难是在设计一个分类器的时候需要注意的问题。为了得到更好的分类效果，我们可以无限的增加特征。但是事实上，特征数量超过一定值的时候，分类器的效果反而会下降。这种由于特征数量太多导致的分类效果下降的情况，就被称作是<strong>维度灾难</strong>。</p>
-<h2 id="2-维度灾难与过拟合"><a href="#2-维度灾难与过拟合" class="headerlink" title="2.维度灾难与过拟合"></a>2.维度灾难与过拟合</h2><p>貌似特征越多，越有可能实现正确分类，但是情况并非如此。一个直观的情况时，随着特征维度的增加，训练样本在特征空间中的密度是呈指数下降的。</p>
-<blockquote>
-<p>样本数不变，但是特征空间不断地增加，那训练样本在特征空间中的密度岂不是就是呈指数下降的？</p>
-</blockquote>
-<p>如果我们继续增加特征，整个特征空间维度增加，并变得越来越稀疏。由于稀疏性，我们更加容易找到一个超平面来实现分类。这是因为随着特征数量变得无限大，训练样本在最佳超平面的错误侧的可能性将会变得无限小。然而，如果我们将高维的分类结果投影到低维空间中，将会出现一个严重的问题。</p>
-<p>比如说样本数据在3D是线性可分的，但是在2D却并非如此。事实上，增加第三个维度来获得最佳的线性分类效果，等同于在低维特征空间中使用非线性分类器。其结果是，分类器学习了训练数据的噪声和异常，而对样本外的数据拟合效果并不理想，甚至很差。这个概念称为过拟合，是维度灾难的一个直接后果。</p>
-<p><em>换句话讲，如果增加特征维度，为了覆盖同样的特征值范围，防止过拟合，需要用到的样本数就会呈指数型增长！</em></p>
-<h2 id="3-维度灾难与数据稀疏程度分布不均"><a href="#3-维度灾难与数据稀疏程度分布不均" class="headerlink" title="3.维度灾难与数据稀疏程度分布不均"></a>3.维度灾难与数据稀疏程度分布不均</h2><p>我们展示了维度灾难会引起训练数据的稀疏化。使用的特征越多，数据就会变得越稀疏，从而导致分类器的分类效果就会越差。维度灾难还会造成<strong>搜索空间的数据稀疏程度</strong>分布不均。事实上，围绕原点的数据（在超立方体的中心）比在搜索空间的角落处的数据要稀疏得多。</p>
-<p>举例2D，如果大部分的样本都落在了单位内接圆里的话，会更容易分类。但是在高维的空间中，大部分的训练数据都是分布在定义为特征空间的超立方体的角落处，导致难以分类。、</p>
-<p>对于8维的超球体，大约98%的数据集中在它256个角落处。其结果是，当特征空间的维度变得无限大时，从样本点到质心的最大、最小欧氏距离的差值与其最小欧式距离的比值趋于零。因此，距离测量在高维空间中逐渐变得无效。因为分类器是基于这些距离测量的（例如Euclidean距离、Mahalanobis距离、Manhattan距离），所以低维空间特征更少，分类更加容易。同样地，在高维空间的高斯分布会变平坦且尾巴更长。</p>
-<h2 id="4-如何避免维度灾难"><a href="#4-如何避免维度灾难" class="headerlink" title="4.如何避免维度灾难"></a>4.如何避免维度灾难</h2><p>很遗憾，在分类问题中，没有固定的规则来指定该使用多少特征。事实上，用多少特征量取决于你训练样本的数量、决策边界的复杂性和使用的是啥分类器。</p>
-<p>比如说一些非线性决策边界的分类器（e.g. 神经网络、KNN分类器、决策树等），它们的分类效果虽然好，但是泛化能力差容易发生过拟合，这个时候就需要降低点维度。如果使用泛化能力稍微好点的（e.g. 贝叶斯分类器、线性分类器），那么就可以使用稍微多一点的特征。</p>
-<h2 id="5-参考链接"><a href="#5-参考链接" class="headerlink" title="5.参考链接"></a>5.参考链接</h2><blockquote>
-<p><a href="https://www.jianshu.com/p/867193608bbd">简书</a><br><a href="https://cloud.tencent.com/developer/article/1143269">手工特征选取降维</a><br><a href="https://www.kdnuggets.com/2015/03/deep-learning-curse-dimensionality-autoencoders.html">原文</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Mathine Learning</category>
-      </categories>
   </entry>
   <entry>
     <title>激活函数</title>
@@ -969,59 +891,48 @@ print_result(lgb_r2_score, lgb_rmse, &#39;Lightgbm&#39;)
       </tags>
   </entry>
   <entry>
-    <title>网格搜索</title>
-    <url>/2022/11/24/%E7%BD%91%E6%A0%BC%E6%90%9C%E7%B4%A2/</url>
-    <content><![CDATA[<p>在进行机器学习的过程中，最为核心的概念就是参数了，要得到最好的参数可以采取网格搜索策略。网格搜索是应用最广泛的超参数搜索算法，网格搜索通过查找搜索范围内的所有的点，来确定最优值。</p>
+    <title>特征工程</title>
+    <url>/2022/11/23/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/</url>
+    <content><![CDATA[<p>数据和特征决定了机器学习的上限，而模型和算法只是逼近这个上限而已</p>
 <span id="more"></span>
 
-<h1 id="调节超参数的方法-GridSearchCV网格搜索"><a href="#调节超参数的方法-GridSearchCV网格搜索" class="headerlink" title="调节超参数的方法-GridSearchCV网格搜索"></a>调节超参数的方法-GridSearchCV网格搜索</h1><p><em>在进行机器学习的过程中，最为核心的概念就是参数了，而参数又可以分为模型参数和超参数。模型参数指的是我们使用的模型根据训练数据的分布学习到的参数，这一部分是不需要我们人为的先验知识。而超参数是在开始学习之前需要设置的一组参数，而不是通过训练得到的参数数据。通常情况下，需要对超参数进行优化，给模型选择一组最优的超参数，以提高学习的性能与效果。</em></p>
-<p>这里简单介绍一下常用的超参数调参方法:除了网格搜索，还有随机搜索、贝叶斯优化和自动超参搜索（遗传算法GA）</p>
-<h2 id="网格搜索"><a href="#网格搜索" class="headerlink" title="网格搜索"></a>网格搜索</h2><p>网格搜索是应用最广泛的超参数搜索算法，网格搜索通过查找搜索范围内的所有的点，来确定最优值。一般通过给出较大的搜索范围以及较小的步长，网格搜索是一定可以找到全局最大值或最小值的。但是，网格搜索一个比较大的问题是，它<strong>十分消耗计算资源</strong>，特别是需要调优的超参数比较多的时候。在比赛中，需要调参的模型数量与对应的超参数比较多，而涉及的数据量又比较大，因此相当的耗费时间。<em>此外，由于给出的超参数组合比较多，因此一般都会固定多数参数，分步对1~2个超参数进行调解，这样能够减少时间但是缺难以自动化进行，而且由于目标参数一般是非凸的，因此容易陷入局部最小值。</em></p>
-<p><a href="https://www.jianshu.com/p/5378ef009cae">原作者</a>是用网格搜索来寻找LightGBM的最优超参数，这里我尝试用它来寻找XGBoost的最优超参数。一方面当做学习，另一方面是当做完成上一次机器学习的拓展作业。</p>
-<h2 id="简单介绍需要向GridSearchCV内传什么东西？"><a href="#简单介绍需要向GridSearchCV内传什么东西？" class="headerlink" title="简单介绍需要向GridSearchCV内传什么东西？"></a>简单介绍需要向GridSearchCV内传什么东西？</h2><p>要实现网格搜索，肯定得暴力遍历超参数。查找GridSearchCV函数的参数，其中有一项是含有待优化超参的字典。<a href="https://github.com/scikit-learn/scikit-learn/blob/0fb307bf3/sklearn/model_selection/_search.py#L867">官方</a>给的参数如下：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sklearn.model_selection.GridSearchCV(estimator, param_grid, *, scoring=<span class="literal">None</span>, n_jobs=<span class="literal">None</span>, iid=<span class="string">&#x27;deprecated&#x27;</span>, refit=<span class="literal">True</span>, cv=<span class="literal">None</span>, verbose=<span class="number">0</span>, pre_dispatch=<span class="string">&#x27;2*n_jobs&#x27;</span>, error_score=nan, return_train_score=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
-<p>其中重要的参数说明如下：</p>
+<h1 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a>特征工程</h1><p><a href="https://easyai.tech/ai-definition/feature-engineering/">特征工程</a>是机器学习工作流程中重要的组成部分，它将原始数据「翻译」成模型可理解的形式。</p>
+<p>美国计算机科学家 Peter Norvig 说过两句经典名言</p>
 <ol>
-<li>estimator：表示选择使用的分类器，并且需要传入除了需要确定最佳的参数之外的其他参数。<em>（还有什么参数？不是很清楚）</em>每一个分类器都需要一个scoring参数，或者说是score方法，例子如下：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">estimator = RandomForestClassifier(min_sample_split=100,min_samples_leaf = 20,max_depth = 8,max_features = &#x27;sqrt&#x27; , random_state =10)</span><br></pre></td></tr></table></figure></li>
-<li>param_grid：需要最优化的参数的取值，值为字典或者列表，例如：</li>
+<li>基于大量数据的简单模型优于基于少量数据的复杂模型</li>
+<li>更多的数据优于聪明的算法，而好的数据优于多的数据</li>
 </ol>
-<p><code>param_grid = param_test1, param_test1 = &#123;&#39;n_estimators&#39; : range(10,71,10)&#125;</code><br>或者另外一种表达形式：<br><code>param_grid = [&#123;&#39;n_estimators&#39;: [3, 10, 30],&#39;max_features&#39;: [2, 4, 6, 8]&#125;,&#123;&#39;bootstrap&#39;: [False],&#39;n_estimators&#39;: [3, 10],&#39;max_features&#39;: [2, 3, 4]&#125;,</code><br>3. scoring &#x3D; None ：模型评价标准，默认为None，这时需要使用score函数；或者如scoring &#x3D; ‘roc_auc’，根据所选模型不同，评价准则不同，字符串（函数名），或是可调用对象，需要其函数签名，形如：scorer(estimator，X，y）；如果是None，则使用estimator的误差估计函数。<br>4. n_jobs &#x3D; 1 ： n_jobs：并行数，默认为1，当n_jobs &#x3D; -1：表示使用所有处理器（建议）<br>5. refit &#x3D; True ：默认为True，程序将会以交叉验证训练集得到的最佳参数，重新对所有可能的训练集与开发集进行，作为最终用于性能评估的最佳模型参数。即在搜索参数结束后，用最佳参数结果再次fit一遍全部数据集（不用管即可）<br>6. cv &#x3D; None：交叉验证参数，默认None，使用五折交叉验证。指定fold数量，默认为5(之前版本为3)，也可以是yield训练&#x2F;测试数据的生成器</p>
-<h1 id="寻找XGBoost的参数及一般定义范围"><a href="#寻找XGBoost的参数及一般定义范围" class="headerlink" title="寻找XGBoost的参数及一般定义范围"></a>寻找XGBoost的参数及一般定义范围</h1><p>首先要知道xgb.XGBRegressor的<a href="https://xgboost.readthedocs.io/en/latest/parameter.html#general-parameters">参数分布</a>,这一点可以靠查询官方文档，或者寻找<a href="https://www.codeleading.com/article/77024318818/">相关的资料</a>进行补充。由于代码格式我想参照<a href="https://www.jianshu.com/p/5378ef009cae">简书某博主</a>的写法，所以需要找到xgboost的参数并且规定遍历的范围。</p>
-<p>找到机器学习实验二的XGBoost部分代码，然后根据参数规范范围。因为现在对参数并不熟悉，我打算对参数的范围规定的大一点，以便可以找到全局最优解。</p>
-<h1 id="装库跑代码"><a href="#装库跑代码" class="headerlink" title="装库跑代码"></a>装库跑代码</h1><p>在Anaconda上执行命令<strong>conda install py-xgboost</strong>，下载到所需要用到的xgboost库（另外还有<strong>from sklearn.model_selection import GridSearchCV</strong>）。我发现上面下载xgboost库的conda指令慢的离谱（其实<strong>pip install xgboost</strong>也很慢），于是换清华源<strong>pip install xgboost -i <a href="https://pypi.tuna.tsinghua.edu.cn/simple">https://pypi.tuna.tsinghua.edu.cn/simple</a></strong>，速度嘎嘎起飞。虽然也是在Anaconda上执行的pip指令，但是pip用起来真就是比conda舒服。</p>
-<p>在<a href="https://www.jianshu.com/p/5378ef009cae">参考代码</a>处我们发现了有一段代码很奇怪,<code>regr = lgb.LGBMRegressor(**params)</code>这里的 **号是什么意思呢？这里的 **params其实指的是，你在上面代码所输入的字典形式的变量。如果你想研究更多有关*和**的实例，可以参考以下这篇<a href="https://blog.csdn.net/zkk9527/article/details/88675129">博文</a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">from sklearn.model_selection import GridSearchCV</span><br><span class="line">import numpy as np</span><br><span class="line">import xgboost as xgb</span><br><span class="line">import pandas as pd</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def GridSearch(clf, params, X, y):</span><br><span class="line">    cscv = GridSearchCV(</span><br><span class="line">        clf, params, scoring=&quot;neg_mean_squared_error&quot;, n_jobs=1, cv=5)</span><br><span class="line">    cscv.fit(X, y)</span><br><span class="line">    print(cscv.cv_results_)</span><br><span class="line">    print(cscv.best_params_)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def Dataprocessing(trainPath):</span><br><span class="line">    training_set = pd.read_csv(trainPath)</span><br><span class="line">    training_set.drop(&quot;Id&quot;, axis=1, inplace=True)</span><br><span class="line">    training_set = training_set.drop(training_set[(</span><br><span class="line">        training_set[&#x27;GrLivArea&#x27;] &gt; 4000) &amp; (training_set[&#x27;SalePrice&#x27;] &lt; 300000)].index)</span><br><span class="line">    train_y = training_set.SalePrice.values</span><br><span class="line">    train_x = training_set.drop(&quot;SalePrice&quot;, axis=1, inplace=True)</span><br><span class="line">    return train_x, train_y</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    train_x, train_y = Dataprocessing(&#x27;train.csv&#x27;)</span><br><span class="line"></span><br><span class="line">    params = &#123;</span><br><span class="line">        &#x27;colsample_bytree&#x27;: 0.4603,</span><br><span class="line">        &#x27;gamma&#x27;: 0.0468,</span><br><span class="line">        &#x27;learning_rate&#x27;: 0.05,</span><br><span class="line">        &#x27;max_depth&#x27;: 3,</span><br><span class="line">        &#x27;min_child_weight&#x27;: 1.7817,</span><br><span class="line">        &#x27;n_estimators&#x27;: 2200,</span><br><span class="line">        &#x27;reg_alpha&#x27;: 0.4640,</span><br><span class="line">        &#x27;reg_lambda&#x27;: 0.8571,</span><br><span class="line">        &#x27;subsample&#x27;: 0.5213,</span><br><span class="line">        &#x27;silent&#x27;: 1,</span><br><span class="line">        &#x27;random_state&#x27;: 7,</span><br><span class="line">        &#x27;nthread&#x27;: -1</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    regr = xgb.XGBRegressor(**params)</span><br><span class="line"></span><br><span class="line">    adj_params = &#123;</span><br><span class="line">        &#x27;colsample_bytree&#x27;: np.arange(0.1, 1, 0.1),</span><br><span class="line">        &#x27;gamma&#x27;: [0.01, 0.1, 1],</span><br><span class="line">        &#x27;learning_rate&#x27;: [0.01, 0.1, 1],</span><br><span class="line">        &#x27;max_depth&#x27;: range(1, 11),</span><br><span class="line">        &#x27;min_child_weight&#x27;: np.arange(0.1, 2, 0.1),</span><br><span class="line">        &#x27;n_estimators&#x27;: range(300, 1000, 100),</span><br><span class="line">        &#x27;reg_alpha&#x27;: [0.01, 0.1, 1],</span><br><span class="line">        &#x27;reg_lambda&#x27;: [0.01, 0.1, 1],</span><br><span class="line">        &#x27;subsample&#x27;: [0.01, 0.1, 1],</span><br><span class="line">        # &#x27;silent&#x27;:1,</span><br><span class="line">        &#x27;random_state&#x27;: range(1, 11),</span><br><span class="line">        # &#x27;nthread&#x27;:-1</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    GridSearch(regr, adj_params, train_x, train_y)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>代码实在是跑不动，估计是参数有些缺了的问题，具体操作方法先贴在这里，等到下次有项目的时候再继续研究吧！</p>
-<h2 id="随机搜索"><a href="#随机搜索" class="headerlink" title="随机搜索"></a>随机搜索</h2><p>与网格搜索相比，随机搜索并没有尝试所有给定的参数值，而是从指定的分布中采样固定数量的参数设置。它的理论依据是，如果随即样本点集足够大，那么也可以找到全局的最大或最小值，或它们的近似值。通过对搜索范围的随机取样，随机搜索一般会比网格搜索要快一些。但是和网格搜索的快速版（非自动版）相似，结果也是没法保证的。</p>
-<p>随机搜索的过程如下，使用方法与网格搜索完全一致：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import lightgbm as lgb</span><br><span class="line">from sklearn.model_selection import  RandomizedSearchCV</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def RandomSearch(clf, params, X, y):</span><br><span class="line">    rscv = RandomizedSearchCV(clf, params, scoring=&#x27;neg_mean_squared_error&#x27;, n_jobs=1, cv=5)</span><br><span class="line">    rscv.fit(X, y)</span><br><span class="line"></span><br><span class="line">    print(rscv.cv_results_)</span><br><span class="line">    print(rscv.best_params_)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    train_X, train_y = get_data()</span><br><span class="line"></span><br><span class="line">    param = &#123;</span><br><span class="line">        &#x27;objective&#x27;: &#x27;regression&#x27;,</span><br><span class="line">        &#x27;n_estimators&#x27;: 275,</span><br><span class="line">        &#x27;max_depth&#x27;: 6,</span><br><span class="line">        &#x27;min_child_samples&#x27;: 20,</span><br><span class="line">        &#x27;reg_lambd&#x27;: 0.1,</span><br><span class="line">        &#x27;reg_alpha&#x27;: 0.1,</span><br><span class="line">        &#x27;metric&#x27;: &#x27;rmse&#x27;,</span><br><span class="line">        &#x27;colsample_bytree&#x27;: 1,</span><br><span class="line">        &#x27;subsample&#x27;: 0.8,</span><br><span class="line">        &#x27;num_leaves&#x27; : 40,</span><br><span class="line">        &#x27;random_state&#x27;: 2018</span><br><span class="line">        &#125;</span><br><span class="line">    regr = lgb.LGBMRegressor(**param)</span><br><span class="line"></span><br><span class="line">    adj_params = &#123;&#x27;n_estimators&#x27;: range(100, 400, 10),</span><br><span class="line">                 &#x27;min_child_weight&#x27;: range(3, 20, 2),</span><br><span class="line">                 &#x27;colsample_bytree&#x27;: np.arange(0.4, 1.0),</span><br><span class="line">                 &#x27;max_depth&#x27;: range(5, 15, 2),</span><br><span class="line">                 &#x27;subsample&#x27;: np.arange(0.5, 1.0, 0.1),</span><br><span class="line">                 &#x27;reg_lambda&#x27;: np.arange(0.1, 1.0, 0.2),</span><br><span class="line">                 &#x27;reg_alpha&#x27;: np.arange(0.1, 1.0, 0.2),</span><br><span class="line">                 &#x27;min_child_samples&#x27;: range(10, 30)&#125;</span><br><span class="line"></span><br><span class="line">    RandomSearch(regr , adj_params , train_X, train_y)</span><br></pre></td></tr></table></figure>
-
-<h2 id="贝叶斯优化"><a href="#贝叶斯优化" class="headerlink" title="贝叶斯优化"></a>贝叶斯优化</h2><p>贝叶斯优化用于机器学习调参由J. Snoek(2012)提出，主要思想是，给定优化的目标函数(广义的函数，只需指定输入和输出即可，无需知道内部结构以及数学性质)，通过不断地添加样本点来更新目标函数的后验分布(高斯过程,直到后验分布基本贴合于真实分布。简单的说，就是考虑了上一次参数的信息，从而更好的调整当前的参数。</p>
-<p><em>贝叶斯优化与常规的网格搜索或者随机搜索的区别是：</em></p>
+<p>足以可见数据量和特征工程的重要性，不过数据量已经给定了，我们能做的只有特征工程。如何基于原来的数据发挥出更大的数据价值就是特征工程要做的事情。</p>
+<p><em>在16年的一项调查中发现，<a href="https://whatsthebigdata.com/2016/05/01/data-scientists-spend-most-of-their-time-cleaning-data/">数据科学家</a>的工作中，有80%的时间都在获取、清洗和组织数据。构造机器学习流水线的时间不到20%…</em></p>
+<h1 id="1-特征工程一些注意事项"><a href="#1-特征工程一些注意事项" class="headerlink" title="1.特征工程一些注意事项"></a>1.特征工程一些注意事项</h1><p>e.g. 人类是需要吃加工过的食物才行，这样更安全也更美味。机器算法模型也是类似，原始数据不能直接喂给模型，也需要对数据进行清洗、组织、转换。最后才能得到模型可以消化的特征。这样你对特征工程在数据和模型之间扮演的角色已经十分了解了吧？</p>
+<h2 id="1-1-当前我对特征工程的理解"><a href="#1-1-当前我对特征工程的理解" class="headerlink" title="1.1 当前我对特征工程的理解"></a>1.1 当前我对特征工程的理解</h2><p>当前我对特征工程的理解仅仅停留在特征提取和特征选择，这样是待会会提到的内容。首先要知道，这两种方法都是降维的方法。特征选择后的字段是原数据字段的子集，也就是说删减了一些冗杂的对模型训练没有用的字段。特征提取理解成原来特征的映射，e.g.三个字段合并在一起表现的会比三个字段独立更好一些–&gt;<a href="https://blog.csdn.net/Neil_Pan/article/details/51940849">特征选择和特征提取区别</a></p>
+<p>如果想要看看，特征工程具体是包括哪些具体步骤的，还可以参考<a href="https://blog.csdn.net/tiange_xiao/article/details/79723177#:~:text=%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%20%E6%98%AF%E4%BD%BF%E7%94%A8%E4%B8%93%E4%B8%9A%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86%E5%92%8C%E6%8A%80%E5%B7%A7%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%EF%BC%8C%E4%BD%BF%E5%BE%97%20%E7%89%B9%E5%BE%81%20%E8%83%BD%E5%9C%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E4%B8%8A%E5%8F%91%E6%8C%A5%E6%9B%B4%E5%A5%BD%E7%9A%84%E4%BD%9C%E7%94%A8%E7%9A%84%E8%BF%87%E7%A8%8B%E3%80%82%20%E8%BF%87%E7%A8%8B%20%E5%8C%85%E5%90%AB%20%E4%BA%86%20%E7%89%B9%E5%BE%81,%E7%89%B9%E5%BE%81%20%E6%9E%84%E5%BB%BA%E3%80%81%20%E7%89%B9%E5%BE%81%20%E9%80%89%E6%8B%A9%E7%AD%89%E6%A8%A1%E5%9D%97%E3%80%82%20%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%20%E7%9A%84%E7%9B%AE%E7%9A%84%E6%98%AF%E7%AD%9B%E9%80%89%E5%87%BA%E6%9B%B4%E5%A5%BD%E7%9A%84%20%E7%89%B9%E5%BE%81%20%EF%BC%8C%E8%8E%B7%E5%8F%96%E6%9B%B4%E5%A5%BD%E7%9A%84%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE%E3%80%82">这里</a></p>
+<h2 id="1-2-更好的业务逻辑表达"><a href="#1-2-更好的业务逻辑表达" class="headerlink" title="1.2 更好的业务逻辑表达"></a>1.2 更好的业务逻辑表达</h2><p>将特征工程理解成是业务逻辑的一种数学表达。说是说业务逻辑表达，其实实质上就是指为了解决机器学习中特定的问题。因为原始数据有很多种转换为特征的方式，我们需要选择那些能够「更好的表示业务逻辑」，从而更好的解决问题，而不是那些更简单的方法。</p>
+<h2 id="1-3-提升机器学习性能"><a href="#1-3-提升机器学习性能" class="headerlink" title="1.3 提升机器学习性能"></a>1.3 提升机器学习性能</h2><p>性能意味着更短时间和更低成本，哪怕相同的模型，也会因为特征工程的不同而性能不同。所以我们需要选择那些可以发挥更好性能的特征工程</p>
+<h1 id="2-特征选择"><a href="#2-特征选择" class="headerlink" title="2. 特征选择"></a>2. 特征选择</h1><p>特征选择是特征工程里的一个重要问题，其目标是寻找最优特征子集。特征选择能剔除不相关(irrelevant)或冗余(redundant)的特征，从而达到减少特征个数，提高模型精确度，减少运行时间的目的。另一方面，<strong>选取出真正相关的特征简化模型</strong>，协助理解数据产生的过程。并且常能听到“数据和特征决定了机器学习的上限，而模型和算法只是逼近这个上限而已”，由此可见其重要性。但是它几乎很少出现于机器学习书本里面的某一章。然而在机器学习方面的成功很大程度上在于如果使用特征工程。</p>
+<p>之所以要考虑特征选择，是因为机器学习经常面临过拟合的问题。 过拟合的表现是模型参数太贴合训练集数据，模型在训练集上效果很好而在测试集上表现不好。简言之模型的泛化能力差。过拟合的原因是模型对于训练集数据来说太复杂，要解决过拟合问题，一般考虑如下方法：<a href="https://zhuanlan.zhihu.com/p/74198735#:~:text=%E4%B9%8B%E6%89%80%E4%BB%A5%E8%A6%81%E8%80%83%E8%99%91%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9%EF%BC%8C%E6%98%AF%E5%9B%A0%E4%B8%BA%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BB%8F%E5%B8%B8%E9%9D%A2%E4%B8%B4%E8%BF%87%E6%8B%9F%E5%90%88%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82%20%E8%BF%87%E6%8B%9F%E5%90%88,%E7%9A%84%E8%A1%A8%E7%8E%B0%E6%98%AF%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%20%E5%A4%AA%E8%B4%B4%E5%90%88%E8%AE%AD%E7%BB%83%E9%9B%86%E6%95%B0%E6%8D%AE%20%EF%BC%8C%E6%A8%A1%E5%9E%8B%E5%9C%A8%E8%AE%AD%E7%BB%83%E9%9B%86%E4%B8%8A%E6%95%88%E6%9E%9C%E5%BE%88%E5%A5%BD%E8%80%8C%E5%9C%A8%E6%B5%8B%E8%AF%95%E9%9B%86%E4%B8%8A%E8%A1%A8%E7%8E%B0%E4%B8%8D%E5%A5%BD%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%9C%A8%E9%AB%98%E6%96%B9%E5%B7%AE%E3%80%82">参考</a></p>
 <ol>
-<li>贝叶斯调参采用高斯过程，考虑之前的参数信息，不断地更新先验；网格搜索未考虑之前的参数信息</li>
-<li>贝叶斯调参迭代次数少，速度快；网格搜索速度慢,参数多时易导致<strong>维度爆炸</strong></li>
-<li>贝叶斯调参针对非凸问题依然稳健；网格搜索针对非凸问题易得到局部优最</li>
+<li>收集更多数据</li>
+<li>通过正则化引入对复杂度的惩罚</li>
+<li>选择更少参数的简单模型</li>
+<li>对数据降维（降维有两种方式：特征选择和特征抽取）</li>
 </ol>
-<p>如果想要深究贝叶斯优化，可以参考<a href="https://www.sohu.com/a/165565029_465975">这里</a></p>
-<h2 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h2><p>其他常见的超参数优化方法还有比如自动超参搜索（遗传算法）等等，方法总比问题多，对不同的问题总需要根据情况使用不同的方法来解决。</p>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ol>
-<li><a href="https://www.sohu.com/a/165565029_465975">搜狐新闻-贝叶斯优化细究</a></li>
-<li><a href="https://www.jianshu.com/p/d240dbd62d45">简书-炼丹美学</a></li>
-<li><a href="https://www.cnblogs.com/dalege/p/14175192.html">博客园-具体使用GridSearchCV</a></li>
-<li><a href="https://www.codeleading.com/article/77024318818/">代码先锋网-具体调试LightGBM</a><em>让我清楚了，调参也是得按顺序来的，没有说一口气调完全部</em></li>
-<li><a href="https://blog.csdn.net/csiao_Bing/article/details/84978725">CSDN-XGBoost参数详解</a></li>
-<li><a href="https://blog.csdn.net/Ling_Ze/article/details/126045472">CSDN-XGBoost参数详解</a></li>
-<li><a href="https://www.jianshu.com/p/5378ef009cae">简书-超参调节之我主要参考!</a></li>
-</ol>
+<p>其中第1条一般是很难做到的，一般主要采用第2和第4点</p>
+<h1 id="3-特征提取"><a href="#3-特征提取" class="headerlink" title="3. 特征提取"></a>3. 特征提取</h1><p>像上面所说，将特征提取理解成原来特征的映射，只是一种不同于特征选择的选取字段的方式罢了。</p>
+<h1 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h1><ul>
+<li><a href="https://blog.csdn.net/hren_ron/article/details/80914491">了解生成特征子集的搜索方式</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/74198735#:~:text=%E4%B9%8B%E6%89%80%E4%BB%A5%E8%A6%81%E8%80%83%E8%99%91%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9%EF%BC%8C%E6%98%AF%E5%9B%A0%E4%B8%BA%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%BB%8F%E5%B8%B8%E9%9D%A2%E4%B8%B4%E8%BF%87%E6%8B%9F%E5%90%88%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82%20%E8%BF%87%E6%8B%9F%E5%90%88,%E7%9A%84%E8%A1%A8%E7%8E%B0%E6%98%AF%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%20%E5%A4%AA%E8%B4%B4%E5%90%88%E8%AE%AD%E7%BB%83%E9%9B%86%E6%95%B0%E6%8D%AE%20%EF%BC%8C%E6%A8%A1%E5%9E%8B%E5%9C%A8%E8%AE%AD%E7%BB%83%E9%9B%86%E4%B8%8A%E6%95%88%E6%9E%9C%E5%BE%88%E5%A5%BD%E8%80%8C%E5%9C%A8%E6%B5%8B%E8%AF%95%E9%9B%86%E4%B8%8A%E8%A1%A8%E7%8E%B0%E4%B8%8D%E5%A5%BD%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%9C%A8%E9%AB%98%E6%96%B9%E5%B7%AE%E3%80%82">详细地介绍了特征选择的方法</a></li>
+<li><a href="https://asialee.blog.csdn.net/article/details/84863410?spm=1001.2101.3001.6650.3&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-3-84863410-blog-79723177.pc_relevant_multi_platform_whitelistv3&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-3-84863410-blog-79723177.pc_relevant_multi_platform_whitelistv3&utm_relevant_index=6">机器学习特征工程的具体步骤</a></li>
+<li><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectKBest.html">sklearn.select_feature.SelectKBest官方文档</a></li>
+<li><a href="https://www.cnblogs.com/ai-ldj/p/14269023.html">SelectKBest博客园</a></li>
+<li><a href="https://blog.csdn.net/moonoon1/article/details/120074949">SelectKBest-CSDN</a></li>
+</ul>
 ]]></content>
       <categories>
         <category>Mathine Learning</category>
       </categories>
       <tags>
         <tag>机器学习</tag>
-        <tag>调参</tag>
       </tags>
   </entry>
   <entry>
@@ -1110,6 +1021,121 @@ print_result(lgb_r2_score, lgb_rmse, &#39;Lightgbm&#39;)
         <tag>CNN</tag>
         <tag>比赛</tag>
         <tag>图像分类</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>维度灾难</title>
+    <url>/2022/11/23/%E7%BB%B4%E5%BA%A6%E7%81%BE%E9%9A%BE/</url>
+    <content><![CDATA[<p>今天學習機器學習的時候，發現有<em>維度災難</em>這個東西。挺感興趣的，於是一探究竟！</p>
+<span id="more"></span>
+
+<h1 id="机器学习中的维度灾难"><a href="#机器学习中的维度灾难" class="headerlink" title="机器学习中的维度灾难"></a>机器学习中的维度灾难</h1><p>在介绍机器学习的维度灾难之前，我推荐给大家一个网站，名字虽然说是<a href="https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">计算机视觉的傻瓜书</a>，但是有关机器学习的答疑部分它做得还是蛮好的。除此之外还有<a href="https://www.kdnuggets.com/news/index.html">KDnuggest</a>，也是有关机器学习的论坛。</p>
+<p>本文是参考<a href="https://www.jianshu.com/p/867193608bbd">简书-红色石头Will</a>所得到的观点，虽然他是翻译<a href="https://www.visiondummy.com/2014/04/curse-dimensionality-affect-classification/">计算机视觉的傻瓜书</a>的，但是对于我理解维度灾难起着指导方向的作用。</p>
+<h2 id="1-介绍维度灾难"><a href="#1-介绍维度灾难" class="headerlink" title="1.介绍维度灾难"></a>1.介绍维度灾难</h2><p>维度灾难是在设计一个分类器的时候需要注意的问题。为了得到更好的分类效果，我们可以无限的增加特征。但是事实上，特征数量超过一定值的时候，分类器的效果反而会下降。这种由于特征数量太多导致的分类效果下降的情况，就被称作是<strong>维度灾难</strong>。</p>
+<h2 id="2-维度灾难与过拟合"><a href="#2-维度灾难与过拟合" class="headerlink" title="2.维度灾难与过拟合"></a>2.维度灾难与过拟合</h2><p>貌似特征越多，越有可能实现正确分类，但是情况并非如此。一个直观的情况时，随着特征维度的增加，训练样本在特征空间中的密度是呈指数下降的。</p>
+<blockquote>
+<p>样本数不变，但是特征空间不断地增加，那训练样本在特征空间中的密度岂不是就是呈指数下降的？</p>
+</blockquote>
+<p>如果我们继续增加特征，整个特征空间维度增加，并变得越来越稀疏。由于稀疏性，我们更加容易找到一个超平面来实现分类。这是因为随着特征数量变得无限大，训练样本在最佳超平面的错误侧的可能性将会变得无限小。然而，如果我们将高维的分类结果投影到低维空间中，将会出现一个严重的问题。</p>
+<p>比如说样本数据在3D是线性可分的，但是在2D却并非如此。事实上，增加第三个维度来获得最佳的线性分类效果，等同于在低维特征空间中使用非线性分类器。其结果是，分类器学习了训练数据的噪声和异常，而对样本外的数据拟合效果并不理想，甚至很差。这个概念称为过拟合，是维度灾难的一个直接后果。</p>
+<p><em>换句话讲，如果增加特征维度，为了覆盖同样的特征值范围，防止过拟合，需要用到的样本数就会呈指数型增长！</em></p>
+<h2 id="3-维度灾难与数据稀疏程度分布不均"><a href="#3-维度灾难与数据稀疏程度分布不均" class="headerlink" title="3.维度灾难与数据稀疏程度分布不均"></a>3.维度灾难与数据稀疏程度分布不均</h2><p>我们展示了维度灾难会引起训练数据的稀疏化。使用的特征越多，数据就会变得越稀疏，从而导致分类器的分类效果就会越差。维度灾难还会造成<strong>搜索空间的数据稀疏程度</strong>分布不均。事实上，围绕原点的数据（在超立方体的中心）比在搜索空间的角落处的数据要稀疏得多。</p>
+<p>举例2D，如果大部分的样本都落在了单位内接圆里的话，会更容易分类。但是在高维的空间中，大部分的训练数据都是分布在定义为特征空间的超立方体的角落处，导致难以分类。、</p>
+<p>对于8维的超球体，大约98%的数据集中在它256个角落处。其结果是，当特征空间的维度变得无限大时，从样本点到质心的最大、最小欧氏距离的差值与其最小欧式距离的比值趋于零。因此，距离测量在高维空间中逐渐变得无效。因为分类器是基于这些距离测量的（例如Euclidean距离、Mahalanobis距离、Manhattan距离），所以低维空间特征更少，分类更加容易。同样地，在高维空间的高斯分布会变平坦且尾巴更长。</p>
+<h2 id="4-如何避免维度灾难"><a href="#4-如何避免维度灾难" class="headerlink" title="4.如何避免维度灾难"></a>4.如何避免维度灾难</h2><p>很遗憾，在分类问题中，没有固定的规则来指定该使用多少特征。事实上，用多少特征量取决于你训练样本的数量、决策边界的复杂性和使用的是啥分类器。</p>
+<p>比如说一些非线性决策边界的分类器（e.g. 神经网络、KNN分类器、决策树等），它们的分类效果虽然好，但是泛化能力差容易发生过拟合，这个时候就需要降低点维度。如果使用泛化能力稍微好点的（e.g. 贝叶斯分类器、线性分类器），那么就可以使用稍微多一点的特征。</p>
+<h2 id="5-参考链接"><a href="#5-参考链接" class="headerlink" title="5.参考链接"></a>5.参考链接</h2><blockquote>
+<p><a href="https://www.jianshu.com/p/867193608bbd">简书</a><br><a href="https://cloud.tencent.com/developer/article/1143269">手工特征选取降维</a><br><a href="https://www.kdnuggets.com/2015/03/deep-learning-curse-dimensionality-autoencoders.html">原文</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Mathine Learning</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>特征缩放</title>
+    <url>/2022/11/23/%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE/</url>
+    <content><![CDATA[<p>将数据进行归一化和标准化可以使不同维度的特征放在一起进行比较，可以大大提高模型的准确性。</p>
+<span id="more"></span>
+
+<h1 id="特征缩放"><a href="#特征缩放" class="headerlink" title="特征缩放"></a>特征缩放</h1><h2 id="1-为什么要进行特征缩放"><a href="#1-为什么要进行特征缩放" class="headerlink" title="1. 为什么要进行特征缩放"></a>1. 为什么要进行特征缩放</h2><h3 id="1-1-统一特征的权重和提升模型准确性"><a href="#1-1-统一特征的权重和提升模型准确性" class="headerlink" title="1.1 统一特征的权重和提升模型准确性"></a>1.1 统一特征的权重和提升模型准确性</h3><p>如果某个特征的取值范围比其他特征大很多，那么数值计算（比如说计算欧式距离）就受该特征的主要影响。但实际上并不一定是这个特征最重要，通常需要把每个特征看成同等重要。归一化和标准化数据可以使不同维度的特征放在一起进行比较，可以大大提高模型的准确性。</p>
+<h3 id="1-2-提升梯度下降法的收敛速度"><a href="#1-2-提升梯度下降法的收敛速度" class="headerlink" title="1.2 提升梯度下降法的收敛速度"></a>1.2 提升梯度下降法的收敛速度</h3><p><img src="https://img-blog.csdnimg.cn/20191113192133110.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzAwODgwNA==,size_16,color_FFFFFF,t_70" alt="左边是未归一化数据的梯度下降过程"></p>
+<h2 id="2-特征缩放的方法有哪些？"><a href="#2-特征缩放的方法有哪些？" class="headerlink" title="2. 特征缩放的方法有哪些？"></a>2. 特征缩放的方法有哪些？</h2><h3 id="2-1-最大最小值归一化（min-max-normalization）：将数值范围缩放到-0-1-区间里"><a href="#2-1-最大最小值归一化（min-max-normalization）：将数值范围缩放到-0-1-区间里" class="headerlink" title="2.1 最大最小值归一化（min-max normalization）：将数值范围缩放到 [0, 1] 区间里"></a>2.1 最大最小值归一化（min-max normalization）：将数值范围缩放到 [0, 1] 区间里</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190103162752557-711062993.png"></p>
+<h3 id="2-2-均值归一化（mean-normalization）：将数值范围缩放到-1-1-区间里，且数据的均值变为0"><a href="#2-2-均值归一化（mean-normalization）：将数值范围缩放到-1-1-区间里，且数据的均值变为0" class="headerlink" title="2.2 均值归一化（mean normalization）：将数值范围缩放到 [-1, 1] 区间里，且数据的均值变为0"></a>2.2 均值归一化（mean normalization）：将数值范围缩放到 [-1, 1] 区间里，且数据的均值变为0</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190103162807303-1305019357.png"></p>
+<h3 id="2-3-标准化-Z-值归一化（standardization-x2F-z-score-normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行-中心化-mean-centering-处理，再除以标准差进行缩放）"><a href="#2-3-标准化-Z-值归一化（standardization-x2F-z-score-normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行-中心化-mean-centering-处理，再除以标准差进行缩放）" class="headerlink" title="2.3 标准化 ,Z 值归一化（standardization &#x2F; z-score normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行 中心化 mean centering 处理，再除以标准差进行缩放）"></a>2.3 标准化 ,Z 值归一化（standardization &#x2F; z-score normalization）：将数值缩放到0附近，且数据的分布变为均值为0，标准差为1的标准正态分布（先减去均值来对特征进行 中心化 mean centering 处理，再除以标准差进行缩放）</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190103162903434-1406801774.png"></p>
+<h3 id="2-4-最大绝对值归一化（max-abs-normalization-）：也就是将数值变为单位长度（scaling-to-unit-length），将数值范围缩放到-1-1-区间里"><a href="#2-4-最大绝对值归一化（max-abs-normalization-）：也就是将数值变为单位长度（scaling-to-unit-length），将数值范围缩放到-1-1-区间里" class="headerlink" title="2.4 最大绝对值归一化（max abs normalization ）：也就是将数值变为单位长度（scaling to unit length），将数值范围缩放到 [-1, 1] 区间里"></a>2.4 最大绝对值归一化（max abs normalization ）：也就是将数值变为单位长度（scaling to unit length），将数值范围缩放到 [-1, 1] 区间里</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201901/1247570-20190112114759202-190163995.png"> </p>
+<h3 id="2-5-稳键标准化（robust-standardization）：先减去中位数，再除以四分位间距（interquartile-range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健"><a href="#2-5-稳键标准化（robust-standardization）：先减去中位数，再除以四分位间距（interquartile-range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健" class="headerlink" title="2.5 稳键标准化（robust standardization）：先减去中位数，再除以四分位间距（interquartile range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健"></a>2.5 稳键标准化（robust standardization）：先减去中位数，再除以四分位间距（interquartile range），因为不涉及极值，因此在数据里有异常值的情况下表现比较稳健</h3><p><img src="https://img2018.cnblogs.com/blog/1247570/201908/1247570-20190811172514046-446486849.png"></p>
+<blockquote>
+<p><em>有一些时候，只对数据进行中心化和缩放是不够的，还需对数据进行白化（whitening）处理来消除特征间的线性相关性</em></p>
+</blockquote>
+<h2 id="3-标准化和归一化的区别是什么？"><a href="#3-标准化和归一化的区别是什么？" class="headerlink" title="3. 标准化和归一化的区别是什么？"></a>3. 标准化和归一化的区别是什么？</h2><h3 id="3-1-归一化-NormalizationNormalization-：将一列数据变化到某个固定区间-范围-中，通常，这个区间是-0-1-，广义的讲，可以是各种区间，比如映射到-0，1-一样可以继续映射到其他范围，图像中可能会映射到-0-255-，其他情况可能映射到-1-1"><a href="#3-1-归一化-NormalizationNormalization-：将一列数据变化到某个固定区间-范围-中，通常，这个区间是-0-1-，广义的讲，可以是各种区间，比如映射到-0，1-一样可以继续映射到其他范围，图像中可能会映射到-0-255-，其他情况可能映射到-1-1" class="headerlink" title="3.1 归一化(NormalizationNormalization)：将一列数据变化到某个固定区间(范围)中，通常，这个区间是[0, 1]，广义的讲，可以是各种区间，比如映射到[0，1]一样可以继续映射到其他范围，图像中可能会映射到[0,255]，其他情况可能映射到[-1,1]"></a>3.1 归一化(NormalizationNormalization)：将一列数据变化到某个固定区间(范围)中，通常，这个区间是[0, 1]，广义的讲，可以是各种区间，比如映射到[0，1]一样可以继续映射到其他范围，图像中可能会映射到[0,255]，其他情况可能映射到[-1,1]</h3><h3 id="3-2-标准化-StandardizationStandardization-：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的"><a href="#3-2-标准化-StandardizationStandardization-：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的" class="headerlink" title="3.2 标准化(StandardizationStandardization)：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的"></a>3.2 标准化(StandardizationStandardization)：将数据变换为均值为0，标准差为1的分布切记，并非一定是正态的</h3><p><img src="https://img-blog.csdnimg.cn/20191021220509274.png#pic_center"></p>
+<h3 id="3-3-中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值"><a href="#3-3-中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值" class="headerlink" title="3.3 中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值"></a>3.3 中心化：另外，还有一种处理叫做中心化，也叫零均值处理，就是将每个原始数据减去这些数据的均值</h3><p><img src="https://img-blog.csdnimg.cn/20191021220535129.png#pic_center"></p>
+<h2 id="4-什么时候用标准化，什么时候用归一化？"><a href="#4-什么时候用标准化，什么时候用归一化？" class="headerlink" title="4. 什么时候用标准化，什么时候用归一化？"></a>4. 什么时候用标准化，什么时候用归一化？</h2><p>某博主理解：如果你对处理后的数据范围有严格要求，那肯定是归一化，个人经验，标准化是机器学习中更通用的手段，如果你无从下手，可以直接使用标准化。如果数据不为稳定，存在极端的最大最小值，不要用归一化。</p>
+<p>在分类、聚类算法中，需要使用距离来度量相似性的时候、或者使用PCA技术进行降维的时候，标准化表现更好；在不涉及距离度量、协方差计算的时候，可以使用归一化方法。</p>
+<p><strong>在需要使用距离来度量相似性的算法中，或者使用PCA技术进行降维的时候，通常使用标准化（standardization）或均值归一化（mean normalization）比较好，但如果数据分布不是正态分布或者标准差非常小，以及需要把数据固定在 [0, 1] 范围内，那么使用最大最小值归一化（min-max normalization）比较好（min-max 常用于归一化图像的灰度值）。但是min-max比较容易受异常值的影响，如果数据集包含较多的异常值，可以考虑使用稳键归一化（robust normalization）。对于已经中心化的数据或稀疏数据的缩放，比较推荐使用最大绝对值归一化（max abs normalization ），因为它会保住数据中的０元素，不会破坏数据的稀疏性（sparsity）。</strong></p>
+<h2 id="5-什么机器学习模型需要用到特征缩放？"><a href="#5-什么机器学习模型需要用到特征缩放？" class="headerlink" title="5. 什么机器学习模型需要用到特征缩放？"></a>5. 什么机器学习模型需要用到特征缩放？</h2><h3 id="5-1-通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear-Regression）、逻辑回归（Logistic-Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural-Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。"><a href="#5-1-通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear-Regression）、逻辑回归（Logistic-Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural-Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。" class="headerlink" title="5.1 通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear Regression）、逻辑回归（Logistic Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。"></a>5.1 通过梯度下降法求解的模型需要进行特征缩放，这包括线性回归（Linear Regression）、逻辑回归（Logistic Regression）、感知机（Perceptron）、支持向量机（SVM）、神经网络（Neural Network）等模型。此外，近邻法（KNN），K均值聚类（K-Means）等需要根据数据间的距离来划分数据的算法也需要进行特征缩放。主成分分析（PCA），线性判别分析（LDA）等需要计算特征的方差的算法也会受到特征缩放的影响。</h3><h3 id="5-2-决策树（Decision-Tree），随机森林（Random-Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。"><a href="#5-2-决策树（Decision-Tree），随机森林（Random-Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。" class="headerlink" title="5.2 决策树（Decision Tree），随机森林（Random Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。"></a>5.2 决策树（Decision Tree），随机森林（Random Forest）等基于树的分类模型不需要进行特征缩放，因为特征缩放不会改变样本在特征上的信息增益。</h3><h2 id="6-在进行特征缩放的时候需要注意的地方？"><a href="#6-在进行特征缩放的时候需要注意的地方？" class="headerlink" title="6. 在进行特征缩放的时候需要注意的地方？"></a>6. 在进行特征缩放的时候需要注意的地方？</h2><p><em>需要先把数据先拆分成训练集与验证集，在训练集上计算出需要的数值（如均值和标准值），对训练集数据做标准化&#x2F;归一化处理，然后再用之前计算出的数据（如均值和标准值）对验证集数据做相同的标准化&#x2F;归一化处理。不要在整个数据集上直接做标准化&#x2F;归一化处理，因为这样会将验证集的信息带入到训练集中，这是一个非常容易犯的错误</em></p>
+<h2 id="7-参考链接"><a href="#7-参考链接" class="headerlink" title="7. 参考链接"></a>7. 参考链接</h2><p><a href="https://www.cnblogs.com/HuZihu/p/9761161.html">https://www.cnblogs.com/HuZihu/p/9761161.html</a></p>
+<p><a href="https://blog.csdn.net/weixin_43008804/article/details/103087447">https://blog.csdn.net/weixin_43008804/article/details/103087447</a></p>
+<p><a href="https://blog.csdn.net/weixin_36604953/article/details/102652160">https://blog.csdn.net/weixin_36604953/article/details/102652160</a></p>
+]]></content>
+      <categories>
+        <category>Mathine Learning</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>网格搜索</title>
+    <url>/2022/11/24/%E7%BD%91%E6%A0%BC%E6%90%9C%E7%B4%A2/</url>
+    <content><![CDATA[<p>在进行机器学习的过程中，最为核心的概念就是参数了，要得到最好的参数可以采取网格搜索策略。网格搜索是应用最广泛的超参数搜索算法，网格搜索通过查找搜索范围内的所有的点，来确定最优值。</p>
+<span id="more"></span>
+
+<h1 id="调节超参数的方法-GridSearchCV网格搜索"><a href="#调节超参数的方法-GridSearchCV网格搜索" class="headerlink" title="调节超参数的方法-GridSearchCV网格搜索"></a>调节超参数的方法-GridSearchCV网格搜索</h1><p><em>在进行机器学习的过程中，最为核心的概念就是参数了，而参数又可以分为模型参数和超参数。模型参数指的是我们使用的模型根据训练数据的分布学习到的参数，这一部分是不需要我们人为的先验知识。而超参数是在开始学习之前需要设置的一组参数，而不是通过训练得到的参数数据。通常情况下，需要对超参数进行优化，给模型选择一组最优的超参数，以提高学习的性能与效果。</em></p>
+<p>这里简单介绍一下常用的超参数调参方法:除了网格搜索，还有随机搜索、贝叶斯优化和自动超参搜索（遗传算法GA）</p>
+<h2 id="网格搜索"><a href="#网格搜索" class="headerlink" title="网格搜索"></a>网格搜索</h2><p>网格搜索是应用最广泛的超参数搜索算法，网格搜索通过查找搜索范围内的所有的点，来确定最优值。一般通过给出较大的搜索范围以及较小的步长，网格搜索是一定可以找到全局最大值或最小值的。但是，网格搜索一个比较大的问题是，它<strong>十分消耗计算资源</strong>，特别是需要调优的超参数比较多的时候。在比赛中，需要调参的模型数量与对应的超参数比较多，而涉及的数据量又比较大，因此相当的耗费时间。<em>此外，由于给出的超参数组合比较多，因此一般都会固定多数参数，分步对1~2个超参数进行调解，这样能够减少时间但是缺难以自动化进行，而且由于目标参数一般是非凸的，因此容易陷入局部最小值。</em></p>
+<p><a href="https://www.jianshu.com/p/5378ef009cae">原作者</a>是用网格搜索来寻找LightGBM的最优超参数，这里我尝试用它来寻找XGBoost的最优超参数。一方面当做学习，另一方面是当做完成上一次机器学习的拓展作业。</p>
+<h2 id="简单介绍需要向GridSearchCV内传什么东西？"><a href="#简单介绍需要向GridSearchCV内传什么东西？" class="headerlink" title="简单介绍需要向GridSearchCV内传什么东西？"></a>简单介绍需要向GridSearchCV内传什么东西？</h2><p>要实现网格搜索，肯定得暴力遍历超参数。查找GridSearchCV函数的参数，其中有一项是含有待优化超参的字典。<a href="https://github.com/scikit-learn/scikit-learn/blob/0fb307bf3/sklearn/model_selection/_search.py#L867">官方</a>给的参数如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sklearn.model_selection.GridSearchCV(estimator, param_grid, *, scoring=<span class="literal">None</span>, n_jobs=<span class="literal">None</span>, iid=<span class="string">&#x27;deprecated&#x27;</span>, refit=<span class="literal">True</span>, cv=<span class="literal">None</span>, verbose=<span class="number">0</span>, pre_dispatch=<span class="string">&#x27;2*n_jobs&#x27;</span>, error_score=nan, return_train_score=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p>其中重要的参数说明如下：</p>
+<ol>
+<li>estimator：表示选择使用的分类器，并且需要传入除了需要确定最佳的参数之外的其他参数。<em>（还有什么参数？不是很清楚）</em>每一个分类器都需要一个scoring参数，或者说是score方法，例子如下：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">estimator = RandomForestClassifier(min_sample_split=100,min_samples_leaf = 20,max_depth = 8,max_features = &#x27;sqrt&#x27; , random_state =10)</span><br></pre></td></tr></table></figure></li>
+<li>param_grid：需要最优化的参数的取值，值为字典或者列表，例如：</li>
+</ol>
+<p><code>param_grid = param_test1, param_test1 = &#123;&#39;n_estimators&#39; : range(10,71,10)&#125;</code><br>或者另外一种表达形式：<br><code>param_grid = [&#123;&#39;n_estimators&#39;: [3, 10, 30],&#39;max_features&#39;: [2, 4, 6, 8]&#125;,&#123;&#39;bootstrap&#39;: [False],&#39;n_estimators&#39;: [3, 10],&#39;max_features&#39;: [2, 3, 4]&#125;,</code><br>3. scoring &#x3D; None ：模型评价标准，默认为None，这时需要使用score函数；或者如scoring &#x3D; ‘roc_auc’，根据所选模型不同，评价准则不同，字符串（函数名），或是可调用对象，需要其函数签名，形如：scorer(estimator，X，y）；如果是None，则使用estimator的误差估计函数。<br>4. n_jobs &#x3D; 1 ： n_jobs：并行数，默认为1，当n_jobs &#x3D; -1：表示使用所有处理器（建议）<br>5. refit &#x3D; True ：默认为True，程序将会以交叉验证训练集得到的最佳参数，重新对所有可能的训练集与开发集进行，作为最终用于性能评估的最佳模型参数。即在搜索参数结束后，用最佳参数结果再次fit一遍全部数据集（不用管即可）<br>6. cv &#x3D; None：交叉验证参数，默认None，使用五折交叉验证。指定fold数量，默认为5(之前版本为3)，也可以是yield训练&#x2F;测试数据的生成器</p>
+<h1 id="寻找XGBoost的参数及一般定义范围"><a href="#寻找XGBoost的参数及一般定义范围" class="headerlink" title="寻找XGBoost的参数及一般定义范围"></a>寻找XGBoost的参数及一般定义范围</h1><p>首先要知道xgb.XGBRegressor的<a href="https://xgboost.readthedocs.io/en/latest/parameter.html#general-parameters">参数分布</a>,这一点可以靠查询官方文档，或者寻找<a href="https://www.codeleading.com/article/77024318818/">相关的资料</a>进行补充。由于代码格式我想参照<a href="https://www.jianshu.com/p/5378ef009cae">简书某博主</a>的写法，所以需要找到xgboost的参数并且规定遍历的范围。</p>
+<p>找到机器学习实验二的XGBoost部分代码，然后根据参数规范范围。因为现在对参数并不熟悉，我打算对参数的范围规定的大一点，以便可以找到全局最优解。</p>
+<h1 id="装库跑代码"><a href="#装库跑代码" class="headerlink" title="装库跑代码"></a>装库跑代码</h1><p>在Anaconda上执行命令<strong>conda install py-xgboost</strong>，下载到所需要用到的xgboost库（另外还有<strong>from sklearn.model_selection import GridSearchCV</strong>）。我发现上面下载xgboost库的conda指令慢的离谱（其实<strong>pip install xgboost</strong>也很慢），于是换清华源<strong>pip install xgboost -i <a href="https://pypi.tuna.tsinghua.edu.cn/simple">https://pypi.tuna.tsinghua.edu.cn/simple</a></strong>，速度嘎嘎起飞。虽然也是在Anaconda上执行的pip指令，但是pip用起来真就是比conda舒服。</p>
+<p>在<a href="https://www.jianshu.com/p/5378ef009cae">参考代码</a>处我们发现了有一段代码很奇怪,<code>regr = lgb.LGBMRegressor(**params)</code>这里的 **号是什么意思呢？这里的 **params其实指的是，你在上面代码所输入的字典形式的变量。如果你想研究更多有关*和**的实例，可以参考以下这篇<a href="https://blog.csdn.net/zkk9527/article/details/88675129">博文</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">from sklearn.model_selection import GridSearchCV</span><br><span class="line">import numpy as np</span><br><span class="line">import xgboost as xgb</span><br><span class="line">import pandas as pd</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def GridSearch(clf, params, X, y):</span><br><span class="line">    cscv = GridSearchCV(</span><br><span class="line">        clf, params, scoring=&quot;neg_mean_squared_error&quot;, n_jobs=1, cv=5)</span><br><span class="line">    cscv.fit(X, y)</span><br><span class="line">    print(cscv.cv_results_)</span><br><span class="line">    print(cscv.best_params_)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def Dataprocessing(trainPath):</span><br><span class="line">    training_set = pd.read_csv(trainPath)</span><br><span class="line">    training_set.drop(&quot;Id&quot;, axis=1, inplace=True)</span><br><span class="line">    training_set = training_set.drop(training_set[(</span><br><span class="line">        training_set[&#x27;GrLivArea&#x27;] &gt; 4000) &amp; (training_set[&#x27;SalePrice&#x27;] &lt; 300000)].index)</span><br><span class="line">    train_y = training_set.SalePrice.values</span><br><span class="line">    train_x = training_set.drop(&quot;SalePrice&quot;, axis=1, inplace=True)</span><br><span class="line">    return train_x, train_y</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    train_x, train_y = Dataprocessing(&#x27;train.csv&#x27;)</span><br><span class="line"></span><br><span class="line">    params = &#123;</span><br><span class="line">        &#x27;colsample_bytree&#x27;: 0.4603,</span><br><span class="line">        &#x27;gamma&#x27;: 0.0468,</span><br><span class="line">        &#x27;learning_rate&#x27;: 0.05,</span><br><span class="line">        &#x27;max_depth&#x27;: 3,</span><br><span class="line">        &#x27;min_child_weight&#x27;: 1.7817,</span><br><span class="line">        &#x27;n_estimators&#x27;: 2200,</span><br><span class="line">        &#x27;reg_alpha&#x27;: 0.4640,</span><br><span class="line">        &#x27;reg_lambda&#x27;: 0.8571,</span><br><span class="line">        &#x27;subsample&#x27;: 0.5213,</span><br><span class="line">        &#x27;silent&#x27;: 1,</span><br><span class="line">        &#x27;random_state&#x27;: 7,</span><br><span class="line">        &#x27;nthread&#x27;: -1</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    regr = xgb.XGBRegressor(**params)</span><br><span class="line"></span><br><span class="line">    adj_params = &#123;</span><br><span class="line">        &#x27;colsample_bytree&#x27;: np.arange(0.1, 1, 0.1),</span><br><span class="line">        &#x27;gamma&#x27;: [0.01, 0.1, 1],</span><br><span class="line">        &#x27;learning_rate&#x27;: [0.01, 0.1, 1],</span><br><span class="line">        &#x27;max_depth&#x27;: range(1, 11),</span><br><span class="line">        &#x27;min_child_weight&#x27;: np.arange(0.1, 2, 0.1),</span><br><span class="line">        &#x27;n_estimators&#x27;: range(300, 1000, 100),</span><br><span class="line">        &#x27;reg_alpha&#x27;: [0.01, 0.1, 1],</span><br><span class="line">        &#x27;reg_lambda&#x27;: [0.01, 0.1, 1],</span><br><span class="line">        &#x27;subsample&#x27;: [0.01, 0.1, 1],</span><br><span class="line">        # &#x27;silent&#x27;:1,</span><br><span class="line">        &#x27;random_state&#x27;: range(1, 11),</span><br><span class="line">        # &#x27;nthread&#x27;:-1</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    GridSearch(regr, adj_params, train_x, train_y)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>代码实在是跑不动，估计是参数有些缺了的问题，具体操作方法先贴在这里，等到下次有项目的时候再继续研究吧！</p>
+<h2 id="随机搜索"><a href="#随机搜索" class="headerlink" title="随机搜索"></a>随机搜索</h2><p>与网格搜索相比，随机搜索并没有尝试所有给定的参数值，而是从指定的分布中采样固定数量的参数设置。它的理论依据是，如果随即样本点集足够大，那么也可以找到全局的最大或最小值，或它们的近似值。通过对搜索范围的随机取样，随机搜索一般会比网格搜索要快一些。但是和网格搜索的快速版（非自动版）相似，结果也是没法保证的。</p>
+<p>随机搜索的过程如下，使用方法与网格搜索完全一致：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import lightgbm as lgb</span><br><span class="line">from sklearn.model_selection import  RandomizedSearchCV</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def RandomSearch(clf, params, X, y):</span><br><span class="line">    rscv = RandomizedSearchCV(clf, params, scoring=&#x27;neg_mean_squared_error&#x27;, n_jobs=1, cv=5)</span><br><span class="line">    rscv.fit(X, y)</span><br><span class="line"></span><br><span class="line">    print(rscv.cv_results_)</span><br><span class="line">    print(rscv.best_params_)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    train_X, train_y = get_data()</span><br><span class="line"></span><br><span class="line">    param = &#123;</span><br><span class="line">        &#x27;objective&#x27;: &#x27;regression&#x27;,</span><br><span class="line">        &#x27;n_estimators&#x27;: 275,</span><br><span class="line">        &#x27;max_depth&#x27;: 6,</span><br><span class="line">        &#x27;min_child_samples&#x27;: 20,</span><br><span class="line">        &#x27;reg_lambd&#x27;: 0.1,</span><br><span class="line">        &#x27;reg_alpha&#x27;: 0.1,</span><br><span class="line">        &#x27;metric&#x27;: &#x27;rmse&#x27;,</span><br><span class="line">        &#x27;colsample_bytree&#x27;: 1,</span><br><span class="line">        &#x27;subsample&#x27;: 0.8,</span><br><span class="line">        &#x27;num_leaves&#x27; : 40,</span><br><span class="line">        &#x27;random_state&#x27;: 2018</span><br><span class="line">        &#125;</span><br><span class="line">    regr = lgb.LGBMRegressor(**param)</span><br><span class="line"></span><br><span class="line">    adj_params = &#123;&#x27;n_estimators&#x27;: range(100, 400, 10),</span><br><span class="line">                 &#x27;min_child_weight&#x27;: range(3, 20, 2),</span><br><span class="line">                 &#x27;colsample_bytree&#x27;: np.arange(0.4, 1.0),</span><br><span class="line">                 &#x27;max_depth&#x27;: range(5, 15, 2),</span><br><span class="line">                 &#x27;subsample&#x27;: np.arange(0.5, 1.0, 0.1),</span><br><span class="line">                 &#x27;reg_lambda&#x27;: np.arange(0.1, 1.0, 0.2),</span><br><span class="line">                 &#x27;reg_alpha&#x27;: np.arange(0.1, 1.0, 0.2),</span><br><span class="line">                 &#x27;min_child_samples&#x27;: range(10, 30)&#125;</span><br><span class="line"></span><br><span class="line">    RandomSearch(regr , adj_params , train_X, train_y)</span><br></pre></td></tr></table></figure>
+
+<h2 id="贝叶斯优化"><a href="#贝叶斯优化" class="headerlink" title="贝叶斯优化"></a>贝叶斯优化</h2><p>贝叶斯优化用于机器学习调参由J. Snoek(2012)提出，主要思想是，给定优化的目标函数(广义的函数，只需指定输入和输出即可，无需知道内部结构以及数学性质)，通过不断地添加样本点来更新目标函数的后验分布(高斯过程,直到后验分布基本贴合于真实分布。简单的说，就是考虑了上一次参数的信息，从而更好的调整当前的参数。</p>
+<p><em>贝叶斯优化与常规的网格搜索或者随机搜索的区别是：</em></p>
+<ol>
+<li>贝叶斯调参采用高斯过程，考虑之前的参数信息，不断地更新先验；网格搜索未考虑之前的参数信息</li>
+<li>贝叶斯调参迭代次数少，速度快；网格搜索速度慢,参数多时易导致<strong>维度爆炸</strong></li>
+<li>贝叶斯调参针对非凸问题依然稳健；网格搜索针对非凸问题易得到局部优最</li>
+</ol>
+<p>如果想要深究贝叶斯优化，可以参考<a href="https://www.sohu.com/a/165565029_465975">这里</a></p>
+<h2 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h2><p>其他常见的超参数优化方法还有比如自动超参搜索（遗传算法）等等，方法总比问题多，对不同的问题总需要根据情况使用不同的方法来解决。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ol>
+<li><a href="https://www.sohu.com/a/165565029_465975">搜狐新闻-贝叶斯优化细究</a></li>
+<li><a href="https://www.jianshu.com/p/d240dbd62d45">简书-炼丹美学</a></li>
+<li><a href="https://www.cnblogs.com/dalege/p/14175192.html">博客园-具体使用GridSearchCV</a></li>
+<li><a href="https://www.codeleading.com/article/77024318818/">代码先锋网-具体调试LightGBM</a><em>让我清楚了，调参也是得按顺序来的，没有说一口气调完全部</em></li>
+<li><a href="https://blog.csdn.net/csiao_Bing/article/details/84978725">CSDN-XGBoost参数详解</a></li>
+<li><a href="https://blog.csdn.net/Ling_Ze/article/details/126045472">CSDN-XGBoost参数详解</a></li>
+<li><a href="https://www.jianshu.com/p/5378ef009cae">简书-超参调节之我主要参考!</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Mathine Learning</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+        <tag>调参</tag>
       </tags>
   </entry>
 </search>
