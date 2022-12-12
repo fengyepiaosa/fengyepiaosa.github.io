@@ -1138,4 +1138,29 @@ print_result(lgb_r2_score, lgb_rmse, &#39;Lightgbm&#39;)
         <tag>调参</tag>
       </tags>
   </entry>
+  <entry>
+    <title>docker打开报错</title>
+    <url>/2022/12/11/docker%E6%89%93%E5%BC%80%E6%8A%A5%E9%94%99/</url>
+    <content><![CDATA[<p>docker之前安装我记得是不需要翻墙的（可能也是用镜像源装的），但是这次直接去到官网安装，发现要翻墙…不仅如此，我安装好docker运行后竟然有报错–&gt;Hardware assisted virtualization and data execution protection must be enabled in the BIOS🤨</p>
+<span id="more"></span>
+
+<h1 id="需要检查的第一个地方-BIOS"><a href="#需要检查的第一个地方-BIOS" class="headerlink" title="需要检查的第一个地方-BIOS"></a>需要检查的第一个地方-BIOS</h1><p>我打开任务管理器，进入blos界面，发现确实开启了虚拟化。明明是在blos已经启用了虚拟硬件了，怎么还会报错呢？</p>
+<h1 id="需要检查的第二个地方-Windows功能"><a href="#需要检查的第二个地方-Windows功能" class="headerlink" title="需要检查的第二个地方-Windows功能"></a>需要检查的第二个地方-Windows功能</h1><p>于是我打开了启用或关闭windows的界面，检查Hyper-V Manager是否安装以及开启。结果发现Hyper—V也是打开的，看来并不是这里出了问题。按照docker的官方文档也并不能成功解决问题。</p>
+<h1 id="我成功的方法-CMD"><a href="#我成功的方法-CMD" class="headerlink" title="我成功的方法-CMD"></a>我成功的方法-CMD</h1><ol>
+<li><p>首先要用管理员工权限运行cmd，然后使用管理员权限运行命令：<code>bcdedit /set hypervisorlaunchtype off</code></p>
+</li>
+<li><p>然后执行Hyper-V的命令：<code>bcdedit /set hypervisorlaunchtype auto</code></p>
+</li>
+<li><p>最后重启电脑就OK啦！</p>
+</li>
+</ol>
+<p>我的操作是重启这个服务，如果问题仍然存在的话，那么就可能需要重安装Hyper-V了😭😭😭</p>
+]]></content>
+      <categories>
+        <category>report an error</category>
+      </categories>
+      <tags>
+        <tag>安装</tag>
+      </tags>
+  </entry>
 </search>
